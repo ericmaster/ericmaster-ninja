@@ -27,7 +27,7 @@ Whether you're a fan of `npm run build` or `hugo -D`, this guide will help you s
 
 ---
 
-## 🧱 Prerequisites
+## Prerequisites
 
 Before you begin, make sure you have:
 
@@ -108,7 +108,7 @@ To use your own domain:
 
 ---
 
-## ✅ Final Thoughts
+## Final Thoughts
 
 Deploying static sites with the new Cloudflare Workers flow is faster and more intuitive than ever. By combining edge performance with developer-friendly tooling, it’s a fantastic choice for everything from blogs to full-scale documentation sites.
 
@@ -116,13 +116,12 @@ If you want to skip deploying your site manually via wrangler CLI, you can conne
 
 ---
 
-### 🔗 Resources
+### Resources
 
 - [Cloudflare Workers Dashboard Getting Started](https://developers.cloudflare.com/workers/get-started/dashboard/)
 - [Wrangler Docs](https://developers.cloudflare.com/workers/wrangler/)
 
 ---
 
-Have feedback or questions? Share them or reach out [@yourhandle].
-Happy deploying! ⚡
+Happy deploying!
 
