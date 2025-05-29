@@ -41,7 +41,7 @@
 /* Navigation styles */
 @layer components {
   .hamburger .line {
-    @apply block w-10 h-1.5 mb-2.5 bg-white;
+    @apply block w-10 h-1.5 mb-2.5 bg-black;
   }
   .nav-links {
     @apply w-full top-20 left-12 hidden m-0;
@@ -79,7 +79,7 @@
     @apply py-2 text-lg;
   }
   .post-card a * {
-    @apply text-white;
+    @apply text-black;
   }
   .post-card a:hover {
     @apply transition-all duration-600 bg-indigo-800/40 shadow-lg
@@ -92,7 +92,16 @@
 /* Dark mode styles */
 @layer utilities {
   html.dark {
-    @apply bg-blue-950 text-white;
+    @apply bg-slate-900 text-white;
+  }
+  html.dark header {
+    @apply bg-blue-950/75;
+  }
+  html.dark .hamburger .line {
+    @apply bg-white;
+  }
+  html.dark .nav-links {
+    @apply bg-gray-900;
   }
   html.dark .nav-links a {
     @apply text-white;
@@ -105,5 +114,8 @@
   }
   html.dark .tag a:hover {
     @apply  bg-sky-500/60
+  }
+  html.dark .post-card a * {
+    @apply text-white;
   }
 }
