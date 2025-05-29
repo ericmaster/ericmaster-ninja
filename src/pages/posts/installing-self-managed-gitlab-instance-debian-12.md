@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 pubDate: 2025-03-06
 author: Eric Aguayo
-title: Installing a Self-managed Gitlab Instance on Your Server (Debian 12)
+title: Host Your Own GitLab Repository Server on Linux (Debian 12)
 published: true
 tags:
   - git
@@ -11,7 +11,7 @@ tags:
 slug: installing-self-managed-gitlab-instance-debian-12
 image:
   url: /assets/images/installing-gitlab.jpg
-  alt: The gitlab logo.
+  alt: Setting up gitlab on a server.
 description: When working with development tools, having a place to store and
   manage your code is essential. While many cloud-based services are available,
   a self-hosted solution offers greater control over versioning and CI/CD
@@ -25,6 +25,8 @@ If you are reading this, you are probably already familiar with GitLab, and prob
 ## TLDR;
 
 You just need to jump to the [Installing gitlab](#install) section and execute the first 2 steps for *Debian 12* or follow the [instructions from the official site](https://about.gitlab.com/install/) according to your operating system or platform. This is pretty well documented. For instance, [Ubuntu distribution](https://about.gitlab.com/install/#ubuntu) takes as little as 5 steps according to the official documentation.
+
+---
 
 ## Why you may want a self-hosted GitLab instance.
 
@@ -44,6 +46,8 @@ If you are concerned about the treatment of your data in the cloud, have particu
 
 One of the advantages of self-hosting is that you have the control of the infrastructure where gitlab is installed. That means, if you have some idle computing power in your infrastructure then you can use it for Gitlab CI/CD operation for instance. Also, by disabling features you don't need or use you may increase the efficiency of your setup.
 
+---
+
 ## <a name="install"></a>Installing gitlab
 
 ### Step 1. Install and configure the necessary dependencies
@@ -51,7 +55,8 @@ One of the advantages of self-hosting is that you have the control of the infras
 There are many different operating systems supported with detailed instructions. When writting this I used Debian 12. Dependencies vary slightly for each system but you should be able to get the dependencies through the corresponding package manager. For Debian/Ubuntu for instance
 
 ```bash
-$ sudo apt-get update && sudo apt-get install -y curl openssh-server ca-certificates perl
+$ sudo apt-get update
+$ sudo apt-get install -y curl openssh-server ca-certificates perl
 ```
 
 You can optionally install `postfix` if you want to send notification emails in the same installation, but you can also connect to an external SMTP server, if so, you can skip the following command line.
@@ -60,7 +65,7 @@ You can optionally install `postfix` if you want to send notification emails in 
 $ sudo apt-get install -y postfix
 ```
 
-<br />
+---
 
 ### Step 2. Add the GitLab package repository and install the package
 
@@ -118,6 +123,7 @@ https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md
 Help us improve the installation experience, let us know how we did with a 1 minute survey:
 https://gitlab.fra1.qualtrics.com/jfe/form/SV_6kVqZANThUQ1bZb?installation=omnibus&release=18-0
 ```
+---
 
 ### Step 3. Enter the URL in the browser and login
 
@@ -126,6 +132,8 @@ When you get the URL in the browser you will be presented the following screen:
 ![image](/assets/images/gitlab-login.jpg)
 
 The default username is `root` and the initial password is stored in `/etc/gitlab/initial_root_password` which is cleaned up after 24 hours. It is highly recommended to reset the password after your first login.
+
+---
 
 ### Step 4. Next steps
 
@@ -166,6 +174,8 @@ If you are going to be managing your credentials directly through your Gitlab in
 #### Backup and upgrade
 
 Finally, secure your code and your data by setting up a [Backup and Restore](https://docs.gitlab.com/administration/backup_restore/) process. You will need to do this if you are upgrading from a too old version or you want to migrate your instance to another server.
+
+---
 
 ### Conclusions
 
