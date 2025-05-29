@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: Deploy your statically generated site to a Cloudflare Worker
-published: false
+published: true
 tags:
   - Devops
   - SSG
