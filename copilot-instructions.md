@@ -11,7 +11,7 @@ The website is also optimized for search engines, with clean URLs and fast loadi
 - All styling should use tailwindcss.
 - All components should be added to the `src/components` directory and follow Astro component conventions. See: https://docs.astro.build/en/basics/astro-components/
 - All pages should be added to the `src/pages` directory.
-- All images should be added to the `src/assets` directory.
+- All images should be added to the `public/assets/images` directory.
 - All blog posts should be added to the `src/pages/posts` directory.
 - For any UI interactivity (e.g., toggling menus, modals, etc.), use Alpine.js attributes and patterns.
 - Do not include the Alpine.js CDN in individual components or pages; it is already loaded globally.
