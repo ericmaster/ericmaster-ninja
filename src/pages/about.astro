@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const about = await import("./about-content.md");
+const about = await import("./content/pages/about-content.md");
 const { Content, frontmatter } = about;
 const pageTitle = frontmatter.title;
 ---

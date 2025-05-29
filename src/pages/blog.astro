@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostTeaser from "../components/PostTeaser.astro";
 import { getPosts } from "../lib/blogUtils";
+import { Content } from "./content/pages/blog-content.md";
 const pageTitle = "My Awesome Blog";
 const allPosts = await getPosts();
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>This is where I share insights, ideas, and lessons I've picked up along the way. Whether it's something I've learned through experience, research, or curiosity, I hope you'll find value in what I post here.</p>
+  <Content />
   <ul>
     {
       allPosts.map((post: any) => (

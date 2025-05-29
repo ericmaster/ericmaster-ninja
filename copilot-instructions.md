@@ -8,6 +8,7 @@ The website is also optimized for search engines, with clean URLs and fast loadi
 
 ## Coding Guidelines
 
+- Follow the Astro 5.x version best practices and only apply patterns verified in the official Astro documentation.
 - All styling should use tailwindcss.
 - All components should be added to the `src/components` directory and follow Astro component conventions. See: https://docs.astro.build/en/basics/astro-components/
 - All pages should be added to the `src/pages` directory.
@@ -18,3 +19,4 @@ The website is also optimized for search engines, with clean URLs and fast loadi
 - Use `{...Astro.props}` to forward all attributes in components that need to receive dynamic attributes (e.g., for Alpine.js bindings).
 - All complex and reusable logic should be placed in a util function under the `src/lib` directory, and not directly within components. Components should import and use these utility functions.
 - Avoid repeating code. If two or more functions share similar logic, consolidate them into a single reusable function with parameters.
+- The blog post collection schema must only include fields that exist in the published markdown files. Do not add fields like `cover` or `draft` unless they are present in the actual content.

@@ -4,10 +4,13 @@ import { formatLocalizedDate } from "../lib/dateUtils";
 export interface Props {
   post: {
     title: string;
-    pubDate: string;
-    description: string;
+    pubDate?: string;
+    description?: string;
     url: string;
-    image_url: string;
+    image?: {
+        url: string;
+        alt?: string;
+    };
   };
 }
 const { post } = Astro.props;
@@ -19,7 +22,7 @@ const { post } = Astro.props;
     class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8 p-6 rounded-lg"
   >
     <img
-      src={post.image_url}
+      src={post.image?.url}
       alt={post.title}
       class=""
       loading="lazy"
@@ -31,10 +34,12 @@ const { post } = Astro.props;
       <h3>
         {post.title}
       </h3>
-      <>
-        <small>Published: {formatLocalizedDate(post.pubDate)}</small>
-        <br />
-      </>
+      {post.pubDate && (
+        <>
+          <small>Published: {formatLocalizedDate(post.pubDate)}</small>
+          <br />
+        </>
+      )}
       <span>{post.description}</span>
     </div>
   </a>
