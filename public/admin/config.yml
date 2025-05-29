@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: ericmaster/ericmaster.github.io
+  repo: ericmaster/ericmaster-ninja
   branch: main
   auth_scope: repo
   base_url: https://ericmaster.ninja
