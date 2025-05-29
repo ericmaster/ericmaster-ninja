@@ -7,7 +7,7 @@
 /* Custom base styles using Tailwind utility classes */
 @layer base {
   html {
-    @apply bg-slate-100 font-sans text-lg;
+    @apply bg-slate-100 font-sans text-xl;
   }
   body {
     @apply mx-auto px-4 leading-relaxed;

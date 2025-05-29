@@ -1,10 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPost from "../components/BlogPost.astro";
+import PostTeaser from "../components/PostTeaser.astro";
+import { getPosts } from "../lib/blogUtils";
 const pageTitle = "My Awesome Blog";
-const allPosts = Object.values(
-  await import.meta.glob("./posts/*.md", { eager: true })
-);
+const allPosts = await getPosts();
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -12,7 +11,8 @@ const allPosts = Object.values(
   <ul>
     {
       allPosts.map((post: any) => (
-        <BlogPost post={post} />
+        <PostTeaser post={post} />
+        <hr />
       ))
     }
   </ul>
