@@ -1,51 +1,47 @@
 ---
 import { formatLocalizedDate } from "../lib/dateUtils";
+import type { CollectionEntry } from "astro:content";
 
-export interface Props {
-  post: {
-    title: string;
-    pubDate?: string;
-    description?: string;
-    url: string;
-    image?: {
-      url: string;
-      alt?: string;
-    };
-  };
-}
-const { post } = Astro.props;
+const { post } = Astro.props as { post: CollectionEntry<"blog"> };
 ---
 
 <li class="post-card">
   <a
-    href={post.url}
+    href={"/posts/" + post.data.slug}
     class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-lg"
   >
     <div class="w-full lg:min-w-[300px] min-w-[200px]">
-      <img
-        src={post.image?.url}
-        alt={post.title}
-        class="w-full"
-        loading="lazy"
-        decoding="async"
-        width="300"
-        height="200"
-      />
-      {
-        post.pubDate && (
-          <>
-            <small>{formatLocalizedDate(post.pubDate)}</small>
-            <br />
-          </>
-        )
-      }
+      {post.data.image && (
+        <img
+          src={post.data.image.url}
+          alt={post.data.image.alt}
+          class="w-full"
+          loading="lazy"
+          decoding="async"
+          width="300"
+          height="200"
+        />
+      )}
+      {post.data.pubDate && (
+        <>
+          <small>{formatLocalizedDate(post.data.pubDate.toISOString())}</small>
+          <br />
+        </>
+      )}
     </div>
 
     <div class="flex flex-col">
       <h3>
-        {post.title}
+        {post.data.title}
       </h3>
-      <span>{post.description}</span>
+      <span>{post.data.description}</span>
+      {post.data.tags && (
+        <div class="tags mt-2">
+          {post.data.tags.map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
     </div>
   </a>
 </li>
