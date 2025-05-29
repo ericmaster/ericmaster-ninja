@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: Manage Your Flat File Based Website Content with Decap CMS (Formerly
   Netlify CMS)
-published: true
+published: false
 tags:
   - CMS
   - Flat File
