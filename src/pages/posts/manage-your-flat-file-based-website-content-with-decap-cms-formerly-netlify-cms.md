@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: Manage Your Flat File Based Website Content with Decap CMS (Formerly
   Netlify CMS)
-published: false
+published: true
 tags:
   - CMS
   - Flat File
@@ -11,7 +11,7 @@ tags:
   - git-based
   - headless
 slug: manage-your-flat-file-based-website-content-with-decap-cms
-pubDate: 2025-05-29T16:17:00.000Z
+pubDate: 2025-05-31T08:56:00.000Z
 image:
   url: assets/images/decap-cms.jpg
   alt: Software engineer managing files content with Decap CMS
