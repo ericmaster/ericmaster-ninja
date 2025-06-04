@@ -10,7 +10,7 @@ tags:
   - SSR
   - git-based
   - headless
-slug: manage-your-flat-file-based-website-content-with-decap-cms
+slug: manage-your-flat-file-based-website-content-with-decap-cms-formerly-netlify-cms
 pubDate: 2025-05-31T08:56:00.000Z
 image:
   url: assets/images/decap-cms.jpg
