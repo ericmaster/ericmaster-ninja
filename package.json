@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "pdfs": "node scripts/gen-pdfs.js"
   },
   "dependencies": {
     "@fontsource/poppins": "^5.2.5",
@@ -22,6 +23,7 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.34",
     "astro-icon": "^1.1.5",
+    "markdown-pdf": "^11.0.0",
     "unplugin-icons": "^22.1.0",
     "wrangler": "^4.17.0"
   }
