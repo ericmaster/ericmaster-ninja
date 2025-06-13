@@ -79,6 +79,12 @@
   p {
     @apply my-4 text-base;
   }
+  ul {
+    @apply my-4 list-disc list-inside;
+  }
+  li {
+    @apply my-2 text-base;
+  }
 }
 
 /* Navigation styles */

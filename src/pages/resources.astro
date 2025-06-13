@@ -3,8 +3,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const resources = await import("./content/pages/resources-content.md");
 const { Content, frontmatter } = resources;
 const pageTitle = frontmatter.title;
+
+// Fetch public repositories from GitHub API
+const res = await fetch('https://api.github.com/users/ericmaster/repos');
+const repos = await res.json();
+// Filter repos with 'cheatsheets' topic
+const cheatsheetRepos = Array.isArray(repos)
+  ? repos.filter(repo => repo.topics && repo.topics.includes('cheatsheets'))
+  : [];
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <Content />
+  <section class="px-4 py-8">
+    <h2>Cheatsheets</h2>
+    <ul>
+      {cheatsheetRepos.map(repo => (
+        <li>
+          <a href={`https://ericmaster.github.io/${repo.name}/`} target="_blank" rel="noopener noreferrer">
+            {repo.description}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 </BaseLayout>
