@@ -9,7 +9,7 @@ tags:
   - content-management
   - rag
   - llm
-slug: content-management-in-the-age-of-ai
+slug: delivering-what-matters-the-new-standard-for-ai-era-web-experiences
 pubDate: 2025-07-01T16:38:00.000Z
 image:
   url: assets/images/c77d3760-df00-4020-a84d-bd90814cc16a.jpg
