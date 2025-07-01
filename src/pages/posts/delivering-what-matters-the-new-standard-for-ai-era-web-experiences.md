@@ -60,6 +60,6 @@ In the age of AI, the value of a CMS is no longer just in managing content, but 
 
 The future of content is not just headless, it’s *intelligent*. Systems that understand their own content models and can serve that content in ways aligned with how users actually consume information today will be the winners in this new era.
 
-**Case in point:** On **16 October 2024**, the [**Drupal@Europa Web Platform Hackathon**, organized by the European Commission and AWS, included a team that built a **multilingual chatbot prototype** using **Amazon Kendra** and **Amazon Q Business**](https://drupal-community-of-practice.ec.europa.eu/news/drupals-successful-hackathon-pioneering-generative-ai-solutions-europa-web-platform-2024-10-17_en?utm_source=chatgpt.com). This chatbot enabled natural‑language navigation of Drupal‑based content, dramatically improving knowledge discovery in EU digital documentation.
+**Case in point:** On **16 October 2024**, the [**Drupal@Europa Web Platform Hackathon**, organized by the European Commission and AWS, included a team that built a **multilingual chatbot prototype** using **Amazon Kendra** and **Amazon Q Business**](https://drupal-community-of-practice.ec.europa.eu/news/drupals-successful-hackathon-pioneering-generative-ai-solutions-europa-web-platform-2024-10-17_en). This chatbot enabled natural‑language navigation of Drupal‑based content, dramatically improving knowledge discovery in EU digital documentation.
 
 Drupal, with its evolving ecosystem, may very well be that foundation.
