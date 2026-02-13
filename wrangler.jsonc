@@ -1,9 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ericmaster-ninja",
-  "main": "worker/index.ts",
+  "main": "./worker-build/index.js",
   "compatibility_date": "2025-05-28",
-  "compatibility_flags": [],
+  "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": "./dist"
   }

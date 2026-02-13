@@ -1,42 +1,37 @@
-const handleAuth = async (
-  url: URL,
-  env: unknown
-): Promise<Response> => {
-  const { GH_CLIENT_ID: client_id, GH_CLIENT_SECRET: client_secret } = env as {
-    GH_CLIENT_ID: string;
-    GH_CLIENT_SECRET: string;
-  };
-  const code = url.searchParams.get("code");
+globalThis.process ??= {}; globalThis.process.env ??= {};
+export { renderers } from '../../renderers.mjs';
 
+const GET = async ({ request, locals }) => {
+  const url = new URL(request.url);
+  const env = locals.runtime.env;
+  const { GH_CLIENT_ID: client_id, GH_CLIENT_SECRET: client_secret } = env;
+  const code = url.searchParams.get("code");
   if (!code) {
     const params = new URLSearchParams({
-      client_id: client_id,
+      client_id,
       redirect_uri: "https://ericmaster.ninja/api/auth",
-      scope: "read:user user:email repo",
+      scope: "read:user user:email repo"
     });
     const githubAuthUrl = `https://github.com/login/oauth/authorize?${params.toString()}`;
     return Response.redirect(githubAuthUrl);
   }
-
-  // Exchange code for access token
   const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       client_id,
       client_secret,
       code,
-      redirect_uri: "https://ericmaster.ninja/api/auth",
-    }),
+      redirect_uri: "https://ericmaster.ninja/api/auth"
+    })
   });
-  const tokenData = (await tokenRes.json()) as { access_token?: string };
+  const tokenData = await tokenRes.json();
   if (!tokenData.access_token) {
     return new Response("OAuth failed", { status: 401 });
   }
-
   const content = { token: tokenData.access_token, provider: "github" };
   const html = `<!DOCTYPE html>
 <html>
@@ -58,28 +53,19 @@ const handleAuth = async (
         // fallback: show token for manual copy
         document.write('Authentication successful. You may close this window.');
       }
-    </script>
+    <\/script>
   </body>
 </html>`;
   return new Response(html, {
-    headers: { "Content-Type": "text/html" },
+    headers: { "Content-Type": "text/html" }
   });
 };
 
-export default {
-  async fetch(
-    request: Request,
-    env: unknown
-    // ctx: ExecutionContext
-  ): Promise<Response> {
-    const url = new URL(request.url);
-    switch (url.pathname) {
-      case "/ai-cheatsheets":
-        return fetch('https://ericmaster.github.io' + url.pathname);
-      case "/api/auth":
-        return handleAuth(url, env);
-      default:
-        return new Response("Not Found", { status: 404 });
-    }
-  },
-} satisfies ExportedHandler;
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  GET
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
