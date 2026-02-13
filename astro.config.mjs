@@ -11,7 +11,9 @@ export default defineConfig({
   site: "https://ericmaster.github.io",
 
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
 
   vite: {
     plugins: [
