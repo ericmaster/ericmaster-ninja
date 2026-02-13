@@ -1,11 +1,14 @@
-const handleAuth = async (
-  url: URL,
-  env: unknown
-): Promise<Response> => {
-  const { GH_CLIENT_ID: client_id, GH_CLIENT_SECRET: client_secret } = env as {
+import type { APIRoute } from 'astro';
+
+export const GET: APIRoute = async ({ request, locals }) => {
+  const url = new URL(request.url);
+  // @ts-ignore
+  const env = locals.runtime.env as {
     GH_CLIENT_ID: string;
     GH_CLIENT_SECRET: string;
   };
+
+  const { GH_CLIENT_ID: client_id, GH_CLIENT_SECRET: client_secret } = env;
   const code = url.searchParams.get("code");
 
   if (!code) {
@@ -65,21 +68,3 @@ const handleAuth = async (
     headers: { "Content-Type": "text/html" },
   });
 };
-
-export default {
-  async fetch(
-    request: Request,
-    env: unknown
-    // ctx: ExecutionContext
-  ): Promise<Response> {
-    const url = new URL(request.url);
-    switch (url.pathname) {
-      case "/ai-cheatsheets":
-        return fetch('https://ericmaster.github.io' + url.pathname);
-      case "/api/auth":
-        return handleAuth(url, env);
-      default:
-        return new Response("Not Found", { status: 404 });
-    }
-  },
-} satisfies ExportedHandler;
