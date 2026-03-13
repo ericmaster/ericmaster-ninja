@@ -43,8 +43,10 @@ const handleAuth = async (
   <body>
     <script>
       const content = ${JSON.stringify(content)};
+      const trustedOrigins = ["https://ericmaster.ninja", "https://ericmaster.github.io"];
       if (window.opener) {
         const receiveMessage = (message) => {
+          if (!trustedOrigins.includes(message.origin)) return;
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify(content),
             message.origin
@@ -52,7 +54,9 @@ const handleAuth = async (
           window.removeEventListener("message", receiveMessage, false);
         };
         window.addEventListener("message", receiveMessage, false);
-        window.opener.postMessage("authorizing:github", "*");
+        trustedOrigins.forEach(origin => {
+          window.opener.postMessage("authorizing:github", origin);
+        });
         // window.close();
       } else {
         // fallback: show token for manual copy
