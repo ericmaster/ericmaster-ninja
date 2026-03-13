@@ -13,5 +13,8 @@ export function formatLocalizedDate(
   options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
 ): string {
   const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    return '';
+  }
   return date.toLocaleDateString(locale, options);
 }
