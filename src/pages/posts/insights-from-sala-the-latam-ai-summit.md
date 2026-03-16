@@ -24,7 +24,7 @@ Throughout the summit, several presentations caught my attention and offered fre
 
 [David Fleet](https://ca.linkedin.com/in/david-fleet-29b8b740) showcased the latest advances in computer vision, revealing that modern systems are far more capable than we often realize. The potential applications are vast and continue to push boundaries.
 
-Meanwhile, Francisco Gomez drove home a critical message: making our environment sustainable is a shared responsibility. As we scale AI, we must be mindful of its environmental footprint. 
+Meanwhile, Francisco Gomez drove home a critical message: making our environment sustainable is a shared responsibility. We can use data science and AI to search for solutions to our local problems.
 
 ## Reasoning and Local LLMs
 
