@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import LinkedInBadge from "../components/LinkedInBadge.astro";
 const about = await import("./content/pages/about-content.md");
 const { Content, frontmatter } = about;
 const pageTitle = frontmatter.title;
@@ -12,6 +13,7 @@ const pageTitle = frontmatter.title;
       alt="Eric Aguayo"
       class="max-w-xs w-full h-auto rounded-xl shadow-lg float-none sm:float-left mb-4 sm:mb-0 sm:mr-6"
     />
+    <LinkedInBadge />
     <div class="flex-1">
       <Content />
     </div>

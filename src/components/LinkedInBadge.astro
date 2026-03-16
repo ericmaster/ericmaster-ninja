@@ -1,0 +1,27 @@
+---
+const {
+  locale = "en_US",
+  size = "medium",
+  theme = "dark",
+  type = "HORIZONTAL",
+  vanity = "eric-aguayo",
+  profileUrl = "https://ec.linkedin.com/in/eric-aguayo?trk=profile-badge",
+  name = "Eric Aguayo",
+  ...rest
+} = Astro.props;
+---
+
+<div class="flex justify-end" {...rest}>
+  <div
+    class="badge-base LI-profile-badge"
+    data-locale={locale}
+    data-size={size}
+    data-theme={theme}
+    data-type={type}
+    data-vanity={vanity}
+    data-version="v1">
+    <a class="badge-base__link LI-simple-link" href={profileUrl}>{name}</a>
+  </div>
+</div>
+
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
