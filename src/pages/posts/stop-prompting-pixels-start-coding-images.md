@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "Stop Prompting Pixels, Start Coding Images"
-published: fakse
+published: false
 tags:
   - SVG
   - Web Design
