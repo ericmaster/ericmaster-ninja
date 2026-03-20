@@ -34,3 +34,106 @@ collections:
           - { label: "Alt", name: "alt", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "resume"
+    label: "Resume / CV"
+    files:
+      - name: "resume"
+        label: "Resume Data"
+        file: "src/data/resume.json"
+        fields:
+          # -- BASICS --
+          - label: "Basics"
+            name: "basics"
+            widget: "object"
+            fields:
+              - { label: "Full Name", name: "name", widget: "string" }
+              - { label: "Headline / Title", name: "headline", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Phone", name: "phone", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Personal Website", name: "website", widget: "string" }
+              - label: "Professional Summary"
+                name: "summary"
+                widget: "markdown"
+                hint: "ATS tip: include relevant keywords for target roles."
+          # -- SOCIAL PROFILES --
+          - label: "Social Profiles"
+            name: "profiles"
+            widget: "list"
+            hint: "LinkedIn, GitHub, etc."
+            fields:
+              - { label: "Network", name: "network", widget: "string" }
+              - { label: "Username", name: "username", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Icon (e.g. linkedin, github)", name: "icon", widget: "string", required: false }
+          # -- WORK EXPERIENCE --
+          - label: "Work Experience"
+            name: "experience"
+            widget: "list"
+            hint: "ATS tip: use action verbs and quantify achievements."
+            fields:
+              - { label: "Company", name: "company", widget: "string" }
+              - { label: "Position / Job Title", name: "position", widget: "string" }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Date Range", name: "date", widget: "string", hint: "e.g. Jan 2021 - Present" }
+              - { label: "Description", name: "summary", widget: "markdown", required: false }
+              - { label: "Company URL", name: "url", widget: "string", required: false }
+          # -- EDUCATION --
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            fields:
+              - { label: "Institution", name: "institution", widget: "string" }
+              - { label: "Degree Type", name: "studyType", widget: "string", hint: "e.g. Bachelor, Master, Engineering" }
+              - { label: "Field of Study", name: "area", widget: "string" }
+              - { label: "GPA / Score", name: "score", widget: "string", required: false }
+              - { label: "Graduation Year", name: "date", widget: "string" }
+              - { label: "Institution URL", name: "url", widget: "string", required: false }
+          # -- SKILLS --
+          - label: "Skills"
+            name: "skills"
+            widget: "list"
+            hint: "ATS tip: match keywords from job descriptions."
+            fields:
+              - { label: "Skill Name", name: "name", widget: "string" }
+              - { label: "Experience", name: "description", widget: "string", hint: "e.g. 5+ years", required: false }
+              - { label: "Level (1-5)", name: "level", widget: "number", value_type: "int", min: 1, max: 5, required: false }
+              - { label: "Keywords (comma separated)", name: "keywords", widget: "list", required: false }
+          # -- LANGUAGES --
+          - label: "Languages"
+            name: "languages"
+            widget: "list"
+            fields:
+              - { label: "Language", name: "name", widget: "string" }
+              - { label: "Proficiency", name: "description", widget: "string", hint: "e.g. Native, Advanced, Basic" }
+              - { label: "Level (1-5)", name: "level", widget: "number", value_type: "int", min: 1, max: 5, required: false }
+          # -- CERTIFICATIONS --
+          - label: "Certifications"
+            name: "certifications"
+            widget: "list"
+            fields:
+              - { label: "Certification Name", name: "name", widget: "string" }
+              - { label: "Issuing Organization", name: "issuer", widget: "string" }
+              - { label: "Date", name: "date", widget: "string", required: false }
+              - { label: "Certificate URL", name: "url", widget: "string", required: false }
+          # -- PROJECTS --
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            fields:
+              - { label: "Project Name", name: "name", widget: "string" }
+              - { label: "Short Description", name: "description", widget: "string" }
+              - { label: "Date / Year", name: "date", widget: "string", required: false }
+              - { label: "Keywords", name: "keywords", widget: "list", required: false }
+              - { label: "Project URL", name: "url", widget: "string", required: false }
+          # -- LEADERSHIP & COMMUNITY --
+          - label: "Leadership & Community"
+            name: "leadership"
+            widget: "list"
+            fields:
+              - { label: "Event / Role", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "Date", name: "date", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string", required: false }

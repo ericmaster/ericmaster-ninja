@@ -1,0 +1,9 @@
+---
+const { summary } = Astro.props;
+---
+{summary && (
+  <section class="resume-section" aria-labelledby="summary-heading">
+    <h2 id="summary-heading" class="section-title">Professional Summary</h2>
+    <div class="section-content prose" set:html={summary} />
+  </section>
+)}

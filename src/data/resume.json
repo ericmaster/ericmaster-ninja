@@ -1,0 +1,167 @@
+{
+  "basics": {
+    "name": "Eric Aguayo",
+    "headline": "Web Solutions Architect",
+    "email": "eric7master@gmail.com",
+    "phone": "+593983337611",
+    "location": "Quito, Pichincha - Ecuador",
+    "website": "https://ericmaster.ninja",
+    "summary": "<p>Results-driven Web Solutions Architect with 15+ years of experience in full-stack development, Drupal ecosystem, and DevOps. Proven success in leading cross-functional teams, delivering scalable web platforms, and optimizing CI/CD workflows. Passionate about open-source, mentorship, and emerging technologies like AI and container orchestration.</p>"
+  },
+  "profiles": [
+    {
+      "network": "GitHub",
+      "username": "ericmaster",
+      "url": "https://github.com/ericmaster",
+      "icon": "github"
+    },
+    {
+      "network": "LinkedIn",
+      "username": "eric-aguayo",
+      "url": "https://www.linkedin.com/in/eric-aguayo/",
+      "icon": "linkedin"
+    },
+    {
+      "network": "Drupal.org",
+      "username": "ericmaster",
+      "url": "https://www.drupal.org/u/ericmaster",
+      "icon": "drupal"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Independent Developer / Contractor",
+      "position": "Full-Stack Developer & Consultant",
+      "location": "Quito, Ecuador",
+      "date": "Feb 2025 – Present",
+      "summary": "<p>Web Development Services and Applications</p><ul><li>Contractor work for Paftesting/Velir: consultancy, CMS migrations and AI integrations.</li><li>Built ventadegarage.kawri.com: Simple E-Commerce platform for second-hand goods.</li><li>Built meli.run: Athlete Profile and Blog Platform using React/Next.js, Decap CMS and GitHub.</li></ul>",
+      "url": "https://ericmaster.ninja"
+    },
+    {
+      "company": "REDSpace",
+      "position": "Senior Web Developer",
+      "location": "Halifax, Canada",
+      "date": "Feb 2021 – Feb 2025",
+      "summary": "<p>Web Development Contributions (Frontend & Backend)</p><ul><li>redspace.com – Led frontend team on site redesign, resolved backend issues, improved CMS experience.</li><li>bleacherreport.com – Contributed to frontend architecture overhaul for improved scalability.</li><li>nypost.com – AdTech team; optimized ad bidding library, improving tracking accuracy and ad revenue efficiency.</li><li>la.sonychannel.com – Migrated legacy Drupal site to modern version with better performance and enhanced editorial workflow.</li><li>nspower.ca – Integrated LoginRadius identity and SSO for unified authentication experience.</li></ul>",
+      "url": "https://www.redspace.com/"
+    },
+    {
+      "company": "Taoti",
+      "position": "Senior Drupal Developer",
+      "location": "United States",
+      "date": "Feb 2020 – Feb 2021",
+      "summary": "<p>Providing development services (backend and frontend) on a CI platform for multiple websites:</p><ul><li>wsscwater.com – Launched redesigned responsive Drupal site with complex data migration.</li><li>lmi.org – Refactored tightly coupled frontend into flexible, maintainable implementation.</li><li>hfsa.org – Implemented events section for better editorial publishing experience.</li><li>inee.org – Implemented multilingual content search via Apache Solr.</li></ul>",
+      "url": "https://taoti.com/"
+    },
+    {
+      "company": "Nimblersoft",
+      "position": "Co-Founder & Drupal Software Architect",
+      "location": "Quito, Ecuador",
+      "date": "Jan 2014 – Feb 2020",
+      "summary": "<p>Provided consulting and development services to companies in Ecuador and the U.S.</p><ul><li>Assessment, training, architecture and development of web sites.</li><li>usfq.edu.ec – Led Digital Marketing web dev team, redesign in latest Drupal, defined content architecture and high-availability infrastructure.</li><li>help.blackboard.com – Led migration to scalable Drupal architecture with semi-autonomous multilingual translation workflow.</li></ul>",
+      "url": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad San Francisco de Quito",
+      "studyType": "Engineering",
+      "area": "Systems Engineering and Mathematics",
+      "score": "3.91/4.00 GPA",
+      "date": "2008",
+      "url": "https://www.usfq.edu.ec"
+    },
+    {
+      "institution": "Universidad San Francisco de Quito",
+      "studyType": "Master",
+      "area": "Artificial Intelligence (in progress)",
+      "score": "",
+      "date": "In progress",
+      "url": "https://www.usfq.edu.ec"
+    }
+  ],
+  "skills": [
+    { "name": "PHP", "description": "13+ years", "level": 5, "keywords": ["Drupal", "Laravel", "Symfony"] },
+    { "name": "JavaScript / TypeScript", "description": "5+ years", "level": 5, "keywords": ["Node", "React", "Next.js", "Vue", "Svelte", "Express"] },
+    { "name": "Python", "description": "3+ years", "level": 4, "keywords": ["DevOps", "Machine Learning"] },
+    { "name": "Linux / Bash", "description": "10+ years", "level": 4, "keywords": ["Automation", "DevOps"] },
+    { "name": "Content Management Systems", "description": "15+ years", "level": 5, "keywords": ["Drupal", "WordPress", "Directus", "Strapi", "Decap"] },
+    { "name": "DevOps & Infrastructure", "description": "12+ years", "level": 5, "keywords": ["GitHub Actions", "Docker", "Kubernetes", "Proxmox VE", "Jenkins"] },
+    { "name": "Database & Caching", "description": "10+ years", "level": 4, "keywords": ["MySQL", "PostgreSQL", "MongoDB", "Redis"] },
+    { "name": "Version Control & Workflows", "description": "15+ years", "level": 5, "keywords": ["Git", "GitFlow", "GitHub Flow"] },
+    { "name": "Agile & Project Management", "description": "15+ years", "level": 5, "keywords": ["Scrum", "Kanban", "JIRA"] }
+  ],
+  "languages": [
+    { "name": "Spanish", "description": "Native", "level": 5 },
+    { "name": "English", "description": "Advanced", "level": 5 },
+    { "name": "French", "description": "Basic", "level": 2 }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Developer",
+      "issuer": "Acquia",
+      "date": "2015",
+      "url": ""
+    }
+  ],
+  "projects": [
+    {
+      "name": "Quiz Generator",
+      "description": "A Svelte-based web application for a Quiz generator, created using Vite",
+      "date": "",
+      "keywords": ["Svelte", "Vite"],
+      "url": "https://github.com/ericmaster/quiz-generator"
+    },
+    {
+      "name": "Docker VSCode Server Tunnel",
+      "description": "A dockerized version of VSCode accessible remotely via vscode.dev",
+      "date": "",
+      "keywords": ["Docker", "VSCode"],
+      "url": "https://github.com/ericmaster/docker-code-tunnel"
+    }
+  ],
+  "leadership": [
+    {
+      "name": "FLISOL 2025",
+      "description": "Speaker",
+      "date": "2025",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp & PHP Day Quito",
+      "description": "Sponsor",
+      "date": "2017",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp Costa Rica",
+      "description": "Speaker",
+      "date": "2016",
+      "location": "Costa Rica",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp Chile",
+      "description": "Speaker",
+      "date": "2015",
+      "location": "Santiago, Chile",
+      "url": ""
+    },
+    {
+      "name": "Drupalcon Latin America",
+      "description": "Mentor",
+      "date": "2015",
+      "location": "",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp 2014",
+      "description": "Co-Organizer",
+      "date": "2014",
+      "location": "Guayaquil, Ecuador",
+      "url": ""
+    }
+  ]
+}
