@@ -1,9 +1,13 @@
 ---
+import { marked } from 'marked';
 const { summary } = Astro.props;
+
+// Parse the markdown string into HTML
+const parsedSummary = summary ? marked.parse(summary) : '';
 ---
 {summary && (
   <section class="resume-section" aria-labelledby="summary-heading">
     <h2 id="summary-heading" class="section-title">Professional Summary</h2>
-    <div class="section-content prose" set:html={summary} />
+    <div class="section-content prose" set:html={parsedSummary} />
   </section>
 )}
