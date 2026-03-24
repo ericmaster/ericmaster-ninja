@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "Stop Prompting Pixels, Start Coding Images"
-published: false
+title: Stop Prompting Pixels, Start Coding Images
+published: true
 tags:
   - SVG
   - Web Design
@@ -11,11 +11,13 @@ tags:
   - AI
   - Design Systems
 slug: stop-prompting-pixels-start-coding-images
-pubDate: 2026-03-16T10:00:00.000Z
+pubDate: 2026-03-24T10:30:00.000-05:00
 image:
   url: assets/images/from-prompting-pixels-to-coding-images.jpg
   alt: Vector graphics and code editor representing image-as-code workflow
-description: Discover why treating images as code, not pixels, is the future of design. Learn how SVG and vector-based workflows provide superior control, scalability, and performance compared to AI-generated raster images.
+description: Discover why treating images as code, not pixels, is the future of
+  design. Learn how SVG and vector-based workflows provide superior control,
+  scalability, and performance compared to AI-generated raster images.
 ---
 
 # Stop Prompting Pixels, Start Coding Images
