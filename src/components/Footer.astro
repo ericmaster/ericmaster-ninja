@@ -1,17 +1,39 @@
 ---
 import Social from "./Social.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <style>
   footer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1rem;
     margin-top: 2rem;
+  }
+  .social-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .copyright {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
   }
 </style>
 
 <footer>
-  <Social platform="twitter" username="ericmaster" class="w-6 h-6 text-blue-500" />
-  <Social platform="github" username="ericmaster" class="w-6 h-6 text-gray-800" />
-  <Social platform="youtube" username="djericmaster" class="w-6 h-6 text-blue-700" />
+  <div class="social-links">
+    <Social platform="x" username="ericmaster" />
+    <Social platform="github" username="ericmaster" />
+    <Social platform="youtube" username="djericmaster" />
+    <Social platform="linkedin" username="eric-aguayo" />
+    <Social platform="whatsapp" username="593983337611" />
+  </div>
+  <div class="copyright">
+    &copy; {currentYear} Eric Aguayo. All rights reserved.
+  </div>
 </footer>

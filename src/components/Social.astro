@@ -1,15 +1,61 @@
 ---
-const { platform, username } = Astro.props
-
 import { Icon } from 'astro-icon/components'
+
+interface Props {
+  platform: string;
+  username?: string;
+  href?: string;
+  icon?: string;
+  class?: string;
+}
+
+const { platform, username, href, icon, class: className } = Astro.props;
+
+let computedHref = href;
+if (!computedHref) {
+  if (platform === 'twitter' || platform === 'x') {
+    computedHref = `https://x.com/${username}`;
+  } else if (platform === 'linkedin') {
+    computedHref = `https://www.linkedin.com/in/${username}/`;
+  } else if (platform === 'whatsapp') {
+    computedHref = `https://wa.me/${username}`;
+  } else if (platform === 'github') {
+    computedHref = `https://github.com/${username}`;
+  } else {
+    computedHref = `https://www.${platform}.com/${username}`;
+  }
+}
+
+let computedIcon = icon;
+if (!computedIcon) {
+  if (platform === 'x' || platform === 'twitter') computedIcon = 'simple-icons:x';
+  else if (platform === 'github') computedIcon = 'simple-icons:github';
+  else if (platform === 'youtube') computedIcon = 'simple-icons:youtube';
+  else if (platform === 'linkedin') computedIcon = 'mdi:linkedin';
+  else if (platform === 'whatsapp') computedIcon = 'mdi:whatsapp';
+  else computedIcon = `mdi:${platform}`;
+}
+
+let computedColorClass = className || '';
+if (!className) {
+  if (platform === 'x' || platform === 'twitter') computedColorClass = 'text-black dark:text-white';
+  else if (platform === 'github') computedColorClass = 'text-[#181717] dark:text-white';
+  else if (platform === 'youtube') computedColorClass = 'text-[#FF0000]';
+  else if (platform === 'linkedin') computedColorClass = 'text-[#0077b5]';
+  else if (platform === 'whatsapp') computedColorClass = 'text-[#25D366]';
+}
 ---
-<a href={`https://www.${platform}.com/${username}`} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2">
-  <Icon name={`mdi:${platform}`} class="w-8 h-8"/>
+<a href={computedHref} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2" aria-label={platform}>
+  <Icon name={computedIcon} class={`w-8 h-8 ${computedColorClass}`.trim()}/>
 </a>
 
 <style>
   a {
     padding: 0.5rem 1rem;
     text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  a:hover {
+    opacity: 0.8;
   }
 </style>
