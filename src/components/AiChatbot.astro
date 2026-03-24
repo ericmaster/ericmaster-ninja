@@ -1,0 +1,229 @@
+---
+// src/components/AiChatbot.astro
+---
+
+<div id="ai-chatbot-container" class="fixed bottom-6 right-6 z-50 font-sans">
+  <!-- Chat Bubble Button -->
+  <button
+    id="chatbot-toggle-btn"
+    class="relative w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105"
+    aria-label="Toggle Chat"
+  >
+    <svg id="icon-closed" class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+    </svg>
+    <svg id="icon-open" class="hidden w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    <!-- Notification dot -->
+    <span id="unread-dot" class="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></span>
+  </button>
+
+  <!-- Chat Window -->
+  <div
+    id="chatbot-window"
+    class="hidden absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col h-[500px] max-h-[75vh] transition-all duration-300 origin-bottom-right"
+  >
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-700 to-indigo-800 p-4 text-white flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="relative w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-indigo-400">
+          <img src="/assets/eric-anime-run.jpg" alt="Eric Avatar" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Eric+A&background=random'" />
+        </div>
+        <div>
+          <h3 class="font-bold text-sm">Eric's AI Assistant</h3>
+          <div class="flex items-center text-xs text-blue-200">
+            <span class="w-2 h-2 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
+            Online
+          </div>
+        </div>
+      </div>
+      <button id="chatbot-close-btn" class="text-blue-200 hover:text-white transition-colors" aria-label="Close Chat">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="chatbot-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-slate-900 scroll-smooth space-y-4">
+      <!-- Messages will be injected here -->
+    </div>
+
+    <!-- Typing Indicator Area -->
+    <div id="chatbot-typing" class="hidden bg-slate-50 dark:bg-slate-900 px-4 pb-2">
+      <div class="flex justify-start">
+        <div class="bg-white dark:bg-slate-800 px-4 py-3 rounded-2xl rounded-bl-none border border-slate-100 dark:border-slate-700 shadow-sm flex items-center space-x-1.5 min-w-[60px]">
+          <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+          <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+          <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="bg-white dark:bg-slate-900 p-3 border-t border-slate-100 dark:border-slate-800">
+      <form id="chatbot-form" class="flex items-center gap-2">
+        <input
+          id="chatbot-input"
+          type="text"
+          class="flex-1 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-slate-200 dark:border-slate-700 transition"
+          placeholder="Type your message..."
+          autocomplete="off"
+        />
+        <button
+          id="chatbot-submit"
+          type="submit"
+          class="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          <svg class="w-5 h-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+  import { ChatServiceMock } from '../lib/ChatServiceMock';
+
+  class ChatbotUI {
+    constructor() {
+      this.chatService = new ChatServiceMock();
+      this.isOpen = false;
+      this.unread = true;
+      this.isTyping = false;
+      this.messages = [
+        { sender: 'bot', text: "Hello! I'm Eric's AI Assistant. Are you looking to upgrade your tech with AI, ensure privacy, or screen top talent?" }
+      ];
+
+      // DOM Elements
+      this.container = document.getElementById('ai-chatbot-container');
+      this.toggleBtn = document.getElementById('chatbot-toggle-btn');
+      this.closeBtn = document.getElementById('chatbot-close-btn');
+      this.windowEl = document.getElementById('chatbot-window');
+      this.iconClosed = document.getElementById('icon-closed');
+      this.iconOpen = document.getElementById('icon-open');
+      this.unreadDot = document.getElementById('unread-dot');
+      this.messagesContainer = document.getElementById('chatbot-messages');
+      this.typingIndicator = document.getElementById('chatbot-typing');
+      this.form = document.getElementById('chatbot-form');
+      this.input = document.getElementById('chatbot-input');
+      this.submitBtn = document.getElementById('chatbot-submit');
+
+      this.init();
+    }
+
+    init() {
+      if(!this.container) return;
+      
+      this.toggleBtn.addEventListener('click', () => this.toggleChat());
+      this.closeBtn.addEventListener('click', () => this.closeChat());
+      this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+      this.input.addEventListener('input', () => this.handleInput());
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) this.closeChat();
+      });
+
+      this.renderMessages();
+    }
+
+    toggleChat() {
+      this.isOpen = !this.isOpen;
+      if (this.isOpen) {
+        this.windowEl.classList.remove('hidden');
+        this.iconClosed.classList.add('hidden');
+        this.iconOpen.classList.remove('hidden');
+        this.unreadDot.classList.add('hidden');
+        this.unread = false;
+        
+        // Slight delay to allow transition, then focus
+        setTimeout(() => {
+          this.input.focus();
+          this.scrollToBottom();
+        }, 50);
+      } else {
+        this.closeChat();
+      }
+    }
+
+    closeChat() {
+      this.isOpen = false;
+      this.windowEl.classList.add('hidden');
+      this.iconClosed.classList.remove('hidden');
+      this.iconOpen.classList.add('hidden');
+    }
+
+    handleInput() {
+      if (this.input.value.trim().length > 0 && !this.isTyping) {
+        this.submitBtn.disabled = false;
+      } else {
+        this.submitBtn.disabled = true;
+      }
+    }
+
+    scrollToBottom() {
+      this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }
+
+    renderMessages() {
+      this.messagesContainer.innerHTML = '';
+      this.messages.forEach(msg => {
+        const wrap = document.createElement('div');
+        wrap.className = msg.sender === 'user' ? 'flex justify-end' : 'flex justify-start';
+        
+        const bubble = document.createElement('div');
+        if (msg.sender === 'user') {
+          bubble.className = 'bg-blue-600 text-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl px-4 py-2.5 max-w-[85%] text-sm shadow-sm';
+        } else {
+          bubble.className = 'bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-slate-100 dark:border-slate-700 px-4 py-2.5 max-w-[85%] text-sm shadow-sm';
+        }
+        bubble.innerHTML = msg.text;
+        
+        wrap.appendChild(bubble);
+        this.messagesContainer.appendChild(wrap);
+      });
+      this.scrollToBottom();
+    }
+
+    async handleSubmit(e) {
+      e.preventDefault();
+      const text = this.input.value.trim();
+      if (!text || this.isTyping) return;
+
+      // Add user message
+      this.messages.push({ sender: 'user', text });
+      this.input.value = '';
+      this.handleInput();
+      this.renderMessages();
+
+      // Show typing indicator
+      this.isTyping = true;
+      this.typingIndicator.classList.remove('hidden');
+      this.submitBtn.disabled = true;
+      this.scrollToBottom();
+
+      try {
+        const response = await this.chatService.sendMessage(text);
+        this.messages.push({ sender: 'bot', text: response });
+      } catch (error) {
+        console.error(error);
+        this.messages.push({ sender: 'bot', text: 'Sorry, I encountered an issue. Please try reaching out natively on WhatsApp.' });
+      } finally {
+        this.isTyping = false;
+        this.typingIndicator.classList.add('hidden');
+        this.renderMessages();
+        setTimeout(() => this.input.focus(), 50);
+      }
+    }
+  }
+
+  // Initialize on Astro page load
+  document.addEventListener('DOMContentLoaded', () => {
+    new ChatbotUI();
+  });
+</script>
