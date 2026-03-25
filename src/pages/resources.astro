@@ -1,15 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import fs from 'node:fs/promises';
+
 const resources = await import("./content/pages/resources-content.md");
 const { Content, frontmatter } = resources;
 const pageTitle = frontmatter.title;
 
-// Fetch public repositories from GitHub API
-const res = await fetch('https://api.github.com/users/ericmaster/repos');
-const repos = await res.json();
+// Fetch public repositories from GitHub API, with file-based caching
+const CACHE_FILE = '.repos-cache.json';
+let repos;
+try {
+  const cacheData = await fs.readFile(CACHE_FILE, 'utf-8');
+  repos = JSON.parse(cacheData);
+} catch (e) {
+  const res = await fetch('https://api.github.com/users/ericmaster/repos');
+  repos = await res.json();
+  await fs.writeFile(CACHE_FILE, JSON.stringify(repos), 'utf-8').catch(() => {});
+}
+
 // Filter repos with 'cheatsheets' topic
 const cheatsheetRepos = Array.isArray(repos)
-  ? repos.filter(repo => repo.topics && repo.topics.includes('cheatsheets'))
+  ? repos.filter((repo: any) => repo.topics && repo.topics.includes('cheatsheets'))
   : [];
 ---
 
@@ -18,10 +29,10 @@ const cheatsheetRepos = Array.isArray(repos)
   <section class="px-4 py-8">
     <h2>Cheatsheets</h2>
     <ul>
-      {cheatsheetRepos.map(repo => (
+      {cheatsheetRepos.map((r: any) => (
         <li>
-          <a href={`https://ericmaster.github.io/${repo.name}/`} target="_blank" rel="noopener noreferrer">
-            {repo.description}
+          <a href={`https://ericmaster.github.io/${r.name}/`} target="_blank" rel="noopener noreferrer">
+            {r.description}
           </a>
         </li>
       ))}
