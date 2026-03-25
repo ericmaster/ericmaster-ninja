@@ -12,7 +12,7 @@ interface Props {
 
 const { items }: Props = Astro.props;
 ---
-{items && items.length > 0 && (
+{items.length > 0 && (
   <section class="resume-section" aria-labelledby="skills-heading">
     <h2 id="skills-heading" class="section-title">Skills</h2>
     <div class="section-content skills-grid">
