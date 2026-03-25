@@ -8,6 +8,7 @@ canvas.height = height;
 const STAR_COUNT = 60;
 const STAR_RADIUS = 2;
 const LINE_DISTANCE = 140;
+const LINE_DISTANCE_SQ = LINE_DISTANCE * LINE_DISTANCE;
 const stars = [];
 
 function random(min, max) {
@@ -44,8 +45,8 @@ function drawStars() {
     for (let j = i + 1; j < STAR_COUNT; j++) {
       const dx = stars[i].x - stars[j].x;
       const dy = stars[i].y - stars[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < LINE_DISTANCE) {
+      const distSq = dx * dx + dy * dy;
+      if (distSq < LINE_DISTANCE_SQ) {
         ctx.beginPath();
         ctx.moveTo(stars[i].x, stars[i].y);
         ctx.lineTo(stars[j].x, stars[j].y);
