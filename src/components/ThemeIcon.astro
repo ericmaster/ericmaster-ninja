@@ -39,8 +39,8 @@
 </style>
 
 <script is:inline>
+  const localStorageTheme = localStorage?.getItem("theme") ?? "";
   const theme = (() => {
-    const localStorageTheme = localStorage?.getItem("theme") ?? "";
     if (["dark", "light"].includes(localStorageTheme)) {
       return localStorageTheme;
     }
@@ -56,7 +56,9 @@
     document.documentElement.classList.add("dark");
   }
 
-  window.localStorage.setItem("theme", theme);
+  if (localStorageTheme !== theme) {
+    window.localStorage.setItem("theme", theme);
+  }
 
   const handleToggleClick = () => {
     const element = document.documentElement;
