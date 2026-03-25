@@ -1,5 +1,6 @@
 ---
 const { items } = Astro.props;
+const SKILL_LEVELS = [1, 2, 3, 4, 5];
 ---
 {items && items.length > 0 && (
   <section class="resume-section" aria-labelledby="skills-heading">
@@ -13,7 +14,7 @@ const { items } = Astro.props;
           </div>
           {skill.level && (
             <div class="skill-bar" aria-label={`Level ${skill.level} out of 5`}>
-              {[1,2,3,4,5].map(n => (
+              {SKILL_LEVELS.map(n => (
                 <span class={`skill-pip ${n <= skill.level ? 'filled' : ''}`} />
               ))}
             </div>
