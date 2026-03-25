@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostTeaser from "../components/PostTeaser.astro";
+import type { CollectionEntry } from "astro:content";
 import { getPosts } from "../lib/blogUtils";
 import { Content } from "./content/pages/blog-content.md";
 const pageTitle = "My Awesome Blog";
@@ -11,7 +12,7 @@ const allPosts = await getPosts();
   <Content />
   <ul>
     {
-      allPosts.map((post: any) => (
+      allPosts.map((post: CollectionEntry<"blog">) => (
         <PostTeaser post={post} />
         <hr />
       ))
