@@ -1,7 +1,8 @@
 ---
+const { class: className, ...props } = Astro.props;
 ---
 
-<div {...Astro.props} class="hamburger pr-5 cursor-pointer md:hidden">
+<div {...props} class:list={["hamburger cursor-pointer md:hidden", className]}>
   <span class="line"></span>
   <span class="line"></span>
   <span class="line"></span>
