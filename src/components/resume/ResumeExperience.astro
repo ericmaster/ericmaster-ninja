@@ -1,11 +1,24 @@
 ---
-const { items } = Astro.props;
+export interface ExperienceItem {
+  company: string;
+  position: string;
+  location?: string;
+  date: string;
+  summary?: string;
+  url?: string;
+}
+
+interface Props {
+  items: ExperienceItem[];
+}
+
+const { items } = Astro.props as Props;
 ---
 {items && items.length > 0 && (
   <section class="resume-section" aria-labelledby="experience-heading">
     <h2 id="experience-heading" class="section-title">Work Experience</h2>
     <div class="section-content">
-      {items.map((job: any) => (
+      {items.map((job: ExperienceItem) => (
         <article class="resume-item">
           <div class="item-header">
             <div class="item-primary">
