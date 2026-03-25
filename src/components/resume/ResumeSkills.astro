@@ -1,11 +1,22 @@
 ---
-const { items } = Astro.props;
+interface ResumeSkill {
+  name: string;
+  description?: string;
+  level?: number;
+  keywords?: string[];
+}
+
+interface Props {
+  items: ResumeSkill[];
+}
+
+const { items }: Props = Astro.props;
 ---
-{items && items.length > 0 && (
+{items.length > 0 && (
   <section class="resume-section" aria-labelledby="skills-heading">
     <h2 id="skills-heading" class="section-title">Skills</h2>
     <div class="section-content skills-grid">
-      {items.map((skill: any) => (
+      {items.map((skill: ResumeSkill) => (
         <div class="skill-item">
           <div class="skill-header">
             <span class="skill-name">{skill.name}</span>
