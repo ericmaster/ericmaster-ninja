@@ -1,11 +1,23 @@
 ---
-const { items } = Astro.props;
+export interface Project {
+  name: string;
+  description?: string;
+  date?: string;
+  keywords?: string[];
+  url?: string;
+}
+
+export interface Props {
+  items: Project[];
+}
+
+const { items } = Astro.props as Props;
 ---
 {items && items.length > 0 && (
   <section class="resume-section" aria-labelledby="projects-heading">
     <h2 id="projects-heading" class="section-title">Projects</h2>
     <div class="section-content">
-      {items.map((proj: any) => (
+      {items.map((proj: Project) => (
         <article class="resume-item">
           <div class="item-header">
             <div class="item-primary">
