@@ -179,7 +179,9 @@
       this.messages = [
         {
           sender: "bot",
-          text: "Hello! I'm Eric's AI Assistant. Are you looking to upgrade your tech with AI, ensure privacy, or screen top talent?",
+          content: {
+            text: "Hello! I'm Eric's AI Assistant. Are you looking to upgrade your tech with AI, ensure privacy, or screen top talent?",
+          },
         },
       ];
 
@@ -268,7 +270,21 @@
           bubble.className =
             "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-slate-100 dark:border-slate-700 px-4 py-2.5 max-w-[85%] text-sm shadow-sm";
         }
-        bubble.innerHTML = msg.text;
+
+        // Use textContent for safety against XSS
+        const content = msg.content;
+        bubble.textContent = content.text;
+
+        // If there is a CTA (Call To Action), render it safely
+        if (content.cta) {
+          const ctaLink = document.createElement("a");
+          ctaLink.href = content.cta.url;
+          ctaLink.target = "_blank";
+          ctaLink.rel = "noopener noreferrer";
+          ctaLink.className = "block mt-2 text-indigo-600 dark:text-indigo-400 underline font-semibold";
+          ctaLink.textContent = content.cta.text;
+          bubble.appendChild(ctaLink);
+        }
 
         wrap.appendChild(bubble);
         this.messagesContainer.appendChild(wrap);
@@ -282,7 +298,7 @@
       if (!text || this.isTyping) return;
 
       // Add user message
-      this.messages.push({ sender: "user", text });
+      this.messages.push({ sender: "user", content: { text } });
       this.input.value = "";
       this.handleInput();
       this.renderMessages();
@@ -295,12 +311,12 @@
 
       try {
         const response = await this.chatService.sendMessage(text);
-        this.messages.push({ sender: "bot", text: response });
+        this.messages.push({ sender: "bot", content: response });
       } catch (error) {
         console.error(error);
         this.messages.push({
           sender: "bot",
-          text: "Sorry, I encountered an issue. Please try reaching out natively on WhatsApp.",
+          content: { text: "Sorry, I encountered an issue. Please try reaching out natively on WhatsApp." },
         });
       } finally {
         this.isTyping = false;
