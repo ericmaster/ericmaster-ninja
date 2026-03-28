@@ -1,7 +1,15 @@
+export interface ChatResponse {
+  text: string;
+  cta?: {
+    text: string;
+    url: string;
+  };
+}
+
 export interface ChatMessage {
   id: string;
   sender: 'user' | 'bot';
-  text: string;
+  content: ChatResponse;
   timestamp: Date;
 }
 
@@ -87,14 +95,20 @@ export class ChatServiceMock {
     return "default";
   }
 
-  private getWhatsAppFallback(customReason?: string): string {
+  private getWhatsAppFallback(customReason?: string): ChatResponse {
     const text = encodeURIComponent("Hi Eric, I was chatting with your AI assistant and would like to book a professional consultation.");
     const url = `https://wa.me/${this.WHATSAPP_NUMBER}?text=${text}`;
     const reason = customReason || "To ensure we handle your specific requirements securely and professionally, please reach out to Eric directly.";
-    return `${reason} <a href="${url}" target="_blank" class="text-blue-500 underline font-semibold">Click here to chat on WhatsApp</a>. (Note: Using lite model)`;
+    return {
+      text: `${reason} (Note: Using lite model)`,
+      cta: {
+        text: "Click here to chat on WhatsApp",
+        url: url
+      }
+    };
   }
 
-  public async sendMessage(message: string): Promise<string> {
+  public async sendMessage(message: string): Promise<ChatResponse> {
     this.exchangeCount++;
 
     // Artificial network latency (600ms - 1500ms) to feel "smart"
@@ -121,7 +135,7 @@ export class ChatServiceMock {
         if (intent === "default" && this.exchangeCount === this.MAX_EXCHANGES) {
             resolve(this.getWhatsAppFallback());
         } else {
-            resolve(this.responses[intent]);
+            resolve({ text: this.responses[intent] });
         }
       }, latency);
     });
