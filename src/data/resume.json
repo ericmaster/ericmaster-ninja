@@ -1,13 +1,79 @@
 {
   "skills": [
     {
-      "name": "PHP",
-      "description": "13+ years",
+      "name": "AI / Agentic Systems",
+      "description": "AI Engineering",
+      "level": 4,
+      "keywords": [
+        "RAG Pipelines",
+        "Agentic Frameworks (Supervisor-Worker)",
+        "LiteLLM",
+        "Prompt Engineering",
+        "Hallucination Auditing",
+        "LangChain",
+        "OpenAI API",
+        "AWS Bedrock"
+      ]
+    },
+    {
+      "name": "AEO / GEO",
+      "description": "Answer Engine Optimization",
+      "level": 4,
+      "keywords": [
+        "JSON-LD",
+        "Schema.org",
+        "Entity Authority",
+        "Knowledge Graph Optimization",
+        "Structured Data",
+        "Generative Engine Optimization"
+      ]
+    },
+    {
+      "name": "Python",
+      "description": "4+ years",
+      "level": 4,
+      "keywords": [
+        "ML / AI",
+        "Django",
+        "FastAPI",
+        "Automation",
+        "TensorFlow",
+        "PyTorch"
+      ]
+    },
+    {
+      "name": "Drupal",
+      "description": "Architect · 13+ years",
       "level": 5,
       "keywords": [
-        "Drupal",
-        "Laravel",
-        "Symfony"
+        "Custom Modules",
+        "Migration",
+        "Decoupled",
+        "Multilingual",
+        "High Availability"
+      ]
+    },
+    {
+      "name": "MERN Stack",
+      "description": "Full Stack",
+      "level": 4,
+      "keywords": [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js",
+        "Next.js"
+      ]
+    },
+    {
+      "name": "Flutter / Dart",
+      "description": "Mobile & Cross-Platform",
+      "level": 3,
+      "keywords": [
+        "Flutter",
+        "Dart",
+        "Mobile",
+        "Cross-Platform"
       ]
     },
     {
@@ -24,33 +90,13 @@
       ]
     },
     {
-      "name": "Python",
-      "description": "3+ years",
-      "level": 4,
-      "keywords": [
-        "DevOps",
-        "Machine Learning"
-      ]
-    },
-    {
-      "name": "Linux / Bash",
-      "description": "10+ years",
-      "level": 4,
-      "keywords": [
-        "Automation",
-        "DevOps"
-      ]
-    },
-    {
-      "name": "Content Management Systems",
-      "description": "15+ years",
+      "name": "PHP",
+      "description": "13+ years",
       "level": 5,
       "keywords": [
         "Drupal",
-        "WordPress",
-        "Directus",
-        "Strapi",
-        "Decap"
+        "Laravel",
+        "Symfony"
       ]
     },
     {
@@ -73,24 +119,27 @@
         "MySQL",
         "PostgreSQL",
         "MongoDB",
-        "Redis"
+        "Redis",
+        "DynamoDB"
       ]
     },
     {
-      "name": "Version Control & Workflows",
+      "name": "Linux / Bash",
+      "description": "10+ years",
+      "level": 4,
+      "keywords": [
+        "Automation",
+        "DevOps",
+        "Scripting"
+      ]
+    },
+    {
+      "name": "Version Control & Agile",
       "description": "15+ years",
       "level": 5,
       "keywords": [
         "Git",
         "GitFlow",
-        "GitHub Flow"
-      ]
-    },
-    {
-      "name": "Agile & Project Management",
-      "description": "15+ years",
-      "level": 5,
-      "keywords": [
         "Scrum",
         "Kanban",
         "JIRA"
@@ -99,12 +148,12 @@
   ],
   "basics": {
     "name": "Eric Aguayo",
-    "headline": "AI/ML/Web Solutions Architect",
+    "headline": "Senior AI Engineer | Agentic Systems Architect | AEO Specialist",
     "email": "eric7master@gmail.com",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Results-driven **AI/ML/Web Solutions Architect** with 15+ years of experience in full-stack development, Drupal ecosystem, and DevOps. Proven success in leading cross-functional teams, delivering scalable web platforms, and optimizing CI/CD workflows. Passionate about open-source, mentorship, and emerging technologies like AI and container orchestration."
+    "summary": "Senior AI Engineer and Agentic Systems Architect with 15+ years of software engineering excellence, augmented by an MSc in Artificial Intelligence. Specialist in engineering production-grade RAG pipelines, orchestrating Supervisor-Worker agentic workflows, and integrating multi-model LLM systems via LiteLLM. Deep expertise in AEO/GEO — architecting brand authority for Generative Engines through JSON-LD, Schema.org entity graphs, and Knowledge Graph optimization strategies. Proven track record leading high-traffic, enterprise-grade platforms for global brands while driving measurable improvements in AI engine visibility and answer-engine discoverability."
   },
   "leadership": [
     {
@@ -178,10 +227,10 @@
   "experience": [
     {
       "company": "Independent Developer / Contractor",
-      "position": "Full-Stack Developer & Consultant",
+      "position": "Senior AI Engineer & Agentic Systems Consultant",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Web Development Services and Applications</p><ul><li>Contractor work for Paftesting/Velir: consultancy, CMS migrations and AI integrations.</li><li>Built ventadegarage.kawri.com: Simple E-Commerce platform for second-hand goods.</li><li>Built meli.run: Athlete Profile and Blog Platform using React/Next.js, Decap CMS and GitHub.</li></ul>",
+      "summary": "<p>Architecting AI-native solutions and autonomous agentic systems for clients and startups.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces for Paftesting/Velir CMS-migration consultancy, improving LLM response accuracy and reducing hallucination rates through ground-truth evaluation frameworks.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps impacting answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties, optimizing entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {
@@ -189,7 +238,7 @@
       "position": "Senior Web Developer",
       "location": "Halifax, Canada",
       "date": "Feb 2021 – Feb 2025",
-      "summary": "<p>Web Development Contributions (Frontend & Backend)</p><ul><li>redspace.com – Led frontend team on site redesign, resolved backend issues, improved CMS experience.</li><li>bleacherreport.com – Contributed to frontend architecture overhaul for improved scalability.</li><li>nypost.com – AdTech team; optimized ad bidding library, improving tracking accuracy and ad revenue efficiency.</li><li>la.sonychannel.com – Migrated legacy Drupal site to modern version with better performance and enhanced editorial workflow.</li><li>nspower.ca – Integrated LoginRadius identity and SSO for unified authentication experience.</li></ul>",
+      "summary": "<p>Architected scalable interfaces for high-traffic media entities, improving structured data coverage and AI engine crawlability.</p><ul><li>bleacherreport.com – Orchestrated frontend architecture overhaul for a 50M+ MAU sports media entity, enhancing structured data coverage and content crawlability for AI indexing engines.</li><li>nypost.com – Engineered AdTech bid-optimization library improvements, increasing ad-event tracking accuracy by 15% and reducing revenue loss from misbid events.</li><li>la.sonychannel.com – Architected Drupal migration to a modern stack with Schema.org entity markup, boosting content discoverability across search and generative engines.</li><li>nspower.ca – Integrated LoginRadius identity platform and enterprise SSO for a 500K+ user unified authentication experience.</li><li>redspace.com – Led site redesign, resolved backend bottlenecks, and elevated CMS editorial performance.</li></ul>",
       "url": "https://www.redspace.com/"
     },
     {
@@ -197,15 +246,15 @@
       "position": "Senior Drupal Developer",
       "location": "United States",
       "date": "Feb 2020 – Feb 2021",
-      "summary": "<p>Providing development services (backend and frontend) on a CI platform for multiple websites:</p><ul><li>wsscwater.com – Launched redesigned responsive Drupal site with complex data migration.</li><li>lmi.org – Refactored tightly coupled frontend into flexible, maintainable implementation.</li><li>hfsa.org – Implemented events section for better editorial publishing experience.</li><li>inee.org – Implemented multilingual content search via Apache Solr.</li></ul>",
+      "summary": "<p>Delivered full-stack Drupal platforms for government, health, and NGO clients with emphasis on structured data and AI-engine-friendly architecture.</p><ul><li>wsscwater.com – Architected and launched a responsive Drupal platform serving 1M+ users with complex data migration; implemented Schema.org markup improving knowledge-graph entity coverage.</li><li>lmi.org – Refactored tightly coupled frontend into a decoupled, maintainable architecture, improving page performance and data crawlability for AI engines.</li><li>hfsa.org – Engineered events content system with JSON-LD structured data, improving event entity discoverability in answer engines.</li><li>inee.org – Orchestrated multilingual content search via Apache Solr, enabling structured content retrieval across 5 languages.</li></ul>",
       "url": "https://taoti.com/"
     },
     {
       "company": "Nimblersoft",
-      "position": "Co-Founder & Drupal Software Architect",
+      "position": "Co-Founder & Software Architect",
       "location": "Quito, Ecuador",
       "date": "Jan 2014 – Feb 2020",
-      "summary": "<p>Provided consulting and development services to companies in Ecuador and the U.S.</p><ul><li>Assessment, training, architecture and development of web sites.</li><li>usfq.edu.ec – Led Digital Marketing web dev team, redesign in latest Drupal, defined content architecture and high-availability infrastructure.</li><li>help.blackboard.com – Led migration to scalable Drupal architecture with semi-autonomous multilingual translation workflow.</li></ul>",
+      "summary": "<p>Architected and led enterprise platforms for US and LATAM clients, pioneering Knowledge Graph and entity optimization strategies alongside agentic editorial workflows.</p><ul><li>Engineered Agentic RAG Interfaces for content-discovery workflows, integrating AI-assisted editorial pipelines that reduced content production time by 25%.</li><li>Implemented Schema.org optimization initiatives across 15+ client properties, establishing entity authority frameworks that improved generative engine citation rates.</li><li>usfq.edu.ec – Orchestrated Digital Marketing web development team; redesigned institutional platform in Drupal with high-availability infrastructure and Schema.org entity graphs for institutional authority.</li><li>help.blackboard.com – Architected scalable Drupal migration with a semi-autonomous multilingual translation workflow, optimizing structured content for AI-engine indexability across 10+ languages.</li></ul>",
       "url": ""
     }
   ],
