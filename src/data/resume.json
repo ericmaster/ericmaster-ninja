@@ -204,6 +204,7 @@
       "institution": "Universidad San Francisco de Quito",
       "studyType": "Master",
       "area": "Artificial Intelligence",
+      "score": "4.00/4.00 GPA",
       "date": "2026",
       "url": "https://www.usfq.edu.ec"
     },
@@ -213,14 +214,6 @@
       "area": "Systems Engineering and Mathematics",
       "score": "3.91/4.00 GPA",
       "date": "2008",
-      "url": "https://www.usfq.edu.ec"
-    },
-    {
-      "institution": "Universidad San Francisco de Quito",
-      "studyType": "Master",
-      "area": "Artificial Intelligence (in progress)",
-      "score": "",
-      "date": "In progress",
       "url": "https://www.usfq.edu.ec"
     }
   ],
