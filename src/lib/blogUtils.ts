@@ -14,7 +14,6 @@ export async function getPosts(
   const posts = allPosts
     .filter((post) => post.data.published !== false)
     .map((post) => {
-      // Do any processing here if needed
       if (
         post.data.image &&
         typeof post.data.image.url === "string" &&
