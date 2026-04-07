@@ -56,7 +56,7 @@ const handleAuth = async (
         // window.close();
       } else {
         // fallback: show token for manual copy
-        document.write('Authentication successful. You may close this window.');
+        document.body.textContent = 'Authentication successful. You may close this window.';
       }
     </script>
   </body>
