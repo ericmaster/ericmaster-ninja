@@ -25,9 +25,21 @@ function createStars() {
   }
 }
 
+let isLightTheme = !document.documentElement.classList.contains('dark');
+
+// Update isLightTheme when theme changes
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.attributeName === 'class') {
+      isLightTheme = !document.documentElement.classList.contains('dark');
+    }
+  });
+});
+
+observer.observe(document.documentElement, { attributes: true });
+
 function getIsLightTheme() {
-  // Check prefers-color-scheme or body class for dark theme
-  return !document.documentElement.classList.contains('dark');
+  return isLightTheme;
 }
 
 function drawStars() {
