@@ -1,5 +1,14 @@
 const siteUrl = "https://ericmaster.github.io";
 
+interface PostFrontmatter {
+  published?: boolean;
+  [key: string]: any;
+}
+
+interface PostModule {
+  frontmatter: PostFrontmatter;
+}
+
 // List of static pages with their properties
 const staticPages = [
   { url: "/", changefreq: "weekly", priority: "1.0" },
@@ -13,9 +22,9 @@ const staticPages = [
 const postImports = import.meta.glob("./posts/*.md", { eager: true });
 
 // Only include published posts in the sitemap
-const postUrls = Object.entries(postImports)
+const postUrls = Object.entries(postImports as Record<string, PostModule>)
   .filter(
-    ([_, mod]: any) => mod.frontmatter && mod.frontmatter.published === true
+    ([_, mod]) => mod.frontmatter && mod.frontmatter.published === true
   )
   .map(([filePath, _]) => {
     const slug = filePath.match(/\.\/posts\/(.*)\.md$/)?.[1];
