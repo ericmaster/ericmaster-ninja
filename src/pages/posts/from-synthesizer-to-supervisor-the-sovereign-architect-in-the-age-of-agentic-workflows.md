@@ -10,7 +10,7 @@ tags:
   - CTO
   - Agentic Workflows
   - SDLC
-slug: sovereign-architect-agentic-workflows-sdlc
+slug: from-synthesizer-to-supervisor-the-sovereign-architect-in-the-age-of-agentic-workflows
 pubDate: 2026-04-12T11:02:00.000-05:00
 image:
   url: assets/images/gemini_generated_image_z0mhlyz0mhlyz0mh.png
