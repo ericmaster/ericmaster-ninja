@@ -3,16 +3,31 @@
     {
       "name": "AI / Agentic Systems",
       "description": "AI Engineering",
-      "level": 4,
+      "level": 5,
       "keywords": [
         "RAG Pipelines",
         "Agentic Frameworks (Supervisor-Worker)",
         "LiteLLM",
         "Prompt Engineering",
         "Hallucination Auditing",
+        "MCP (Model-Controlled Programming)",
         "LangChain",
         "OpenAI API",
+        "Anthropic SDK",
         "AWS Bedrock"
+      ]
+    },
+    {
+      "name": "AI-Native Development",
+      "description": "Copilots & Tooling",
+      "level": 5,
+      "keywords": [
+        "Cursor",
+        "Claude Code",
+        "ChatGPT",
+        "Vibe Coding",
+        "Automated IaC Generation",
+        "AI-Assisted CI/CD"
       ]
     },
     {
@@ -42,15 +57,31 @@
       ]
     },
     {
-      "name": "Drupal",
-      "description": "Architect · 13+ years",
+      "name": "Drupal / CMS",
+      "description": "Architect · 15+ years",
       "level": 5,
       "keywords": [
-        "Custom Modules",
-        "Migration",
-        "Decoupled",
-        "Multilingual",
-        "High Availability"
+        "Enterprise Architecture",
+        "Custom Module Development",
+        "Drupal 7/8/9/10 Migration",
+        "Decoupled / Headless",
+        "Multilingual Multisite",
+        "WordPress",
+        "Decap CMS",
+        "Acquia / Pantheon"
+      ]
+    },
+    {
+      "name": "Cloudflare / Serverless",
+      "description": "Edge Computing",
+      "level": 4,
+      "keywords": [
+        "Cloudflare Workers",
+        "Cloudflare Pages",
+        "Workers KV / D1 / R2",
+        "Wrangler",
+        "AWS Lambda",
+        "Serverless Framework"
       ]
     },
     {
@@ -104,11 +135,14 @@
       "description": "12+ years",
       "level": 5,
       "keywords": [
+        "Terraform (IaC)",
+        "Ansible",
+        "Kubernetes (EKS & Self-hosted)",
         "GitHub Actions",
+        "Bitbucket Pipelines",
+        "GitOps (ArgoCD / Flux)",
         "Docker",
-        "Kubernetes",
-        "Proxmox VE",
-        "Jenkins"
+        "AWS (EC2, VPC, S3, RDS)"
       ]
     },
     {
@@ -148,12 +182,12 @@
   ],
   "basics": {
     "name": "Eric Aguayo",
-    "headline": "Senior AI Engineer | Agentic Systems Architect | AEO Specialist",
+    "headline": "Senior AI & DevOps Engineer | Agentic Systems Architect | Agentic Software Engineer",
     "email": "eric7master@gmail.com",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Senior AI Engineer and Agentic Systems Architect with 15+ years of software engineering excellence, augmented by an MSc in Artificial Intelligence. Specialist in engineering production-grade RAG pipelines, orchestrating Supervisor-Worker agentic workflows, and integrating multi-model LLM systems via LiteLLM. Deep expertise in AEO/GEO — architecting brand authority for Generative Engines through JSON-LD, Schema.org entity graphs, and Knowledge Graph optimization strategies. Proven track record leading high-traffic, enterprise-grade platforms for global brands while driving measurable improvements in AI engine visibility and answer-engine discoverability."
+    "summary": "Senior AI & DevOps Engineer and Agentic Systems Architect with 15+ years of software engineering excellence, specializing in the intersection of AI, Cloud Infrastructure, and Full-Stack development. Expert in engineering production-grade RAG pipelines, orchestrating Supervisor-Worker agentic workflows, and implementing AI-native DevOps strategies using Terraform, EKS, and Bitbucket Pipelines. Extensive experience with Cloudflare Workers and Serverless architectures. 13+ years of expertise in full-stack architecture and Enterprise CMS for high-traffic platforms (Bleacher Report, NYPost). Deeply familiar with MCP (Model-Controlled Programming) and AI-assisted development (Cursor, Claude Code, ChatGPT) to accelerate infrastructure and software delivery."
   },
   "leadership": [
     {
@@ -219,8 +253,16 @@
   ],
   "experience": [
     {
+      "company": "Nimblersoft",
+      "position": "Lead AI Architect",
+      "location": "Quito, Ecuador",
+      "date": "Feb 2025 – Present",
+      "summary": "<p>Architecting AI-native solutions, serverless architectures, and autonomous agentic systems for global clients.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces using Cloudflare Workers and AI-native workflows, improving LLM accuracy and reducing response latency.</li><li>Implemented Infrastructure as Code (Terraform) and Serverless deployments on Cloudflare and AWS, leveraging AI Copilots (Cursor, Claude Code) for rapid prototyping and validation.</li><li>Developed and deployed <strong>meli.run</strong>: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions, optimized for AI-engine discoverability.</li><li>Mastered MCP (Model-Controlled Programming) workflows to co-author complex infrastructure decisions and automation scripts with LLMs.</li></ul>",
+      "url": "https://www.nimblersoft.com"
+    },
+    {
       "company": "Independent Developer / Contractor",
-      "position": "Senior AI Engineer & Agentic Systems Consultant",
+      "position": "Senior AI Software Engineer & Agentic Systems Consultant",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
       "summary": "<p>Architecting AI-native solutions and autonomous agentic systems for clients and startups.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces for Paftesting/Velir CMS-migration consultancy, improving LLM response accuracy and reducing hallucination rates through ground-truth evaluation frameworks.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps impacting answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties, optimizing entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
@@ -231,7 +273,7 @@
       "position": "Senior Web Developer",
       "location": "Halifax, Canada",
       "date": "Feb 2021 – Feb 2025",
-      "summary": "<p>Architected scalable interfaces for high-traffic media entities, improving structured data coverage and AI engine crawlability.</p><ul><li>bleacherreport.com – Orchestrated frontend architecture overhaul for a 50M+ MAU sports media entity, enhancing structured data coverage and content crawlability for AI indexing engines.</li><li>nypost.com – Engineered AdTech bid-optimization library improvements, increasing ad-event tracking accuracy by 15% and reducing revenue loss from misbid events.</li><li>la.sonychannel.com – Architected Drupal migration to a modern stack with Schema.org entity markup, boosting content discoverability across search and generative engines.</li><li>nspower.ca – Integrated LoginRadius identity platform and enterprise SSO for a 500K+ user unified authentication experience.</li><li>redspace.com – Led site redesign, resolved backend bottlenecks, and elevated CMS editorial performance.</li></ul>",
+      "summary": "<p>Delivered high-performance full-stack solutions and scalable infrastructure for top-tier global media brands, bridging the gap between frontend excellence and backend robustness.</p><ul><li><strong>bleacherreport.com</strong> – Spearheaded full-stack engineering and CI/CD architecture for a 50M+ MAU sports platform, optimizing frontend delivery and deployment workflows.</li><li><strong>nypost.com (AdTech)</strong> – Engineered specialized bid-optimization libraries and real-time bidding services on AWS, utilizing Node.js and cloud-native microservices to boost ad-tracking accuracy and revenue capture.</li><li><strong>la.sonychannel.com</strong> – Led the architectural migration of legacy Drupal systems to a modern, decoupled full-stack architecture with Schema.org entity optimization.</li><li><strong>Enterprise Integration</strong> – Orchestrated complex full-stack deployments including SSO/Identity platforms (LoginRadius) and serverless backend logic (AWS Lambda) for high-traffic utilities like nspower.ca.</li></ul>",
       "url": "https://www.redspace.com/"
     },
     {
