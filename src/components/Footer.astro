@@ -1,39 +1,17 @@
 ---
 import Social from "./Social.astro";
+import { SOCIAL_LINKS } from "../lib/siteConfig";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<style>
-  footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  .social-links {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
-  .copyright {
-    font-size: 0.875rem;
-    color: #666;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-  }
-</style>
-
-<footer>
-  <div class="social-links">
-    <Social platform="x" username="ericmaster" />
-    <Social platform="github" username="ericmaster" />
-    <Social platform="youtube" username="djericmaster" />
-    <Social platform="linkedin" username="eric-aguayo" />
-    <Social platform="whatsapp" username="593983337611" />
+<footer class="flex flex-col items-center gap-4 mt-8">
+  <div class="flex gap-2 items-center">
+    {SOCIAL_LINKS.map((link) => (
+      <Social platform={link.platform} username={link.username} />
+    ))}
   </div>
-  <div class="copyright">
+  <div class="text-sm text-gray-500 dark:text-gray-400 mt-4 mb-8">
     &copy; {currentYear} Eric Aguayo. All rights reserved.
   </div>
 </footer>

@@ -7,7 +7,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ericmaster.github.io",
+  site: "https://ericmaster.ninja",
 
   vite: {
     plugins: [

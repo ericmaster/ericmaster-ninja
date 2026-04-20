@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 import resumeData from "../data/resume.json";
 import ResumeHeader from "../components/resume/ResumeHeader.astro";
 import ResumeSummary from "../components/resume/ResumeSummary.astro";
@@ -9,379 +10,43 @@ import ResumeLanguages from "../components/resume/ResumeLanguages.astro";
 import ResumeCertifications from "../components/resume/ResumeCertifications.astro";
 import ResumeProjects from "../components/resume/ResumeProjects.astro";
 import ResumeLeadership from "../components/resume/ResumeLeadership.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import "@fontsource/poppins";
-import "../styles/global.css";
+import "../styles/resume.css";
+
 
 const { basics, profiles, experience, education, skills, languages, certifications, projects, leadership } = resumeData;
 const pageTitle = `${basics.name} – Resume`;
+const metaDescription = `${basics.headline}. ${basics.location}. ${basics.email}`;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <!-- SEO / ATS: descriptive title, description, no-index optional -->
-    <title>Eric Aguayo (Ericmaster) | {pageTitle}</title>
-    <meta name="description" content={`${basics.headline}. ${basics.location}. ${basics.email}`} />
-  </head>
-  <body>
-    <canvas id="constellation-bg" class="fixed top-0 left-0 w-screen h-screen -z-10"></canvas>
-    <div class="no-print"><Header /></div>
+<BaseLayout pageTitle={pageTitle} description={metaDescription} showPageTitle={false}>
+  <!-- Print-only: show site URL -->
+  <p class="print-url hidden print:block text-xs text-gray-400 text-right pr-4 pt-2">
+    {basics.website}
+  </p>
 
-    <!-- Print-only: show site URL -->
-    <p class="print-url hidden print:block text-xs text-gray-400 text-right pr-4 pt-2">
-      {basics.website}
-    </p>
+  <div class="resume-page-wrapper">
+    <h1 class="page-title no-print">Resume</h1>
 
-    <div class="resume-page-wrapper">
-      <h1 class="page-title no-print">Resume</h1>
-
-      <!-- Action bar (hidden when printing) -->
-      <div class="resume-actions no-print">
-        <button id="print-resume" class="btn-download" onclick="window.print()" aria-label="Download resume as PDF">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF
-        </button>
-      </div>
-
-      <!-- Resume Document - ATS best practice: single-column semantic HTML -->
-      <main id="resume-document" class="resume-document" role="main">
-        <ResumeHeader basics={basics} profiles={profiles} />
-        <ResumeSummary summary={basics.summary} />
-        <ResumeExperience items={experience} />
-        <ResumeSkills items={skills} />
-        <ResumeProjects items={projects} />
-        <ResumeEducation items={education} />
-        <ResumeCertifications items={certifications} />
-        <ResumeLanguages items={languages} />
-        <ResumeLeadership items={leadership} />
-      </main>
+    <!-- Action bar (hidden when printing) -->
+    <div class="resume-actions no-print">
+      <button id="print-resume" class="btn-download" onclick="window.print()" aria-label="Download resume as PDF">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
     </div>
 
-    <div class="no-print"><Footer /></div>
-    <script src="/assets/constellation.js" is:inline></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  </body>
-</html>
+    <!-- Resume Document - ATS best practice: single-column semantic HTML -->
+    <main id="resume-document" class="resume-document" role="main">
+      <ResumeHeader basics={basics} profiles={profiles} />
+      <ResumeSummary summary={basics.summary} />
+      <ResumeExperience items={experience} />
+      <ResumeSkills items={skills} />
+      <ResumeProjects items={projects} />
+      <ResumeEducation items={education} />
+      <ResumeCertifications items={certifications} />
+      <ResumeLanguages items={languages} />
+      <ResumeLeadership items={leadership} />
+    </main>
+  </div>
+</BaseLayout>
 
-<style is:global>
-  /* =============================================
-     RESUME PAGE WRAPPER
-     ============================================= */
-  .resume-page-wrapper {
-    container-type: inline-size;
-    margin-inline: auto;
-    width: 100%;
-    max-width: 960px;
-    padding-inline: 1rem;
-    padding-bottom: 4rem;
-  }
-
-  /* Override global page-title gradient specifically for resume */
-  .page-title.no-print {
-    background: transparent !important;
-    padding-left: 0 !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .resume-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1rem;
-  }
-
-  .btn-download {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-color: #4f46e5;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.875rem;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-  }
-  .btn-download:hover { background-color: #4338ca; }
-  .btn-download:active { transform: scale(0.95); }
-
-  /* ── RESUME DOCUMENT ─────────────────────────── */
-  .resume-document {
-    background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 20px 60px -10px rgb(0 0 0 / 0.2);
-    padding: 2.5rem;
-    color: #1e293b;
-    font-family: 'Open Sans', 'Poppins', system-ui, sans-serif;
-  }
-  html.dark .resume-document {
-    background: #1e293b;
-    color: #f1f5f9;
-  }
-
-  /* ── HEADER ──────────────────────────────────── */
-  .resume-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid #c7d2fe;
-    background: transparent !important; /* Force transparent backround to avoid global header styles */
-  }
-  html.dark .resume-header { 
-    border-color: #4338ca;
-    background: transparent !important;
-  }
-
-  .resume-name {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0;
-    line-height: 1.2;
-  }
-  html.dark .resume-name { color: #fff; }
-
-  .resume-headline {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #4f46e5;
-    margin: 0.25rem 0 0;
-  }
-  html.dark .resume-headline { color: #818cf8; }
-
-  .resume-contact {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem 1.25rem;
-    font-style: normal;
-    font-size: 0.85rem;
-    color: #475569;
-    margin-top: 0.75rem;
-  }
-  html.dark .resume-contact { color: #cbd5e1; }
-
-  .contact-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-  }
-  .contact-item a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  .contact-item a:hover { color: #4f46e5; }
-
-  /* ── SECTIONS ────────────────────────────────── */
-  .resume-section { margin-bottom: 2rem; }
-
-  .section-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #4f46e5;
-    border-bottom: 1px solid #c7d2fe;
-    padding-bottom: 0.25rem;
-    margin: 0 0 1rem;
-  }
-  html.dark .section-title { color: #818cf8; border-color: #4338ca; }
-
-  /* ── ITEM (experience / education / etc.) ────── */
-  .resume-item { margin-bottom: 1.25rem; }
-  .resume-item:last-child { margin-bottom: 0; }
-
-  .item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-  .item-primary { flex: 1; min-width: 0; }
-
-  .item-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #0f172a;
-    margin: 0;
-  }
-  html.dark .item-title { color: #f1f5f9; }
-  .item-title a { color: inherit; text-decoration: none; transition: color 0.15s; }
-  .item-title a:hover { color: #4f46e5; }
-
-  .item-subtitle {
-    display: block;
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-top: 0.125rem;
-  }
-  html.dark .item-subtitle { color: #94a3b8; }
-  .item-subtitle a { color: inherit; text-decoration: none; transition: color 0.15s; }
-  .item-subtitle a:hover { color: #4f46e5; }
-  .item-location { color: #94a3b8; }
-
-  .item-date {
-    font-size: 0.75rem;
-    color: #94a3b8;
-    white-space: nowrap;
-    font-weight: 500;
-    flex-shrink: 0;
-    margin-top: 0.125rem;
-  }
-  .item-date-group { display: flex; flex-direction: column; align-items: flex-end; }
-  .item-score { font-size: 0.75rem; color: #6366f1; font-weight: 500; margin-top: 0.125rem; }
-
-  .item-summary {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #475569;
-  }
-  html.dark .item-summary { color: #cbd5e1; }
-
-  /* Prose reset for injected HTML */
-  .prose p { margin-block: 0.375rem; font-size: 0.875rem; }
-  .prose ul { margin-block: 0.375rem; padding-left: 1.25rem; }
-  .prose li { margin-block: 0.125rem; font-size: 0.875rem; }
-  .prose a { color: #4f46e5; text-decoration: none; }
-  .prose a:hover { text-decoration: underline; }
-
-  /* ── SKILLS ──────────────────────────────────── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
-
-  .skill-item { display: flex; flex-direction: column; gap: 0.25rem; }
-  .skill-header { display: flex; justify-content: space-between; align-items: baseline; }
-  .skill-name { font-size: 0.875rem; font-weight: 600; color: #1e293b; }
-  html.dark .skill-name { color: #f1f5f9; }
-  .skill-desc { font-size: 0.75rem; color: #94a3b8; }
-
-  .skill-bar { display: flex; gap: 0.125rem; }
-  .skill-pip {
-    height: 6px;
-    width: 20px;
-    border-radius: 99px;
-    background: #e2e8f0;
-  }
-  html.dark .skill-pip { background: #475569; }
-  .skill-pip.filled { background: #6366f1; }
-
-  .skill-keywords {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    list-style: none;
-    padding: 0;
-    margin: 0.25rem 0;
-  }
-  .skill-keyword {
-    font-size: 0.7rem;
-    background: #eff6ff;
-    color: #3730a3;
-    border: 1px solid #bfdbfe;
-    border-radius: 99px;
-    padding: 0.1rem 0.5rem;
-  }
-  html.dark .skill-keyword { background: rgba(79,70,229,0.15); color: #a5b4fc; border-color: #4338ca; }
-
-  /* ── LANGUAGES ───────────────────────────────── */
-  .lang-list { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; padding: 0; margin: 0; }
-  .lang-item { display: flex; align-items: center; gap: 0.5rem; margin: 0; }
-  .lang-name { font-size: 0.875rem; font-weight: 600; color: #1e293b; }
-  html.dark .lang-name { color: #f1f5f9; }
-  .lang-desc { font-size: 0.75rem; color: #94a3b8; }
-
-  /* ── LEADERSHIP ──────────────────────────────── */
-  .leadership-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-  .leadership-item { margin: 0; padding: 0; }
-
-  /* =============================================
-     PRINT STYLES (PDF export)
-     ATS: single column, white bg, black text
-     ============================================= */
-  @media print {
-    html, body {
-      background: white !important;
-      color: black !important;
-      font-size: 11pt;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    /* Hide site chrome and action bar */
-    .no-print, canvas, .resume-actions,
-    body > header:not(.resume-header),
-    body > footer:not(.resume-footer) {
-      display: none !important;
-    }
-
-    .resume-page-wrapper {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    .resume-document {
-      box-shadow: none !important;
-      border-radius: 0 !important;
-      padding: 0 !important;
-      background: white !important;
-      color: black !important;
-    }
-
-    /* Force all text within resume-document to be dark for print to prevent theme inheritance */
-    .resume-document, 
-    .resume-document span, 
-    .resume-document p, 
-    .resume-document a, 
-    .resume-document li, 
-    .resume-document h1, 
-    .resume-document h2, 
-    .resume-document h3 {
-      color: black !important;
-      background-color: transparent !important;
-    }
-
-    .resume-header {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      background: white !important;
-      border-color: #bfdbfe !important;
-      margin-bottom: 2rem !important;
-    }
-
-    /* Force single column for ATS compatibility */
-    .skills-grid { grid-template-columns: 1fr !important; }
-
-    .resume-name { color: black !important; }
-    .resume-headline, .section-title { color: #1d4ed8 !important; }
-    .item-title { color: black !important; }
-
-    /* Reinstate necessary backgrounds for skill pips and labels */
-    .skill-pip { background-color: #e2e8f0 !important; }
-    .skill-pip.filled { background-color: #1d4ed8 !important; }
-    .skill-keyword {
-      background-color: #eff6ff !important;
-      color: #1e40af !important;
-      border-color: #bfdbfe !important;
-    }
-    .contact-item a, .item-subtitle a, .item-title a {
-      color: black !important;
-      text-decoration: none !important;
-    }
-    .section-title { border-color: #bfdbfe !important; }
-  }
-</style>

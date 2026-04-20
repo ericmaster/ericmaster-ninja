@@ -1,8 +1,13 @@
 ---
 ---
 
-<div {...Astro.props} class="hamburger pr-5 cursor-pointer md:hidden">
+<button
+  type="button"
+  {...Astro.props}
+  class="hamburger pr-5 cursor-pointer md:hidden"
+  aria-label="Toggle navigation menu"
+>
   <span class="line"></span>
   <span class="line"></span>
   <span class="line"></span>
-</div>
+</button>

@@ -10,10 +10,6 @@ const {
   class: className = "flex justify-end",
   ...rest
 } = Astro.props;
-
-const profileLink = `<a class="badge-base__link LI-simple-link" href="${profileUrl}">${name}</a>`;
-
-// Use a client-side snippet to set the initial theme before the script runs
 ---
 
 <div class={className} {...rest}>
@@ -27,7 +23,7 @@ const profileLink = `<a class="badge-base__link LI-simple-link" href="${profileU
     data-vanity={vanity}
     data-version="v1"
   >
-    <Fragment set:html={profileLink} />
+    <a class="badge-base__link LI-simple-link" href={profileUrl}>{name}</a>
   </div>
 
   <!-- Light theme badge - shown by default, hidden when .dark class is on html -->
@@ -40,7 +36,7 @@ const profileLink = `<a class="badge-base__link LI-simple-link" href="${profileU
     data-vanity={vanity}
     data-version="v1"
   >
-    <Fragment set:html={profileLink} />
+    <a class="badge-base__link LI-simple-link" href={profileUrl}>{name}</a>
   </div>
 </div>
 

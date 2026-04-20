@@ -2,18 +2,25 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostTeaser from "../components/PostTeaser.astro";
 import { getPosts } from "../lib/blogUtils";
+import type { CollectionEntry } from "astro:content";
 import { Content } from "./content/pages/blog-content.md";
+
 const pageTitle = "My Awesome Blog";
-const allPosts = await getPosts();
+const allPosts: CollectionEntry<"blog">[] = await getPosts();
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout
+  pageTitle={pageTitle}
+  description="Tech blog by Eric Aguayo — covering AI, full-stack development, and engineering best practices."
+>
   <Content />
   <ul>
     {
-      allPosts.map((post: any) => (
-        <PostTeaser post={post} />
-        <hr />
+      allPosts.map((post) => (
+        <Fragment>
+          <PostTeaser post={post} />
+          <hr />
+        </Fragment>
       ))
     }
   </ul>

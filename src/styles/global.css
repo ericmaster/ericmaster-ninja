@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-@custom-variant dark (&:where(.dark, .dark *)); /* fallback to where if needed */
+@custom-variant dark (&:where(.dark, .dark *));
 /* poppins-latin-200-normal */
 @font-face {
   font-family: 'Poppins';

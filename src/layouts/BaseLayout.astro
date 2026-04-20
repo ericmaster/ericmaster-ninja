@@ -1,33 +1,52 @@
 ---
+import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AiChatbot from "../components/AiChatbot.astro";
 import "@fontsource/poppins";
 import "../styles/global.css";
-const { pageTitle, frontmatter } = Astro.props;
+
+interface Props {
+  pageTitle?: string;
+  description?: string;
+  ogImage?: string;
+  /** Pass true from layouts that build their own <h1> */
+  showPageTitle?: boolean;
+  frontmatter?: { title?: string; description?: string };
+}
+
+const {
+  pageTitle,
+  description,
+  ogImage,
+  showPageTitle = true,
+  frontmatter,
+} = Astro.props;
+
+const title = pageTitle ?? frontmatter?.title ?? "Home";
+const metaDescription = description ?? frontmatter?.description;
 ---
 
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Eric Aguayo (Ericmaster) | {pageTitle ?? frontmatter.title}</title>
+    <Head title={title} description={metaDescription} ogImage={ogImage} />
   </head>
   <body>
     <canvas
       id="constellation-bg"
       class="fixed top-0 left-0 w-screen h-screen -z-10"></canvas>
     <Header />
-    <h1 class="page-title">{pageTitle ?? frontmatter.title}</h1>
+    {showPageTitle && <h1 class="page-title">{title}</h1>}
     <div class="container mx-auto w-full md:w-150 lg:w-200 xl:w-250">
       <slot />
     </div>
     <Footer />
     <script src="/assets/constellation.js" is:inline></script>
-    <!-- Alpine.js CDN for interactivity -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Alpine.js v3.14.9 — loaded once here, do NOT add in individual components -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"
+      defer
+    ></script>
     <AiChatbot />
   </body>
 </html>

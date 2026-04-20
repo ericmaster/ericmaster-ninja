@@ -237,6 +237,15 @@ The site includes a client-side AI chatbot widget (`AiChatbot.astro`) powered by
 - All pages should have proper `<title>` tags (set via `pageTitle` prop in `BaseLayout`).
 - External links in blog posts auto-open in new tabs (`MarkdownPostLayout.astro`).
 
+## AI Context & MCP Servers
+
+The following MCP (Model Context Protocol) servers are configured for this workspace to enhance AI knowledge:
+
+- **Astro Docs**: Real-time access to the latest Astro 5.x documentation.
+  - **URL**: `https://mcp.docs.astro.build/mcp`
+  - **Status**: Configured for Antigravity and Claude Code.
+  - **Usage**: Tools like Claude and Antigravity can now search official docs directly for accurately building the site.
+
 ---
 
 ## Key Patterns to Follow
