@@ -13,19 +13,20 @@ const staticPages = [
 const postImports = import.meta.glob("./posts/*.md", { eager: true });
 
 // Only include published posts in the sitemap
-const postUrls = Object.entries(postImports)
-  .filter(
-    ([_, mod]: any) => mod.frontmatter && mod.frontmatter.published === true
-  )
-  .map(([filePath, _]) => {
-    const slug = filePath.match(/\.\/posts\/(.*)\.md$/)?.[1];
-    return {
-      url: slug ? `/posts/${slug}` : null,
-      changefreq: "weekly",
-      priority: "0.8",
-    };
-  })
-  .filter(Boolean);
+const postUrls = Object.entries(postImports).reduce(
+  (acc, [filePath, mod]: [string, any]) => {
+    if (mod.frontmatter?.published === true) {
+      const slug = filePath.match(/\.\/posts\/(.*)\.md$/)?.[1];
+      acc.push({
+        url: slug ? `/posts/${slug}` : null,
+        changefreq: "weekly",
+        priority: "0.8",
+      });
+    }
+    return acc;
+  },
+  [] as any[]
+);
 
 // Build allUrls as an array of objects with url, changefreq, and priority
 const allUrls = [...staticPages, ...postUrls];
