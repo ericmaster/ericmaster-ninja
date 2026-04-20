@@ -92,7 +92,7 @@
 /* Navigation styles */
 @layer components {
   .hamburger .line {
-    @apply block w-10 h-1.5 mb-2.5 bg-black;
+    @apply block w-8 h-1 mb-1.5 bg-black last:mb-0;
   }
   .nav-links {
     @apply w-full top-20 left-12 hidden m-0;

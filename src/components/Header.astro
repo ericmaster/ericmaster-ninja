@@ -10,24 +10,26 @@ import Logo from "./Logo.astro";
   x-data="{ navOpen: false }"
   class="flex -mx-4 px-4 items-center relative sticky top-0 z-20 bg-slate-100/75 transition-all duration-300"
 >
-  <div class="mr-4 hover:opacity-80 transition-opacity">
-    <a href="/" aria-label="Home">
-      <Logo />
-    </a>
-  </div>
   <Hamburger
+    class="order-1 md:order-none"
     aria-expanded="false"
     aria-controls="site-navigation"
     @click="navOpen = !navOpen"
     :aria-expanded="navOpen.toString()"
     :open="navOpen"
   />
+  <div class="order-2 flex-1 flex justify-center md:flex-none md:justify-start md:order-none mr-4 md:mr-4 hover:opacity-80 transition-opacity">
+    <a href="/" aria-label="Home">
+      <Logo />
+    </a>
+  </div>
   <Navigation
+    class="order-3 md:order-none"
     id="site-navigation"
     :class="{'block': navOpen, 'hidden': !navOpen}"
     :open="navOpen"
   />
-  <div class="ml-auto">
+  <div class="order-4 md:order-none ml-auto md:ml-auto">
     <ThemeIcon />
   </div>
 </header>
