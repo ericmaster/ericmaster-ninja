@@ -1,4 +1,17 @@
 ---
+interface Education {
+  institution: string;
+  url?: string;
+  area: string;
+  studyType: string;
+  date: string;
+  score?: string;
+}
+
+interface Props {
+  items: Education[];
+}
+
 const { items } = Astro.props;
 ---
 {items && items.length > 0 && (

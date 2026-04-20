@@ -3,15 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import LatestPosts from "../components/LatestPosts.astro";
 import ExpertAiSolutions from "../components/ExpertAiSolutions.astro";
 import { Content } from "./content/pages/home-content.md";
+import { Image } from "astro:assets";
 const pageTitle = "Eric's Digital Nook";
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} description="Eric Aguayo's digital nook — exploring AI Engineering, Web Development, and human-in-the-loop optimizations.">
   <section class="w-full mb-8">
     <div class="w-full">
-      <img
+      <Image
         src="/assets/eric-anime-run.jpg"
         alt="Eric trail running anime image"
+        width={320}
+        height={320}
         class="max-w-xs w-full h-auto rounded-xl shadow-lg float-none sm:float-left mb-4 sm:mb-0 sm:mr-6"
       />
       <div>

@@ -8,7 +8,16 @@ canvas.height = height;
 const STAR_COUNT = 60;
 const STAR_RADIUS = 2;
 const LINE_DISTANCE = 140;
+const LINE_DISTANCE_SQ = LINE_DISTANCE * LINE_DISTANCE;
 const stars = [];
+
+let isLight = !document.documentElement.classList.contains('dark');
+
+// Observe theme changes to avoid querying DOM every frame
+const observer = new MutationObserver(() => {
+  isLight = !document.documentElement.classList.contains('dark');
+});
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
 function random(min, max) {
   return Math.random() * (max - min) + min;
@@ -25,43 +34,40 @@ function createStars() {
   }
 }
 
-function getIsLightTheme() {
-  // Check prefers-color-scheme or body class for dark theme
-  return !document.documentElement.classList.contains('dark');
-}
-
 function drawStars() {
   ctx.clearRect(0, 0, width, height);
-  // Determine color based on theme
-  const isLight = getIsLightTheme();
+  // Determine color based on cached theme
   const starColor = isLight ? '#999' : '#fff';
   const lineColor = isLight ? 'rgba(6,6,6,0.12)' : 'rgba(255,255,255,0.15)';
+  
   // Draw lines
   ctx.save();
   ctx.strokeStyle = lineColor;
   ctx.lineWidth = 1;
+  ctx.beginPath();
   for (let i = 0; i < STAR_COUNT; i++) {
     for (let j = i + 1; j < STAR_COUNT; j++) {
       const dx = stars[i].x - stars[j].x;
       const dy = stars[i].y - stars[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < LINE_DISTANCE) {
-        ctx.beginPath();
+      const distSq = dx * dx + dy * dy;
+      if (distSq < LINE_DISTANCE_SQ) {
         ctx.moveTo(stars[i].x, stars[i].y);
         ctx.lineTo(stars[j].x, stars[j].y);
-        ctx.stroke();
       }
     }
   }
+  ctx.stroke();
   ctx.restore();
+  
   // Draw stars
   ctx.save();
   ctx.fillStyle = starColor;
+  ctx.beginPath();
   for (let i = 0; i < STAR_COUNT; i++) {
-    ctx.beginPath();
+    ctx.moveTo(stars[i].x + STAR_RADIUS, stars[i].y);
     ctx.arc(stars[i].x, stars[i].y, STAR_RADIUS, 0, Math.PI * 2);
-    ctx.fill();
   }
+  ctx.fill();
   ctx.restore();
 }
 
@@ -88,6 +94,6 @@ function resize() {
   canvas.height = height;
 }
 
-window.addEventListener('resize', resize);
+window.addEventListener('resize', resize, { passive: true });
 createStars();
 loop();

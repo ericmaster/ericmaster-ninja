@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { formatLocalizedDate } from "../lib/dateUtils";
+import { Image } from "astro:assets";
 const { frontmatter } = Astro.props;
 ---
 
@@ -9,11 +10,13 @@ const { frontmatter } = Astro.props;
   <p><em>{frontmatter.description}</em></p>
 
   <div class="w-full aspect-[16/9] mb-4">
-    <img
+    <Image
       src={frontmatter.image.url.startsWith("/")
         ? frontmatter.image.url
         : `/${frontmatter.image.url}`}
       alt={frontmatter.image.alt}
+      width={1200}
+      height={675}
       class="w-full h-full object-cover object-top rounded"
       loading="lazy"
     />

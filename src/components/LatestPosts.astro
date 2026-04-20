@@ -1,6 +1,12 @@
 ---
 import PostTeaser from "./PostTeaser.astro";
 import { getPosts } from "../lib/blogUtils";
+
+interface Props {
+  class?: string;
+  [key: string]: any;
+}
+
 const latestPosts = await getPosts(5);
 ---
 

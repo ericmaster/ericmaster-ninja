@@ -1,17 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import resumeData from "../data/resume.json";
-import ResumeHeader from "../components/resume/ResumeHeader.astro";
-import ResumeSummary from "../components/resume/ResumeSummary.astro";
-import ResumeExperience from "../components/resume/ResumeExperience.astro";
-import ResumeEducation from "../components/resume/ResumeEducation.astro";
-import ResumeSkills from "../components/resume/ResumeSkills.astro";
-import ResumeLanguages from "../components/resume/ResumeLanguages.astro";
-import ResumeCertifications from "../components/resume/ResumeCertifications.astro";
-import ResumeProjects from "../components/resume/ResumeProjects.astro";
-import ResumeLeadership from "../components/resume/ResumeLeadership.astro";
+import {
+  ResumeHeader,
+  ResumeSummary,
+  ResumeExperience,
+  ResumeEducation,
+  ResumeSkills,
+  ResumeLanguages,
+  ResumeCertifications,
+  ResumeProjects,
+  ResumeLeadership,
+} from "../components/resume";
 import "../styles/resume.css";
-
 
 const { basics, profiles, experience, education, skills, languages, certifications, projects, leadership } = resumeData;
 const pageTitle = `${basics.name} – Resume`;

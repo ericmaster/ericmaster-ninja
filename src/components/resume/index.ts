@@ -1,0 +1,9 @@
+export { default as ResumeCertifications } from "./ResumeCertifications.astro";
+export { default as ResumeEducation } from "./ResumeEducation.astro";
+export { default as ResumeExperience } from "./ResumeExperience.astro";
+export { default as ResumeHeader } from "./ResumeHeader.astro";
+export { default as ResumeLanguages } from "./ResumeLanguages.astro";
+export { default as ResumeLeadership } from "./ResumeLeadership.astro";
+export { default as ResumeProjects } from "./ResumeProjects.astro";
+export { default as ResumeSkills } from "./ResumeSkills.astro";
+export { default as ResumeSummary } from "./ResumeSummary.astro";

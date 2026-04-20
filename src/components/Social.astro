@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
 
 interface Props {
   platform: string;
@@ -11,42 +11,64 @@ interface Props {
 
 const { platform, username, href, icon, class: className } = Astro.props;
 
-let computedHref = href;
-if (!computedHref) {
-  if (platform === 'twitter' || platform === 'x') {
-    computedHref = `https://x.com/${username}`;
-  } else if (platform === 'linkedin') {
-    computedHref = `https://www.linkedin.com/in/${username}/`;
-  } else if (platform === 'whatsapp') {
-    computedHref = `https://wa.me/${username}`;
-  } else if (platform === 'github') {
-    computedHref = `https://github.com/${username}`;
-  } else {
-    computedHref = `https://www.${platform}.com/${username}`;
-  }
-}
+type PlatformConfig = {
+  url: string;
+  defaultIcon: string;
+  colorClass: string;
+};
 
-let computedIcon = icon;
-if (!computedIcon) {
-  if (platform === 'x' || platform === 'twitter') computedIcon = 'simple-icons:x';
-  else if (platform === 'github') computedIcon = 'simple-icons:github';
-  else if (platform === 'youtube') computedIcon = 'simple-icons:youtube';
-  else if (platform === 'linkedin') computedIcon = 'mdi:linkedin';
-  else if (platform === 'whatsapp') computedIcon = 'mdi:whatsapp';
-  else computedIcon = `mdi:${platform}`;
-}
+const PLATFORM_CONFIG: Record<string, PlatformConfig> = {
+  twitter: {
+    url: `https://x.com/${username}`,
+    defaultIcon: "simple-icons:x",
+    colorClass: "text-black dark:text-white",
+  },
+  x: {
+    url: `https://x.com/${username}`,
+    defaultIcon: "simple-icons:x",
+    colorClass: "text-black dark:text-white",
+  },
+  linkedin: {
+    url: `https://www.linkedin.com/in/${username}/`,
+    defaultIcon: "mdi:linkedin",
+    colorClass: "text-[#0077b5]",
+  },
+  whatsapp: {
+    url: `https://wa.me/${username}`,
+    defaultIcon: "mdi:whatsapp",
+    colorClass: "text-[#25D366]",
+  },
+  github: {
+    url: `https://github.com/${username}`,
+    defaultIcon: "simple-icons:github",
+    colorClass: "text-[#181717] dark:text-white",
+  },
+  youtube: {
+    url: `https://www.youtube.com/${username}`,
+    defaultIcon: "simple-icons:youtube",
+    colorClass: "text-[#FF0000]",
+  },
+};
 
-let computedColorClass = className || '';
-if (!className) {
-  if (platform === 'x' || platform === 'twitter') computedColorClass = 'text-black dark:text-white';
-  else if (platform === 'github') computedColorClass = 'text-[#181717] dark:text-white';
-  else if (platform === 'youtube') computedColorClass = 'text-[#FF0000]';
-  else if (platform === 'linkedin') computedColorClass = 'text-[#0077b5]';
-  else if (platform === 'whatsapp') computedColorClass = 'text-[#25D366]';
-}
+const config = PLATFORM_CONFIG[platform.toLowerCase()] || {
+  url: `https://www.${platform}.com/${username}`,
+  defaultIcon: `mdi:${platform}`,
+  colorClass: "",
+};
+
+const computedHref = href || config.url;
+const computedIcon = icon || config.defaultIcon;
+const computedColorClass = className || config.colorClass;
 ---
-<a href={computedHref} target="_blank" rel="noopener noreferrer" class="flex items-center gap-2" aria-label={platform}>
-  <Icon name={computedIcon} class={`w-8 h-8 ${computedColorClass}`.trim()}/>
+
+<a
+  href={computedHref}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center gap-2"
+  aria-label={platform}
+>
+  <Icon name={computedIcon} class={`w-8 h-8 ${computedColorClass}`.trim()} />
 </a>
 
 <style>
