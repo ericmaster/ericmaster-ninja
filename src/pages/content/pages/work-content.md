@@ -1,4 +1,3 @@
 ---
 title: "Work"
 ---
-## Coming soon!

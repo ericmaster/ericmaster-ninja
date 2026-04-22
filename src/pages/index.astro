@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LatestPosts from "../components/LatestPosts.astro";
-import ExpertAiSolutions from "../components/ExpertAiSolutions.astro";
+import WorkTeaser from "../components/WorkTeaser.astro";
 import { Content } from "./content/pages/home-content.md";
 import { Image } from "astro:assets";
 const pageTitle = "Eric's Digital Nook";
@@ -23,6 +23,7 @@ const pageTitle = "Eric's Digital Nook";
     </div>
     <div class="clear-both"></div>
   </section>
-  <ExpertAiSolutions />
+
+  <WorkTeaser />
   <LatestPosts class="w-full mt-8 max-w-3xl mx-auto" />
 </BaseLayout>
