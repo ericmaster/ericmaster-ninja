@@ -23,17 +23,30 @@ export class ChatServiceMock {
     hiring: ["hiring", "interviewer", "interview", "recruitment", "screening", "candidates", "smoke filter", "employ"],
     sme: ["sme", "small business", "turnkey", "automation", "local business", "workflow", "startup", "company"],
     privacy: ["privacy", "concierge", "data protection", "security", "secure", "hardening", "confidential", "secret"],
-    cost: ["cost", "price", "pricing", "budget", "expensive", "fee", "rate", "investment"]
+    cost: ["cost", "price", "pricing", "budget", "expensive", "fee", "rate", "investment"],
+    affirmative: ["yes", "yeah", "yep", "sure", "ok", "okay", "please", "absolutely", "definitely", "i do", "i would"],
+    greeting: ["hi", "hello", "hey", "greetings", "howdy", "sup", "morning", "afternoon"]
   };
 
-  private readonly responses: Record<string, string> = {
-    auditor: "Our AI Hallucination & Fact-Checking Auditor ensures your AI outputs are medically and technically sound with a human-in-the-loop approach. (Lite model) Would you like to schedule a deep dive into your current models?",
-    hiring: "The Technical Interviewer 'Smoke Filter' helps you distinguish real engineering talent from LLM-assisted mimicry. (Lite model) Ready to optimize your hiring?",
-    sme: "We offer Turnkey AI for SMEs. We build end-to-end automation and custom bots to streamline your local business workflows. (Lite model) Looking to automate a specific process?",
-    privacy: "For high-level professionals, our AI Concierge & Data Privacy service provides specialized consulting on secure AI adoption and personal data hardening. (Lite model) Is data security your priority right now?",
-    cost: "Every project is unique, but our focus is on high-ROI, mission-critical AI implementations. (Lite model) Let's discuss your specific needs on a consultation call to provide an accurate estimate.",
-    default: "I'm Eric's AI Assistant (operating on a lite model). To get the most accurate and secure advice for your business, I recommend connecting with Eric directly. Would you like to do that?"
+  private readonly responses: Record<string, string[]> = {
+    auditor: ["Our AI Hallucination & Fact-Checking Auditor ensures your AI outputs are medically and technically sound with a human-in-the-loop approach. (Lite model) Would you like to schedule a deep dive into your current models?"],
+    hiring: ["The Technical Interviewer 'Smoke Filter' helps you distinguish real engineering talent from LLM-assisted mimicry. (Lite model) Ready to optimize your hiring?"],
+    sme: ["We offer Turnkey AI for SMEs. We build end-to-end automation and custom bots to streamline your local business workflows. (Lite model) Looking to automate a specific process?"],
+    privacy: ["For high-level professionals, our AI Concierge & Data Privacy service provides specialized consulting on secure AI adoption and personal data hardening. (Lite model) Is data security your priority right now?"],
+    cost: ["Every project is unique, but our focus is on high-ROI, mission-critical AI implementations. (Lite model) Let's discuss your specific needs on a consultation call to provide an accurate estimate."],
+    greeting: [
+      "Hi there! I'm Eric's AI assistant. I can help answer basic questions about his services, but for the best experience, you can also reach out to him directly.",
+      "Hello! I am operating on a lite logic model right now, but I'd be happy to point you in the right direction!"
+    ],
+    default: [
+      "I'm Eric's AI Assistant (operating on a lite model). To get the most accurate and secure advice for your business, I recommend connecting with Eric directly. Would you like to do that?",
+      "As a lite mock AI, my responses are limited here. Eric would be the best person to answer that in detail. Should I help you get in touch with him?",
+      "That's an interesting point! For details beyond my training, I suggest we loop in Eric. Would you like his WhatsApp contact?",
+      "I am currently a lite chatbot, so my capabilities are constrained. Would you like to chat with Eric directly to dive deeper?"
+    ]
   };
+
+  private lastDefaultIndex: number = -1;
 
   /**
    * Calculates Levenshtein distance between two strings.
@@ -125,17 +138,34 @@ export class ChatServiceMock {
           return;
         }
 
+        const intent = this.detectIntent(message);
+
+        if (intent === "affirmative") {
+          resolve(this.getWhatsAppFallback("Great! Let's get you connected with Eric directly."));
+          return;
+        }
+
         if (isInquiry) {
           resolve(this.getWhatsAppFallback("For a detailed breakdown of services and how Eric can specifically help your project, I recommend a direct consultation."));
           return;
         }
-
-        const intent = this.detectIntent(message);
         
         if (intent === "default" && this.exchangeCount === this.MAX_EXCHANGES) {
             resolve(this.getWhatsAppFallback());
         } else {
-            resolve({ text: this.responses[intent] });
+            const possibleResponses = this.responses[intent] || this.responses["default"];
+            
+            let responseText = possibleResponses[0];
+            if (possibleResponses.length > 1) {
+              if (intent === "default") {
+                this.lastDefaultIndex = (this.lastDefaultIndex + 1) % possibleResponses.length;
+                responseText = possibleResponses[this.lastDefaultIndex];
+              } else {
+                responseText = possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
+              }
+            }
+
+            resolve({ text: responseText });
         }
       }, latency);
     });
@@ -143,5 +173,6 @@ export class ChatServiceMock {
 
   public resetSession() {
     this.exchangeCount = 0;
+    this.lastDefaultIndex = -1;
   }
 }

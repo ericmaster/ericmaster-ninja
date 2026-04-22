@@ -10,7 +10,7 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<li class="post-card">
+<li class="post-card list-none border-b border-slate-200 dark:border-slate-700 last:border-b-0">
   <a
     href={"/posts/" + post.data.slug}
     class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-lg"

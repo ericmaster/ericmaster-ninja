@@ -6,10 +6,12 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <p class="text-right">{formatLocalizedDate(frontmatter.pubDate)}</p>
-  <p><em>{frontmatter.description}</em></p>
+  <div class="max-w-4xl mx-auto">
+    <p class="text-right">{formatLocalizedDate(frontmatter.pubDate)}</p>
+    <p class="text-xl mb-8"><em>{frontmatter.description}</em></p>
+  </div>
 
-  <div class="w-full aspect-[16/9] mb-4">
+  <div class="w-full aspect-[16/9] mb-8 lg:-mx-0">
     <Image
       src={frontmatter.image.url.startsWith("/")
         ? frontmatter.image.url
@@ -17,22 +19,26 @@ const { frontmatter } = Astro.props;
       alt={frontmatter.image.alt}
       width={1200}
       height={675}
-      class="w-full h-full object-cover object-top rounded"
+      class="w-full h-full object-cover object-top rounded-xl shadow-2xl"
       loading="lazy"
     />
   </div>
 
-  <div class="tags">
-    {
-      frontmatter.tags.map((tag: string) => (
-        <p class="tag">
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
-      ))
-    }
-  </div>
+  <div class="max-w-4xl mx-auto post-content">
+    <div class="tags mb-8">
+      {
+        frontmatter.tags.map((tag: string) => (
+          <p class="tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </p>
+        ))
+      }
+    </div>
 
-  <slot />
+    <article class="prose prose-lg dark:prose-invert max-w-none">
+      <slot />
+    </article>
+  </div>
 
   <script>
     // Open all external links in a new tab

@@ -12,16 +12,13 @@ const latestPosts = await getPosts(5);
 
 <section {...Astro.props}>
   <h2 class="pl-6">Latest Posts</h2>
-  <ul>
+  <ul class="list-none p-0">
     {
       latestPosts.length === 0 ? (
         <li>No posts yet.</li>
       ) : (
         latestPosts.map((post) => (
-          <>
-            <PostTeaser post={post} />
-            <hr />
-          </>
+          <PostTeaser post={post} />
         ))
       )
     }
