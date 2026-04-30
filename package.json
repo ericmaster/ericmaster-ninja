@@ -16,6 +16,8 @@
     "astro": "^5.18.1",
     "astro-heroicons": "^2.1.5",
     "marked": "^17.0.5",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
