@@ -3,8 +3,10 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Beyond the Hype: Why Foundations Outperform "Vibe Coding."'
 published: true
 tags:
-  - "#AIArchitecture #SoftwareEngineering #MachineLearning #TechLeadership
-    #Nimblersoft"
+  - AIArchitecture
+  - SoftwareEngineering
+  - MachineLearning
+  - TechLeadership
 slug: beyond-the-hype-why-foundations-outperform-vibe-coding
 pubDate: 2026-04-30T15:08:00.000-05:00
 image:
