@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import resumeData from "../data/resume.json";
 import {
   ResumeHeader,
+  ResumeContactSidebar,
+  ResumeNav,
   ResumeSummary,
   ResumeExperience,
   ResumeEducation,
@@ -25,29 +27,60 @@ const metaDescription = `${basics.headline}. ${basics.location}. ${basics.email}
     {basics.website}
   </p>
 
-  <div class="resume-page-wrapper">
-    <h1 class="page-title no-print">Resume</h1>
+  <div class="resume-layout">
+    <!-- Sticky sidebar nav (web only) -->
+    <ResumeNav />
 
-    <!-- Action bar (hidden when printing) -->
-    <div class="resume-actions no-print">
-      <button id="print-resume" class="btn-download" onclick="window.print()" aria-label="Download resume as PDF">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF
-      </button>
+    <!-- Main resume content -->
+    <div class="resume-main-content">
+      <h1 class="page-title no-print">Resume</h1>
+
+      <!-- Action bar (hidden when printing) -->
+      <div class="resume-actions no-print">
+        <button id="print-resume" class="btn-download" onclick="window.print()" aria-label="Download resume as PDF">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </button>
+      </div>
+
+      <!-- Resume Document -->
+      <main id="resume-document" class="resume-document" role="main">
+        <!-- === WEB VIEW: single-column with header === -->
+        <ResumeHeader basics={basics} profiles={profiles} />
+
+        <!-- === PRINT 2-COLUMN WRAPPER === -->
+        <div class="print-two-col">
+          <!-- LEFT COLUMN (print only): Contact, Skills, Projects, Languages -->
+          <aside class="print-col-left">
+            <ResumeContactSidebar basics={basics} profiles={profiles} />
+            <ResumeSkills items={skills} id="print-skills-heading" />
+            <ResumeProjects items={projects} id="print-projects-heading" />
+            <ResumeLanguages items={languages} id="print-languages-heading" />
+          </aside>
+
+          <!-- RIGHT COLUMN (print) / main content area (web) -->
+          <div class="print-col-right">
+            <ResumeSummary summary={basics.summary} />
+            <ResumeExperience items={experience} />
+
+            <!-- Web-only duplicates of left-column sections (hidden on print) -->
+            <div class="web-only">
+              <ResumeSkills items={skills} />
+              <ResumeProjects items={projects} />
+            </div>
+
+            <ResumeEducation items={education} />
+            <ResumeCertifications items={certifications} />
+
+            <!-- Web-only duplicate of Languages (hidden on print) -->
+            <div class="web-only">
+              <ResumeLanguages items={languages} />
+            </div>
+
+            <ResumeLeadership items={leadership} />
+          </div>
+        </div>
+      </main>
     </div>
-
-    <!-- Resume Document - ATS best practice: single-column semantic HTML -->
-    <main id="resume-document" class="resume-document" role="main">
-      <ResumeHeader basics={basics} profiles={profiles} />
-      <ResumeSummary summary={basics.summary} />
-      <ResumeExperience items={experience} />
-      <ResumeSkills items={skills} />
-      <ResumeProjects items={projects} />
-      <ResumeEducation items={education} />
-      <ResumeCertifications items={certifications} />
-      <ResumeLanguages items={languages} />
-      <ResumeLeadership items={leadership} />
-    </main>
   </div>
 </BaseLayout>
-

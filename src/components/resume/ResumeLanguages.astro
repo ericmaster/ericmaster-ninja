@@ -6,13 +6,14 @@ interface Language {
 
 interface Props {
   items: Language[];
+  id?: string;
 }
 
-const { items } = Astro.props;
+const { items, id = "languages-heading" } = Astro.props;
 ---
 {items && items.length > 0 && (
-  <section class="resume-section" aria-labelledby="languages-heading">
-    <h2 id="languages-heading" class="section-title">Languages</h2>
+  <section class="resume-section" aria-labelledby={id}>
+    <h2 id={id} class="section-title">Languages</h2>
     <div class="section-content">
       <ul class="lang-list">
         {items.map((lang: any) => (

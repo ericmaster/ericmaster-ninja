@@ -199,3 +199,10 @@
     @apply text-white;
   }
 }
+
+/* Print Utilities */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

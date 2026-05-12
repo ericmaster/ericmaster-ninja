@@ -9,13 +9,14 @@ export interface Project {
 
 export interface Props {
   items: Project[];
+  id?: string;
 }
 
-const { items } = Astro.props as Props;
+const { items, id = "projects-heading" } = Astro.props as Props;
 ---
 {items && items.length > 0 && (
-  <section class="resume-section" aria-labelledby="projects-heading">
-    <h2 id="projects-heading" class="section-title">Projects</h2>
+  <section class="resume-section" aria-labelledby={id}>
+    <h2 id={id} class="section-title">Projects</h2>
     <div class="section-content">
       {items.map((proj: Project) => (
         <article class="resume-item">

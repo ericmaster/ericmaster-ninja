@@ -8,13 +8,14 @@ interface ResumeSkill {
 
 interface Props {
   items: ResumeSkill[];
+  id?: string;
 }
 
-const { items }: Props = Astro.props;
+const { items, id = "skills-heading" }: Props = Astro.props;
 ---
 {items.length > 0 && (
-  <section class="resume-section" aria-labelledby="skills-heading">
-    <h2 id="skills-heading" class="section-title">Skills</h2>
+  <section class="resume-section" aria-labelledby={id}>
+    <h2 id={id} class="section-title">Skills</h2>
     <div class="section-content skills-grid">
       {items.map((skill: ResumeSkill) => (
         <div class="skill-item">
@@ -25,7 +26,7 @@ const { items }: Props = Astro.props;
           {skill.level && (
             <div class="skill-bar" aria-label={`Level ${skill.level} out of 5`}>
               {[1,2,3,4,5].map(n => (
-                <span class={`skill-pip ${n <= skill.level ? 'filled' : ''}`} />
+                <span class={`skill-pip ${skill.level && n <= skill.level ? 'filled' : ''}`} />
               ))}
             </div>
           )}
