@@ -1,0 +1,12 @@
+/admin/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; font-src 'self' data: https://unpkg.com; connect-src 'self' https://api.github.com https://unpkg.com; frame-src 'self'; frame-ancestors 'none'; base-uri 'self';
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://platform.linkedin.com 'sha256-Pqppwr2CfRmjC5H8h4BNEJ7qTwPb/+0XTOQd59+RSWs=' 'sha256-rb1E3mybuzV90LQYB65UPGlF4lHBxWIcMVdjvxdql7w='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://platform.linkedin.com; frame-src https://platform.linkedin.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()

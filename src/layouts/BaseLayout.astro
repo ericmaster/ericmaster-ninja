@@ -42,11 +42,69 @@ const metaDescription = description ?? frontmatter?.description;
     </div>
     <Footer />
     <script src="/assets/constellation.js" is:inline></script>
-    <!-- Alpine.js v3.14.9 — loaded once here, do NOT add in individual components -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"
-      defer
-    ></script>
+    <!-- Alpine.js CSP build — self-hosted via npm, no unsafe-eval required (ADR-0001) -->
+    <script>
+      // @ts-ignore — @alpinejs/csp ships no type declarations
+      import Alpine from "@alpinejs/csp";
+
+      /** Mobile nav toggle — used by Header.astro */
+      Alpine.data("mobileNav", () => ({
+        navOpen: false,
+        toggleNav() {
+          this.navOpen = !this.navOpen;
+        },
+        get ariaExpanded() {
+          return String(this.navOpen);
+        },
+        get navClass() {
+          return { block: this.navOpen, hidden: !this.navOpen };
+        },
+      }));
+
+      /** Scroll-spy sidebar nav — used by ResumeNav.astro */
+      Alpine.data("resumeNav", () => ({
+        active: "",
+        navItemClass() {
+          // CSP-safe: read context from data attribute; this.$el is the bound element
+          return (this as any).$el?.dataset?.sectionId === this.active
+            ? "active"
+            : "";
+        },
+        scrollToSection(event: MouseEvent) {
+          const id = (event.currentTarget as HTMLElement).dataset.sectionId;
+          if (id)
+            document
+              .getElementById(id)
+              ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        },
+        init() {
+          const ids = [
+            "summary-heading",
+            "experience-heading",
+            "skills-heading",
+            "projects-heading",
+            "education-heading",
+            "certifications-heading",
+            "languages-heading",
+            "leadership-heading",
+          ];
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) this.active = entry.target.id;
+              });
+            },
+            { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+          );
+          ids.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+          });
+        },
+      }));
+
+      Alpine.start();
+    </script>
     <AiChatbot />
   </body>
 </html>

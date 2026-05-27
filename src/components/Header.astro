@@ -7,7 +7,7 @@ import Logo from "./Logo.astro";
 
 <header
   id="site-header"
-  x-data="{ navOpen: false }"
+  x-data="mobileNav"
   class="flex -mx-4 px-4 items-center relative sticky top-0 z-20 bg-slate-100/75 transition-all duration-300"
 >
   <div class="mr-4 hover:opacity-80 transition-opacity">
@@ -18,13 +18,13 @@ import Logo from "./Logo.astro";
   <Hamburger
     aria-expanded="false"
     aria-controls="site-navigation"
-    @click="navOpen = !navOpen"
-    :aria-expanded="navOpen.toString()"
+    @click="toggleNav"
+    :aria-expanded="ariaExpanded"
     :open="navOpen"
   />
   <Navigation
     id="site-navigation"
-    :class="{'block': navOpen, 'hidden': !navOpen}"
+    :class="navClass"
     :open="navOpen"
   />
   <div class="ml-auto">

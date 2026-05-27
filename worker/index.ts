@@ -8,10 +8,12 @@ const CANONICAL_ORIGIN = "https://ericmaster.ninja";
 const REDIRECT_URI = `${CANONICAL_ORIGIN}/api/auth`;
 
 /**
- * Validates that a token string contains only safe characters
- * (alphanumeric, underscores, hyphens, and dots — matching GitHub token format).
+ * Guards against XSS injection characters before the value is embedded in
+ * JSON.stringify() output. Allows only chars that are safe in a JS string
+ * context: alphanumeric, underscores, hyphens, and dots (GitHub token format).
+ * This is NOT a token-validity check — it is an XSS character guard.
  */
-function isValidToken(token: string): boolean {
+function isScriptSafe(token: string): boolean {
   return /^[a-zA-Z0-9_\-\.]+$/.test(token);
 }
 
@@ -51,16 +53,18 @@ const handleAuth = async (
     return new Response("OAuth failed", { status: 401 });
   }
 
-  // Validate token characters to prevent injection
-  if (!isValidToken(tokenData.access_token)) {
+  // Guard against XSS injection characters before embedding in JSON.stringify()
+  if (!isScriptSafe(tokenData.access_token)) {
     return new Response("Invalid token format", { status: 400 });
   }
 
+  // Per-request nonce — makes script-src narrowly allow only this exact script
+  const nonce = crypto.randomUUID();
   const content = { token: tokenData.access_token, provider: "github" };
   const html = `<!DOCTYPE html>
 <html>
   <body>
-    <script>
+    <script nonce="${nonce}">
       const content = ${JSON.stringify(content)};
       if (window.opener) {
         const receiveMessage = (message) => {
@@ -81,7 +85,7 @@ const handleAuth = async (
   return new Response(html, {
     headers: {
       "Content-Type": "text/html",
-      "Content-Security-Policy": "default-src 'none'; script-src 'unsafe-inline'; style-src 'none';",
+      "Content-Security-Policy": `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'none';`,
       "X-Content-Type-Options": "nosniff",
     },
   });

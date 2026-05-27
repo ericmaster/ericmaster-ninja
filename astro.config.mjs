@@ -9,13 +9,35 @@ import sitemap from "@astrojs/sitemap";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
+/** Adds target="_blank" rel="noopener noreferrer" to external links at build time. */
+function rehypeExternalLinks() {
+  /** @param {import('hast').Node} node */
+  function walk(node) {
+    if (
+      node.type === "element" &&
+      /** @type {any} */ (node).tagName === "a"
+    ) {
+      const el = /** @type {import('hast').Element} */ (node);
+      const href = String(el.properties?.href ?? "");
+      if (/^https?:\/\//.test(href) && !href.includes("ericmaster.ninja")) {
+        el.properties.target = "_blank";
+        el.properties.rel = ["noopener", "noreferrer"];
+      }
+    }
+    if (/** @type {any} */ (node).children) {
+      /** @type {any} */ (node).children.forEach(walk);
+    }
+  }
+  return (/** @type {import('hast').Root} */ tree) => walk(tree);
+}
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://ericmaster.ninja",
 
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeExternalLinks],
   },
 
   vite: {
