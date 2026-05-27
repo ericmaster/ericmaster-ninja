@@ -11,7 +11,7 @@
 - **Live URL:** `https://ericmaster.ninja` (Cloudflare Workers) / `https://ericmaster.github.io` (GitHub Pages mirror)
 - **Framework:** Astro 5.x (static site generation, SSR-capable via Cloudflare adapter)
 - **Styling:** Tailwind CSS v4 + Sass (legacy `global.scss` exists but `global.css` with Tailwind is canonical)
-- **Interactivity:** Alpine.js v3 (loaded globally via CDN in `BaseLayout.astro`)
+- **Interactivity:** Alpine.js v3 — self-hosted `@alpinejs/csp` build, started globally in `BaseLayout.astro` (no CDN; see ADR-0001)
 - **Deployment:** Cloudflare Workers (`wrangler deploy`)
 - **Package manager:** npm
 
@@ -25,7 +25,7 @@
 | Styling           | Tailwind CSS v4 (`@tailwindcss/vite`)     | All styling via Tailwind utility classes                     |
 | Typography        | Poppins (`@fontsource/poppins`)           | Custom `@font-face` declarations in `global.css`             |
 | Icons             | `astro-icon`, `unplugin-icons`, Iconify   | Heroicons, MDI, Simple Icons sets available                  |
-| Client JS         | Alpine.js v3 (CDN)                        | **Do NOT use React, Vue, or Svelte**                        |
+| Client JS         | Alpine.js v3 (`@alpinejs/csp`, self-hosted) | **Do NOT use React, Vue, or Svelte**; no inline expressions (CSP build) |
 | Markdown          | `marked` library                          | Used for runtime markdown rendering                          |
 | Deployment        | Cloudflare Workers + Wrangler             | Static assets served from `./dist`                           |
 | TypeScript        | Strict mode (`astro/tsconfigs/strict`)    | Worker types via `@cloudflare/workers-types`                 |
@@ -33,7 +33,7 @@
 ### Hard Rules
 
 - **No React, Vue, or Svelte** — all client-side interactivity must use Alpine.js
-- **Do not add Alpine.js CDN** in individual components — it is loaded globally in `BaseLayout.astro`
+- **Do not add an Alpine.js CDN script** — Alpine is the self-hosted `@alpinejs/csp` build, started globally in `BaseLayout.astro`. Author interactivity as registered `Alpine.data()` components, not inline `x-data`/`x-on` expressions (the CSP build forbids them).
 - **All styling must use Tailwind CSS** — no inline styles or custom CSS outside of `global.css`
 - **Astro 5.x patterns only** — verify against official Astro documentation before applying
 
@@ -199,6 +199,21 @@ npx wrangler dev --ip 0.0.0.0 --env development
 npm run build                        # Build static site to ./dist
 npx wrangler deploy                  # Deploy to Cloudflare Workers
 ```
+
+**Deploy credentials.** `wrangler deploy` needs Cloudflare auth. Interactively, run
+`npx wrangler login` once. For non-interactive/automated deploys, export
+`CLOUDFLARE_API_TOKEN` (and `CLOUDFLARE_ACCOUNT_ID`) — these are stored in **Infisical**,
+project **Nimblersoft Web** (`80d4a8a5-0f3d-4a65-9638-b9b22778f857`), env `dev`. Pull them
+at deploy time via the Infisical Universal Auth API; never hardcode or commit them.
+
+**Security headers / CSP.** Edge response headers for the static site live in
+`public/_headers` (copied to `./dist` on build). The policy is strict (`script-src 'self'`,
+no `'unsafe-eval'`) — Alpine.js is the self-hosted `@alpinejs/csp` build, so all
+interactivity must be authored as registered `Alpine.data()` components, **not** inline
+`x-data`/`x-on` expressions (see `docs/adr/0001`). `/admin/*` has its own permissive block
+for Decap CMS and must keep the `! Content-Security-Policy` detach line. Any new inline
+`<script>` needs its exact-byte sha256 added to `script-src`; `npm run build` runs
+`scripts/check-csp-hashes.mjs` which fails the build if a hash is missing.
 
 ### PDF Generation
 
