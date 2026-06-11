@@ -2,15 +2,18 @@
   "skills": [
     {
       "name": "AI / Agentic Systems",
-      "description": "AI Engineering",
+      "description": "AI Engineering & MLOps",
       "level": 5,
       "keywords": [
+        "Agents in SDLC",
+        "Custom Tooling Harnesses",
+        "Antigravity SDK",
         "RAG Pipelines",
         "Agentic Frameworks (Supervisor-Worker)",
         "LiteLLM",
         "Prompt Engineering",
         "Hallucination Auditing",
-        "MCP (Model-Controlled Programming)",
+        "MCP",
         "LangChain",
         "OpenAI API",
         "Anthropic SDK",
@@ -73,15 +76,18 @@
     },
     {
       "name": "Cloudflare / Serverless",
-      "description": "Edge Computing",
-      "level": 4,
+      "description": "Edge Computing & Zero Trust",
+      "level": 5,
       "keywords": [
         "Cloudflare Workers",
-        "Cloudflare Pages",
         "Workers KV / D1 / R2",
-        "Wrangler",
+        "Vectorize / AI Gateway / AI Search",
+        "Cloudflare One (WARP)",
+        "Cloudflare Tunnels",
+        "Zero Trust",
         "AWS Lambda",
-        "Serverless Framework"
+        "Serverless Framework",
+        "Wrangler"
       ]
     },
     {
@@ -139,10 +145,11 @@
         "Ansible",
         "Kubernetes (EKS & Self-hosted)",
         "GitHub Actions",
+        "GitLab Pipelines",
         "Bitbucket Pipelines",
         "GitOps (ArgoCD / Flux)",
         "Docker",
-        "AWS (EC2, VPC, S3, RDS)"
+        "AWS (EC2, VPC, S3, RDS, DynamoDB)"
       ]
     },
     {
@@ -182,12 +189,12 @@
   ],
   "basics": {
     "name": "Eric Aguayo",
-    "headline": "Senior AI & DevOps Engineer | Agentic Systems Architect | Agentic Software Engineer",
+    "headline": "Senior DataOps, MLOps & LLMOps Engineer | Agentic Systems Architect",
     "email": "eric7master@gmail.com",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Senior AI & DevOps Engineer and Agentic Systems Architect with 15+ years of software engineering excellence, specializing in the intersection of AI, Cloud Infrastructure, and Full-Stack development. Expert in engineering production-grade RAG pipelines, orchestrating Supervisor-Worker agentic workflows, and implementing AI-native DevOps strategies using Terraform, EKS, and Bitbucket Pipelines. Extensive experience with Cloudflare Workers and Serverless architectures. 13+ years of expertise in full-stack architecture and Enterprise CMS for high-traffic platforms (Bleacher Report, NYPost). Deeply familiar with MCP (Model-Controlled Programming) and AI-assisted development (Cursor, Claude Code, ChatGPT) to accelerate infrastructure and software delivery."
+    "summary": "Senior DataOps & MLOps Engineer with 15+ years of software engineering excellence, specializing in the intersection of AI, Data Pipelines, and Cloud Infrastructure. Expert in orchestrating Agents in the SDLC, building custom harnesses with various APIs (including Antigravity SDK), and engineering production-grade RAG pipelines. Extensive experience with GitHub Actions, GitLab Pipelines, and AI-native DevOps strategies using Terraform and EKS. Proficient in Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) and absolute privacy via Zero Trust, Cloudflare One (WARP), and Tunnels. Deeply experienced with AWS ecosystems (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) and AI-assisted development (MCP, Cursor) to accelerate data platforms and model deployments."
   },
   "leadership": [
     {
@@ -254,10 +261,10 @@
   "experience": [
     {
       "company": "Nimblersoft",
-      "position": "Lead AI Architect",
+      "position": "DataOps & MLOps Engineer | Lead AI Architect",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Architecting AI-native solutions, serverless architectures, and autonomous agentic systems for global clients.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces using Cloudflare Workers and AI-native workflows, improving LLM accuracy and reducing response latency.</li><li>Implemented Infrastructure as Code (Terraform) and Serverless deployments on Cloudflare and AWS, leveraging AI Copilots (Cursor, Claude Code) for rapid prototyping and validation.</li><li>Developed and deployed <strong>meli.run</strong>: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions, optimized for AI-engine discoverability.</li><li>Mastered MCP (Model-Controlled Programming) workflows to co-author complex infrastructure decisions and automation scripts with LLMs.</li></ul>",
+      "summary": "<p>Architecting DataOps/MLOps pipelines, serverless architectures, and autonomous agentic systems in the SDLC.</p><ul><li>Integrated Agents into the SDLC and built custom harnesses using various APIs, including the Antigravity SDK.</li><li>Engineered advanced RAG pipelines and Agentic interfaces using Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), with secure internal connections via Cloudflare One (WARP) and Tunnels under Zero Trust.</li><li>Automated DataOps/MLOps workflows using GitHub Actions and GitLab Pipelines, orchestrating deployments across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3).</li><li>Mastered MCP workflows to co-author complex infrastructure decisions and automation scripts with LLMs.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
