@@ -8,6 +8,7 @@
         "Agents in SDLC",
         "Custom Tooling Harnesses",
         "Antigravity SDK",
+        "Domain Specific Languages (DSL)",
         "RAG Pipelines",
         "Agentic Frameworks (Supervisor-Worker)",
         "LiteLLM",
@@ -194,7 +195,7 @@
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Senior DataOps & MLOps Engineer with 15+ years of software engineering excellence, specializing in the intersection of AI, Data Pipelines, and Cloud Infrastructure. Expert in orchestrating Agents in the SDLC, building custom harnesses with various APIs (including Antigravity SDK), and engineering production-grade RAG pipelines. Extensive experience with GitHub Actions, GitLab Pipelines, and AI-native DevOps strategies using Terraform and EKS. Proficient in Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) and absolute privacy via Zero Trust, Cloudflare One (WARP), and Tunnels. Deeply experienced with AWS ecosystems (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) and AI-assisted development (MCP, Cursor) to accelerate data platforms and model deployments."
+    "summary": "Senior DataOps & MLOps Engineer with 15+ years of software engineering excellence, specializing in the intersection of AI, Data Pipelines, and Cloud Infrastructure. Expert in orchestrating Agents in the SDLC, building custom harnesses with various APIs (including Antigravity SDK), designing Domain Specific Languages (DSLs), and engineering production-grade RAG pipelines. Extensive experience with GitHub Actions, GitLab Pipelines, and AI-native DevOps strategies using Terraform and EKS. Proficient in Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) and absolute privacy via Zero Trust, Cloudflare One (WARP), and Tunnels. Deeply experienced with AWS ecosystems (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) and AI-assisted development (MCP, Cursor) to accelerate data platforms and model deployments."
   },
   "leadership": [
     {
