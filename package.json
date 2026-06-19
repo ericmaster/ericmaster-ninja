@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "@alpinejs/csp": "^3.15.12",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource/poppins": "^5.2.7",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.3.1",
     "astro": "^5.18.1",
-    "astro-heroicons": "^2.1.5",
+    "astro-heroicons": "^2.1.5-1",
     "marked": "^17.0.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260316.1",
+    "@cloudflare/workers-types": "^4.20260617.1",
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/simple-icons": "^1.2.74",
+    "@iconify-json/simple-icons": "^1.2.86",
     "astro-icon": "^1.1.5",
     "markdown-pdf": "^11.0.0",
     "unplugin-icons": "^22.5.0",
