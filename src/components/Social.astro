@@ -58,7 +58,12 @@ const config = PLATFORM_CONFIG[platform.toLowerCase()] || {
 
 const computedHref = href || config.url;
 const computedIcon = icon || config.defaultIcon;
-const computedColorClass = className || config.colorClass;
+// Quiet, monochrome footer icons by default — accent only on hover (keeps the
+// slate-and-amber palette calm). Pass an explicit `class` prop to opt back into
+// brand colors (e.g. config.colorClass) where wanted.
+const computedColorClass =
+  className ||
+  "text-slate-400 dark:text-slate-500 hover:text-indigo-600 dark:hover:text-amber-400 transition-colors";
 ---
 
 <a

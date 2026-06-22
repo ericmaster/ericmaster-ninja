@@ -8,47 +8,59 @@ interface Props {
 }
 
 const { post } = Astro.props;
+
+const iso = post.data.pubDate?.toISOString();
+const day = iso ? formatLocalizedDate(iso, undefined, { day: "numeric" }) : "";
+const monthYear = iso
+  ? formatLocalizedDate(iso, undefined, { month: "short", year: "numeric" })
+  : "";
 ---
 
-<li class="post-card list-none border-b border-slate-200 dark:border-slate-700 last:border-b-0">
-  <a
-    href={"/posts/" + post.data.slug}
-    class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-lg"
+<li class="post-card group relative list-none border-b border-slate-200 dark:border-slate-700 last:border-b-0">
+  <div
+    class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-lg transition-colors group-hover:bg-slate-100 dark:group-hover:bg-slate-800/50"
   >
-    <div class="w-full lg:min-w-[300px] min-w-[200px]">
+    <div class="w-full lg:min-w-[300px] lg:max-w-[300px] min-w-[200px] flex flex-col gap-4">
+      {iso && (
+        <time datetime={iso} class="flex flex-col leading-none">
+          <span class="text-3xl font-semibold">{day}</span>
+          <span class="mt-1 text-xs font-medium uppercase tracking-wider opacity-60">
+            {monthYear}
+          </span>
+        </time>
+      )}
       {post.data.image && (
         <Image
           src={post.data.image.url.startsWith("/")
             ? post.data.image.url
             : `/${post.data.image.url}`}
           alt={post.data.image.alt}
-          class="w-full object-cover"
+          class="w-full object-cover rounded-md"
           loading="lazy"
           decoding="async"
           width={300}
           height={200}
         />
       )}
-      {post.data.pubDate && (
-        <>
-          <small>{formatLocalizedDate(post.data.pubDate.toISOString())}</small>
-          <br />
-        </>
+      {post.data.tags && (
+        <div class="tags relative z-10">
+          {post.data.tags.map(tag => (
+            <a href={`/tags/${tag}`} class="tag">{tag}</a>
+          ))}
+        </div>
       )}
     </div>
 
     <div class="flex flex-col">
       <h3>
-        {post.data.title}
+        <a
+          href={"/posts/" + post.data.slug}
+          class="text-slate-900 dark:text-white no-underline transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400 after:absolute after:inset-0 after:content-['']"
+        >
+          {post.data.title}
+        </a>
       </h3>
       <span>{post.data.description}</span>
-      {post.data.tags && (
-        <div class="tags mt-2">
-          {post.data.tags.map(tag => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
     </div>
-  </a>
+  </div>
 </li>

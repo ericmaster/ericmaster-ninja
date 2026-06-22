@@ -63,12 +63,16 @@
 
 @theme {
   --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'sans-serif';
+
+  /* Refined amber accent replaces the playful orange (Quiet Architect direction) */
+  --color-accent: var(--color-amber-600);
+  --color-accent-dark: var(--color-amber-400);
 }
 
 /* Custom base styles using Tailwind utility classes */
 @layer base {
   html {
-    @apply bg-slate-100 font-sans text-xl font-light dark:font-extralight;
+    @apply bg-slate-50 font-sans text-xl font-normal dark:font-light;
   }
   body {
     @apply mx-auto px-4 leading-relaxed;
@@ -77,7 +81,7 @@
     @apply box-border;
   }
   p {
-    @apply font-light dark:font-extralight;
+    @apply font-normal dark:font-light;
   }
   h1 {
     @apply my-4 text-4xl;
@@ -109,6 +113,12 @@
   blockquote {
     @apply pl-6 border-l-4 border-indigo-500 italic my-8 text-gray-600 dark:text-gray-300;
   }
+  /* Light-mode prose link colour (mirrors the dark-mode amber rule below so
+     links stand out). Buttons keep their explicit text-* utilities; nav links
+     are overridden in the components layer. */
+  a {
+    @apply text-indigo-600 transition-colors hover:text-indigo-700;
+  }
 }
 
 /* Navigation styles */
@@ -120,7 +130,7 @@
     @apply w-full top-20 left-12 hidden m-0;
   }
   .nav-links a {
-    @apply block text-center py-2.5 no-underline font-bold uppercase hover:bg-orange-300 focus:bg-orange-300;
+    @apply block text-center py-2.5 no-underline font-medium uppercase tracking-wide text-sm text-slate-700 hover:text-indigo-600 focus:text-indigo-600 transition-colors;
   }
   .expanded {
     @apply block;
@@ -137,13 +147,19 @@
     }
   }
   .tags {
-    @apply flex flex-wrap;
+    @apply flex flex-wrap gap-1.5;
+  }
+  /* Style the chip on .tag itself so both <span class="tag"> and
+     <p class="tag"><a> variants render as a pill (the card-listing
+     spans have no inner anchor). */
+  .tag {
+    @apply inline-flex items-center my-0 border border-slate-300 dark:border-slate-700 rounded-md px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors;
   }
   .tag a {
-    @apply m-1 border border-dotted border-gray-400 rounded-lg px-4 py-2 text-lg;
+    @apply text-inherit no-underline;
   }
   .page-title {
-    @apply -mx-4 px-16 py-6 bg-gradient-to-r from-indigo-500/50;
+    @apply -mx-4 px-4 sm:px-6 lg:px-8 pt-10 pb-5 mb-8 bg-indigo-500/15 dark:bg-indigo-500/20 border-b border-indigo-500/20 dark:border-indigo-500/30 text-3xl md:text-4xl font-semibold tracking-tight;
   }
   #site-header.header-scrolled {
     @apply py-1 text-base;
@@ -151,15 +167,9 @@
   #site-header {
     @apply py-2 text-lg;
   }
-  .post-card a * {
-    @apply text-black;
-  }
-  .post-card a:hover {
-    @apply transition-all duration-600 bg-indigo-800/40 shadow-lg
-  }
-  .post-card a:hover h3 {
-    @apply text-orange-200;
-  }
+  /* Post-card hover styling lives on the component as group-* utilities now
+     that the card is no longer a single wrapping <a> (see PostTeaser.astro,
+     stretched-link pattern so tag pills remain real links). */
   /* Blog Post Typography */
   .post-content h1 { @apply text-4xl mb-8 mt-12 font-bold; }
   .post-content h2 { @apply text-3xl mb-6 mt-10 font-semibold; }
@@ -172,10 +182,10 @@
 /* Dark mode styles */
 @layer utilities {
   html.dark {
-    @apply bg-slate-900 text-white;
+    @apply bg-slate-950 text-white;
   }
   html.dark header {
-    @apply bg-blue-950/75;
+    @apply bg-slate-950/75;
   }
   html.dark .hamburger .line {
     @apply bg-white;
@@ -187,16 +197,16 @@
     @apply text-white;
   }
   html.dark a {
-    @apply text-orange-200;
+    @apply text-amber-400;
   }
-  html.dark .tag a {
-    @apply  bg-sky-500/20 text-orange-200
+  html.dark .nav-links a {
+    @apply text-slate-200 hover:text-indigo-400 focus:text-indigo-400;
   }
-  html.dark .tag a:hover {
-    @apply  bg-sky-500/60
+  html.dark .tag {
+    @apply bg-slate-800/60 text-amber-300/90 border-slate-700
   }
-  html.dark .post-card a * {
-    @apply text-white;
+  html.dark .tag:hover {
+    @apply bg-slate-800 border-indigo-500
   }
 }
 

@@ -12,6 +12,10 @@ interface Props {
   ogImage?: string;
   /** Pass true from layouts that build their own <h1> */
   showPageTitle?: boolean;
+  /** Visible <h1> text when it should differ from the SEO/tab title (e.g. a homepage slogan) */
+  heading?: string;
+  /** Center the page-title band (used on the homepage hero) */
+  centerTitle?: boolean;
   frontmatter?: { title?: string; description?: string };
 }
 
@@ -20,10 +24,13 @@ const {
   description,
   ogImage,
   showPageTitle = true,
+  heading,
+  centerTitle = false,
   frontmatter,
 } = Astro.props;
 
 const title = pageTitle ?? frontmatter?.title ?? "Home";
+const pageHeading = heading ?? title;
 const metaDescription = description ?? frontmatter?.description;
 ---
 
@@ -36,7 +43,7 @@ const metaDescription = description ?? frontmatter?.description;
       id="constellation-bg"
       class="fixed top-0 left-0 w-screen h-screen -z-10"></canvas>
     <Header />
-    {showPageTitle && <h1 class="page-title">{title}</h1>}
+    {showPageTitle && <h1 class:list={["page-title", { "text-center": centerTitle }]}>{pageHeading}</h1>}
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       <slot />
     </div>

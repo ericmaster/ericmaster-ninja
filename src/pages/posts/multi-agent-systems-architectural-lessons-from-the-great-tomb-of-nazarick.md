@@ -3,8 +3,12 @@ layout: ../../layouts/MarkdownPostLayout.astro
 title: "Multi-Agent Systems: Architectural Lessons from the Great Tomb of Nazarick"
 published: true
 tags:
-  - "#AI #MultiAgentSystems #SoftwareArchitecture #LLM #GenerativeAI
-    #TechLeadership"
+  - AI
+  - MultiAgentSystems
+  - SoftwareArchitecture
+  - LLM
+  - GenerativeAI
+  - TechLeadership
 slug: multi-agent-systems-architectural-lessons-from-the-great-tomb-of-nazarick
 pubDate: 2026-04-22T19:01:00.000-05:00
 image:

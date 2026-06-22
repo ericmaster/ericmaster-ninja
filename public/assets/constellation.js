@@ -28,8 +28,8 @@ function createStars() {
     stars.push({
       x: random(0, width),
       y: random(0, height),
-      vx: random(-0.3, 0.3),
-      vy: random(-0.3, 0.3)
+      vx: random(-0.08, 0.08),
+      vy: random(-0.08, 0.08)
     });
   }
 }
@@ -37,8 +37,9 @@ function createStars() {
 function drawStars() {
   ctx.clearRect(0, 0, width, height);
   // Determine color based on cached theme
-  const starColor = isLight ? '#999' : '#fff';
-  const lineColor = isLight ? 'rgba(6,6,6,0.12)' : 'rgba(255,255,255,0.15)';
+  // Tamed, monochrome slate — a quiet textural backdrop rather than a flashy focal point
+  const starColor = isLight ? 'rgba(100,116,139,0.22)' : 'rgba(148,163,184,0.20)';
+  const lineColor = isLight ? 'rgba(100,116,139,0.07)' : 'rgba(148,163,184,0.06)';
   
   // Draw lines
   ctx.save();
