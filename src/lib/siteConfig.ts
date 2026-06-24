@@ -6,11 +6,16 @@
 export const SITE_URL = "https://ericmaster.ninja";
 
 /** Site display name */
-export const SITE_NAME = "Eric Aguayo (Ericmaster)";
+export const SITE_NAME = {
+  en: "Eric Aguayo (Ericmaster)",
+  es: "Eric Aguayo (Ericmaster)",
+};
 
 /** Default meta description for pages that don't set their own */
-export const DEFAULT_META_DESCRIPTION =
-  "Eric Aguayo — Full-Stack Developer, AI Solutions Architect, and Tech Blogger. Expert AI consulting, technical interviewing, and turnkey automation.";
+export const DEFAULT_META_DESCRIPTION = {
+  en: "Eric Aguayo — Full-Stack Developer, AI Solutions Architect, and Tech Blogger. Expert AI consulting, technical interviewing, and turnkey automation.",
+  es: "Eric Aguayo — Desarrollador Full-Stack, Arquitecto de Soluciones de IA, y Blogger Tecnológico. Consultoría experta en IA, entrevistas técnicas y automatización llave en mano.",
+};
 
 /** WhatsApp number for CTAs (international format, no +) */
 export const WHATSAPP_NUMBER = "593983337611";

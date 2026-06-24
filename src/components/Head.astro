@@ -7,17 +7,20 @@ interface Props {
   canonicalUrl?: string;
   ogImage?: string;
   ogType?: string;
+  locale?: string;
 }
 
 const {
   title,
-  description = DEFAULT_META_DESCRIPTION,
+  locale = Astro.currentLocale || "en",
   canonicalUrl = Astro.url.href,
   ogImage = `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   ogType = "website",
 } = Astro.props;
 
-const fullTitle = `${SITE_NAME} | ${title}`;
+const description = Astro.props.description || DEFAULT_META_DESCRIPTION[(locale as "en" | "es")] || DEFAULT_META_DESCRIPTION.en;
+const siteName = SITE_NAME[(locale as "en" | "es")] || SITE_NAME.en;
+const fullTitle = `${siteName} | ${title}`;
 ---
 
 <!-- Primary Meta Tags -->
@@ -37,7 +40,8 @@ const fullTitle = `${SITE_NAME} | ${title}`;
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={locale === "es" ? "es_ES" : "en_US"} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
