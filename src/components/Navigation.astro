@@ -1,16 +1,20 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <nav
   {...Astro.props}
   class="nav-links absolute md:block hidden w-full md:w-auto top-full left-0 w-full bg-white shadow-md z-50 md:static md:w-auto md:!bg-transparent md:shadow-none md:block transition-all"
 >
-  <a href="/">Home</a>
-  <a href="/about/">About</a>
-  <a href="/blog/">Blog</a>
-  <a href="/resources/">Resources</a>
-  <a href="/work/">Work</a>
-  <a href="/resume/">Resume</a>
-  <!-- <a href="/tags/">Tags</a> -->
+  <a href={getRelativeLocaleUrl(lang, "/")}>{t("nav.home")}</a>
+  <a href={getRelativeLocaleUrl(lang, "/about/")}>{t("nav.about")}</a>
+  <a href={getRelativeLocaleUrl(lang, "/blog/")}>{t("nav.blog")}</a>
+  <a href={getRelativeLocaleUrl(lang, "/resources/")}>{t("nav.resources")}</a>
+  <a href={getRelativeLocaleUrl(lang, "/work/")}>{t("nav.work")}</a>
+  <a href={getRelativeLocaleUrl(lang, "/resume/")}>{t("nav.resume")}</a>
+  <!-- <a href={getRelativeLocaleUrl(lang, "/tags/")}>Tags</a> -->
 </nav>
