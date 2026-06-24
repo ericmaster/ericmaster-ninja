@@ -3,6 +3,7 @@ import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AiChatbot from "../components/AiChatbot.astro";
+import { getLocalePath } from "../i18n/utils";
 import "@fontsource/poppins";
 import "../styles/global.css";
 
@@ -32,11 +33,17 @@ const {
 const title = pageTitle ?? frontmatter?.title ?? "Home";
 const pageHeading = heading ?? title;
 const metaDescription = description ?? frontmatter?.description;
+
+const currentLocale = Astro.currentLocale || "en";
+const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
 ---
 
-<html lang="en">
+<html lang={currentLocale}>
   <head>
-    <Head title={title} description={metaDescription} ogImage={ogImage} />
+    <Head title={title} description={metaDescription} ogImage={ogImage} locale={currentLocale} />
+    <link rel="alternate" hreflang="en" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />
+    <link rel="alternate" hreflang="es" href={new URL(getLocalePath("es", basePath), Astro.site || Astro.url.origin)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />
   </head>
   <body>
     <canvas

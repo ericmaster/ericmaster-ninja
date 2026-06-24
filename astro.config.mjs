@@ -34,6 +34,12 @@ function rehypeExternalLinks() {
 // https://astro.build/config
 export default defineConfig({
   site: "https://ericmaster.ninja",
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+    routing: { prefixDefaultLocale: false },
+    fallback: { es: 'en' },
+  },
 
   markdown: {
     remarkPlugins: [remarkMath],
