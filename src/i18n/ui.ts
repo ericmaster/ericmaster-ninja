@@ -30,6 +30,8 @@ export const ui = {
       "Mission-critical AI implementations requiring Human Intelligence + AI Oversight.",
     "expertAi.cta": "Book Consultation",
     "expertAi.whatsappAria": "WhatsApp Contact",
+    "expertAi.waMessage":
+      "Hi Eric, I would like to book a professional AI consultation.",
     "expertAi.service1.title": "AI Hallucination & Fact-Checking Auditor",
     "expertAi.service1.description":
       "Human-in-the-loop certification for technical, medical, and legal AI outputs to ensure absolute reliability.",
@@ -52,6 +54,8 @@ export const ui = {
     "genui.descSuffix": " orchestration.",
     "genui.ctaStart": "Start Your Project",
     "genui.ctaExplore": "Explore Nimblersoft",
+    "genui.waMessage":
+      "Hi Eric, I'm interested in learning more about Generative UI Websites for my project.",
     // Work Teaser
     "work.teaserHeadingLead": "Professional",
     "work.teaserHeadingAccent": "AI Solutions",
@@ -83,6 +87,8 @@ export const ui = {
       "Implementaciones de IA de misión crítica que requieren Inteligencia Humana + Supervisión de IA.",
     "expertAi.cta": "Reservar consulta",
     "expertAi.whatsappAria": "Contacto por WhatsApp",
+    "expertAi.waMessage":
+      "Hola Eric, me gustaría reservar una consultoría profesional de IA.",
     "expertAi.service1.title": "Auditor de Alucinaciones y Verificación de IA",
     "expertAi.service1.description":
       "Certificación con supervisión humana para resultados de IA técnicos, médicos y legales, garantizando una fiabilidad absoluta.",
@@ -105,6 +111,8 @@ export const ui = {
     "genui.descSuffix": ".",
     "genui.ctaStart": "Inicia tu Proyecto",
     "genui.ctaExplore": "Explora Nimblersoft",
+    "genui.waMessage":
+      "Hola Eric, me interesa conocer más sobre los Sitios Web con UI Generativa para mi proyecto.",
     // Work Teaser
     "work.teaserHeadingLead": "Soluciones de IA",
     "work.teaserHeadingAccent": "Profesionales",

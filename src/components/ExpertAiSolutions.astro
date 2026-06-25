@@ -7,7 +7,7 @@ const t = useTranslations(lang);
 
 const waNumber = "593983337611";
 const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
-  "Hi Eric, I would like to book a professional AI consultation."
+  t("expertAi.waMessage")
 )}`;
 
 const services = [
@@ -71,6 +71,7 @@ const services = [
           <a
             href={waLink}
             target="_blank"
+            rel="noopener noreferrer"
             class="group/cta mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
           >
             {t("expertAi.cta")}
@@ -98,6 +99,7 @@ const services = [
     <a
       href={waLink}
       target="_blank"
+      rel="noopener noreferrer"
       class="w-14 h-14 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105"
       aria-label={t("expertAi.whatsappAria")}
     >
