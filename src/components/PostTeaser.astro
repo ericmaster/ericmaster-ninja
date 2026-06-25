@@ -1,7 +1,6 @@
 ---
 import { formatLocalizedDate } from "../lib/dateUtils";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl, getLocalePath } from "../i18n/utils";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 
@@ -50,7 +49,7 @@ const monthYear = iso
       {post.data.tags && (
         <div class="tags relative z-10">
           {post.data.tags.map(tag => (
-            <a href={getRelativeLocaleUrl(lang, `/tags/${tag}`)} class="tag">{tag}</a>
+            <a href={getLocalePath(lang, `/tags/${tag}`)} class="tag">{tag}</a>
           ))}
         </div>
       )}
@@ -59,7 +58,7 @@ const monthYear = iso
     <div class="flex flex-col">
       <h3>
         <a
-          href={getRelativeLocaleUrl(lang, "/posts/" + post.data.slug)}
+          href={getLocalePath(lang, "/posts/" + post.data.slug)}
           class="text-slate-900 dark:text-white no-underline transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400 after:absolute after:inset-0 after:content-['']"
         >
           {post.data.title}

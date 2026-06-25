@@ -1,7 +1,6 @@
 ---
 // src/components/WorkTeaser.astro
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, getLocalePath } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -24,7 +23,7 @@ const t = useTranslations(lang);
       
       <div class="flex-shrink-0">
         <a
-          href={getRelativeLocaleUrl(lang, "/work")}
+          href={getLocalePath(lang, "/work")}
           class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-all duration-200 shadow-sm hover:-translate-y-0.5"
         >
           {t("work.teaserCta")}
