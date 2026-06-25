@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^5.18.1",
     "astro-heroicons": "^2.1.5-1",
+    "chart.js": "^4.5.1",
     "marked": "^18.0.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",

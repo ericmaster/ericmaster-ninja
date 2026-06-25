@@ -7,6 +7,7 @@ Welcome to the resources section. Here you can find cheatsheets and reference gu
 ### Curated Cheatsheets
 
 - **[Using SilverBullet AI](/resources/silverbullet-ai)**: Practical cheatsheet for the `silverbullet-ai` plug — AI chat, semantic search, and MCP inside SilverBullet.
+- **[Pandas Interactive Visualizer](/resources/pandas-visualizer)**: Interactive cheatsheet and visualizer for common Pandas operations.
 
 ### Projects
 

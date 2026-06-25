@@ -134,7 +134,10 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
         },
       }));
 
-      Alpine.start();
+      // Defer start to allow page-specific scripts to register components
+      setTimeout(() => {
+        Alpine.start();
+      }, 0);
     </script>
     <AiChatbot />
   </body>

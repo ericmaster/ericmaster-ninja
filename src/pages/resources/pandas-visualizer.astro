@@ -1,0 +1,345 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  pageTitle="Pandas Interactive Visualizer"
+  description="Interactive cheatsheet and visualizer for common Pandas operations."
+>
+  <div class="my-8">
+    <div x-data="pandasVisualizer" class="flex flex-col md:flex-row border border-slate-700 rounded-xl overflow-hidden bg-slate-900 text-slate-200">
+      
+      <!-- Sidebar -->
+      <aside class="w-full md:w-64 bg-slate-800 border-b md:border-b-0 md:border-r border-slate-700 flex flex-col z-10 overflow-y-auto">
+        <div class="p-4 border-b border-slate-700">
+          <h1 class="text-xl font-bold text-blue-400">Pandas Visualizer</h1>
+          <p class="text-xs text-slate-400 mt-1">Training Utility</p>
+        </div>
+        <nav class="flex-1 p-2 space-y-1 overflow-y-auto">
+          <template x-for="op in operations" :key="op.id">
+            <button
+              @click="selectOperation(op.id)"
+              :class="activeOpId === op.id ? 'bg-blue-500 text-white' : 'text-slate-300 hover:bg-slate-700'"
+              class="w-full text-left px-4 py-2 rounded text-sm transition-colors"
+              x-text="op.name"
+            ></button>
+          </template>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden bg-slate-900">
+        <header class="p-6 border-b border-slate-800">
+          <h2 class="text-2xl font-bold text-white" x-text="activeOp.name"></h2>
+          <p class="text-slate-400 mt-1" x-text="activeOp.desc"></p>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+          
+          <!-- Code Section -->
+          <section class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden">
+            <div class="px-4 py-2 border-b border-slate-700 bg-slate-800/50 text-sm text-slate-300 font-semibold flex justify-between items-center">
+              <span>Python Code</span>
+              <button @click="copyCode()" class="text-blue-400 hover:text-blue-300 text-xs font-medium px-2 py-1 bg-slate-900/50 rounded">Copy</button>
+            </div>
+            <pre class="p-4 bg-slate-800 text-sky-400 font-mono overflow-x-auto text-sm" x-text="activeOp.code"></pre>
+          </section>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[400px]">
+            <!-- Input Data Section -->
+            <section class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden flex flex-col h-full">
+              <div class="px-4 py-2 border-b border-slate-700 bg-slate-800/50 text-sm text-slate-300 font-semibold">Input DataFrame</div>
+              <div class="overflow-auto flex-1 relative">
+                <table class="w-full text-sm text-left">
+                  <thead class="bg-slate-700 sticky top-0 z-10">
+                    <tr>
+                      <template x-if="activeOp.input && activeOp.input !== 'plot'">
+                        <template x-for="k in getKeys(activeOp.input)" :key="k">
+                          <th class="px-4 py-2 text-xs uppercase text-slate-400 font-semibold" x-text="k"></th>
+                        </template>
+                      </template>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template x-if="!activeOp.input || activeOp.input === 'plot'">
+                      <tr>
+                        <td class="p-4 text-slate-500 italic">No input required for creation, or output is a plot.</td>
+                      </tr>
+                    </template>
+                    <template x-if="activeOp.input && activeOp.input !== 'plot'">
+                      <template x-for="(row, idx) in activeOp.input" :key="idx">
+                        <tr class="even:bg-slate-800 odd:bg-slate-900 border-t border-slate-800">
+                          <template x-for="k in getKeys(activeOp.input)" :key="k">
+                            <td class="px-4 py-2 font-mono text-slate-300 whitespace-nowrap">
+                              <template x-if="row[k] === null">
+                                <span class="text-red-400">NaN</span>
+                              </template>
+                              <template x-if="row[k] !== null">
+                                <span x-text="row[k]"></span>
+                              </template>
+                            </td>
+                          </template>
+                        </tr>
+                      </template>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Output Section -->
+            <section class="rounded-xl border border-slate-700 bg-slate-800 overflow-hidden flex flex-col h-full">
+              <div class="px-4 py-2 border-b border-slate-700 bg-slate-800/50 text-sm text-slate-300 font-semibold">Output</div>
+              <div class="overflow-auto flex-1 relative">
+                
+                <!-- Table Output -->
+                <table class="w-full text-sm text-left" x-show="activeOp.output !== 'plot'">
+                  <thead class="bg-slate-700 sticky top-0 z-10">
+                    <tr>
+                      <template x-if="activeOp.output && activeOp.output !== 'plot'">
+                        <template x-for="k in getKeys(activeOp.output)" :key="k">
+                          <th class="px-4 py-2 text-xs uppercase text-slate-400 font-semibold" x-text="k"></th>
+                        </template>
+                      </template>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template x-if="activeOp.output && activeOp.output !== 'plot'">
+                      <template x-for="(row, idx) in activeOp.output" :key="idx">
+                        <tr class="even:bg-slate-800 odd:bg-slate-900 border-t border-slate-800">
+                          <template x-for="k in getKeys(activeOp.output)" :key="k">
+                            <td class="px-4 py-2 font-mono text-slate-300 whitespace-nowrap">
+                              <template x-if="row[k] === null">
+                                <span class="text-red-400">NaN</span>
+                              </template>
+                              <template x-if="row[k] !== null">
+                                <span x-text="row[k]"></span>
+                              </template>
+                            </td>
+                          </template>
+                        </tr>
+                      </template>
+                    </template>
+                  </tbody>
+                </table>
+
+                <!-- Chart Output -->
+                <div x-show="activeOp.output === 'plot'" class="p-4 h-full w-full absolute inset-0">
+                  <canvas x-ref="chartCanvas"></canvas>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import Chart from "chart.js/auto";
+  import Alpine from "@alpinejs/csp";
+
+  // Mock Datasets
+  const df_base = [
+      { id: 1, date: '2025-01', type: 'credito', amt: 100 },
+      { id: 2, date: '2025-01', type: 'debito', amt: 50 },
+      { id: 3, date: '2025-02', type: 'credito', amt: 200 }
+  ];
+  
+  const df_missing = [
+      { id: 1, val: 10 },
+      { id: 2, val: null },
+      { id: 3, val: 30 }
+  ];
+
+  const df_a = [{ key: 'A', val1: 1 }, { key: 'B', val1: 2 }];
+  const df_b = [{ key: 'A', val2: 9 }, { key: 'B', val2: 8 }];
+
+  // Operations Data
+  const operations = [
+      {
+          id: 'create', name: 'Create DataFrame',
+          desc: 'Initialize a pandas DataFrame from a dictionary.',
+          code: "import pandas as pd\n\ndata = {\n  'id': [1, 2, 3],\n  'type': ['credito', 'debito', 'credito'],\n  'amt': [100, 50, 200]\n}\ndf = pd.DataFrame(data)",
+          input: null,
+          output: df_base
+      },
+      {
+          id: 'query', name: 'Subsets (Query)',
+          desc: 'Filter rows using a boolean expression.',
+          code: "df_filtered = df.query(\"type == 'credito' and amt > 100\")",
+          input: df_base,
+          output: [{ id: 3, date: '2025-02', type: 'credito', amt: 200 }]
+      },
+      {
+          id: 'chaining', name: 'Method Chaining',
+          desc: 'String operations together without intermediate variables.',
+          code: "result = (\n  df.assign(net=lambda x: np.where(x['type']=='credito', x['amt'], -x['amt']))\n    .query('net > 0')\n    .sort_values('net')\n)",
+          input: df_base,
+          output: [
+              { id: 1, date: '2025-01', type: 'credito', amt: 100, net: 100 },
+              { id: 3, date: '2025-02', type: 'credito', amt: 200, net: 200 }
+          ]
+      },
+      {
+          id: 'pivot', name: 'Reshaping (Pivot)',
+          desc: 'Create a spreadsheet-style pivot table.',
+          code: "pivot_df = df.pivot_table(index='date', columns='type', values='amt', fill_value=0)",
+          input: df_base,
+          output: [
+              { date: '2025-01', credito: 100, debito: 50 },
+              { date: '2025-02', credito: 200, debito: 0 }
+          ]
+      },
+      {
+          id: 'melt', name: 'Reshaping (Melt)',
+          desc: 'Unpivot a DataFrame from wide to long format.',
+          code: "melted_df = pd.melt(pivot_df, id_vars=['date'], var_name='type', value_name='amt')",
+          input: [
+              { date: '2025-01', credito: 100, debito: 50 }
+          ],
+          output: [
+              { date: '2025-01', type: 'credito', amt: 100 },
+              { date: '2025-01', type: 'debito', amt: 50 }
+          ]
+      },
+      {
+          id: 'concat', name: 'Combine (Concat)',
+          desc: 'Concatenate pandas objects along a particular axis.',
+          code: "df_concat = pd.concat([df1, df2], axis=0)",
+          input: [{id: 1, val: 'A'}],
+          output: [{id: 1, val: 'A'}, {id: 2, val: 'B'}]
+      },
+      {
+          id: 'merge', name: 'Combine (Merge)',
+          desc: 'Database-style join operations.',
+          code: "df_merged = pd.merge(df_a, df_b, on='key', how='inner')",
+          input: df_a,
+          output: [{ key: 'A', val1: 1, val2: 9 }, { key: 'B', val1: 2, val2: 8 }]
+      },
+      {
+          id: 'sort', name: 'Sorting',
+          desc: 'Sort by the values along either axis.',
+          code: "df_sorted = df.sort_values(by='amt', ascending=False)",
+          input: df_base,
+          output: [
+              { id: 3, date: '2025-02', type: 'credito', amt: 200 },
+              { id: 1, date: '2025-01', type: 'credito', amt: 100 },
+              { id: 2, date: '2025-01', type: 'debito', amt: 50 }
+          ]
+      },
+      {
+          id: 'rename', name: 'Renaming',
+          desc: 'Rename columns or index labels.',
+          code: "df_renamed = df.rename(columns={'amt': 'amount_usd'})",
+          input: df_base,
+          output: [
+              { id: 1, date: '2025-01', type: 'credito', amount_usd: 100 },
+              { id: 2, date: '2025-01', type: 'debito', amount_usd: 50 },
+              { id: 3, date: '2025-02', type: 'credito', amount_usd: 200 }
+          ]
+      },
+      {
+          id: 'missing', name: 'Missing Data',
+          desc: 'Fill NA/NaN values using the specified method.',
+          code: "df_filled = df.fillna(0)",
+          input: df_missing,
+          output: [{ id: 1, val: 10 }, { id: 2, val: 0 }, { id: 3, val: 30 }]
+      },
+      {
+          id: 'group', name: 'Grouping',
+          desc: 'Group DataFrame using a mapper or by a Series of columns.',
+          code: "df_grouped = df.groupby('type')['amt'].sum().reset_index()",
+          input: df_base,
+          output: [{ type: 'credito', amt: 300 }, { type: 'debito', amt: 50 }]
+      },
+      {
+          id: 'window', name: 'Windows (Rolling)',
+          desc: 'Provide rolling window calculations.',
+          code: "df['moving_avg'] = df['amt'].rolling(window=2).mean()",
+          input: [{id:1, amt:10}, {id:2, amt:20}, {id:3, amt:30}],
+          output: [{id:1, amt:10, moving_avg:null}, {id:2, amt:20, moving_avg:15}, {id:3, amt:30, moving_avg:25}]
+      },
+      {
+          id: 'plot', name: 'Plotting',
+          desc: 'Generate plots directly from DataFrame.',
+          code: "import matplotlib.pyplot as plt\n\ndf_grouped.plot(kind='bar', x='type', y='amt')\nplt.show()",
+          input: [{ type: 'credito', amt: 300 }, { type: 'debito', amt: 50 }],
+          output: 'plot'
+      }
+  ];
+
+  let currentChart = null;
+
+  // @ts-ignore
+  Alpine.data('pandasVisualizer', () => ({
+    operations: operations,
+    activeOpId: 'create',
+
+    get activeOp() {
+      return this.operations.find(o => o.id === this.activeOpId);
+    },
+
+    init() {
+      this.$watch('activeOpId', () => {
+        this.$nextTick(() => {
+          this.renderChart();
+        });
+      });
+      
+      this.$nextTick(() => {
+        this.renderChart();
+      });
+    },
+
+    selectOperation(id) {
+      this.activeOpId = id;
+    },
+
+    copyCode() {
+      navigator.clipboard.writeText(this.activeOp.code);
+      // Visual feedback could be added here
+    },
+
+    getKeys(dataArray) {
+      if (!dataArray || dataArray === 'plot' || dataArray.length === 0) return [];
+      return Object.keys(dataArray[0]);
+    },
+
+    renderChart() {
+      if (this.activeOp.output === 'plot') {
+        const ctx = this.$refs.chartCanvas?.getContext('2d');
+        if (!ctx) return;
+        
+        if (currentChart) {
+          currentChart.destroy();
+        }
+
+        const data = this.activeOp.input;
+        
+        currentChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.map((d: any) => d.type),
+            datasets: [{
+              label: 'Amount',
+              data: data.map((d: any) => d.amt),
+              backgroundColor: ['#3b82f6', '#ef4444'],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+              x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+            }
+          }
+        });
+      }
+    }
+  }));
+</script>
