@@ -1,0 +1,75 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { languages } from "../i18n/ui";
+
+type Lang = keyof typeof languages;
+
+const currentLocale = ((Astro.currentLocale as Lang) in languages
+  ? (Astro.currentLocale as Lang)
+  : "en") as Lang;
+
+// Strip any leading locale prefix so we can rebuild the same path per language.
+const basePath = Astro.url.pathname.replace(/^\/(en|es)(?=\/|$)/, "") || "/";
+
+const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => ({
+  lang,
+  label: languages[lang],
+  code: lang.toUpperCase(),
+  url: getRelativeLocaleUrl(lang, basePath),
+  isActive: lang === currentLocale,
+}));
+---
+
+<div class="relative" x-data="languageSwitcher">
+  <button
+    type="button"
+    @click="toggle"
+    :aria-expanded="ariaExpanded"
+    aria-haspopup="true"
+    aria-label="Select language"
+    class="flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-slate-600 hover:text-indigo-500 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
+  >
+    <span>{currentLocale.toUpperCase()}</span>
+    <svg
+      class="h-3 w-3 transition-transform"
+      :class="chevronClass"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+        clip-rule="evenodd"></path>
+    </svg>
+  </button>
+  <ul
+    x-show="open"
+    x-cloak
+    @click.away="close"
+    role="menu"
+    class="absolute right-0 mt-2 min-w-[8rem] overflow-hidden rounded-md border border-slate-200/70 bg-white shadow-lg dark:border-slate-700/70 dark:bg-slate-900"
+  >
+    {
+      localeOptions.map((opt) => (
+        <li role="none">
+          <a
+            href={opt.url}
+            role="menuitem"
+            aria-current={opt.isActive ? "true" : undefined}
+            class:list={[
+              "flex items-center gap-2 px-3 py-2 text-sm transition-colors",
+              opt.isActive
+                ? "bg-slate-100 font-semibold text-indigo-600 dark:bg-slate-800 dark:text-indigo-400"
+                : "text-slate-600 hover:bg-slate-50 hover:text-indigo-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-indigo-400",
+            ]}
+          >
+            <span class="w-6 text-xs font-bold tracking-wide">{opt.code}</span>
+            <span>{opt.label}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

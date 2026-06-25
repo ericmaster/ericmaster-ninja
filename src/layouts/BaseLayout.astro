@@ -75,6 +75,23 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
         },
       }));
 
+      /** Language switcher dropdown — used by LanguageSwitcher.astro */
+      Alpine.data("languageSwitcher", () => ({
+        open: false,
+        toggle() {
+          this.open = !this.open;
+        },
+        close() {
+          this.open = false;
+        },
+        get ariaExpanded() {
+          return String(this.open);
+        },
+        get chevronClass() {
+          return { "rotate-180": this.open };
+        },
+      }));
+
       /** Scroll-spy sidebar nav — used by ResumeNav.astro */
       Alpine.data("resumeNav", () => ({
         active: "",
