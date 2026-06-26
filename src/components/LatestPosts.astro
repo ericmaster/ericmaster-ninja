@@ -1,21 +1,23 @@
 ---
 import PostTeaser from "./PostTeaser.astro";
 import { getPosts } from "../lib/blogUtils";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
-  class?: string;
-  [key: string]: any;
-}
+interface Props extends HTMLAttributes<"section"> {}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const latestPosts = await getPosts(5);
 ---
 
 <section {...Astro.props}>
-  <h2 class="pl-6">Latest Posts</h2>
+  <h2 class="pl-6">{t("heading.latestPosts")}</h2>
   <ul class="list-none p-0">
     {
       latestPosts.length === 0 ? (
-        <li>No posts yet.</li>
+        <li>{t("posts.empty")}</li>
       ) : (
         latestPosts.map((post) => (
           <PostTeaser post={post} />

@@ -1,6 +1,10 @@
 ---
 import Social from "./Social.astro";
 import { SOCIAL_LINKS } from "../lib/siteConfig";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const currentYear = new Date().getFullYear();
 ---
@@ -12,6 +16,6 @@ const currentYear = new Date().getFullYear();
     ))}
   </div>
   <div class="text-sm text-gray-500 dark:text-gray-400 mt-4 mb-8">
-    &copy; {currentYear} Eric Aguayo. All rights reserved.
+    &copy; {currentYear} Eric Aguayo. {t("footer.rights")}
   </div>
 </footer>

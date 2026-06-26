@@ -1,8 +1,13 @@
 ---
 // src/components/GenUiHighlight.astro
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const waNumber = "593983337611";
 const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
-  "Hi Eric, I'm interested in learning more about Generative UI Websites for my project."
+  t("genui.waMessage")
 )}`;
 ---
 
@@ -13,24 +18,25 @@ const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
       <div class="flex-1 text-center md:text-left">
         <div class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
           <span class="inline-flex rounded-full h-2 w-2 bg-indigo-500 mr-2"></span>
-          Featured Service
+          {t("genui.badge")}
         </div>
 
         <h2 class="text-3xl md:text-5xl font-semibold text-slate-900 dark:text-white mb-4 tracking-tight leading-tight">
-          Generative UI <span class="text-indigo-600 dark:text-indigo-400">Websites</span>
+          {t("genui.headingLead")} <span class="text-indigo-600 dark:text-indigo-400">{t("genui.headingAccent")}</span>
         </h2>
-        
+
         <p class="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-xl leading-relaxed">
-          The next evolution of the web. Interfaces that don't just sit there—they adapt, think, and respond to your users' intent in real-time. Powered by <a href="https://www.nimblersoft.com/" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline decoration-indigo-500/30">Nimblersoft</a> orchestration.
+          {t("genui.descMain")} <a href="https://www.nimblersoft.com/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline decoration-indigo-500/30">Nimblersoft</a>{t("genui.descSuffix")}
         </p>
         
         <div class="flex flex-col sm:flex-row items-center gap-4">
           <a
             href={waLink}
             target="_blank"
+            rel="noopener noreferrer"
             class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm rounded-lg transition-all duration-200 transform hover:-translate-y-0.5"
           >
-            Start Your Project
+            {t("genui.ctaStart")}
             <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -39,9 +45,10 @@ const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
           <a
             href="https://www.nimblersoft.com/"
             target="_blank"
+            rel="noopener noreferrer"
             class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-600 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg transition-colors"
           >
-            Explore Nimblersoft
+            {t("genui.ctaExplore")}
           </a>
         </div>
       </div>

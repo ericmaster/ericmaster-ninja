@@ -1,14 +1,23 @@
 ---
 // src/components/AiChatbot.astro
 import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<div id="ai-chatbot-container" class="fixed bottom-6 right-6 z-50 font-sans no-print">
+<div
+  id="ai-chatbot-container"
+  class="fixed bottom-6 right-6 z-50 font-sans no-print"
+  data-greeting={t("chatbot.greeting")}
+  data-error={t("chatbot.error")}
+>
   <!-- Chat Bubble Button -->
   <button
     id="chatbot-toggle-btn"
     class="relative w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105"
-    aria-label="Toggle Chat"
+    aria-label={t("chatbot.toggleAria")}
   >
     <svg
       id="icon-closed"
@@ -61,7 +70,7 @@ import { Image } from "astro:assets";
         >
           <Image
             src="/assets/images/ai-avatar.jpg"
-            alt="Eric Avatar"
+            alt={t("chatbot.avatarAlt")}
             width={40}
             height={40}
             class="w-full h-full object-cover"
@@ -80,7 +89,7 @@ import { Image } from "astro:assets";
       <button
         id="chatbot-close-btn"
         class="text-indigo-200 hover:text-white transition-colors"
-        aria-label="Close Chat"
+        aria-label={t("chatbot.closeAria")}
       >
         <svg
           class="w-5 h-5"
@@ -142,7 +151,7 @@ import { Image } from "astro:assets";
           id="chatbot-input"
           type="text"
           class="flex-1 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-slate-200 dark:border-slate-700 transition"
-          placeholder="Type your message..."
+          placeholder={t("chatbot.placeholder")}
           autocomplete="off"
         />
         <button
@@ -183,7 +192,9 @@ import { Image } from "astro:assets";
         {
           sender: "bot",
           content: {
-            text: "Hello! I'm Eric's AI Assistant. Are you looking to upgrade your tech with AI, ensure privacy, or screen top talent?",
+            text:
+              document.getElementById("ai-chatbot-container")?.dataset
+                .greeting ?? "",
           },
         },
       ];
@@ -319,7 +330,9 @@ import { Image } from "astro:assets";
         console.error(error);
         this.messages.push({
           sender: "bot",
-          content: { text: "Sorry, I encountered an issue. Please try reaching out natively on WhatsApp." },
+          content: {
+            text: this.container?.dataset.error ?? "",
+          },
         });
       } finally {
         this.isTyping = false;

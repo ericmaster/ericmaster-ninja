@@ -1,13 +1,17 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import { formatLocalizedDate } from "../lib/dateUtils";
+import { getLangFromUrl, getLocalePath } from "../i18n/utils";
 import { Image } from "astro:assets";
 const { frontmatter } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const dateLocale = lang === "es" ? "es-ES" : "en-US";
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
   <div class="max-w-4xl mx-auto">
-    <p class="text-right">{formatLocalizedDate(frontmatter.pubDate)}</p>
+    <p class="text-right">{formatLocalizedDate(frontmatter.pubDate, dateLocale)}</p>
     <p class="text-xl mb-8"><em>{frontmatter.description}</em></p>
   </div>
 
@@ -29,7 +33,7 @@ const { frontmatter } = Astro.props;
       {
         frontmatter.tags.map((tag: string) => (
           <p class="tag">
-            <a href={`/tags/${tag}`}>{tag}</a>
+            <a href={getLocalePath(lang, `/tags/${tag}`)}>{tag}</a>
           </p>
         ))
       }
