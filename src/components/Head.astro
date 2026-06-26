@@ -1,5 +1,6 @@
 ---
 import { SITE_NAME, DEFAULT_META_DESCRIPTION, DEFAULT_OG_IMAGE, SITE_URL, TWITTER_HANDLE } from "../lib/siteConfig";
+import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -10,9 +11,11 @@ interface Props {
   locale?: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+
 const {
   title,
-  locale = Astro.currentLocale || "en",
+  locale = lang,
   canonicalUrl = Astro.url.href,
   ogImage = `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   ogType = "website",
