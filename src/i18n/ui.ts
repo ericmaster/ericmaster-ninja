@@ -23,6 +23,13 @@ export const ui = {
     "heading.projects": "Featured Projects",
     "chatbot.placeholder": "Type a message...",
     "chatbot.send": "Send",
+    "chatbot.toggleAria": "Toggle chat",
+    "chatbot.closeAria": "Close chat",
+    "chatbot.avatarAlt": "Eric's avatar",
+    "chatbot.greeting":
+      "Hello! I'm Eric's AI Assistant. Are you looking to upgrade your tech with AI, ensure privacy, or screen top talent?",
+    "chatbot.error":
+      "Sorry, I encountered an issue. Please try reaching out natively on WhatsApp.",
     "posts.empty": "No posts yet.",
     // Expert AI Solutions
     "expertAi.heading": "Expert AI Solutions",
@@ -80,6 +87,13 @@ export const ui = {
     "heading.projects": "Proyectos destacados",
     "chatbot.placeholder": "Escribe un mensaje...",
     "chatbot.send": "Enviar",
+    "chatbot.toggleAria": "Abrir/cerrar chat",
+    "chatbot.closeAria": "Cerrar chat",
+    "chatbot.avatarAlt": "Avatar de Eric",
+    "chatbot.greeting":
+      "¡Hola! Soy el asistente de IA de Eric. ¿Buscas mejorar tu tecnología con IA, garantizar la privacidad o evaluar a los mejores talentos?",
+    "chatbot.error":
+      "Lo siento, ocurrió un problema. Por favor, contáctanos directamente por WhatsApp.",
     "posts.empty": "Aún no hay artículos.",
     // Expert AI Solutions
     "expertAi.heading": "Soluciones Expertas de IA",
