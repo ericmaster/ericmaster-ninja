@@ -210,6 +210,11 @@
   }
 }
 
+/* Hide Alpine-cloaked elements until Alpine initializes */
+[x-cloak] {
+  display: none !important;
+}
+
 /* Print Utilities */
 @media print {
   .no-print {

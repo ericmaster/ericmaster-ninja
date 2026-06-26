@@ -2,6 +2,7 @@
 import Hamburger from "./Hamburger.astro";
 import Navigation from "./Navigation.astro";
 import ThemeIcon from "./ThemeIcon.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 import Logo from "./Logo.astro";
 import { getLangFromUrl, useTranslations, getLocalePath } from "../i18n/utils";
 
@@ -31,7 +32,8 @@ const t = useTranslations(lang);
     :class="navClass"
     :open="navOpen"
   />
-  <div class="ml-auto">
+  <div class="ml-auto flex items-center gap-2">
+    <LanguageSwitcher />
     <ThemeIcon />
   </div>
 </header>
