@@ -3,12 +3,9 @@ import assert from 'node:assert';
 import worker from './index.ts';
 
 test('Proxy /ai-cheatsheets uses hardcoded URL', async (t) => {
-  const fetchMock = mock.fn(async (input: RequestInfo | URL) => {
+  const fetchMock = t.mock.method(globalThis, 'fetch', async (input: RequestInfo | URL) => {
     return new Response('Mocked Response');
   });
-
-  // @ts-ignore
-  globalThis.fetch = fetchMock;
 
   const request = new Request('https://ericmaster.ninja/ai-cheatsheets');
   const env = { GH_CLIENT_ID: 'id', GH_CLIENT_SECRET: 'secret' };
@@ -23,12 +20,9 @@ test('Proxy /ai-cheatsheets uses hardcoded URL', async (t) => {
 });
 
 test('Other paths do not use proxy logic', async (t) => {
-  const fetchMock = mock.fn(async (input: RequestInfo | URL) => {
+  const fetchMock = t.mock.method(globalThis, 'fetch', async (input: RequestInfo | URL) => {
     return new Response('Should not be called');
   });
-
-  // @ts-ignore
-  globalThis.fetch = fetchMock;
 
   const request = new Request('https://ericmaster.ninja/something-else');
   const env = { GH_CLIENT_ID: 'id', GH_CLIENT_SECRET: 'secret' };
