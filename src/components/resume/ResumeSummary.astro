@@ -1,5 +1,6 @@
 ---
 import { marked } from 'marked';
+import sanitizeHtml from 'sanitize-html';
 
 interface Props {
   summary?: string;
@@ -8,7 +9,7 @@ interface Props {
 const { summary } = Astro.props;
 
 // Parse the markdown string into HTML
-const parsedSummary = summary ? marked.parse(summary) : '';
+const parsedSummary = summary ? sanitizeHtml(marked.parse(summary) as string) : '';
 ---
 {summary && (
   <section class="resume-section" aria-labelledby="summary-heading">
