@@ -20,7 +20,6 @@
     "marked": "^18.0.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "sanitize-html": "^2.17.5",
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
@@ -28,7 +27,6 @@
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.87",
-    "@types/sanitize-html": "^2.16.1",
     "astro-icon": "^1.1.5",
     "markdown-pdf": "^11.0.0",
     "unplugin-icons": "^23.0.1",
