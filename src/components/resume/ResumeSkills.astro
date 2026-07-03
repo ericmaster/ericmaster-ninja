@@ -17,7 +17,7 @@ const { items, id = "skills-heading" }: Props = Astro.props;
   <section class="resume-section" aria-labelledby={id}>
     <h2 id={id} class="section-title">Skills</h2>
     <div class="section-content skills-grid">
-      {items.map((skill: ResumeSkill) => (
+      {items.map((skill) => (
         <div class="skill-item">
           <div class="skill-header">
             <span class="skill-name">{skill.name}</span>
@@ -25,15 +25,14 @@ const { items, id = "skills-heading" }: Props = Astro.props;
           </div>
           {skill.level && (
             <div class="skill-bar" aria-label={`Level ${skill.level} out of 5`}>
-              {[1,2,3,4,5].map(n => (
-                <span class={`skill-pip ${skill.level && n <= skill.level ? 'filled' : ''}`} />
+              {[1, 2, 3, 4, 5].map((n) => (
+                <span class={`skill-pip ${skill.level && n <= skill.level ? 'filled' : ''}`}></span>
               ))}
             </div>
           )}
           {skill.keywords && skill.keywords.length > 0 && (
-            <!-- ATS: keywords listed explicitly as text -->
             <ul class="skill-keywords">
-              {skill.keywords.map((kw: string) => <li class="skill-keyword">{kw}</li>)}
+              {skill.keywords.map((kw) => (<li class="skill-keyword">{kw}</li>))}
             </ul>
           )}
         </div>

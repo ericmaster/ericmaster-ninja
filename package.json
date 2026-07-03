@@ -11,10 +11,11 @@
   },
   "dependencies": {
     "@alpinejs/csp": "^3.15.12",
+    "@astrojs/markdown-remark": "^7.2.1",
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource/poppins": "^5.2.7",
     "@tailwindcss/vite": "^4.3.1",
-    "astro": "^5.18.1",
+    "astro": "^7.0.6",
     "astro-heroicons": "^2.1.5-1",
     "chart.js": "^4.5.1",
     "marked": "^18.0.5",
