@@ -7,7 +7,8 @@
     "build": "astro build && node scripts/check-csp-hashes.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "pdfs": "node scripts/gen-pdfs.js"
+    "pdfs": "node scripts/gen-pdfs.js",
+    "test": "vitest run"
   },
   "dependencies": {
     "@alpinejs/csp": "^3.15.12",
@@ -32,6 +33,7 @@
     "astro-icon": "^1.1.5",
     "markdown-pdf": "^11.0.0",
     "unplugin-icons": "^23.0.1",
+    "vitest": "^3.2.6",
     "wrangler": "^4.104.0"
   }
 }
