@@ -68,9 +68,15 @@ const handleAuth = async (
       const content = ${JSON.stringify(content)};
       if (window.opener) {
         const receiveMessage = (message) => {
+          // Validate the sender origin against the canonical allowlist before
+          // replying — otherwise any page holding an opener reference could
+          // trigger this handler and receive the GitHub token.
+          if (message.origin !== "${CANONICAL_ORIGIN}") {
+            return;
+          }
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify(content),
-            message.origin
+            "${CANONICAL_ORIGIN}"
           );
           window.removeEventListener("message", receiveMessage, false);
         };
