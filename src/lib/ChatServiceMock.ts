@@ -52,23 +52,26 @@ export class ChatServiceMock {
    * Calculates Levenshtein distance between two strings.
    */
   private levenshtein(a: string, b: string): number {
-    const matrix = [];
-    for (let i = 0; i <= b.length; i++) {
-        matrix[i] = [i];
-    }
+    // Only two rows of the DP matrix are ever needed at once (the current row
+    // depends solely on the previous one), so keep O(a.length) space instead of
+    // allocating the full O(a.length * b.length) matrix.
+    let prevRow = new Array(a.length + 1);
     for (let j = 0; j <= a.length; j++) {
-        matrix[0][j] = j;
+        prevRow[j] = j;
     }
+    let currRow = new Array(a.length + 1);
     for (let i = 1; i <= b.length; i++) {
+        currRow[0] = i;
         for (let j = 1; j <= a.length; j++) {
             if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                matrix[i][j] = matrix[i - 1][j - 1];
+                currRow[j] = prevRow[j - 1];
             } else {
-                matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+                currRow[j] = Math.min(prevRow[j - 1] + 1, Math.min(currRow[j - 1] + 1, prevRow[j] + 1));
             }
         }
+        [prevRow, currRow] = [currRow, prevRow];
     }
-    return matrix[b.length][a.length];
+    return prevRow[a.length];
   }
 
   /**
