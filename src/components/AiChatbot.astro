@@ -12,6 +12,7 @@ const t = useTranslations(lang);
   class="fixed bottom-6 right-6 z-50 font-sans no-print"
   data-greeting={t("chatbot.greeting")}
   data-error={t("chatbot.error")}
+  data-lang={lang}
 >
   <!-- Chat Bubble Button -->
   <button
@@ -78,11 +79,11 @@ const t = useTranslations(lang);
           />
         </div>
         <div>
-          <h3 class="font-bold text-sm">Eric's AI Assistant</h3>
+          <h3 class="font-bold text-sm">{t("chatbot.title")}</h3>
           <div class="flex items-center text-xs text-indigo-200">
             <span class="w-2 h-2 bg-green-400 rounded-full mr-1.5 animate-pulse"
             ></span>
-            Online
+            {t("chatbot.status")}
           </div>
         </div>
       </div>
@@ -184,7 +185,13 @@ const t = useTranslations(lang);
 
   class ChatbotUI {
     constructor() {
-      this.chatService = new ChatServiceMock();
+      // DOM Elements
+      this.container = document.getElementById("ai-chatbot-container");
+      this.toggleBtn = document.getElementById("chatbot-toggle-btn");
+      
+      const lang = this.container?.dataset.lang || 'en';
+      this.chatService = new ChatServiceMock(lang);
+      
       this.isOpen = false;
       this.unread = true;
       this.isTyping = false;
@@ -199,9 +206,6 @@ const t = useTranslations(lang);
         },
       ];
 
-      // DOM Elements
-      this.container = document.getElementById("ai-chatbot-container");
-      this.toggleBtn = document.getElementById("chatbot-toggle-btn");
       this.closeBtn = document.getElementById("chatbot-close-btn");
       this.windowEl = document.getElementById("chatbot-window");
       this.iconClosed = document.getElementById("icon-closed");
