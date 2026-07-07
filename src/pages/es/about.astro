@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LinkedInBadge from "../../components/LinkedInBadge.astro";
+import { Image } from "astro:assets";
+const about = await import("../content/pages/es/about-content.md");
+const { Content, frontmatter } = about;
+const pageTitle = frontmatter.title;
+---
+
+<BaseLayout pageTitle={pageTitle} description="Conoce más sobre Eric Aguayo, su experiencia en ingeniería de IA y desarrollo de software.">
+  <div class="block">
+    <div class="float-none sm:float-left mb-6 sm:mb-2 sm:mr-8 flex flex-col items-center sm:items-center gap-6 w-full sm:w-auto sm:max-w-xs">
+      <Image
+        src="/assets/images/about.jpg"
+        alt="Eric Aguayo"
+        width={320}
+        height={320}
+        class="w-full max-w-xs h-auto rounded-xl shadow-lg"
+      />
+      <LinkedInBadge class="flex justify-center w-full" />
+    </div>
+    <div>
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

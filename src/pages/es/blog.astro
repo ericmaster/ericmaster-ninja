@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostTeaser from "../../components/PostTeaser.astro";
+import { getPosts } from "../../lib/blogUtils";
+import type { CollectionEntry } from "astro:content";
+import { Content } from "../content/pages/es/blog-content.md";
+
+const pageTitle = "Mi Increíble Blog";
+const allPosts: CollectionEntry<"blog">[] = await getPosts();
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  description="Blog de tecnología de Eric Aguayo — cubriendo IA, desarrollo full-stack y mejores prácticas de ingeniería."
+>
+  <Content />
+  <ul>
+    {
+      allPosts.map((post) => (
+        <Fragment>
+          <PostTeaser post={post} />
+          <hr />
+        </Fragment>
+      ))
+    }
+  </ul>
+</BaseLayout>

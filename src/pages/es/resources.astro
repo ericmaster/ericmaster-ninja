@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const resources = await import("../content/pages/es/resources-content.md");
+const { Content, frontmatter } = resources;
+const pageTitle = frontmatter.title;
+
+const headers: HeadersInit = {
+  Accept: "application/vnd.github+json",
+  "X-GitHub-Api-Version": "2022-11-28",
+};
+if (import.meta.env.GITHUB_TOKEN) {
+  headers["Authorization"] = `Bearer ${import.meta.env.GITHUB_TOKEN}`;
+}
+
+let cheatsheetRepos: { name: string; description: string | null }[] = [];
+
+try {
+  const res = await fetch("https://api.github.com/users/ericmaster/repos?per_page=100", {
+    headers,
+  });
+
+  if (!res.ok) {
+    console.warn(`[resources] GitHub API returned ${res.status} ${res.statusText}`);
+  } else {
+    const repos = await res.json();
+    cheatsheetRepos = Array.isArray(repos)
+      ? repos.filter(
+          (repo: { topics?: string[] }) => repo.topics && repo.topics.includes("cheatsheets")
+        )
+      : [];
+  }
+} catch (err) {
+  console.error("[resources] Failed to fetch GitHub repos:", err);
+}
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  description="Hojas de trucos seleccionadas, recursos y referencias para desarrolladores — por Eric Aguayo."
+>
+  <Content />
+  <section class="px-4 py-8">
+    <h2>Hojas de Trucos</h2>
+    {
+      cheatsheetRepos.length === 0 ? (
+        <p class="text-gray-500 dark:text-gray-400">No se encontraron hojas de trucos.</p>
+      ) : (
+        <ul>
+          {cheatsheetRepos.map((repo) => (
+            <li>
+              <a
+                href={`https://ericmaster.github.io/${repo.name}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {repo.description ?? repo.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

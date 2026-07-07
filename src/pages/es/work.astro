@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import GenUiHighlight from "../../components/GenUiHighlight.astro";
+import ExpertAiSolutions from "../../components/ExpertAiSolutions.astro";
+const work = await import("../content/pages/es/work-content.md");
+const { Content, frontmatter } = work;
+const pageTitle = frontmatter.title;
+---
+
+<BaseLayout pageTitle={pageTitle} description="Portafolio de proyectos de programación, bots de IA y trabajo profesional de Eric Aguayo.">
+  <GenUiHighlight />
+  <Content />
+  <ExpertAiSolutions />
+</BaseLayout>

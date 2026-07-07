@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LatestPosts from "../../components/LatestPosts.astro";
+import WorkTeaser from "../../components/WorkTeaser.astro";
+import { Content } from "../content/pages/es/home-content.md";
+import { Image } from "astro:assets";
+const pageTitle = "El Rincón Digital de Eric";
+---
+
+<BaseLayout pageTitle={pageTitle} heading="Código con Intención. Construido para Perdurar." centerTitle description="El rincón digital de Eric Aguayo — explorando Ingeniería en IA, Desarrollo Web y optimizaciones con factor humano.">
+  <section class="w-full mb-8">
+    <div class="w-full">
+      <Image
+        src="/assets/eric-anime-run.jpg"
+        alt="Imagen de anime de Eric corriendo por senderos"
+        width={320}
+        height={320}
+        class="max-w-xs w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm float-none sm:float-left mb-4 sm:mb-0 sm:mr-6"
+      />
+      <div>
+        <Content />
+      </div>
+    </div>
+    <div class="clear-both"></div>
+  </section>
+
+  <WorkTeaser />
+  <LatestPosts class="w-full mt-8 max-w-3xl mx-auto" />
+</BaseLayout>
