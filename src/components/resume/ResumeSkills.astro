@@ -30,8 +30,8 @@ const { items, id = "skills-heading" }: Props = Astro.props;
               ))}
             </div>
           )}
+          <!-- ATS: keywords listed explicitly as text -->
           {skill.keywords && skill.keywords.length > 0 && (
-            <!-- ATS: keywords listed explicitly as text -->
             <ul class="skill-keywords">
               {skill.keywords.map((kw: string) => <li class="skill-keyword">{kw}</li>)}
             </ul>
