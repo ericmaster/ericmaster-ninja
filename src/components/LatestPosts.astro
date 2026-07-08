@@ -9,7 +9,7 @@ interface Props extends HTMLAttributes<"section"> {}
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const latestPosts = await getPosts(5);
+const latestPosts = await getPosts(5, lang);
 ---
 
 <section {...Astro.props}>

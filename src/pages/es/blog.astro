@@ -6,7 +6,7 @@ import type { CollectionEntry } from "astro:content";
 import { Content } from "../content/pages/es/blog-content.md";
 
 const pageTitle = "Mi Increíble Blog";
-const allPosts: CollectionEntry<"blog">[] = await getPosts();
+const allPosts: CollectionEntry<"blog">[] = await getPosts(undefined, "es");
 ---
 
 <BaseLayout

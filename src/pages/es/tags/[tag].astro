@@ -1,12 +1,12 @@
 ---
-// src/pages/tags/[tag].astro
+// src/pages/es/tags/[tag].astro
 
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PostTeaser from '../../components/PostTeaser.astro';
-import { getPosts } from '../../lib/blogUtils';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostTeaser from '../../../components/PostTeaser.astro';
+import { getPosts } from '../../../lib/blogUtils';
 
 export async function getStaticPaths() {
-  const posts = await getPosts(undefined, 'en');
+  const posts = await getPosts(undefined, 'es');
 
   // Flatten all tags across posts
   const tagSet = new Set();
@@ -22,14 +22,14 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params as { tag: string };
-const allPosts = await getPosts(undefined, 'en');
+const allPosts = await getPosts(undefined, 'es');
 const filteredPosts = allPosts.filter(post =>
   post.data.tags?.includes(tag)
 );
 ---
 
 
-<BaseLayout pageTitle={`Posts tagged with ${tag}`}>
+<BaseLayout pageTitle={`Entradas etiquetadas con ${tag}`}>
   <ul>
   {filteredPosts.map(post => (
     <li><PostTeaser post={post} /></li>
