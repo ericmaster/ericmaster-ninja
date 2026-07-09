@@ -7,7 +7,8 @@
     "build": "astro build && node scripts/check-csp-hashes.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "pdfs": "node scripts/gen-pdfs.js"
+    "pdfs": "node scripts/gen-pdfs.js",
+    "test": "node --experimental-strip-types --test src/lib/**/*.test.ts"
   },
   "dependencies": {
     "@alpinejs/csp": "^3.15.12",
