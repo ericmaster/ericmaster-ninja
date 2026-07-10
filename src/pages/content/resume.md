@@ -6,7 +6,7 @@ title: Resume
 
 **Target Roles:** Full Stack Web Developer | AI Engineer | DevOps Engineer  
 **Location:** Quito, Ecuador | **Phone/WhatsApp:** +593 983-337-611  
-**Email:** [eric7master@gmail.com](mailto:eric7master@gmail.com)
+**Email:** [me@ericmaster.ninja](mailto:me@ericmaster.ninja)
 **LinkedIn:** [linkedin.com/in/eric-aguayo](https://www.linkedin.com/in/eric-aguayo/)
 **GitHub:** [github.com/ericmaster](https://github.com/ericmaster)
 **Portfolio:** [ericmaster.ninja](https://ericmaster.ninja)

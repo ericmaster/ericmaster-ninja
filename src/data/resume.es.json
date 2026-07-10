@@ -191,14 +191,35 @@
   "basics": {
     "name": "Eric Aguayo",
     "image": "/assets/images/eric-profile.png",
-    "headline": "Ingeniero Senior DataOps, MLOps y LLMOps | Arquitecto de Sistemas Agénticos",
-    "email": "eric7master@gmail.com",
+    "headline": "Ingeniero de Desarrollo de Software | En transición a Ingeniero de Agentic Ops",
+    "email": "me@ericmaster.ninja",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Ingeniero Senior DataOps & MLOps con más de 15 años de excelencia en ingeniería de software, especializado en la intersección de IA, Pipelines de Datos e Infraestructura en la Nube. Experto en orquestar Agentes en el SDLC, construyendo arneses personalizados con varias APIs (incluyendo Antigravity SDK), diseñando Lenguajes Específicos de Dominio (DSL) e ingeniando pipelines RAG de grado de producción. Amplia experiencia con GitHub Actions, GitLab Pipelines y estrategias DevOps nativas con IA usando Terraform y EKS. Competente en Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) y privacidad absoluta a través de Zero Trust, Cloudflare One (WARP) y Túneles. Profundamente experimentado con ecosistemas AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) y desarrollo asistido por IA (MCP, Cursor) para acelerar plataformas de datos y despliegues de modelos."
+    "summary": "Ingeniero de Desarrollo de Software con más de 15 años de excelencia en ingeniería de software, actualmente en transición hacia Agentic Ops Engineering en la intersección de IA, Pipelines de Datos e Infraestructura en la Nube. Experto en orquestar Agentes en el SDLC, construyendo arneses personalizados con varias APIs (incluyendo Antigravity SDK), diseñando Lenguajes Específicos de Dominio (DSL) e ingeniando pipelines RAG de grado de producción. Amplia experiencia con GitHub Actions, GitLab Pipelines y estrategias DevOps nativas con IA usando Terraform y EKS. Competente en Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) y privacidad absoluta a través de Zero Trust, Cloudflare One (WARP) y Túneles. Profundamente experimentado con ecosistemas AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) y desarrollo asistido por IA (MCP, Cursor) para acelerar plataformas de datos y despliegues de modelos."
   },
   "leadership": [
+    {
+      "name": "FLISOL 2026",
+      "description": "Ponente",
+      "date": "Abr 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "SALA AI 2026",
+      "description": "Participante",
+      "date": "Mar 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "Hackathon Conecta Impacto",
+      "description": "Participante",
+      "date": "Feb 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
     {
       "name": "FLISOL 2025",
       "description": "Ponente",
@@ -282,7 +303,7 @@
       "position": "Desarrollador Web Senior",
       "location": "Halifax, Canadá",
       "date": "Feb 2021 – Feb 2025",
-      "summary": "<p>Entrega de soluciones full-stack de alto rendimiento e infraestructura escalable para marcas de medios globales de primer nivel, cerrando la brecha entre la excelencia del frontend y la robustez del backend.</p><ul><li><strong>bleacherreport.com</strong> – Liderazgo en ingeniería full-stack y arquitectura CI/CD para una plataforma deportiva con más de 50 millones de usuarios activos mensuales, optimizando la entrega del frontend y los flujos de despliegue.</li><li><strong>nypost.com (AdTech)</strong> – Ingeniería de bibliotecas de optimización de pujas especializadas y servicios de pujas en tiempo real en AWS, utilizando Node.js y microservicios nativos en la nube para aumentar la precisión del seguimiento de anuncios y la captura de ingresos.</li><li><strong>la.sonychannel.com</strong> – Dirección de la migración arquitectónica de sistemas legacy de Drupal a una arquitectura full-stack moderna y desacoplada con optimización de entidades de Schema.org.</li><li><strong>Integración Empresarial</strong> – Orquestación de despliegues full-stack complejos, incluyendo plataformas de SSO/Identidad (LoginRadius) y lógica de backend serverless (AWS Lambda) para sitios de alto tráfico como nspower.ca.</li></ul>",
+      "summary": "<p>Entrega de soluciones full-stack de alto rendimiento e infraestructura escalable para marcas de medios globales de primer nivel, cerrando la brecha entre la excelencia del frontend y la robustez del backend.</p><ul><li><strong>bleacherreport.com</strong> – Liderazgo en ingeniería full-stack e integración de bibliotecas de datos de analítica para una plataforma deportiva con más de 50 millones de usuarios activos mensuales, optimizando la entrega del frontend mediante funcionalidades probadas de extremo a extremo (E2E) y coordinación entre equipos para la integración de bibliotecas.</li><li><strong>nypost.com (AdTech)</strong> – Ingeniería de bibliotecas de optimización de pujas especializadas y servicios de pujas en tiempo real, impulsando la integración, consolidación y optimización de bibliotecas propias y de terceros junto con servicios de resolución de identidad como LiveRamp, con la privacidad como prioridad.</li><li><strong>la.sonychannel.com</strong> – Dirección de la migración arquitectónica de sistemas legacy de Drupal a una arquitectura full-stack moderna y desacoplada con optimización de entidades de Schema.org.</li><li><strong>Integración Empresarial</strong> – Orquestación de despliegues full-stack complejos, incluyendo plataformas de SSO/Identidad (LoginRadius) y lógica de backend serverless (AWS Lambda) para sitios de alto tráfico como nspower.ca.</li></ul>",
       "url": "https://www.redspace.com/"
     },
     {

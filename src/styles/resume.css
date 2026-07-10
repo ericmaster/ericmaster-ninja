@@ -704,8 +704,8 @@ html.dark .lang-name {
   }
 
   .print-avatar {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 10.5rem;
+    height: 10.5rem;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid #cbd5e1;
@@ -732,7 +732,7 @@ html.dark .lang-name {
 
   /* ── Compact sections for left column ── */
   .print-col-left .resume-section {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
   }
 
   .print-col-left .section-title {
@@ -807,7 +807,7 @@ html.dark .lang-name {
 
   /* ── Right column print tweaks ── */
   .print-col-right .resume-section {
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
   }
 
   .print-col-right .section-title {
