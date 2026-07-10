@@ -106,16 +106,21 @@ function renderTemplate(tpl, ctx) {
     }
   );
 
+  // {{escaped}} — must run before {{{raw}}} so that raw-injected content
+  // (e.g. the rendered markdown body) is never rescanned by this pass; a
+  // body containing literal "{{...}}" text (code samples, etc.) would
+  // otherwise get silently stripped. The lookbehind/lookahead keep this
+  // regex from matching the inner {{key}} of a not-yet-processed
+  // {{{raw}}} token.
+  tpl = tpl.replace(/(?<!\{)\{\{([\w.]+)\}\}(?!\})/g, (_, key) => {
+    const val = lookup(ctx, key);
+    return val == null ? "" : escapeHtml(val);
+  });
+
   // {{{raw}}}
   tpl = tpl.replace(/\{\{\{([\w.]+)\}\}\}/g, (_, key) => {
     const val = lookup(ctx, key);
     return val == null ? "" : String(val);
-  });
-
-  // {{escaped}}
-  tpl = tpl.replace(/\{\{([\w.]+)\}\}/g, (_, key) => {
-    const val = lookup(ctx, key);
-    return val == null ? "" : escapeHtml(val);
   });
 
   return tpl;
