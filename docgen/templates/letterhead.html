@@ -511,10 +511,10 @@
           </div>
         </div>
         <div class="brand-info">
-          <div><span class="label">Web</span> <a href="{{website}}">{{websiteLabel}}</a></div>
-          <div><span class="label">Email</span> <a href="mailto:{{email}}">{{email}}</a></div>
-          <div><span class="label">Phone</span> {{phone}}</div>
-          <div><span class="label">Location</span> {{location}}</div>
+          {{#if website}}<div><span class="label">Web</span> <a href="{{website}}">{{websiteLabel}}</a></div>{{/if}}
+          {{#if email}}<div><span class="label">Email</span> <a href="mailto:{{email}}">{{email}}</a></div>{{/if}}
+          {{#if phone}}<div><span class="label">Phone</span> {{phone}}</div>{{/if}}
+          {{#if location}}<div><span class="label">Location</span> {{location}}</div>{{/if}}
         </div>
       </header>
 
@@ -563,8 +563,7 @@
       <footer class="letterhead-footer">
         {{#if disclaimer}}<p class="disclaimer">{{disclaimer}}</p>{{/if}}
         <p>
-          <span class="footer-brand">Eric Aguayo</span> · {{websiteLabel}} ·
-          {{email}}
+          <span class="footer-brand">Eric Aguayo</span>{{#if websiteLabel}} · {{websiteLabel}}{{/if}}{{#if email}} · {{email}}{{/if}}
         </p>
       </footer>
     </main>

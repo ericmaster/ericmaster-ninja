@@ -138,6 +138,12 @@ export function renderDocument(markdownSource, { resumeBasics } = {}) {
     ""
   );
 
+  if (!data.title || !String(data.title).trim()) {
+    throw new Error(
+      "docgen: frontmatter `title` is required (see docgen/README.md schema) but was missing or empty"
+    );
+  }
+
   const ctx = {
     // Brand-info — sourced from resume.json basics (single source of truth).
     website: basics.website || "",
@@ -145,11 +151,15 @@ export function renderDocument(markdownSource, { resumeBasics } = {}) {
     email: basics.email || "",
     phone: basics.phone || "",
     location: basics.location || "",
-    // Frontmatter-driven tokens with sensible defaults.
+    // Frontmatter-driven tokens with sensible defaults. `tagline` uses an
+    // explicit has-own check (not `||`) so `tagline: ""` in frontmatter can
+    // deliberately blank the wordmark instead of always falling back.
     lang: data.lang || "en",
-    tagline: data.tagline || "Senior DataOps, MLOps & LLMOps Engineer",
+    tagline: Object.hasOwn(data, "tagline")
+      ? data.tagline
+      : "Senior DataOps, MLOps & LLMOps Engineer",
     type: data.type || "",
-    title: data.title || "",
+    title: data.title,
     subtitle: data.subtitle || "",
     ref: data.ref || "",
     date: data.date || "",

@@ -14,6 +14,14 @@ Nimblersoft. There is no residual Nimblersoft logo, name, or contact.
 > **Security model (MVP).** Documents are authored privately and handed off as
 > PDF — nothing is served online. Gated online delivery (R2) is deferred to a
 > later phase. Keep generated output out of the deployed site.
+>
+> **No sanitization.** The markdown body is rendered with `marked` and
+> injected into the template **as raw HTML** (`{{{body}}}`, unescaped) — any
+> HTML written or embedded in the source markdown passes through verbatim.
+> This is intentional (it lets authored documents use raw HTML where markdown
+> falls short) but means `render.mjs` must only ever be pointed at markdown
+> you personally authored or fully trust. Never render third-party or
+> user-submitted markdown through this pipeline.
 
 ## Files
 
