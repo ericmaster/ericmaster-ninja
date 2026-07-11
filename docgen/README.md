@@ -31,8 +31,12 @@ Nimblersoft. There is no residual Nimblersoft logo, name, or contact.
 | `render.mjs`                  | Renders a frontmatter markdown doc into the template.         |
 | `samples/sample-nda.md`       | A sample document exercising every token.                     |
 | `dist/`                       | Rendered HTML output (git-ignored working area).              |
+| `../scripts/gen-doc-pdf.js`   | Render → branded PDF via Cloudflare Browser Rendering.        |
+| `out/`                        | Generated PDFs (git-ignored hand-off area).                   |
 
 ## Usage
+
+### HTML (manual print)
 
 ```bash
 # Render a document to HTML
@@ -42,6 +46,37 @@ node docgen/render.mjs docgen/samples/sample-nda.md docgen/dist/sample-nda.html
 # produce the hand-off PDF. Check the print preview matches the letterhead
 # layout (gradient rules, navy wordmark, doc-meta, signatures, disclaimer).
 ```
+
+### PDF (automated, Cloudflare Browser Rendering)
+
+```bash
+# Render md → branded PDF straight to docgen/out/<name>.pdf
+npm run doc:pdf -- docgen/samples/sample-nda.md
+npm run doc:pdf -- <path-to.md> [out.pdf]
+```
+
+`npm run doc:pdf` routes through the **central trusted runner** in the ops repo
+(`$OPS_HOME/scripts/trusted-run.sh`, default `~/nimbler-ops`). The runner is itself hash-pinned
+(it verifies its own SHA-256 against the read-only `nimbler-ops/scripts/trusted-run.sha256` before
+touching secrets); it then confirms `scripts/gen-doc-pdf.js` is **path-whitelisted** in the ops repo's
+central registry (`nimbler-ops/prompts/state/projects.json`, under this project's `trusted_scripts[]`,
+keyed by `(repo, path)`) and injects
+`CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` from **Infisical** (project *Nimblersoft Web*,
+env `dev`) — the token is never hardcoded or committed. The PDF layout is driven by the
+template's `@page` A4 CSS and print `@media` block (gradients print because the template opts
+into `print-color-adjust: exact`).
+
+> **Prerequisites.** Cloudflare Browser Rendering requires a **Workers Paid plan** and an
+> **API token scoped for Browser Rendering**. A 401/403 from the endpoint means the plan or
+> token scope is missing. Output goes to `docgen/out/` (git-ignored — confidential, never
+> committed or served). Set `OPS_HOME` if the ops repo is not at `~/nimbler-ops`.
+>
+> **Trust model.** The *runner* (`trusted-run.sh`) is the hash-pinned anchor, not this script —
+> `gen-doc-pdf.js` is only path-whitelisted in the ops repo. So editing this script won't be caught
+> by a hash; the security gate is that its path was added to the ops-repo registry by a human review
+> (a product-side change can't self-approve — the registry lives in the ops repo). Editing the *runner*
+> in the ops repo requires re-pinning `nimbler-ops/scripts/trusted-run.sha256`, or both its self-check
+> and the orchestrator's control-plane check fail closed and no secrets are pulled.
 
 The renderer pulls the brand-info block (website / email / phone / location)
 from `src/data/resume.json` `basics`, so the contact identity stays in a single

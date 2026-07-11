@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# generated confidential PDFs (docgen hand-off output — never commit)
+docgen/out/
 
 # dependencies
 node_modules/

@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "pdfs": "node scripts/gen-pdfs.js",
+    "doc:pdf": "\"${OPS_HOME:-$HOME/nimbler-ops}/scripts/trusted-run.sh\" scripts/gen-doc-pdf.js",
     "test": "node --test"
   },
   "dependencies": {
