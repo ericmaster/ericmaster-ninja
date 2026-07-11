@@ -12,9 +12,9 @@
       Served by `astro dev` at http://localhost:4321/docs-admin/index.html
       (the dev server needs the explicit index.html) and blocked
       (404) in production via public/_redirects. Uses Decap's local backend:
-      run `npm run docs:cms` (starts the proxy on port 8083 inside branded-docs/)
-      first, then edits read/write branded-docs/docs/*.md directly on disk. No
-      cloud, no OAuth, no secrets. See branded-docs/README.md.
+      `npm run docs:cms` starts astro dev AND the Decap proxy (port 8083)
+      together; edits then read/write branded-docs/docs/*.md directly on disk.
+      No cloud, no OAuth, no secrets. See branded-docs/README.md.
     -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
