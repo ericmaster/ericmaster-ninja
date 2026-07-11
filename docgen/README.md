@@ -47,7 +47,7 @@ node docgen/render.mjs docgen/samples/sample-nda.md docgen/dist/sample-nda.html
 # layout (gradient rules, navy wordmark, doc-meta, signatures, disclaimer).
 ```
 
-### PDF (automated, Cloudflare Browser Rendering)
+### PDF (automated, local WeasyPrint)
 
 ```bash
 # Render md → branded PDF straight to docgen/out/<name>.pdf
@@ -55,28 +55,21 @@ npm run doc:pdf -- docgen/samples/sample-nda.md
 npm run doc:pdf -- <path-to.md> [out.pdf]
 ```
 
-`npm run doc:pdf` routes through the **central trusted runner** in the ops repo
-(`$OPS_HOME/scripts/trusted-run.sh`, default `~/nimbler-ops`). The runner is itself hash-pinned
-(it verifies its own SHA-256 against the read-only `nimbler-ops/scripts/trusted-run.sha256` before
-touching secrets); it then confirms `scripts/gen-doc-pdf.js` is **path-whitelisted** in the ops repo's
-central registry (`nimbler-ops/prompts/state/projects.json`, under this project's `trusted_scripts[]`,
-keyed by `(repo, path)`) and injects
-`CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` from **Infisical** (project *Nimblersoft Web*,
-env `dev`) — the token is never hardcoded or committed. The PDF layout is driven by the
-template's `@page` A4 CSS and print `@media` block (gradients print because the template opts
-into `print-color-adjust: exact`).
+`npm run doc:pdf` renders the markdown into self-contained letterhead HTML
+(`docgen/render.mjs`), then rasterizes it to an A4 PDF with **WeasyPrint**. WeasyPrint is
+CPython + native Pango, so it runs in a small **Docker container**
+(`docgen/weasyprint.Dockerfile`, image `ericmaster-ninja-docgen-weasyprint`) rather than on the
+host — no browser, no cloud, no secrets, nothing to install but Docker. The image is built
+automatically on first run (~1–2 min); thereafter runs are fast. The container runs as your own
+uid, so `docgen/out/` artifacts aren't root-owned.
 
-> **Prerequisites.** Cloudflare Browser Rendering requires a **Workers Paid plan** and an
-> **API token scoped for Browser Rendering**. A 401/403 from the endpoint means the plan or
-> token scope is missing. Output goes to `docgen/out/` (git-ignored — confidential, never
-> committed or served). Set `OPS_HOME` if the ops repo is not at `~/nimbler-ops`.
+> **Prerequisites.** Just **Docker**. Output goes to `docgen/out/` (git-ignored — confidential,
+> never committed or served). The PDF layout is driven by the template's `@page` A4 CSS.
 >
-> **Trust model.** The *runner* (`trusted-run.sh`) is the hash-pinned anchor, not this script —
-> `gen-doc-pdf.js` is only path-whitelisted in the ops repo. So editing this script won't be caught
-> by a hash; the security gate is that its path was added to the ops-repo registry by a human review
-> (a product-side change can't self-approve — the registry lives in the ops repo). Editing the *runner*
-> in the ops repo requires re-pinning `nimbler-ops/scripts/trusted-run.sha256`, or both its self-check
-> and the orchestrator's control-plane check fail closed and no secrets are pulled.
+> **Fidelity note.** WeasyPrint isn't a browser engine, so it logs a few harmless warnings and
+> skips two purely-cosmetic effects: `box-shadow` (the cards read fine via their accent borders)
+> and `background-clip: text` (the gradient-*text* wordmark falls back to a solid brand color).
+> Layout, gradients-as-backgrounds, tables, and the flexbox columns all render faithfully.
 
 The renderer pulls the brand-info block (website / email / phone / location)
 from `src/data/resume.json` `basics`, so the contact identity stays in a single
