@@ -2,7 +2,8 @@
 #
 # How it works:
 #   1. `npm run docs:cms`  (runs the proxy from inside the branded-docs/ folder)
-#   2. `npm run dev`       (serves this surface at localhost:4321/docs-admin/)
+#   2. `npm run dev`       (open http://localhost:4321/docs-admin/index.html —
+#                           the dev server needs the explicit index.html)
 # The `local_backend.url` makes the CMS talk to the local proxy instead of
 # GitHub, so saves write branded-docs/docs/*.md straight to disk. Commit + push
 # the backup afterwards with `npm run docs:backup`.

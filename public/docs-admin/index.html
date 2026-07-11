@@ -9,7 +9,8 @@
   <body>
     <!--
       LOCAL-ONLY authoring surface for the private branded-docs repo.
-      Served by `astro dev` at http://localhost:4321/docs-admin/ and blocked
+      Served by `astro dev` at http://localhost:4321/docs-admin/index.html
+      (the dev server needs the explicit index.html) and blocked
       (404) in production via public/_redirects. Uses Decap's local backend:
       run `npm run docs:cms` (starts the proxy on port 8083 inside branded-docs/)
       first, then edits read/write branded-docs/docs/*.md directly on disk. No
