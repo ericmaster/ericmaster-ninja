@@ -31,3 +31,6 @@ pnpm-debug.log*
 job-applications/
 
 .claude
+
+# docgen rendered output (private authoring, hand-off PDF only — not served online)
+docgen/dist/

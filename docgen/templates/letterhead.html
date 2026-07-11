@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}{{#if ref}} · {{ref}}{{/if}}</title>
+    <style>
+      /* =====================================================================
+         Eric Aguayo — Personal Letterhead
+         Style borrowed from the NDA "flourish-and-grace" chrome, generalized
+         to style arbitrary markdown-rendered body content and re-skinned to
+         Eric Aguayo's PERSONAL brand (no Nimblersoft identity).
+         Brand navy #405282 is the fixed print color on white paper.
+         ===================================================================== */
+
+      /* ---- A4 page geometry -------------------------------------------- */
+      @page {
+        size: A4;
+        margin: 20mm 18mm 22mm 18mm;
+      }
+
+      :root {
+        --brand-navy: #405282;
+        --brand-navy-deep: #2c3a5e;
+        --brand-gold: #ffd085;
+        --ink: #1f2733;
+        --muted: #5b6472;
+        --hairline: #d9dee7;
+        --paper: #ffffff;
+        --body-font:
+          "Poppins", "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--body-font);
+        color: var(--ink);
+        background: #eef1f6;
+        line-height: 1.6;
+        font-size: 11pt;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* The "sheet" mimics an A4 page when previewed on screen. In print the
+         @page rule owns the geometry and the sheet collapses to full width. */
+      .sheet {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 12mm auto;
+        padding: 20mm 18mm 22mm 18mm;
+        background: var(--paper);
+        box-shadow: 0 8px 30px rgba(31, 39, 51, 0.18);
+      }
+
+      /* ---- Brand header ------------------------------------------------- */
+      .letterhead-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 14px;
+        /* Gradient border rule (border-image) — the NDA "flourish" hairline */
+        border-bottom: 3px solid var(--brand-navy);
+        border-image: linear-gradient(
+            90deg,
+            var(--brand-navy) 0%,
+            var(--brand-gold) 55%,
+            var(--brand-navy) 100%
+          )
+          1;
+      }
+
+      .brand-identity {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .brand-mark {
+        width: 54px;
+        height: auto;
+        flex: 0 0 auto;
+        color: var(--brand-navy); /* currentColor drives the SVG strokes */
+      }
+
+      .brand-mark svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .brand-wordmark {
+        font-size: 24pt;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.05;
+        margin: 0;
+        /* background-clip:text wordmark treatment */
+        background: linear-gradient(
+          120deg,
+          var(--brand-navy) 0%,
+          var(--brand-navy-deep) 60%,
+          var(--brand-navy) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: var(--brand-navy);
+      }
+
+      .brand-tagline {
+        margin: 2px 0 0;
+        font-size: 8.5pt;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .brand-info {
+        text-align: right;
+        font-size: 8.5pt;
+        line-height: 1.7;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .brand-info a {
+        color: var(--brand-navy);
+        text-decoration: none;
+      }
+
+      .brand-info .label {
+        color: var(--brand-navy);
+        font-weight: 600;
+      }
+
+      /* ---- Document meta ------------------------------------------------ */
+      .doc-meta {
+        margin: 26px 0 4px;
+      }
+
+      .doc-meta .doc-type {
+        font-size: 8.5pt;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--brand-navy);
+        margin: 0 0 6px;
+      }
+
+      .doc-meta .doc-title {
+        font-size: 19pt;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0;
+        color: var(--ink);
+      }
+
+      .doc-meta .doc-subtitle {
+        font-size: 12pt;
+        font-weight: 500;
+        color: var(--muted);
+        margin: 4px 0 0;
+      }
+
+      .doc-refline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 12px 0 0;
+        font-size: 8.5pt;
+        color: var(--muted);
+      }
+
+      .doc-refline .item .label {
+        font-weight: 600;
+        color: var(--brand-navy);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-right: 5px;
+      }
+
+      /* ---- Parties ------------------------------------------------------ */
+      .doc-parties {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 18px 0 4px;
+      }
+
+      .doc-parties .party {
+        flex: 1 1 220px;
+        border: 1px solid var(--hairline);
+        border-left: 3px solid var(--brand-navy);
+        border-radius: 3px;
+        padding: 8px 12px;
+      }
+
+      .doc-parties .party .role {
+        font-size: 7.5pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand-navy);
+        margin: 0 0 2px;
+      }
+
+      .doc-parties .party .name {
+        font-size: 11pt;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .doc-parties .party .detail {
+        font-size: 8.5pt;
+        color: var(--muted);
+        margin: 2px 0 0;
+      }
+
+      /* ---- Body slot: generalized markdown element styling -------------- */
+      .doc-body {
+        margin-top: 22px;
+        font-size: 11pt;
+        color: var(--ink);
+      }
+
+      .doc-body h1,
+      .doc-body h2,
+      .doc-body h3,
+      .doc-body h4 {
+        color: var(--brand-navy);
+        font-weight: 700;
+        line-height: 1.25;
+        margin: 1.4em 0 0.5em;
+      }
+
+      .doc-body h1 {
+        font-size: 16pt;
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 4px;
+      }
+      .doc-body h2 {
+        font-size: 13.5pt;
+      }
+      .doc-body h3 {
+        font-size: 11.5pt;
+      }
+      .doc-body h4 {
+        font-size: 10.5pt;
+        color: var(--brand-navy-deep);
+      }
+
+      .doc-body p {
+        margin: 0 0 0.85em;
+        text-align: justify;
+      }
+
+      .doc-body a {
+        color: var(--brand-navy);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .doc-body ul,
+      .doc-body ol {
+        margin: 0 0 0.9em;
+        padding-left: 1.5em;
+      }
+
+      .doc-body li {
+        margin: 0 0 0.35em;
+      }
+
+      .doc-body li::marker {
+        color: var(--brand-navy);
+        font-weight: 600;
+      }
+
+      .doc-body blockquote {
+        margin: 1em 0;
+        padding: 4px 16px;
+        border-left: 3px solid var(--brand-gold);
+        background: #f7f9fc;
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .doc-body blockquote p {
+        margin: 0.3em 0;
+      }
+
+      .doc-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1em 0;
+        font-size: 9.5pt;
+      }
+
+      .doc-body th,
+      .doc-body td {
+        border: 1px solid var(--hairline);
+        padding: 6px 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .doc-body thead th {
+        background: var(--brand-navy);
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .doc-body tbody tr:nth-child(even) {
+        background: #f4f6fa;
+      }
+
+      .doc-body code {
+        font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+        font-size: 9.5pt;
+        background: #f0f2f7;
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: var(--brand-navy-deep);
+      }
+
+      .doc-body pre {
+        background: #f0f2f7;
+        border: 1px solid var(--hairline);
+        border-radius: 4px;
+        padding: 12px 14px;
+        overflow-x: auto;
+        font-size: 9.5pt;
+      }
+
+      .doc-body pre code {
+        background: none;
+        padding: 0;
+      }
+
+      .doc-body hr {
+        border: 0;
+        border-top: 1px solid var(--hairline);
+        margin: 1.6em 0;
+      }
+
+      /* Opt-in NDA-specific numbered-clause styling. Add class="clauses" to an
+         <ol> in the markdown body to restore the original NDA clause treatment;
+         plain <ol>/<ul> get the generic on-brand styling above. */
+      .doc-body ol.clauses {
+        list-style: none;
+        counter-reset: clause;
+        padding-left: 0;
+      }
+
+      .doc-body ol.clauses > li {
+        counter-increment: clause;
+        position: relative;
+        padding-left: 2.4em;
+        margin-bottom: 0.8em;
+      }
+
+      .doc-body ol.clauses > li::before {
+        content: counter(clause) ".";
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-width: 1.9em;
+        font-weight: 700;
+        color: var(--brand-navy);
+      }
+
+      /* ---- Signatures --------------------------------------------------- */
+      .doc-signatures {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 46px;
+        page-break-inside: avoid;
+      }
+
+      .doc-signatures .sig {
+        flex: 1 1 200px;
+      }
+
+      .doc-signatures .sig .sig-line {
+        border-top: 1px solid var(--ink);
+        padding-top: 6px;
+      }
+
+      .doc-signatures .sig .sig-name {
+        font-weight: 600;
+        font-size: 10.5pt;
+        margin: 0;
+      }
+
+      .doc-signatures .sig .sig-role {
+        font-size: 8.5pt;
+        color: var(--muted);
+        margin: 2px 0 0;
+      }
+
+      /* ---- Footer / disclaimer ----------------------------------------- */
+      .letterhead-footer {
+        margin-top: 40px;
+        padding-top: 10px;
+        border-top: 2px solid var(--brand-navy);
+        border-image: linear-gradient(
+            90deg,
+            var(--brand-navy) 0%,
+            var(--brand-gold) 55%,
+            var(--brand-navy) 100%
+          )
+          1;
+        font-size: 7.5pt;
+        color: var(--muted);
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .letterhead-footer .disclaimer {
+        margin: 0 0 4px;
+      }
+
+      .letterhead-footer .footer-brand {
+        color: var(--brand-navy);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      /* ---- Print rules -------------------------------------------------- */
+      @media print {
+        body {
+          background: #fff;
+        }
+        .sheet {
+          width: auto;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+        /* Force the brand navy on white paper — no dark-mode, solid fill so the
+           background-clip wordmark still prints on engines that drop it. */
+        .brand-wordmark {
+          -webkit-text-fill-color: var(--brand-navy);
+          color: var(--brand-navy);
+          background: none;
+        }
+        .brand-mark {
+          color: var(--brand-navy);
+        }
+        a {
+          color: var(--brand-navy);
+        }
+        .doc-body thead th {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .doc-signatures,
+        .doc-parties .party,
+        table,
+        tr {
+          page-break-inside: avoid;
+        }
+        h1,
+        h2,
+        h3 {
+          page-break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="sheet">
+      <!-- ============================ HEADER ============================ -->
+      <header class="letterhead-header">
+        <div class="brand-identity">
+          <span class="brand-mark" aria-hidden="true">
+            <!-- Eric Aguayo personal mark (from src/components/Logo.astro /
+                 public/favicon.svg). Fixed navy for print. -->
+            <svg
+              viewBox="0 0 100 60"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 42 10 L 22 10 Q 18 10 18 15 L 18 25 Q 18 30 12 30 Q 18 30 18 35 L 18 45 Q 18 50 22 50 L 32 50"
+              />
+              <line x1="24" y1="30" x2="33" y2="30" />
+              <path d="M 32 50 L 50 10 L 62 30 L 72 10 L 90 50 L 42 50" />
+            </svg>
+          </span>
+          <div>
+            <p class="brand-wordmark">Eric Aguayo</p>
+            <p class="brand-tagline">{{tagline}}</p>
+          </div>
+        </div>
+        <div class="brand-info">
+          {{#if website}}<div><span class="label">Web</span> <a href="{{website}}">{{websiteLabel}}</a></div>{{/if}}
+          {{#if email}}<div><span class="label">Email</span> <a href="mailto:{{email}}">{{email}}</a></div>{{/if}}
+          {{#if phone}}<div><span class="label">Phone</span> {{phone}}</div>{{/if}}
+          {{#if location}}<div><span class="label">Location</span> {{location}}</div>{{/if}}
+        </div>
+      </header>
+
+      <!-- =========================== DOC META =========================== -->
+      <section class="doc-meta">
+        {{#if type}}<p class="doc-type">{{type}}</p>{{/if}}
+        <h1 class="doc-title">{{title}}</h1>
+        {{#if subtitle}}<p class="doc-subtitle">{{subtitle}}</p>{{/if}}
+        <div class="doc-refline">
+          {{#if ref}}<span class="item"><span class="label">Ref</span>{{ref}}</span>{{/if}}
+          {{#if date}}<span class="item"><span class="label">Date</span>{{date}}</span>{{/if}}
+        </div>
+      </section>
+
+      {{#if parties}}
+      <section class="doc-parties">
+        {{#each parties}}
+        <div class="party">
+          {{#if this.role}}<p class="role">{{this.role}}</p>{{/if}}
+          <p class="name">{{this.name}}</p>
+          {{#if this.detail}}<p class="detail">{{this.detail}}</p>{{/if}}
+        </div>
+        {{/each}}
+      </section>
+      {{/if}}
+
+      <!-- ============================= BODY ============================= -->
+      <article class="doc-body">
+        {{{body}}}
+      </article>
+
+      {{#if signatures}}
+      <section class="doc-signatures">
+        {{#each signatures}}
+        <div class="sig">
+          <div class="sig-line">
+            <p class="sig-name">{{this.name}}</p>
+            {{#if this.role}}<p class="sig-role">{{this.role}}</p>{{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </section>
+      {{/if}}
+
+      <!-- ============================ FOOTER ============================ -->
+      <footer class="letterhead-footer">
+        {{#if disclaimer}}<p class="disclaimer">{{disclaimer}}</p>{{/if}}
+        <p>
+          <span class="footer-brand">Eric Aguayo</span>{{#if websiteLabel}} · {{websiteLabel}}{{/if}}{{#if email}} · {{email}}{{/if}}
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>
