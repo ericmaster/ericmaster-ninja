@@ -1,0 +1,68 @@
+# Decap CMS config for the PRIVATE branded-docs repo — LOCAL authoring only.
+#
+# How it works:
+#   1. `npx decap-server`  (run from inside the branded-docs/ folder)
+#   2. `npm run dev`       (serves this surface at localhost:4321/docs-admin/)
+# `local_backend: true` makes the CMS talk to the local proxy on :8081 instead
+# of GitHub, so saves write branded-docs/docs/*.md straight to disk (and, in the
+# proxy's default git mode, commit them to the branded-docs repo). Push the
+# backup with `npm run docs:backup`.
+#
+# The `backend: github` block below is a DORMANT fallback: it only engages when
+# the surface is loaded from a non-localhost origin, and production requests to
+# /docs-admin/* are 404'd by public/_redirects — so it never actually runs. It
+# is kept valid in case the surface is ever intentionally exposed (which would
+# also need Cloudflare Access in front — the private-repo OAuth is the only gate
+# otherwise).
+local_backend: true
+
+backend:
+  name: github
+  repo: ericmaster/branded-docs
+  branch: main
+  auth_scope: repo
+  base_url: https://ericmaster.ninja
+  auth_endpoint: /api/auth
+
+# Media is not used by these documents; point it at docs/ to keep paths inside
+# the branded-docs repo rather than leaking into the public site tree.
+media_folder: docs/assets
+public_folder: /assets
+
+collections:
+  - name: "documents"
+    label: "Documents"
+    label_singular: "Document"
+    folder: "docs"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    summary: "{{title}} — {{ref}}"
+    fields:
+      - { label: "Document class", name: "type", widget: "string", required: false, hint: "Shown above the title, e.g. 'Non-Disclosure Agreement'." }
+      - { label: "Language", name: "lang", widget: "string", required: false, default: "en" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+      - { label: "Reference / doc number", name: "ref", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "string", required: false, hint: "Human-formatted, e.g. 'July 11, 2026'." }
+      - { label: "Wordmark tagline", name: "tagline", widget: "string", required: false }
+      - label: "Parties"
+        name: "parties"
+        widget: "list"
+        required: false
+        summary: "{{fields.role}}: {{fields.name}}"
+        fields:
+          - { label: "Role", name: "role", widget: "string" }
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Detail", name: "detail", widget: "string", required: false }
+      - label: "Signatures"
+        name: "signatures"
+        widget: "list"
+        required: false
+        summary: "{{fields.name}} ({{fields.role}})"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Role", name: "role", widget: "string", required: false }
+      - { label: "Disclaimer", name: "disclaimer", widget: "text", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }

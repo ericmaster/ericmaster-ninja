@@ -31,7 +31,7 @@ Nimblersoft. There is no residual Nimblersoft logo, name, or contact.
 | `render.mjs`                  | Renders a frontmatter markdown doc into the template.         |
 | `samples/sample-nda.md`       | A sample document exercising every token.                     |
 | `dist/`                       | Rendered HTML output (git-ignored working area).              |
-| `../scripts/gen-doc-pdf.js`   | Render → branded PDF via Cloudflare Browser Rendering.        |
+| `../scripts/gen-doc-pdf.js`   | Render → branded PDF via a local WeasyPrint container.        |
 | `out/`                        | Generated PDFs (git-ignored hand-off area).                   |
 
 ## Usage
@@ -77,9 +77,10 @@ source of truth.
 
 ## Frontmatter schema
 
-The document is a markdown file with a YAML-style frontmatter block. Scalars use
-`key: value`; arrays/objects use **JSON flow syntax** on a single line (a small
-dependency-free subset — full YAML is not parsed).
+The document is a markdown file with a **YAML frontmatter block** (parsed with
+`js-yaml`). Both single-line JSON-flow arrays (`parties: [{ ... }]`) and
+standard block-style YAML lists — as written by the Decap CMS surface — are
+accepted and render identically.
 
 | Token        | Type              | Required | Description                                                            |
 | ------------ | ----------------- | -------- | ---------------------------------------------------------------------- |

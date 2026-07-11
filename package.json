@@ -9,6 +9,8 @@
     "astro": "astro",
     "pdfs": "node scripts/gen-pdfs.js",
     "doc:pdf": "node scripts/gen-doc-pdf.js",
+    "docs:cms": "npx decap-server",
+    "docs:backup": "bash scripts/docs-backup.sh",
     "test": "node --test"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "astro": "^5.18.1",
     "astro-heroicons": "^2.1.5-1",
     "chart.js": "^4.5.1",
+    "js-yaml": "^4.3.0",
     "marked": "^18.0.5",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",

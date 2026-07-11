@@ -29,6 +29,27 @@ describe("renderDocument — frontmatter parsing", () => {
     assert.match(html, /class="sig-name">Eric Aguayo</);
   });
 
+  it("parses block-style YAML lists (as emitted by Decap CMS) equivalently", () => {
+    // Decap writes native YAML block sequences, not single-line JSON flow.
+    const html = render(
+      [
+        "---",
+        "title: T",
+        "parties:",
+        "  - role: Disclosing Party",
+        "    name: Eric Aguayo",
+        "signatures:",
+        "  - name: Eric Aguayo",
+        "    role: Author",
+        "---",
+        "Body.",
+      ].join("\n")
+    );
+    assert.match(html, /Disclosing Party/);
+    assert.match(html, /class="name">Eric Aguayo</);
+    assert.match(html, /class="sig-name">Eric Aguayo</);
+  });
+
   it("strips surrounding quotes from scalar values", () => {
     const html = render('---\ntitle: "Quoted Title"\n---\nBody.');
     assert.match(html, /Quoted Title/);

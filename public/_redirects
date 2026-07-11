@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects.
+#
+# /docs-admin/* is a LOCAL-ONLY authoring surface for the PRIVATE branded-docs
+# repo (served by `astro dev` at localhost, uses Decap's local backend). It must
+# never be reachable on the deployed public site — this rule 404s the whole path
+# (including config.yml) in production. Redirects are always followed even when a
+# matching static asset exists, so this reliably blocks the built assets too.
+/docs-admin/*  /404  404

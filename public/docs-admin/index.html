@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Branded Docs — Content Manager</title>
+  </head>
+  <body>
+    <!--
+      LOCAL-ONLY authoring surface for the private branded-docs repo.
+      Served by `astro dev` at http://localhost:4321/docs-admin/ and blocked
+      (404) in production via public/_redirects. Uses Decap's local backend:
+      run `npx decap-server` from inside the branded-docs/ folder first, then
+      edits read/write branded-docs/docs/*.md directly on disk. No cloud, no
+      OAuth, no secrets. See branded-docs/README.md.
+    -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  </body>
+</html>

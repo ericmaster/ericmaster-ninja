@@ -19,6 +19,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { marked } from "marked";
+import yaml from "js-yaml";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -26,42 +27,25 @@ const TEMPLATE_PATH = resolve(__dirname, "templates/letterhead.html");
 const RESUME_PATH = resolve(REPO_ROOT, "src/data/resume.json");
 
 // --- Frontmatter parsing --------------------------------------------------
-// Supports a small, well-defined subset: `key: value` scalars plus JSON flow
-// values for arrays/objects (e.g. `parties: [{ "role": "...", "name": "..." }]`).
-// This keeps the renderer dependency-free while covering the documented schema.
+// The frontmatter block is standard YAML, parsed with js-yaml. This covers both
+// single-line JSON-flow arrays (e.g. `parties: [{ "role": "..." }]`, which is
+// valid YAML) AND the block-style lists/maps that Decap CMS emits when authoring
+// through the /docs-admin surface — so a doc written either way renders the same.
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) {
     return { data: {}, body: raw };
   }
   const [, fm, body] = match;
-  const data = {};
-  for (const line of fm.split(/\r?\n/)) {
-    if (!line.trim() || /^\s*#/.test(line)) continue;
-    const sep = line.indexOf(":");
-    if (sep === -1) continue;
-    const key = line.slice(0, sep).trim();
-    let value = line.slice(sep + 1).trim();
-    if (value === "") {
-      data[key] = "";
-      continue;
-    }
-    if (value[0] === "[" || value[0] === "{") {
-      try {
-        data[key] = JSON.parse(value);
-        continue;
-      } catch {
-        // fall through and treat as string
-      }
-    }
-    // strip matching surrounding quotes
-    if (
-      (value[0] === '"' && value.at(-1) === '"') ||
-      (value[0] === "'" && value.at(-1) === "'")
-    ) {
-      value = value.slice(1, -1);
-    }
-    data[key] = value;
+  let data;
+  try {
+    data = yaml.load(fm);
+  } catch (err) {
+    throw new Error(`docgen: invalid YAML frontmatter — ${err.message}`);
+  }
+  // An empty or scalar frontmatter block yields null/non-object; normalize to {}.
+  if (data == null || typeof data !== "object" || Array.isArray(data)) {
+    data = {};
   }
   return { data, body };
 }
