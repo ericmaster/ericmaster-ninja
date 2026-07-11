@@ -8,6 +8,7 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { unified } from "@astrojs/markdown-remark";
 
 /** Adds target="_blank" rel="noopener noreferrer" to external links at build time. */
 function rehypeExternalLinks() {
@@ -42,8 +43,10 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex, rehypeExternalLinks],
+    processor: unified({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex, rehypeExternalLinks],
+    }),
   },
 
   vite: {
