@@ -1,12 +1,15 @@
 # Decap CMS config for the PRIVATE branded-docs repo — LOCAL authoring only.
 #
 # How it works:
-#   1. `npx decap-server`  (run from inside the branded-docs/ folder)
+#   1. `npm run docs:cms`  (runs the proxy from inside the branded-docs/ folder)
 #   2. `npm run dev`       (serves this surface at localhost:4321/docs-admin/)
-# `local_backend: true` makes the CMS talk to the local proxy on :8081 instead
-# of GitHub, so saves write branded-docs/docs/*.md straight to disk (and, in the
-# proxy's default git mode, commit them to the branded-docs repo). Push the
-# backup with `npm run docs:backup`.
+# The `local_backend.url` makes the CMS talk to the local proxy instead of
+# GitHub, so saves write branded-docs/docs/*.md straight to disk. Commit + push
+# the backup afterwards with `npm run docs:backup`.
+#
+# Port note: decap-server's default port (8081) is already taken on this host,
+# so the proxy and this url are pinned to 8083 (npm run docs:cms sets PORT=8083).
+# To change it, keep both sides in sync: PORT=<n> and the url below.
 #
 # The `backend: github` block below is a DORMANT fallback: it only engages when
 # the surface is loaded from a non-localhost origin, and production requests to
@@ -14,7 +17,8 @@
 # is kept valid in case the surface is ever intentionally exposed (which would
 # also need Cloudflare Access in front — the private-repo OAuth is the only gate
 # otherwise).
-local_backend: true
+local_backend:
+  url: http://localhost:8083/api/v1
 
 backend:
   name: github
