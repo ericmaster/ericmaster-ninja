@@ -8,22 +8,24 @@
   </head>
   <body>
     <!--
-      LOCAL-ONLY authoring surface for the private branded-docs repo.
-      Served by `astro dev` at http://localhost:4321/docs-admin/index.html
-      (the dev server needs the explicit index.html) and blocked
-      (404) in production via public/_redirects. Uses Decap's local backend:
-      `npm run docs:cms` starts astro dev AND the Decap proxy (port 8083)
-      together; edits then read/write branded-docs/docs/*.md directly on disk.
-      No cloud, no OAuth, no secrets. See branded-docs/README.md.
+      LAN-accessible authoring surface for the private branded-docs repo.
+      Served by `npm run docs:cms` (astro dev + the Decap proxy, both bound to
+      0.0.0.0) so it can be opened from another device on the LAN, e.g.
+      http://<box-ip>:4321/docs-admin/index.html (the dev server needs the
+      explicit index.html). Blocked (404) in production via public/_redirects.
+      Edits read/write branded-docs/docs/*.md on disk — no cloud, no OAuth, no
+      secrets. See branded-docs/README.md.
     -->
     <script>
+      // Manual init so we can compute local_backend at runtime (below).
+      window.CMS_MANUAL_INIT = true;
+
       // Decap calls crypto.randomUUID() on startup, which browsers only expose
       // in a "secure context" (https, or http://localhost / 127.0.0.1). Opened
       // over a plain-http LAN IP (e.g. from a phone) that API is missing and
       // Decap fails to load with "crypto.randomUUID is not a function".
       // getRandomValues() IS available on non-secure origins, so polyfill from
-      // it and the UI loads anywhere. (Local editing still needs a localhost
-      // origin or local_backend.allowed_hosts — see branded-docs/README.md.)
+      // it and the UI loads anywhere.
       if (typeof crypto !== "undefined" && !crypto.randomUUID) {
         crypto.randomUUID = () =>
           "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
@@ -35,5 +37,23 @@
       }
     </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      // Point Decap's local backend at whatever host served this page — LAN IP,
+      // mesh IP, or hostname — so it works over any access path without a
+      // hardcoded address. The decap-server proxy runs on 8083 on the same box
+      // (bound to 0.0.0.0 by `npm run docs:cms`). `allowed_hosts` lets the local
+      // backend engage from a non-localhost origin. Merged over config.yml.
+      (function () {
+        var host = location.hostname;
+        window.CMS.init({
+          config: {
+            local_backend: {
+              url: location.protocol + "//" + host + ":8083/api/v1",
+              allowed_hosts: [host],
+            },
+          },
+        });
+      })();
+    </script>
   </body>
 </html>

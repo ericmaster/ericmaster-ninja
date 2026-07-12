@@ -9,8 +9,8 @@
     "astro": "astro",
     "pdfs": "node scripts/gen-pdfs.js",
     "doc:pdf": "node scripts/gen-doc-pdf.js",
-    "docs:cms": "concurrently -k -n astro,decap -c blue,magenta \"npm run dev\" \"npm run docs:proxy\"",
-    "docs:proxy": "cd branded-docs && PORT=8083 npx decap-server",
+    "docs:cms": "concurrently -k -n astro,decap -c blue,magenta \"astro dev --host 0.0.0.0\" \"npm run docs:proxy\"",
+    "docs:proxy": "cd branded-docs && BIND_HOST=0.0.0.0 ORIGIN=* PORT=8083 npx decap-server",
     "docs:backup": "bash scripts/docs-backup.sh",
     "test": "node --test"
   },

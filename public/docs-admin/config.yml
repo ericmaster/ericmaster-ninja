@@ -1,27 +1,21 @@
-# Decap CMS config for the PRIVATE branded-docs repo — LOCAL authoring only.
+# Decap CMS config for the PRIVATE branded-docs repo — LAN-accessible authoring.
 #
 # How it works:
 #   `npm run docs:cms`  — one command runs `astro dev` AND the Decap proxy
-#                         together (concurrently -k; Ctrl-C stops both), then
-#                         open http://localhost:4321/docs-admin/index.html
-#                         (the dev server needs the explicit index.html).
-# The `local_backend.url` makes the CMS talk to the local proxy instead of
-# GitHub, so saves write branded-docs/docs/*.md straight to disk. Commit + push
-# the backup afterwards with `npm run docs:backup`.
+#                         together (concurrently -k; Ctrl-C stops both), both
+#                         bound to 0.0.0.0. Open from any device on the LAN at
+#                         http://<box-ip>:4321/docs-admin/index.html (the dev
+#                         server needs the explicit index.html).
 #
-# Port note: decap-server's default port (8081) is already taken on this host,
-# so the proxy and this url are pinned to 8083 (npm run docs:cms sets PORT=8083).
-# To change it, keep both sides in sync: PORT=<n> and the url below.
+# `local_backend` is set at RUNTIME in index.html, not here: it points the proxy
+# url + allowed_hosts at whatever host served the page (LAN IP / mesh IP /
+# hostname), so no address is hardcoded. The proxy (port 8083) writes saves to
+# branded-docs/docs/*.md straight to disk; back them up with `npm run docs:backup`.
 #
 # The `backend: github` block below is a DORMANT fallback: it only engages when
-# the surface is loaded from a non-localhost origin, and production requests to
-# /docs-admin/* are 404'd by public/_redirects — so it never actually runs. It
-# is kept valid in case the surface is ever intentionally exposed (which would
-# also need Cloudflare Access in front — the private-repo OAuth is the only gate
-# otherwise).
-local_backend:
-  url: http://localhost:8083/api/v1
-
+# the local backend can't (e.g. a host not in allowed_hosts), and production
+# requests to /docs-admin/* are 404'd by public/_redirects — so it never runs in
+# prod. Kept valid in case the surface is ever intentionally exposed.
 backend:
   name: github
   repo: ericmaster/branded-docs
