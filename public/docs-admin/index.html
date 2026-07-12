@@ -53,6 +53,51 @@
             },
           },
         });
+
+        // Export-to-PDF button, shown in each document's preview pane. It links
+        // to the docs-export server (port 8084, started by `npm run docs:cms`)
+        // on the same host that served this page. Export renders the SAVED file,
+        // so publish first. Uses the parent host (captured here) rather than the
+        // preview iframe's own location, which is blank.
+        var EXPORT_BASE = location.protocol + "//" + host + ":8084";
+        var DocPreview = createClass({
+          render: function () {
+            var entry = this.props.entry;
+            var data = entry.get("data");
+            var slug = entry.get("slug") || "";
+            var href = EXPORT_BASE + "/export?doc=" + encodeURIComponent(slug);
+            var open = function () {
+              (window.top || window).open(href, "_blank", "noopener");
+            };
+            return h(
+              "div",
+              { style: { padding: "1rem", fontFamily: "system-ui, sans-serif", color: "#1f2733" } },
+              slug
+                ? h(
+                    "button",
+                    {
+                      onClick: open,
+                      style: {
+                        display: "inline-block", padding: "0.7rem 1.2rem", border: "0",
+                        background: "#405282", color: "#fff", borderRadius: "8px",
+                        fontWeight: 600, fontSize: "1rem", cursor: "pointer",
+                      },
+                    },
+                    "⬇ Export PDF"
+                  )
+                : h("em", { style: { color: "#8a94a6" } }, "Publish this document to enable PDF export."),
+              h(
+                "p",
+                { style: { color: "#8a94a6", fontSize: "0.85rem", margin: "0.5rem 0 1rem" } },
+                "Exports the last published version."
+              ),
+              h("hr", { style: { border: "0", borderTop: "1px solid #e6e9ef" } }),
+              h("h1", { style: { color: "#405282" } }, data.get("title") || slug),
+              h("div", {}, this.props.widgetFor("body"))
+            );
+          },
+        });
+        window.CMS.registerPreviewTemplate("documents", DocPreview);
       })();
     </script>
   </body>
