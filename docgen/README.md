@@ -23,13 +23,51 @@ Nimblersoft. There is no residual Nimblersoft logo, name, or contact.
 > you personally authored or fully trust. Never render third-party or
 > user-submitted markdown through this pipeline.
 
+See `docs/adr/0002-docgen-branded-document-pipeline.md` for the architecture
+decisions behind this pipeline (template extraction, the local-WeasyPrint vs.
+Cloudflare Browser Rendering choice, the private-repo authoring approach, and
+the deferred R2 gated-delivery phase).
+
+## Flow: author → generate → hand off
+
+1. **Author** — write the document as markdown + YAML frontmatter (see
+   [Frontmatter schema](#frontmatter-schema) below) in the private
+   `branded-docs` repo (see [Why a private repo for
+   authoring](#why-a-private-repo-for-authoring)), either by hand or through
+   the local Decap CMS surface: `npm run docs:cms` starts `astro dev` and the
+   Decap local-backend proxy together, then open
+   `http://localhost:4321/docs-admin/index.html`. Saves are written straight to
+   `branded-docs/docs/*.md` on disk — no cloud, no OAuth, no secret. Back the
+   working copy up to its private GitHub remote with `npm run docs:backup`.
+2. **Generate** — render the markdown into a branded PDF:
+   `npm run doc:pdf -- branded-docs/docs/<file>.md`. This pipes the document
+   through `docgen/render.mjs` (markdown + frontmatter → self-contained
+   letterhead HTML) and then WeasyPrint (HTML → A4 PDF) — see [PDF
+   (automated, local WeasyPrint)](#pdf-automated-local-weasyprint) below.
+3. **Hand off** — the PDF lands in `docgen/out/` (git-ignored — see [Files](#files)
+   for why). Send it to its recipient out-of-band (email, etc.); per the MVP
+   security model above, nothing is served online.
+
+### Why a private repo for authoring
+
+Document sources routinely name real counter-parties and deal terms, so they
+can never be tracked in this public repo. `branded-docs/` is a **separate
+private git repo** (`ericmaster/branded-docs`) — merely nested inside this
+checkout for local authoring/rendering convenience, and excluded here via
+`.gitignore`. It has its own commit history and its own private GitHub
+remote; `ericmaster-ninja` never sees its contents, and the Decap CMS surface
+that edits it (`public/docs-admin/`) is 404'd on the deployed site by
+`public/_redirects`.
+
 ## Files
 
 | Path                          | Purpose                                                        |
 | ----------------------------- | ------------------------------------------------------------- |
 | `templates/letterhead.html`   | The parameterized template (placeholder tokens + body slot).  |
 | `render.mjs`                  | Renders a frontmatter markdown doc into the template.         |
-| `samples/sample-nda.md`       | A sample document exercising every token.                     |
+| `samples/sample-nda.md`       | Sample NDA — exercises every frontmatter token.                |
+| `samples/sample-proposal.md`  | Sample services proposal — parties, tables, plain lists.       |
+| `samples/sample-letter.md`    | Sample letter — the minimal path (no parties, no disclaimer).  |
 | `dist/`                       | Rendered HTML output (git-ignored working area).              |
 | `../scripts/gen-doc-pdf.js`   | Render → branded PDF via a local WeasyPrint container.        |
 | `out/`                        | Generated PDFs (git-ignored hand-off area).                   |
