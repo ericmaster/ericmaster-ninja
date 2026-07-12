@@ -36,7 +36,7 @@ the deferred R2 gated-delivery phase).
    authoring](#why-a-private-repo-for-authoring)), either by hand or through
    the local Decap CMS surface: `npm run docs:cms` starts `astro dev` and the
    Decap local-backend proxy together, then open
-   `http://localhost:4321/docs-admin/index.html`. Saves write straight to
+   `http://localhost:4321/docs-admin/index.html`. Saves are written straight to
    `branded-docs/docs/*.md` on disk — no cloud, no OAuth, no secret. Back the
    working copy up to its private GitHub remote with `npm run docs:backup`.
 2. **Generate** — render the markdown into a branded PDF:

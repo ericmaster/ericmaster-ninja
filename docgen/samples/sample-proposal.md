@@ -41,7 +41,7 @@ timeline, and fees for the engagement described below.
 | Item                       | Rate          |
 | --------------------------- | ------------- |
 | Advisory & implementation   | USD 95 / hour |
-| Estimated total (6 weeks)   | USD 15,200    |
+| Estimated total (6 weeks)   | USD 22,800    |
 
 > Fees are billed bi-weekly against actuals; the estimated total assumes a
 > 40-hour week and is not a fixed-price commitment unless stated otherwise in
