@@ -30,7 +30,3 @@ Treat as a maintenance pass, not a deploy blocker.
 - [ ] Sanitize the `resume.json` `set:html` output (`ResumeSummary.astro`, `ResumeExperience.astro`)
       before introducing any user-supplied markdown anywhere — repo-controlled today, so LOW risk.
 
-## Infra notes
-
-- [ ] Deploy creds come from Infisical project *Nimblersoft Web* `dev` env. If prod creds are
-      later split out, update the deploy flow + [AGENTS.md](./AGENTS.md).

@@ -2,6 +2,7 @@
 interface Env {
   GH_CLIENT_ID: string;
   GH_CLIENT_SECRET: string;
+  ASSETS: Fetcher;
 }
 
 const CANONICAL_ORIGIN = "https://ericmaster.ninja";
@@ -103,7 +104,9 @@ export default {
       case "/api/auth":
         return handleAuth(url, env);
       default:
-        return new Response("Not Found", { status: 404 });
+        // Static Astro assets, including the text bootstrap, are served by the
+        // configured ASSETS binding; API routes stay above this fallback.
+        return env.ASSETS.fetch(request);
     }
   },
 } satisfies ExportedHandler;

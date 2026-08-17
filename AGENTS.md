@@ -200,12 +200,8 @@ npm run build                        # Build static site to ./dist
 npx wrangler deploy                  # Deploy to Cloudflare Workers
 ```
 
-**Deploy credentials.** `wrangler deploy` needs Cloudflare auth. Interactively, run
-`npx wrangler login` once. For non-interactive/automated deploys, export
-`CLOUDFLARE_API_TOKEN` (and `CLOUDFLARE_ACCOUNT_ID`) — these are stored in **Infisical**,
-project **Nimblersoft Web** (`80d4a8a5-0f3d-4a65-9638-b9b22778f857`), env `dev`. Pull them
-at deploy time via the Infisical Universal Auth API; never hardcode or commit them.
-
+**Secrets.** Before commands that need project credentials, run `source load-secrets`.
+If loading fails, load the Infisical skill for troubleshooting.
 **Security headers / CSP.** Edge response headers for the static site live in
 `public/_headers` (copied to `./dist` on build). The policy is strict (`script-src 'self'`,
 no `'unsafe-eval'`) — Alpine.js is the self-hosted `@alpinejs/csp` build, so all
