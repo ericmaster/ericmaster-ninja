@@ -202,6 +202,7 @@ npx wrangler deploy                  # Deploy to Cloudflare Workers
 
 **Secrets.** Before commands that need project credentials, run `source load-secrets`.
 If loading fails, load the Infisical skill for troubleshooting.
+
 **Security headers / CSP.** Edge response headers for the static site live in
 `public/_headers` (copied to `./dist` on build). The policy is strict (`script-src 'self'`,
 no `'unsafe-eval'`) — Alpine.js is the self-hosted `@alpinejs/csp` build, so all
