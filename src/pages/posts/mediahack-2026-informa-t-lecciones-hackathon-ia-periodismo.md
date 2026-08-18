@@ -34,22 +34,13 @@ Uno de los mayores aciertos de esta edición fue la composición de nuestro equi
 - **Juan Pablo Vargas** y **Celina Silva**: Ingenieros industriales con amplia experiencia en optimización de procesos, gestión operativa y análisis de sistemas en diversas industrias.
 - **Alex Berrones**: Periodista profesional, cuyo conocimiento directo del terreno, las rutinas de redacción y las urgencias de los medios comunitarios fue el ancla de realidad de todo el proyecto.
 
-```
-       ┌─────────────────────────────────────────────────────────┐
-       │             Perspectivas del Equipo informa-t           │
-       └─────────────────────────────────────────────────────────┘
-                                   │
-      ┌────────────────────────────┼────────────────────────────┐
-      ▼                            ▼                            ▼
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   Alex Berrones  │     │ Juan Pablo Vargas│     │   Eric Aguayo    │
-│  (Periodismo de  │     │  & Celina Silva  │     │(Arquitectura IA  │
-│      Campo)      │     │(Ing. Industrial) │     │   y Software)    │
-├──────────────────┤     ├──────────────────┤     ├──────────────────┤
-│• Tiempos de sala │     │• Flujos de valor │     │• Trazabilidad D1 │
-│• Fuentes primarias│    │• Detección cuellos│    │• Model Fallbacks │
-│• Criterio humano │     │• Estandarización │     │• ClaimReview LD  │
-└──────────────────┘     └──────────────────┘     └──────────────────┘
+```mermaid
+flowchart TD
+    subgraph Team["Perspectivas del Equipo informa-t"]
+        AB["<b>Alex Berrones</b><br/><i>Periodismo de Campo & Verificación</i><br/>• Tiempos de sala de redacción<br/>• Cotejo de fuentes primarias<br/>• Criterio editorial humano"]
+        JPCS["<b>Juan Pablo Vargas & Celina Silva</b><br/><i>Ingeniería Industrial & Procesos</i><br/>• Mapeo de flujos de valor<br/>• Detección de cuellos de botella<br/>• Estandarización de calidad"]
+        EA["<b>Eric Aguayo</b><br/><i>Arquitectura de IA & Software</i><br/>• Auditoría inmutable D1<br/>• Fallbacks de modelos OpenRouter<br/>• Estándar ClaimReview JSON-LD"]
+    end
 ```
 
 Al sentarnos a debatir el abanico de posibilidades que la Inteligencia Artificial ofrece contra la desinformación electoral, surgieron múltiples vertientes: desde modelos de visión por computador para detectar *deepfakes* y clonación de voz, hasta grafos de conocimiento para mapear narrativas coordinadas en redes sociales. 
@@ -68,25 +59,30 @@ En hackatones anteriores he comprobado en carne propia dos errores clásicos:
 
 Con esa experiencia previa, decidimos que la coordinación y el consenso debían primar. Dedicamos prácticamente **todo el viernes** a definir el dominio, redactar especificaciones funcionales formales, acordar contratos de interfaz y estructurar un plan detallado para luego delegar la implementación a mi *harness* de agentes de IA.
 
-```
-                  El Dilema de la Planificación en 36h
-                  
-   Hackatones Anteriores                      MediaHack 2026
-┌───────────────────────────┐           ┌───────────────────────────┐
-│     "Vibe Coding" Puro    │           │    "Sobre-Planificación"  │
-│  • Cero especificaciones  │  ───────> │  • Todo el Viernes en     │
-│  • Código desde minuto 0  │           │    docs, specs y glosarios│
-│  • Caos de integración    │           │  • Cero código en Día 1   │
-└───────────────────────────┘           └───────────────────────────┘
-                                                      │
-                                                      ▼
-                                        ┌───────────────────────────┐
-                                        │      Punto Óptimo         │
-                                        │  • Prototipo visual UI    │
-                                        │    con fixtures desde D1  │
-                                        │  • Slices verticales      │
-                                        │    iterativos funcionales │
-                                        └───────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Past["Hackatones Anteriores"]
+        A["<b>'Vibe Coding' Puro</b><br/>• Cero especificaciones<br/>• Código desde minuto 0<br/>• Caos al integrar"]
+    end
+
+    subgraph MH["MediaHack 2026"]
+        B["<b>'Sobre-Planificación'</b><br/>• Viernes en specs y glosario<br/>• Cero código en Día 1<br/>• Carrera contrarreloj"]
+    end
+
+    subgraph Optimal["Punto Óptimo Aprendido"]
+        C["<b>Prototipo Visual Ágil</b><br/>• UI con fixtures desde Día 1<br/>• Alineación visual del equipo<br/>• Slices verticales funcionales"]
+    end
+
+    A -.->|Péndulo extremo| B
+    B ==>|Lección aprendida| C
+
+    classDef pastStyle fill:#ef444420,stroke:#ef4444,stroke-width:1px
+    classDef mhStyle fill:#f59e0b20,stroke:#f59e0b,stroke-width:1px
+    classDef optStyle fill:#10b98120,stroke:#10b981,stroke-width:2px
+
+    class A pastStyle
+    class B mhStyle
+    class C optStyle
 ```
 
 ### El otro extremo del péndulo

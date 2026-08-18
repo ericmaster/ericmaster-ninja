@@ -42,6 +42,10 @@ export default defineConfig({
   },
 
   markdown: {
+    syntaxHighlight: {
+      type: 'shiki',
+      excludeLangs: ['mermaid'],
+    },
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex, rehypeExternalLinks],
   },

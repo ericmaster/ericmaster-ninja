@@ -34,22 +34,13 @@ One of our greatest advantages was the diverse composition of our squad:
 - **Juan Pablo Vargas** and **Celina Silva**: Industrial Engineers with deep experience in process optimization, operational workflows, and systems analysis across various industries.
 - **Alex Berrones**: Professional investigative journalist, whose firsthand experience in field reporting, community newsrooms, and fact-checking deadlines grounded every architectural decision we made.
 
-```
-       ┌─────────────────────────────────────────────────────────┐
-       │             informa-t Team Perspectives                 │
-       └─────────────────────────────────────────────────────────┘
-                                   │
-      ┌────────────────────────────┼────────────────────────────┐
-      ▼                            ▼                            ▼
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│   Alex Berrones  │     │ Juan Pablo Vargas│     │   Eric Aguayo    │
-│ (Field Journalism│     │  & Celina Silva  │     │ (AI Architecture │
-│   & Fact-check)  │     │(Industrial Eng.) │     │   & Software)    │
-├──────────────────┤     ├──────────────────┤     ├──────────────────┤
-│• Newsroom cadence│     │• Value streams   │     │• D1 Audit Trail  │
-│• Primary sources │     │• Bottleneck check│     │• Model Fallbacks │
-│• Human autonomy  │     │• Standardization │     │• ClaimReview LD  │
-└──────────────────┘     └──────────────────┘     └──────────────────┘
+```mermaid
+flowchart TD
+    subgraph Team["informa-t Team Perspectives"]
+        AB["<b>Alex Berrones</b><br/><i>Field Journalism & Fact-Checking</i><br/>• Newsroom turnaround pressure<br/>• Primary source validation<br/>• Human editorial sovereignty"]
+        JPCS["<b>Juan Pablo Vargas & Celina Silva</b><br/><i>Industrial Engineering & Systems</i><br/>• Value stream mapping<br/>• Bottleneck identification<br/>• Process standardization"]
+        EA["<b>Eric Aguayo</b><br/><i>AI Architecture & Software</i><br/>• D1 immutable audit trail<br/>• OpenRouter model fallbacks<br/>• Schema.org ClaimReview JSON-LD"]
+    end
 ```
 
 When exploring what AI could do to combat electoral disinformation, ideas ranged widely: computer vision models for deepfake and voice cloning detection, knowledge graphs for narrative cluster mapping, and automated scrapers.
@@ -68,25 +59,30 @@ From previous hackathons, I had internalized two classic pitfalls:
 
 Determined to avoid these mistakes, we agreed that alignment had to come first. We dedicated almost **all of Friday** to defining the domain language, drafting formal specifications, agreeing on interface contracts, and building a structured execution plan to delegate to my AI agent harness.
 
-```
-                  The 36-Hour Planning Dilemma
-                  
-     Past Hackathons                           MediaHack 2026
-┌───────────────────────────┐           ┌───────────────────────────┐
-│     Pure "Vibe Coding"    │           │     "Over-Planning"       │
-│  • Zero formal specs      │  ───────> │  • All Friday spent on    │
-│  • Code from minute 0     │           │    domain glossaries/specs│
-│  • Integration collapse   │           │  • Zero code on Day 1     │
-└───────────────────────────┘           └───────────────────────────┘
-                                                      │
-                                                      ▼
-                                        ┌───────────────────────────┐
-                                        │       The Sweet Spot      │
-                                        │  • Early UI prototype     │
-                                        │    with synthetic fixtures│
-                                        │  • Progressive functional │
-                                        │    vertical slices        │
-                                        └───────────────────────────┘
+```mermaid
+flowchart LR
+    subgraph Past["Past Hackathons"]
+        A["<b>Pure 'Vibe Coding'</b><br/>• Zero formal specs<br/>• Code from minute 0<br/>• Integration breakdown"]
+    end
+
+    subgraph MH["MediaHack 2026"]
+        B["<b>'Over-Planning'</b><br/>• All Friday in specs & glossary<br/>• Zero code on Day 1<br/>• Rushing under pressure"]
+    end
+
+    subgraph Optimal["The Sweet Spot"]
+        C["<b>Agile Visual Prototyping</b><br/>• UI with fixtures from Day 1<br/>• Shared visual alignment<br/>• Progressive vertical slices"]
+    end
+
+    A -.->|Opposite extreme| B
+    B ==>|Battle-tested lesson| C
+
+    classDef pastStyle fill:#ef444420,stroke:#ef4444,stroke-width:1px
+    classDef mhStyle fill:#f59e0b20,stroke:#f59e0b,stroke-width:1px
+    classDef optStyle fill:#10b98120,stroke:#10b981,stroke-width:2px
+
+    class A pastStyle
+    class B mhStyle
+    class C optStyle
 ```
 
 ### The Other Extreme of the Pendulum
