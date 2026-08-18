@@ -54,26 +54,36 @@ const dateLocale = lang === "es" ? "es-ES" : "en-US";
         theme: isDark ? "dark" : "default",
         fontFamily: "Poppins, sans-serif",
         securityLevel: "loose",
+        flowchart: {
+          htmlLabels: true,
+          curve: "basis",
+          useMaxWidth: true,
+          padding: 20,
+          nodeSpacing: 40,
+          rankSpacing: 40,
+        },
         themeVariables: isDark
           ? {
               darkMode: true,
               background: "#0f172a",
-              primaryColor: "#3b82f6",
+              primaryColor: "#1e293b",
               primaryTextColor: "#f8fafc",
-              primaryBorderColor: "#60a5fa",
-              lineColor: "#94a3b8",
+              primaryBorderColor: "#3b82f6",
+              lineColor: "#60a5fa",
               secondaryColor: "#1e293b",
               tertiaryColor: "#0f172a",
+              fontSize: "14px",
             }
           : {
               darkMode: false,
               background: "#ffffff",
-              primaryColor: "#4f46e5",
+              primaryColor: "#f8fafc",
               primaryTextColor: "#0f172a",
-              primaryBorderColor: "#6366f1",
-              lineColor: "#64748b",
+              primaryBorderColor: "#4f46e5",
+              lineColor: "#6366f1",
               secondaryColor: "#f1f5f9",
               tertiaryColor: "#ffffff",
+              fontSize: "14px",
             },
       });
 
@@ -87,7 +97,7 @@ const dateLocale = lang === "es" ? "es-ES" : "en-US";
 
         const pre = el.closest("pre") || el;
         const container = document.createElement("div");
-        container.className = "mermaid-container my-8 flex justify-center overflow-x-auto p-4 rounded-xl bg-slate-50/70 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 shadow-sm";
+        container.className = "mermaid-container my-8 flex justify-center overflow-x-auto p-6 rounded-xl bg-slate-50/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 shadow-sm";
         const id = `mermaid-svg-${i}-${Date.now()}`;
 
         try {

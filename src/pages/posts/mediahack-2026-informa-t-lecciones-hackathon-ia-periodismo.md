@@ -37,9 +37,21 @@ Uno de los mayores aciertos de esta edición fue la composición de nuestro equi
 ```mermaid
 flowchart TD
     subgraph Team["Perspectivas del Equipo informa-t"]
-        AB["<b>Alex Berrones</b><br/><i>Periodismo de Campo & Verificación</i><br/>• Tiempos de sala de redacción<br/>• Cotejo de fuentes primarias<br/>• Criterio editorial humano"]
-        JPCS["<b>Juan Pablo Vargas & Celina Silva</b><br/><i>Ingeniería Industrial & Procesos</i><br/>• Mapeo de flujos de valor<br/>• Detección de cuellos de botella<br/>• Estandarización de calidad"]
-        EA["<b>Eric Aguayo</b><br/><i>Arquitectura de IA & Software</i><br/>• Auditoría inmutable D1<br/>• Fallbacks de modelos OpenRouter<br/>• Estándar ClaimReview JSON-LD"]
+        AB["`**Alex Berrones**
+        *Periodismo de Campo & Verificación*
+        • Tiempos de sala de redacción
+        • Cotejo de fuentes primarias
+        • Criterio editorial humano`"]
+        JPCS["`**Juan Pablo Vargas & Celina Silva**
+        *Ingeniería Industrial & Procesos*
+        • Mapeo de flujos de valor
+        • Detección de cuellos de botella
+        • Estandarización de calidad`"]
+        EA["`**Eric Aguayo**
+        *Arquitectura de IA & Software*
+        • Auditoría inmutable D1
+        • Fallbacks de modelos OpenRouter
+        • Estándar ClaimReview JSON-LD`"]
     end
 ```
 
@@ -62,15 +74,24 @@ Con esa experiencia previa, decidimos que la coordinación y el consenso debían
 ```mermaid
 flowchart LR
     subgraph Past["Hackatones Anteriores"]
-        A["<b>'Vibe Coding' Puro</b><br/>• Cero especificaciones<br/>• Código desde minuto 0<br/>• Caos al integrar"]
+        A["`**'Vibe Coding' Puro**
+        • Cero especificaciones
+        • Código desde minuto 0
+        • Caos al integrar`"]
     end
 
     subgraph MH["MediaHack 2026"]
-        B["<b>'Sobre-Planificación'</b><br/>• Viernes en specs y glosario<br/>• Cero código en Día 1<br/>• Carrera contrarreloj"]
+        B["`**'Sobre-Planificación'**
+        • Viernes en specs y glosario
+        • Cero código en Día 1
+        • Carrera contrarreloj`"]
     end
 
     subgraph Optimal["Punto Óptimo Aprendido"]
-        C["<b>Prototipo Visual Ágil</b><br/>• UI con fixtures desde Día 1<br/>• Alineación visual del equipo<br/>• Slices verticales funcionales"]
+        C["`**Prototipo Visual Ágil**
+        • UI con fixtures desde Día 1
+        • Alineación visual del equipo
+        • Slices verticales funcionales`"]
     end
 
     A -.->|Péndulo extremo| B

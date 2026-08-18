@@ -37,9 +37,21 @@ One of our greatest advantages was the diverse composition of our squad:
 ```mermaid
 flowchart TD
     subgraph Team["informa-t Team Perspectives"]
-        AB["<b>Alex Berrones</b><br/><i>Field Journalism & Fact-Checking</i><br/>• Newsroom turnaround pressure<br/>• Primary source validation<br/>• Human editorial sovereignty"]
-        JPCS["<b>Juan Pablo Vargas & Celina Silva</b><br/><i>Industrial Engineering & Systems</i><br/>• Value stream mapping<br/>• Bottleneck identification<br/>• Process standardization"]
-        EA["<b>Eric Aguayo</b><br/><i>AI Architecture & Software</i><br/>• D1 immutable audit trail<br/>• OpenRouter model fallbacks<br/>• Schema.org ClaimReview JSON-LD"]
+        AB["`**Alex Berrones**
+        *Field Journalism & Fact-Checking*
+        • Newsroom turnaround pressure
+        • Primary source validation
+        • Human editorial sovereignty`"]
+        JPCS["`**Juan Pablo Vargas & Celina Silva**
+        *Industrial Engineering & Systems*
+        • Value stream mapping
+        • Bottleneck identification
+        • Process standardization`"]
+        EA["`**Eric Aguayo**
+        *AI Architecture & Software*
+        • D1 immutable audit trail
+        • OpenRouter model fallbacks
+        • Schema.org ClaimReview JSON-LD`"]
     end
 ```
 
@@ -62,15 +74,24 @@ Determined to avoid these mistakes, we agreed that alignment had to come first. 
 ```mermaid
 flowchart LR
     subgraph Past["Past Hackathons"]
-        A["<b>Pure 'Vibe Coding'</b><br/>• Zero formal specs<br/>• Code from minute 0<br/>• Integration breakdown"]
+        A["`**Pure 'Vibe Coding'**
+        • Zero formal specs
+        • Code from minute 0
+        • Integration breakdown`"]
     end
 
     subgraph MH["MediaHack 2026"]
-        B["<b>'Over-Planning'</b><br/>• All Friday in specs & glossary<br/>• Zero code on Day 1<br/>• Rushing under pressure"]
+        B["`**'Over-Planning'**
+        • All Friday in specs & glossary
+        • Zero code on Day 1
+        • Rushing under pressure`"]
     end
 
     subgraph Optimal["The Sweet Spot"]
-        C["<b>Agile Visual Prototyping</b><br/>• UI with fixtures from Day 1<br/>• Shared visual alignment<br/>• Progressive vertical slices"]
+        C["`**Agile Visual Prototyping**
+        • UI with fixtures from Day 1
+        • Shared visual alignment
+        • Progressive vertical slices`"]
     end
 
     A -.->|Opposite extreme| B
