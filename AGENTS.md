@@ -6,10 +6,10 @@
 
 ## Project Overview
 
-**ericmaster-ninja** is Eric Aguayo's personal/professional website and tech blog. It is a statically generated site built with **Astro 5.x** and deployed to **Cloudflare Workers** via **Wrangler**. The site features a blog, resume, AI solutions showcase, an AI chatbot widget, and various static content pages.
+**ericmaster-ninja** is Eric Aguayo's personal/professional website and tech blog. It is a statically generated site built with **Astro 7.x** and deployed to **Cloudflare Workers** via **Wrangler**. The site features a blog, resume, AI solutions showcase, an AI chatbot widget, and various static content pages.
 
 - **Live URL:** `https://ericmaster.ninja` (Cloudflare Workers) / `https://ericmaster.github.io` (GitHub Pages mirror)
-- **Framework:** Astro 5.x (static site generation, SSR-capable via Cloudflare adapter)
+- **Framework:** Astro 7.x (static site generation, SSR-capable via Cloudflare adapter)
 - **Styling:** Tailwind CSS v4 + Sass (legacy `global.scss` exists but `global.css` with Tailwind is canonical)
 - **Interactivity:** Alpine.js v3 — self-hosted `@alpinejs/csp` build, started globally in `BaseLayout.astro` (no CDN; see ADR-0001)
 - **Deployment:** Cloudflare Workers (`wrangler deploy`)
@@ -21,7 +21,7 @@
 
 | Layer             | Technology                                | Notes                                                       |
 | ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
-| Framework         | Astro 5.x                                | Follow official Astro docs and patterns only                 |
+| Framework         | Astro 7.x                                | Follow official Astro docs and patterns only                 |
 | Styling           | Tailwind CSS v4 (`@tailwindcss/vite`)     | All styling via Tailwind utility classes                     |
 | Typography        | Poppins (`@fontsource/poppins`)           | Custom `@font-face` declarations in `global.css`             |
 | Icons             | `astro-icon`, `unplugin-icons`, Iconify   | Heroicons, MDI, Simple Icons sets available                  |
@@ -35,7 +35,7 @@
 - **No React, Vue, or Svelte** — all client-side interactivity must use Alpine.js
 - **Do not add an Alpine.js CDN script** — Alpine is the self-hosted `@alpinejs/csp` build, started globally in `BaseLayout.astro`. Author interactivity as registered `Alpine.data()` components, not inline `x-data`/`x-on` expressions (the CSP build forbids them).
 - **All styling must use Tailwind CSS** — no inline styles or custom CSS outside of `global.css`
-- **Astro 5.x patterns only** — verify against official Astro documentation before applying
+- **Astro 7.x patterns only** — verify against official Astro documentation before applying
 
 ---
 

@@ -42,3 +42,7 @@ docgen/dist/
 # nested here for local authoring/rendering. Never tracked by or served from the
 # public site; backed up to its own private remote via `npm run docs:backup`.
 branded-docs/
+
+# Private Teleprompter tool — launchable local sub-project for private rehearsal/recording
+teleprompter/
+

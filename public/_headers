@@ -7,7 +7,7 @@
 # scripts/check-csp-hashes.mjs after every build. Do NOT trim before hashing.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://platform.linkedin.com https://static.cloudflareinsights.com 'sha256-Pqppwr2CfRmjC5H8h4BNEJ7qTwPb/+0XTOQd59+RSWs=' 'sha256-rb1E3mybuzV90LQYB65UPGlF4lHBxWIcMVdjvxdql7w=' 'sha256-2jLmnGpK7GE6XJXdzGJdfvzaIPRhm8POtBo2vK4huEM='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://platform.linkedin.com https://cloudflareinsights.com; frame-src https://platform.linkedin.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://platform.linkedin.com https://static.cloudflareinsights.com 'sha256-f7CtDJFBszqGT/BjhhTFBoCLMhT+CF8wOSh/9CO0TE8=' 'sha256-Pqppwr2CfRmjC5H8h4BNEJ7qTwPb/+0XTOQd59+RSWs=' 'sha256-rb1E3mybuzV90LQYB65UPGlF4lHBxWIcMVdjvxdql7w=' 'sha256-2jLmnGpK7GE6XJXdzGJdfvzaIPRhm8POtBo2vK4huEM='; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https:; font-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://platform.linkedin.com https://cloudflareinsights.com; frame-src https://platform.linkedin.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

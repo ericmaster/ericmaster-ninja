@@ -20,7 +20,7 @@ Treat as a maintenance pass, not a deploy blocker.
       (wrangler is currently 4.74.0; brings undici/miniflare fixes)
 - [ ] `npm update remark-math` (verify a patched release exists first)
 - [ ] Confirm clean: `npm audit --audit-level=high`
-- [ ] Stay on Astro 5.x (Option A) unless a feature requires v6 — no CVE forces the migration.
+- [x] Migrated to Astro 7.x (with @astrojs/markdown-remark unified processor bridge and astro/zod schema validation)
 
 ## Phase 4 — Optional / belt-and-suspenders
 
