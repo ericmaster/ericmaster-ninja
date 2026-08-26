@@ -1,6 +1,139 @@
 {
   "skills": [
     {
+      "name": "Drupal / CMS",
+      "description": "Architect · 15+ years",
+      "level": 5,
+      "keywords": [
+        "Enterprise Architecture",
+        "Solution Design",
+        "Implementation",
+        "Integrations",
+        "Custom Module Development",
+        "Drupal 7/8/9/10 Migration",
+        "Decoupled / Headless",
+        "Multilingual Multisite",
+        "WordPress",
+        "Decap CMS",
+        "Acquia / Pantheon"
+      ]
+    },
+    {
+      "name": "PHP",
+      "description": "13+ years",
+      "level": 5,
+      "keywords": [
+        "Drupal",
+        "Laravel",
+        "Symfony"
+      ]
+    },
+    {
+      "name": "JavaScript / TypeScript",
+      "description": "5+ years",
+      "level": 5,
+      "keywords": [
+        "Node",
+        "React",
+        "Next.js",
+        "Vue",
+        "Svelte",
+        "Express"
+      ]
+    },
+    {
+      "name": "DevOps & Infrastructure",
+      "description": "12+ years",
+      "level": 5,
+      "keywords": [
+        "Platform Delivery",
+        "Terraform (IaC)",
+        "Ansible",
+        "Kubernetes (EKS & Self-hosted)",
+        "GitHub Actions",
+        "GitLab Pipelines",
+        "Bitbucket Pipelines",
+        "GitOps (ArgoCD / Flux)",
+        "Docker",
+        "AWS (EC2, VPC, S3, RDS, DynamoDB)"
+      ]
+    },
+    {
+      "name": "Cloudflare / Serverless",
+      "description": "Edge Computing & Zero Trust",
+      "level": 5,
+      "keywords": [
+        "Cloudflare Workers",
+        "Workers KV / D1 / R2",
+        "Vectorize / AI Gateway / AI Search",
+        "Cloudflare One (WARP)",
+        "Cloudflare Tunnels",
+        "Zero Trust",
+        "AWS Lambda",
+        "Serverless Framework",
+        "Wrangler"
+      ]
+    },
+    {
+      "name": "Database & Caching",
+      "description": "10+ years",
+      "level": 4,
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "DynamoDB"
+      ]
+    },
+    {
+      "name": "Python",
+      "description": "4+ years",
+      "level": 4,
+      "keywords": [
+        "ML / AI",
+        "Django",
+        "FastAPI",
+        "Automation",
+        "TensorFlow",
+        "PyTorch"
+      ]
+    },
+    {
+      "name": "MERN Stack",
+      "description": "Full Stack",
+      "level": 4,
+      "keywords": [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js",
+        "Next.js"
+      ]
+    },
+    {
+      "name": "Linux / Bash",
+      "description": "10+ years",
+      "level": 4,
+      "keywords": [
+        "Automation",
+        "DevOps",
+        "Scripting"
+      ]
+    },
+    {
+      "name": "Version Control & Agile",
+      "description": "15+ years",
+      "level": 5,
+      "keywords": [
+        "Git",
+        "GitFlow",
+        "Scrum",
+        "Kanban",
+        "JIRA"
+      ]
+    },
+    {
       "name": "AI / Agentic Systems",
       "description": "AI Engineering & MLOps",
       "level": 5,
@@ -48,62 +181,6 @@
       ]
     },
     {
-      "name": "Python",
-      "description": "4+ years",
-      "level": 4,
-      "keywords": [
-        "ML / AI",
-        "Django",
-        "FastAPI",
-        "Automation",
-        "TensorFlow",
-        "PyTorch"
-      ]
-    },
-    {
-      "name": "Drupal / CMS",
-      "description": "Architect · 15+ years",
-      "level": 5,
-      "keywords": [
-        "Enterprise Architecture",
-        "Custom Module Development",
-        "Drupal 7/8/9/10 Migration",
-        "Decoupled / Headless",
-        "Multilingual Multisite",
-        "WordPress",
-        "Decap CMS",
-        "Acquia / Pantheon"
-      ]
-    },
-    {
-      "name": "Cloudflare / Serverless",
-      "description": "Edge Computing & Zero Trust",
-      "level": 5,
-      "keywords": [
-        "Cloudflare Workers",
-        "Workers KV / D1 / R2",
-        "Vectorize / AI Gateway / AI Search",
-        "Cloudflare One (WARP)",
-        "Cloudflare Tunnels",
-        "Zero Trust",
-        "AWS Lambda",
-        "Serverless Framework",
-        "Wrangler"
-      ]
-    },
-    {
-      "name": "MERN Stack",
-      "description": "Full Stack",
-      "level": 4,
-      "keywords": [
-        "MongoDB",
-        "Express",
-        "React",
-        "Node.js",
-        "Next.js"
-      ]
-    },
-    {
       "name": "Flutter / Dart",
       "description": "Mobile & Cross-Platform",
       "level": 3,
@@ -113,90 +190,17 @@
         "Mobile",
         "Cross-Platform"
       ]
-    },
-    {
-      "name": "JavaScript / TypeScript",
-      "description": "5+ years",
-      "level": 5,
-      "keywords": [
-        "Node",
-        "React",
-        "Next.js",
-        "Vue",
-        "Svelte",
-        "Express"
-      ]
-    },
-    {
-      "name": "PHP",
-      "description": "13+ years",
-      "level": 5,
-      "keywords": [
-        "Drupal",
-        "Laravel",
-        "Symfony"
-      ]
-    },
-    {
-      "name": "DevOps & Infrastructure",
-      "description": "12+ years",
-      "level": 5,
-      "keywords": [
-        "Terraform (IaC)",
-        "Ansible",
-        "Kubernetes (EKS & Self-hosted)",
-        "GitHub Actions",
-        "GitLab Pipelines",
-        "Bitbucket Pipelines",
-        "GitOps (ArgoCD / Flux)",
-        "Docker",
-        "AWS (EC2, VPC, S3, RDS, DynamoDB)"
-      ]
-    },
-    {
-      "name": "Database & Caching",
-      "description": "10+ years",
-      "level": 4,
-      "keywords": [
-        "MySQL",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-        "DynamoDB"
-      ]
-    },
-    {
-      "name": "Linux / Bash",
-      "description": "10+ years",
-      "level": 4,
-      "keywords": [
-        "Automation",
-        "DevOps",
-        "Scripting"
-      ]
-    },
-    {
-      "name": "Version Control & Agile",
-      "description": "15+ years",
-      "level": 5,
-      "keywords": [
-        "Git",
-        "GitFlow",
-        "Scrum",
-        "Kanban",
-        "JIRA"
-      ]
     }
   ],
   "basics": {
     "name": "Eric Aguayo",
     "image": "/assets/images/eric-profile.jpg",
-    "headline": "Software Development Engineer | Transitioning to Agentic Ops Engineer",
+    "headline": "Senior Solutions & Implementation Engineer",
     "email": "me@ericmaster.ninja",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Software Development Engineer with 15+ years of software engineering excellence, now transitioning into Agentic Ops Engineering at the intersection of AI, Data Pipelines, and Cloud Infrastructure. Expert in orchestrating Agents in the SDLC, building custom harnesses with various APIs (including Antigravity SDK), designing Domain Specific Languages (DSLs), and engineering production-grade RAG pipelines. Extensive experience with GitHub Actions, GitLab Pipelines, and AI-native DevOps strategies using Terraform and EKS. Proficient in Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) and absolute privacy via Zero Trust, Cloudflare One (WARP), and Tunnels. Deeply experienced with AWS ecosystems (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) and AI-assisted development (MCP, Cursor) to accelerate data platforms and model deployments."
+    "summary": "Senior Solutions & Implementation Engineer with 15+ years of full-stack and platform delivery, integrations, and cloud infrastructure for media, education, government, and enterprise clients. I combine technical depth in CMS platforms, serverless architectures, and cloud/AI automation with client discovery, cross-functional leadership, and business outcomes. Recent work includes production RAG pipelines, agentic SDLC tooling, and Zero Trust edge platforms; AI is a differentiator I apply when it improves delivery, not a prerequisite for the roles I seek."
   },
   "leadership": [
     {
@@ -287,7 +291,7 @@
       "position": "DataOps & MLOps Engineer | Lead AI Architect",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Architecting DataOps/MLOps pipelines, serverless architectures, and autonomous agentic systems in the SDLC.</p><ul><li>Integrated Agents into the SDLC and built custom harnesses using various APIs, including the Antigravity SDK.</li><li>Engineered advanced RAG pipelines and Agentic interfaces using Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), with secure internal connections via Cloudflare One (WARP) and Tunnels under Zero Trust.</li><li>Automated DataOps/MLOps workflows using GitHub Actions and GitLab Pipelines, orchestrating deployments across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3).</li><li>Mastered MCP workflows to co-author complex infrastructure decisions and automation scripts with LLMs.</li></ul>",
+      "summary": "<p>Leading solution design and implementation of DataOps/MLOps pipelines, serverless platforms, and agentic systems that support client and internal delivery.</p><ul><li>Integrated Agents into the SDLC and built custom harnesses using various APIs, including the Antigravity SDK, to support delivery-team implementation work.</li><li>Engineered production RAG pipelines and agentic interfaces on Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), with secure customer and internal access via Cloudflare One (WARP) and Tunnels under Zero Trust.</li><li>Automated DataOps/MLOps workflows using GitHub Actions and GitLab Pipelines, orchestrating deployments across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) for client and internal platform delivery.</li><li>Used MCP workflows to co-author infrastructure decisions and automation with LLMs, keeping humans accountable for customer-facing outcomes.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -295,7 +299,7 @@
       "position": "Senior AI Software Engineer & Agentic Systems Consultant",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Architecting AI-native solutions and autonomous agentic systems for clients and startups.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces for Paftesting/Velir CMS-migration consultancy, improving LLM response accuracy and reducing hallucination rates through ground-truth evaluation frameworks.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps impacting answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties, optimizing entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
+      "summary": "<p>Designing and implementing AI-native solutions and integrations for clients and startups, tying technical delivery to customer outcomes.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces for Paftesting/Velir CMS-migration consultancy, using ground-truth evaluation frameworks to assess LLM response accuracy and hallucination rates.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps relevant to answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties to support entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {

@@ -1,6 +1,139 @@
 {
   "skills": [
     {
+      "name": "Drupal / CMS",
+      "description": "Arquitecto · 15+ años",
+      "level": 5,
+      "keywords": [
+        "Arquitectura Empresarial",
+        "Diseño de Soluciones",
+        "Implementación",
+        "Integraciones",
+        "Desarrollo de Módulos Personalizados",
+        "Migración Drupal 7/8/9/10",
+        "Decoupled / Headless",
+        "Multilingüe y Multisite",
+        "WordPress",
+        "Decap CMS",
+        "Acquia / Pantheon"
+      ]
+    },
+    {
+      "name": "PHP",
+      "description": "13+ años",
+      "level": 5,
+      "keywords": [
+        "Drupal",
+        "Laravel",
+        "Symfony"
+      ]
+    },
+    {
+      "name": "JavaScript / TypeScript",
+      "description": "5+ años",
+      "level": 5,
+      "keywords": [
+        "Node",
+        "React",
+        "Next.js",
+        "Vue",
+        "Svelte",
+        "Express"
+      ]
+    },
+    {
+      "name": "DevOps e Infraestructura",
+      "description": "12+ años",
+      "level": 5,
+      "keywords": [
+        "Entrega de Plataforma",
+        "Terraform (IaC)",
+        "Ansible",
+        "Kubernetes (EKS y Auto-hospedado)",
+        "GitHub Actions",
+        "Pipelines GitLab",
+        "Pipelines Bitbucket",
+        "GitOps (ArgoCD / Flux)",
+        "Docker",
+        "AWS (EC2, VPC, S3, RDS, DynamoDB)"
+      ]
+    },
+    {
+      "name": "Cloudflare / Serverless",
+      "description": "Computación en el Borde y Zero Trust",
+      "level": 5,
+      "keywords": [
+        "Cloudflare Workers",
+        "Workers KV / D1 / R2",
+        "Vectorize / AI Gateway / AI Search",
+        "Cloudflare One (WARP)",
+        "Túneles Cloudflare",
+        "Zero Trust",
+        "AWS Lambda",
+        "Serverless Framework",
+        "Wrangler"
+      ]
+    },
+    {
+      "name": "Bases de Datos y Caché",
+      "description": "10+ años",
+      "level": 4,
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "DynamoDB"
+      ]
+    },
+    {
+      "name": "Python",
+      "description": "4+ años",
+      "level": 4,
+      "keywords": [
+        "ML / IA",
+        "Django",
+        "FastAPI",
+        "Automatización",
+        "TensorFlow",
+        "PyTorch"
+      ]
+    },
+    {
+      "name": "Stack MERN",
+      "description": "Full Stack",
+      "level": 4,
+      "keywords": [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js",
+        "Next.js"
+      ]
+    },
+    {
+      "name": "Linux / Bash",
+      "description": "10+ años",
+      "level": 4,
+      "keywords": [
+        "Automatización",
+        "DevOps",
+        "Scripting"
+      ]
+    },
+    {
+      "name": "Control de Versiones y Ágil",
+      "description": "15+ años",
+      "level": 5,
+      "keywords": [
+        "Git",
+        "GitFlow",
+        "Scrum",
+        "Kanban",
+        "JIRA"
+      ]
+    },
+    {
       "name": "IA / Sistemas Agénticos",
       "description": "Ingeniería de IA y MLOps",
       "level": 5,
@@ -48,62 +181,6 @@
       ]
     },
     {
-      "name": "Python",
-      "description": "4+ años",
-      "level": 4,
-      "keywords": [
-        "ML / IA",
-        "Django",
-        "FastAPI",
-        "Automatización",
-        "TensorFlow",
-        "PyTorch"
-      ]
-    },
-    {
-      "name": "Drupal / CMS",
-      "description": "Arquitecto · 15+ años",
-      "level": 5,
-      "keywords": [
-        "Arquitectura Empresarial",
-        "Desarrollo de Módulos Personalizados",
-        "Migración Drupal 7/8/9/10",
-        "Decoupled / Headless",
-        "Multilingüe y Multisite",
-        "WordPress",
-        "Decap CMS",
-        "Acquia / Pantheon"
-      ]
-    },
-    {
-      "name": "Cloudflare / Serverless",
-      "description": "Computación en el Borde y Zero Trust",
-      "level": 5,
-      "keywords": [
-        "Cloudflare Workers",
-        "Workers KV / D1 / R2",
-        "Vectorize / AI Gateway / AI Search",
-        "Cloudflare One (WARP)",
-        "Túneles Cloudflare",
-        "Zero Trust",
-        "AWS Lambda",
-        "Serverless Framework",
-        "Wrangler"
-      ]
-    },
-    {
-      "name": "Stack MERN",
-      "description": "Full Stack",
-      "level": 4,
-      "keywords": [
-        "MongoDB",
-        "Express",
-        "React",
-        "Node.js",
-        "Next.js"
-      ]
-    },
-    {
       "name": "Flutter / Dart",
       "description": "Móvil y Multiplataforma",
       "level": 3,
@@ -113,90 +190,17 @@
         "Móvil",
         "Multiplataforma"
       ]
-    },
-    {
-      "name": "JavaScript / TypeScript",
-      "description": "5+ años",
-      "level": 5,
-      "keywords": [
-        "Node",
-        "React",
-        "Next.js",
-        "Vue",
-        "Svelte",
-        "Express"
-      ]
-    },
-    {
-      "name": "PHP",
-      "description": "13+ años",
-      "level": 5,
-      "keywords": [
-        "Drupal",
-        "Laravel",
-        "Symfony"
-      ]
-    },
-    {
-      "name": "DevOps e Infraestructura",
-      "description": "12+ años",
-      "level": 5,
-      "keywords": [
-        "Terraform (IaC)",
-        "Ansible",
-        "Kubernetes (EKS y Auto-hospedado)",
-        "GitHub Actions",
-        "Pipelines GitLab",
-        "Pipelines Bitbucket",
-        "GitOps (ArgoCD / Flux)",
-        "Docker",
-        "AWS (EC2, VPC, S3, RDS, DynamoDB)"
-      ]
-    },
-    {
-      "name": "Bases de Datos y Caché",
-      "description": "10+ años",
-      "level": 4,
-      "keywords": [
-        "MySQL",
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-        "DynamoDB"
-      ]
-    },
-    {
-      "name": "Linux / Bash",
-      "description": "10+ años",
-      "level": 4,
-      "keywords": [
-        "Automatización",
-        "DevOps",
-        "Scripting"
-      ]
-    },
-    {
-      "name": "Control de Versiones y Ágil",
-      "description": "15+ años",
-      "level": 5,
-      "keywords": [
-        "Git",
-        "GitFlow",
-        "Scrum",
-        "Kanban",
-        "JIRA"
-      ]
     }
   ],
   "basics": {
     "name": "Eric Aguayo",
     "image": "/assets/images/eric-profile.jpg",
-    "headline": "Ingeniero de Desarrollo de Software | En transición a Ingeniero de Agentic Ops",
+    "headline": "Ingeniero Senior de Soluciones e Implementación",
     "email": "me@ericmaster.ninja",
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Ingeniero de Desarrollo de Software con más de 15 años de excelencia en ingeniería de software, actualmente en transición hacia Agentic Ops Engineering en la intersección de IA, Pipelines de Datos e Infraestructura en la Nube. Experto en orquestar Agentes en el SDLC, construyendo arneses personalizados con varias APIs (incluyendo Antigravity SDK), diseñando Lenguajes Específicos de Dominio (DSL) e ingeniando pipelines RAG de grado de producción. Amplia experiencia con GitHub Actions, GitLab Pipelines y estrategias DevOps nativas con IA usando Terraform y EKS. Competente en Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search) y privacidad absoluta a través de Zero Trust, Cloudflare One (WARP) y Túneles. Profundamente experimentado con ecosistemas AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) y desarrollo asistido por IA (MCP, Cursor) para acelerar plataformas de datos y despliegues de modelos."
+    "summary": "Ingeniero Senior de Soluciones e Implementación con más de 15 años de entrega full-stack y de plataforma, integraciones e infraestructura en la nube para clientes de medios, educación, gobierno y empresa. Combino profundidad técnica en plataformas CMS, arquitecturas serverless y automatización cloud/IA con descubrimiento de cliente, liderazgo interfuncional y resultados de negocio. El trabajo reciente incluye pipelines RAG de producción, herramientas agénticas en el SDLC y plataformas edge Zero Trust; la IA es un diferenciador que aplico cuando mejora la entrega, no un requisito de los roles que busco."
   },
   "leadership": [
     {
@@ -287,7 +291,7 @@
       "position": "Ingeniero DataOps & MLOps | Arquitecto Principal de IA",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Arquitecturando pipelines DataOps/MLOps, arquitecturas serverless y sistemas agénticos autónomos en el SDLC.</p><ul><li>Integración de Agentes en el SDLC y construcción de arneses personalizados usando diversas APIs, incluyendo el SDK Antigravity.</li><li>Ingeniería de pipelines RAG avanzados e Interfaces Agénticas usando Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), con conexiones internas seguras vía Cloudflare One (WARP) y Túneles bajo Zero Trust.</li><li>Automatización de flujos de trabajo DataOps/MLOps usando GitHub Actions y GitLab Pipelines, orquestando despliegues a través de AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3).</li><li>Dominio de flujos de trabajo MCP para co-escribir decisiones de infraestructura complejas y scripts de automatización con LLMs.</li></ul>",
+      "summary": "<p>Dirección del diseño e implementación de pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos que respaldan la entrega a clientes y equipos internos.</p><ul><li>Integración de Agentes en el SDLC y construcción de arneses personalizados usando diversas APIs, incluyendo el SDK Antigravity, para apoyar el trabajo de implementación de los equipos de entrega.</li><li>Ingeniería de pipelines RAG de producción e interfaces agénticas en Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), con acceso seguro de clientes e interno vía Cloudflare One (WARP) y Túneles bajo Zero Trust.</li><li>Automatización de flujos de trabajo DataOps/MLOps usando GitHub Actions y GitLab Pipelines, orquestando despliegues a través de AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para la entrega de plataforma a clientes e interna.</li><li>Uso de flujos de trabajo MCP para co-escribir decisiones de infraestructura y automatización con LLMs, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -295,7 +299,7 @@
       "position": "Ingeniero Senior de Software de IA y Consultor de Sistemas Agénticos",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Arquitecturando soluciones nativas con IA y sistemas agénticos autónomos para clientes y startups.</p><ul><li>Ingeniería de pipelines RAG e Interfaces RAG Agénticas para la consultoría de migración de CMS de Paftesting/Velir, mejorando la precisión de respuesta del LLM y reduciendo las tasas de alucinación mediante marcos de evaluación basados en datos reales.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema que afectaban la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes, optimizando la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
+      "summary": "<p>Diseño e implementación de soluciones nativas con IA e integraciones para clientes y startups, vinculando la entrega técnica con resultados de negocio.</p><ul><li>Ingeniería de pipelines RAG e Interfaces RAG Agénticas para la consultoría de migración de CMS de Paftesting/Velir, usando marcos de evaluación basados en datos reales para evaluar la precisión de respuesta del LLM y las tasas de alucinación.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema relevantes para la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes para apoyar la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {

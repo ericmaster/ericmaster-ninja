@@ -4,7 +4,7 @@ title: Resume
 ---
 # Eric Aguayo Moreno
 
-**Target Roles:** Full Stack Web Developer | AI Engineer | DevOps Engineer  
+**Headline:** Senior Solutions & Implementation Engineer
 **Location:** Quito, Ecuador | **Phone/WhatsApp:** +593 983-337-611  
 **Email:** [me@ericmaster.ninja](mailto:me@ericmaster.ninja)
 **LinkedIn:** [linkedin.com/in/eric-aguayo](https://www.linkedin.com/in/eric-aguayo/)
@@ -40,16 +40,24 @@ HAProxy, Varnish, OAuth2, GraphQL, REST, Git, SSO (SimpleSAML)
 
 ## 🧠 Summary
 
-Experienced software engineer with 13+ years in backend/frontend web development, particularly with PHP and Drupal ecosystems. Proven track record in cloud architecture, container orchestration, data engineering, and AI integration. Strong leadership and communication skills with a passion for mentoring and open-source contribution.
+Senior Solutions & Implementation Engineer with 15+ years of full-stack and platform delivery, integrations, and cloud infrastructure for media, education, government, and enterprise clients. Combines technical depth in CMS platforms, serverless architectures, and cloud/AI automation with client discovery, cross-functional leadership, and business outcomes. AI is a differentiator applied when it improves delivery, not a prerequisite for target roles.
 
 ---
 
 ## 💼 Experience
 
-### **Independent Developer**  
-_Feb 2025 – Present_  
-Developed custom solutions for clients and startups.  
+### **DataOps & MLOps Engineer | Lead AI Architect – Nimblersoft**
+_Feb 2025 – Present_
+Leading solution design and implementation of DataOps/MLOps pipelines, serverless platforms, and agentic systems that support client and internal delivery.
+- Integrated Agents into the SDLC and built custom harnesses, including the Antigravity SDK, to support delivery-team implementation work.
+- Engineered production RAG pipelines and agentic interfaces on Cloudflare Serverless with Zero Trust access.
+- Automated DataOps/MLOps workflows with GitHub Actions and GitLab Pipelines across AWS.
+
+### **Independent Developer / Contractor**
+_Feb 2025 – Present_
+Designing and implementing AI-native solutions and integrations for clients and startups, tying technical delivery to customer outcomes.
 - Created and deployed [meli.run](https://meli.run) for running communities.
+- Engineered RAG pipelines and evaluation frameworks for Paftesting/Velir CMS-migration consultancy.
 
 ---
 
