@@ -206,25 +206,58 @@ describe("bilingual resume positioning contract", () => {
     assert.doesNotMatch(staticResume, /Target Roles:.*AI Engineer/i);
   });
 
-  it("keeps no public résumé PDF that can contradict v1", () => {
+  it("keeps no public résumé PDF that can contradict v1 and validates bilingual PDFs", () => {
     assert.equal(
       existsSync(retiredPublicResume),
       false,
       "retired public/Eric Aguayo Resume.pdf must be absent",
     );
     const resumePdfs = publicPdfPaths().filter((file) => /resume/i.test(file));
-    assert.deepEqual(resumePdfs, [generatedPublicResume]);
+    const generatedPublicResumeEs = join(publicDir, "pdfs/resume-es.pdf");
+    assert.deepEqual(resumePdfs.sort(), [generatedPublicResumeEs, generatedPublicResume].sort());
     assert.equal(
       existsSync(generatedPublicResume),
       true,
       "kept generated public/pdfs/resume.pdf must remain",
     );
-    const generatedText = pdfText(generatedPublicResume);
     assert.equal(
-      generatedText.includes(EN_HEADLINE),
+      existsSync(generatedPublicResumeEs),
+      true,
+      "kept generated public/pdfs/resume-es.pdf must remain",
+    );
+
+    const generatedTextEn = pdfText(generatedPublicResume);
+    assert.equal(
+      generatedTextEn.includes(EN_HEADLINE),
       true,
       "generated public/pdfs/resume.pdf must state the English v1 headline",
     );
-    assertNoForbidden(generatedText, "public/pdfs/resume.pdf");
+    assertNoForbidden(generatedTextEn, "public/pdfs/resume.pdf");
+
+    const generatedTextEs = pdfText(generatedPublicResumeEs);
+    assert.equal(
+      generatedTextEs.includes(ES_HEADLINE),
+      true,
+      "generated public/pdfs/resume-es.pdf must state the Spanish v1 headline",
+    );
+    assertNoForbidden(generatedTextEs, "public/pdfs/resume-es.pdf");
+  });
+
+  it("extracts experience in linear chronological order without multi-column corruption", () => {
+    const text = pdfText(generatedPublicResume);
+    const companies = [
+      "Nimblersoft",
+      "Independent Developer / Contractor",
+      "REDSpace",
+      "Taoti",
+      "Nimblersoft",
+    ];
+
+    let lastIndex = -1;
+    for (const company of companies) {
+      const idx = text.indexOf(company, lastIndex + 1);
+      assert.ok(idx > lastIndex, `Company ${company} must appear after previous entries in text stream`);
+      lastIndex = idx;
+    }
   });
 });

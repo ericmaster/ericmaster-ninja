@@ -155,6 +155,8 @@ html.dark .resume-nav-link.active {
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
   border: none;
   cursor: pointer;
+  text-decoration: none !important;
+  user-select: none;
   transition: background-color 0.2s, transform 0.1s;
 }
 
@@ -639,11 +641,21 @@ html.dark .lang-name {
   /* Hide site chrome, nav, and action bar */
   .no-print,
   canvas,
+  #constellation-bg,
+  #ai-chatbot-container,
   .resume-actions,
   .resume-nav,
-  body>header:not(.resume-header),
-  body>footer:not(.resume-footer) {
+  header:not(.resume-header),
+  footer:not(.resume-footer),
+  .page-title {
     display: none !important;
+  }
+
+  /* Prevent awkward page break splits */
+  .resume-item,
+  .resume-section {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 
   /* Hide web-only duplicated sections */
