@@ -1,0 +1,156 @@
+---
+import type { ProjectItem } from "../data/resources";
+import { getLocalePath } from "../i18n/utils";
+
+interface Props {
+  project: ProjectItem;
+  lang?: "en" | "es";
+}
+
+const { project, lang = "en" } = Astro.props;
+
+const labels = {
+  en: {
+    benefitsTitle: "Key Benefits & Capabilities",
+    techStackTitle: "Tech Stack",
+    viewDetails: "Project Details",
+    viewRepo: "Source Code",
+    liveDemo: "Live App",
+  },
+  es: {
+    benefitsTitle: "Beneficios y Capacidades",
+    techStackTitle: "Tecnologías",
+    viewDetails: "Detalles del Proyecto",
+    viewRepo: "Código Fuente",
+    liveDemo: "Ver Demo en Vivo",
+  },
+}[lang];
+
+const localizedLandingUrl = project.landingUrl.startsWith("/")
+  ? getLocalePath(lang, project.landingUrl)
+  : project.landingUrl;
+---
+
+<article
+  class="group relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/90 shadow-sm hover:shadow-xl hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all duration-300 overflow-hidden flex flex-col lg:flex-row"
+  id={project.id}
+>
+  <!-- Visual Banner Side -->
+  <div class="lg:w-5/12 relative overflow-hidden bg-slate-950 flex items-center justify-center min-h-[220px] lg:min-h-[320px]">
+    <img
+      src={project.image}
+      alt={project.imageAlt[lang]}
+      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-slate-950/40"></div>
+    
+    {project.badge && (
+      <div class="absolute top-4 left-4 z-10">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-indigo-600/90 text-white backdrop-blur-md shadow-sm">
+          {project.badge[lang]}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Content Side -->
+  <div class="lg:w-7/12 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+    <div class="space-y-4">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white my-0">
+          <a
+            href={localizedLandingUrl}
+            class="text-inherit hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors no-underline"
+          >
+            {project.title}
+          </a>
+        </h3>
+        <p class="text-sm sm:text-base font-medium text-indigo-600 dark:text-indigo-400 mt-1 mb-2">
+          {project.tagline[lang]}
+        </p>
+        <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed my-0">
+          {project.description[lang]}
+        </p>
+      </div>
+
+      <!-- Benefits List -->
+      <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 my-0">
+          {labels.benefitsTitle}
+        </h4>
+        <ul class="space-y-1.5 my-0 list-none pl-0">
+          {project.benefits[lang].map((benefit) => (
+            <li class="flex items-start text-xs sm:text-sm text-slate-700 dark:text-slate-300 my-0">
+              <svg
+                class="w-4 h-4 text-emerald-500 dark:text-emerald-400 mr-2 mt-0.5 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Tech Stack Badges -->
+      <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 my-0">
+          {labels.techStackTitle}
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          {project.stack.map((tech) => (
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+      <a
+        href={localizedLandingUrl}
+        class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm no-underline"
+      >
+        <span>{labels.viewDetails}</span>
+        <svg class="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+
+      {project.repoUrl && (
+        <a
+          href={project.repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg transition-colors no-underline"
+        >
+          <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>{labels.viewRepo}</span>
+        </a>
+      )}
+
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors no-underline"
+        >
+          <svg class="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          <span>{labels.liveDemo}</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

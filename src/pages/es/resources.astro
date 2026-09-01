@@ -1,9 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ResourcesNav from "../../components/ResourcesNav.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import CheatsheetCard from "../../components/CheatsheetCard.astro";
+import { projectsData, curatedCheatsheets } from "../../data/resources";
 
-const resources = await import("../content/pages/es/resources-content.md");
-const { Content, frontmatter } = resources;
-const pageTitle = frontmatter.title;
+const pageTitle = "Recursos y Proyectos";
+const pageDescription =
+  "Proyectos de código abierto destacados, herramientas para desarrolladores, frameworks de IA y hojas de trucos seleccionadas — por Eric Aguayo.";
 
 const headers: HeadersInit = {
   Accept: "application/vnd.github+json",
@@ -13,7 +17,7 @@ if (import.meta.env.GITHUB_TOKEN) {
   headers["Authorization"] = `Bearer ${import.meta.env.GITHUB_TOKEN}`;
 }
 
-let cheatsheetRepos: { name: string; description: string | null }[] = [];
+let cheatsheetRepos: { name: string; description: string | null; topics?: string[] }[] = [];
 
 try {
   const res = await fetch("https://api.github.com/users/ericmaster/repos?per_page=100", {
@@ -26,40 +30,109 @@ try {
     const repos = await res.json();
     cheatsheetRepos = Array.isArray(repos)
       ? repos.filter(
-          (repo: { topics?: string[] }) => repo.topics && repo.topics.includes("cheatsheets")
+          (repo: { topics?: string[]; name: string }) =>
+            repo.topics &&
+            repo.topics.includes("cheatsheets") &&
+            !["silverbullet-ai", "pandas-visualizer"].includes(repo.name)
         )
       : [];
   }
 } catch (err) {
   console.error("[resources] Failed to fetch GitHub repos:", err);
 }
+
+const totalCheatsheets = curatedCheatsheets.length + cheatsheetRepos.length;
 ---
 
-<BaseLayout
-  pageTitle={pageTitle}
-  description="Hojas de trucos seleccionadas, recursos y referencias para desarrolladores — por Eric Aguayo."
->
-  <Content />
-  <section class="px-4 py-8">
-    <h2>Hojas de Trucos</h2>
-    {
-      cheatsheetRepos.length === 0 ? (
-        <p class="text-gray-500 dark:text-gray-400">No se encontraron hojas de trucos.</p>
-      ) : (
-        <ul>
-          {cheatsheetRepos.map((repo) => (
-            <li>
-              <a
-                href={`https://ericmaster.github.io/${repo.name}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {repo.description ?? repo.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
+<BaseLayout pageTitle={pageTitle} description={pageDescription}>
+  <!-- Hero / Introducción -->
+  <div class="py-6 sm:py-8 max-w-4xl">
+    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white my-0">
+      Proyectos Destacados y Hojas de Trucos
+    </h2>
+    <p class="text-lg text-slate-600 dark:text-slate-300 mt-4 leading-relaxed my-0">
+      Una colección seleccionada de herramientas de desarrollo, sistemas de harnesses de IA, entornos interactivos y guías de referencia prácticas diseñadas para optimizar el flujo de ingeniería de software moderno.
+    </p>
+  </div>
+
+  <!-- Floating Sticky Nav Panel -->
+  <ResourcesNav
+    projectsCount={projectsData.length}
+    cheatsheetsCount={totalCheatsheets}
+    lang="es"
+  />
+
+  <!-- 1. Sección de Proyectos Destacados (Primero) -->
+  <section id="projects" class="scroll-mt-32 pt-2 pb-16 space-y-10">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-end justify-between">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white my-0 flex items-center gap-3">
+          <svg class="w-7 h-7 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          <span>Proyectos Destacados</span>
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 my-0">
+          Arquitecturas abiertas centrales, herramientas de agentes multi-harness y aplicaciones en producción.
+        </p>
+      </div>
+      <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 hidden sm:inline-block">
+        {projectsData.length} Proyectos
+      </span>
+    </div>
+
+    <div class="space-y-8">
+      {projectsData.map((project) => (
+        <ProjectCard project={project} lang="es" />
+      ))}
+    </div>
+  </section>
+
+  <!-- 2. Sección Consolidada de Hojas de Trucos -->
+  <section id="cheatsheets" class="scroll-mt-32 pt-4 pb-20 space-y-8">
+    <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-end justify-between">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white my-0 flex items-center gap-3">
+          <svg class="w-7 h-7 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Hojas de Trucos y Guías</span>
+        </h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 my-0">
+          Utilidades interactivas, guías en Markdown y hojas de referencia técnica.
+        </p>
+      </div>
+      <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hidden sm:inline-block">
+        {totalCheatsheets} Guías
+      </span>
+    </div>
+
+    <!-- Grid de Hojas de Trucos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {curatedCheatsheets.map((sheet) => (
+        <CheatsheetCard
+          title={sheet.title}
+          description={sheet.description.es}
+          url={sheet.url}
+          type={sheet.type}
+          typeLabel={sheet.typeLabel.es}
+          tags={sheet.tags}
+          lang="es"
+        />
+      ))}
+
+      {cheatsheetRepos.map((repo) => (
+        <CheatsheetCard
+          title={repo.name.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+          description={repo.description ?? "Repositorio de hojas de trucos para desarrolladores."}
+          url={`https://ericmaster.github.io/${repo.name}/`}
+          type="repo"
+          typeLabel="GitHub Pages"
+          tags={repo.topics ?? ["Cheatsheet"]}
+          external={true}
+          lang="es"
+        />
+      ))}
+    </div>
   </section>
 </BaseLayout>

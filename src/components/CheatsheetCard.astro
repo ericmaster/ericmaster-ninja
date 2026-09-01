@@ -1,0 +1,119 @@
+---
+import { getLocalePath } from "../i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  type?: "interactive" | "guide" | "repo";
+  typeLabel?: string;
+  tags?: string[];
+  external?: boolean;
+  lang?: "en" | "es";
+}
+
+const {
+  title,
+  description,
+  url,
+  type = "guide",
+  typeLabel,
+  tags = [],
+  external = false,
+  lang = "en",
+} = Astro.props;
+
+const localizedUrl = external || !url.startsWith("/") ? url : getLocalePath(lang, url);
+
+const defaultTypeLabel =
+  typeLabel ??
+  {
+    interactive: lang === "es" ? "Interactivo" : "Interactive App",
+    guide: lang === "es" ? "Guía" : "Guide",
+    repo: lang === "es" ? "Repositorio" : "GitHub Repo",
+  }[type];
+
+const ctaLabel =
+  type === "interactive"
+    ? lang === "es"
+      ? "Lanzar Visualizador"
+      : "Launch Visualizer"
+    : lang === "es"
+    ? "Ver Guía"
+    : "Open Cheatsheet";
+---
+
+<div
+  class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-sm hover:shadow-md hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all duration-200 flex flex-col justify-between group"
+>
+  <div class="space-y-3">
+    <div class="flex items-center justify-between gap-2">
+      <span
+        class:list={[
+          "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold",
+          type === "interactive"
+            ? "bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800"
+            : type === "repo"
+            ? "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700"
+            : "bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800",
+        ]}
+      >
+        {type === "interactive" && (
+          <svg class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        )}
+        {defaultTypeLabel}
+      </span>
+
+      {external && (
+        <span class="text-slate-400 dark:text-slate-500 text-xs flex items-center gap-0.5">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </span>
+      )}
+    </div>
+
+    <div>
+      <h4 class="text-lg font-semibold tracking-tight text-slate-900 dark:text-white my-0">
+        <a
+          href={localizedUrl}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          class="text-inherit hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors no-underline"
+        >
+          {title}
+        </a>
+      </h4>
+      <p class="text-sm text-slate-600 dark:text-slate-300 mt-2 line-clamp-3 leading-relaxed">
+        {description}
+      </p>
+    </div>
+
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1 pt-2">
+        {tags.map((tag) => (
+          <span class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800">
+    <a
+      href={localizedUrl}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      class="inline-flex items-center text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 no-underline group-hover:translate-x-0.5 transition-transform"
+    >
+      <span>{ctaLabel}</span>
+      <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+</div>

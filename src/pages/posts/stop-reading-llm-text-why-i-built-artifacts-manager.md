@@ -11,6 +11,7 @@ tags:
   - Productivity
 slug: stop-reading-llm-text-why-i-built-artifacts-manager
 pubDate: 2026-09-01T10:00:00.000-05:00
+lang: en
 image:
   url: assets/images/stop-reading-llm-text-why-i-built-artifacts-manager.jpg
   alt: "Side-by-side technical cartoon: left shows an exhausted developer buried under terminal text walls, right shows an engineer using an interactive multi-project Artifacts Manager dashboard with visual architecture diagrams"

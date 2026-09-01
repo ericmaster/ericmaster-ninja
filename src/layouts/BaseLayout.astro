@@ -134,6 +134,40 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
         },
       }));
 
+      /** Floating sticky category nav — used by ResourcesNav.astro */
+      Alpine.data("resourcesNav", () => ({
+        active: "projects",
+        scrollToSection(event: MouseEvent) {
+          const id = (event.currentTarget as HTMLElement).dataset.sectionId;
+          if (id) {
+            const el = document.getElementById(id);
+            if (el) {
+              const yOffset = -140;
+              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({ top: y, behavior: "smooth" });
+              this.active = id;
+            }
+          }
+        },
+        init() {
+          const ids = ["projects", "cheatsheets"];
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  this.active = entry.target.id;
+                }
+              });
+            },
+            { rootMargin: "-120px 0px -60% 0px", threshold: 0 }
+          );
+          ids.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+          });
+        },
+      }));
+
       // Defer start to allow page-specific scripts to register components
       setTimeout(() => {
         Alpine.start();
