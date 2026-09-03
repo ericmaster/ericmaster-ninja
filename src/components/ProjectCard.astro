@@ -29,6 +29,7 @@ const labels = {
 const localizedLandingUrl = project.landingUrl.startsWith("/")
   ? getLocalePath(lang, project.landingUrl)
   : project.landingUrl;
+const isExternalLandingUrl = !project.landingUrl.startsWith("/");
 ---
 
 <article
@@ -116,6 +117,8 @@ const localizedLandingUrl = project.landingUrl.startsWith("/")
     <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
       <a
         href={localizedLandingUrl}
+        target={isExternalLandingUrl ? "_blank" : undefined}
+        rel={isExternalLandingUrl ? "noopener noreferrer" : undefined}
         class="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm no-underline"
       >
         <span>{labels.viewDetails}</span>

@@ -47,6 +47,47 @@ export interface CheatsheetItem {
 
 export const projectsData: ProjectItem[] = [
   {
+    id: "pii-masking",
+    title: "PII Masking Microservice",
+    tagline: {
+      en: "Zero-Trust Real-Time PII De-Identification & Secret Guard for LLM Pipelines",
+      es: "Desidentificación de PII en tiempo real y protección Zero-Trust para LLMs",
+    },
+    description: {
+      en: "A high-performance FastAPI microservice powered by Microsoft Presidio, spaCy (English & Spanish), and Infisical secret management. Detects, tokenizes with salted hashes, and reversibly restores PII before external model inference, ensuring strict regulatory compliance (LOPDP/GDPR).",
+      es: "Microservicio FastAPI de alto rendimiento con Microsoft Presidio, spaCy (español e inglés) y gestión de secretos con Infisical. Detecta, tokeniza con hashes salteados y restaura reversiblemente PII antes de la inferencia con LLMs, garantizando cumplimiento de la LOPDP y GDPR.",
+    },
+    benefits: {
+      en: [
+        "In-flight PII masking: names, emails, phone numbers, tax IDs, and credit cards replaced by salted tokens",
+        "Deterministic, reversible tokenization maps original entities safely on client returns",
+        "Integrated Infisical zero-trust secret management: runtime in-memory credential injection with no plaintext keys",
+        "Multi-language support with specialized spaCy pipeline for Spanish and English",
+        "Single-container deployment with warm-start models for sub-millisecond local inference",
+      ],
+      es: [
+        "Enmascaramiento de PII en tránsito: nombres, correos, teléfonos, cédulas y tarjetas reemplazados por tokens salteados",
+        "Tokenización determinista y reversible que mapea las entidades originales de forma segura en las respuestas",
+        "Gestión Zero-Trust de secretos con Infisical: inyección de credenciales en memoria sin llaves en texto plano",
+        "Soporte multilingüe con modelos optimizados de spaCy para español e inglés",
+        "Despliegue contenerizado en un solo contenedor con modelos en warm-start para baja latencia",
+      ],
+    },
+    stack: ["FastAPI", "Python", "Microsoft Presidio", "spaCy", "Docker", "Infisical", "Zero-Trust"],
+    image: "/assets/images/pii-masking-zero-trust.jpg",
+    imageAlt: {
+      en: "PII Masking zero-trust cryptographic shield intercepting sensitive data before AI neural core",
+      es: "Escudo criptográfico Zero-Trust de PII Masking interceptando datos sensibles antes del modelo de IA",
+    },
+    landingUrl: "/resources/pii-masking",
+    repoUrl: "https://github.com/Nimblersoft/pii-masking",
+    liveUrl: "/presentations/pii-masking",
+    badge: {
+      en: "Privacy & Security",
+      es: "Privacidad y Seguridad",
+    },
+  },
+  {
     id: "agent-fabric",
     title: "Agent Fabric",
     tagline: {
@@ -79,7 +120,7 @@ export const projectsData: ProjectItem[] = [
       en: "Agent Fabric multi-harness architecture visualization",
       es: "Visualización de la arquitectura multi-harness de Agent Fabric",
     },
-    landingUrl: "/resources/agent-fabric",
+    landingUrl: "https://agent-fabric.ericmaster.ninja/",
     repoUrl: "https://github.com/ericmaster/agent-fabric",
     badge: {
       en: "Core Framework",
@@ -157,9 +198,8 @@ export const projectsData: ProjectItem[] = [
       en: "Artifacts Manager interactive sandbox dashboard",
       es: "Panel interactivo de Artifacts Manager",
     },
-    landingUrl: "/resources/artifacts-manager",
+    landingUrl: "https://artifacts-manager.ericmaster.ninja/",
     repoUrl: "https://github.com/ericmaster/artifacts-manager",
-    liveUrl: "https://artifacts.nimblersoft.com",
     badge: {
       en: "Visual Tool",
       es: "Herramienta Visual",
