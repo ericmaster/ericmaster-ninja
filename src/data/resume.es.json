@@ -140,10 +140,14 @@
       "keywords": [
         "Agentes en SDLC",
         "Arneses de Herramientas Personalizados",
-        "Antigravity SDK",
         "Lenguajes de Dominio Específico (DSL)",
         "Pipelines RAG",
         "Frameworks Agénticos (Supervisor-Trabajador)",
+        "Vercel AI SDK (AI SDK Core)",
+        "Google Gen AI SDK",
+        "Cloudflare Agents SDK",
+        "Cloudflare AI Gateway",
+        "LangGraph",
         "LiteLLM",
         "Ingeniería de Prompts",
         "Auditoría de Alucinaciones",
@@ -151,7 +155,9 @@
         "LangChain",
         "OpenAI API",
         "Anthropic SDK",
-        "AWS Bedrock"
+        "AWS Bedrock",
+        "OpenRouter",
+        "A2UI / IU Generativa"
       ]
     },
     {
@@ -291,7 +297,7 @@
       "position": "Ingeniero DataOps & MLOps | Arquitecto Principal de IA",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Dirección del diseño e implementación de pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos que respaldan la entrega a clientes y equipos internos.</p><ul><li>Integración de Agentes en el SDLC y construcción de arneses personalizados usando diversas APIs, incluyendo el SDK Antigravity, para apoyar el trabajo de implementación de los equipos de entrega.</li><li>Ingeniería de pipelines RAG de producción e interfaces agénticas en Cloudflare Serverless (Workers, D1, R2, Vectorize, AI Gateway, AI Search), con acceso seguro de clientes e interno vía Cloudflare One (WARP) y Túneles bajo Zero Trust.</li><li>Automatización de flujos de trabajo DataOps/MLOps usando GitHub Actions y GitLab Pipelines, orquestando despliegues a través de AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para la entrega de plataforma a clientes e interna.</li><li>Uso de flujos de trabajo MCP para co-escribir decisiones de infraestructura y automatización con LLMs, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
+      "summary": "<p>Dirección del diseño e implementación de pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos que respaldan la entrega a clientes y equipos internos.</p><ul><li>Integración de agentes en el SDLC y construcción de arneses personalizados y flujos supervisor-trabajador usando MCP, APIs de proveedores y herramientas internas para apoyar el trabajo de implementación de los equipos de entrega.</li><li>Ingeniería de pipelines RAG e IU generativa de producción en Cloudflare Serverless usando Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize y AI Search.</li><li>Implementación de un Durable Object con Cloudflare Agents SDK para captación de leads y flujos human-in-the-loop, conservando una ruta de rollback al servicio Hono existente.</li><li>Construcción de orquestación LangGraph en proceso para flujos operativos internos de triage, ejecución, merge, escaneo de dependencias y monitoreo.</li><li>Automatización de flujos de trabajo DataOps/MLOps usando GitHub Actions y GitLab Pipelines, orquestando despliegues a través de AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para la entrega de plataforma a clientes e interna.</li><li>Uso de flujos de trabajo MCP para co-escribir decisiones de infraestructura y automatización con LLMs, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -299,7 +305,7 @@
       "position": "Ingeniero Senior de Software de IA y Consultor de Sistemas Agénticos",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Diseño e implementación de soluciones nativas con IA e integraciones para clientes y startups, vinculando la entrega técnica con resultados de negocio.</p><ul><li>Ingeniería de pipelines RAG e Interfaces RAG Agénticas para la consultoría de migración de CMS de Paftesting/Velir, usando marcos de evaluación basados en datos reales para evaluar la precisión de respuesta del LLM y las tasas de alucinación.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema relevantes para la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes para apoyar la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
+      "summary": "<p>Diseño e implementación de soluciones nativas con IA e integraciones para clientes y startups, vinculando la entrega técnica con resultados de negocio.</p><ul><li>Ingeniería de pipelines RAG e Interfaces RAG Agénticas para la consultoría de migración de CMS de Paftesting/Velir, usando marcos de evaluación basados en datos reales para evaluar la precisión de respuesta del LLM y las tasas de alucinación.</li><li>Construcción de <strong>job-posts</strong>, una aplicación de ingesta y evaluación de ofertas laborales usando Google Gen AI SDK (<code>@google/genai</code>) para comparar ofertas contra un perfil estructurado, con autenticación fail-closed, allowlist de hosts y herramientas/function calling deshabilitados.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema relevantes para la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes para apoyar la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {
