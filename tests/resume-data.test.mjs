@@ -128,7 +128,7 @@ describe("bilingual resume positioning contract", () => {
   it("keeps aligned factual experience chronology", () => {
     assert.equal(en.experience.length, es.experience.length);
     const normalize = (date) =>
-      date.replace("Presente", "Present").replace("Ene", "Jan");
+      date.replace("Presente", "Present").replace("Ene", "Jan").replace("Dic", "Dec");
     for (let i = 0; i < en.experience.length; i += 1) {
       assert.equal(en.experience[i].company, es.experience[i].company === "Desarrollador Independiente / Contratista"
         ? "Independent Developer / Contractor"
@@ -251,6 +251,8 @@ describe("bilingual resume positioning contract", () => {
       "REDSpace",
       "Taoti",
       "Nimblersoft",
+      "Devsu",
+      "Oshyn Inc.",
     ];
 
     let lastIndex = -1;

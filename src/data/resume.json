@@ -294,10 +294,10 @@
   "experience": [
     {
       "company": "Nimblersoft",
-      "position": "DataOps & MLOps Engineer | Lead AI Architect",
+      "position": "Director of Applied AI",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Leading solution design and implementation of DataOps/MLOps pipelines, serverless platforms, and agentic systems that support client and internal delivery.</p><ul><li>Integrated agents into the SDLC and built custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling to support delivery-team implementation work.</li><li>Engineered production RAG and generative UI pipelines on Cloudflare Serverless using the Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize, and AI Search.</li><li>Implemented a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.</li><li>Built in-process LangGraph orchestration for internal operational workflows, including triage, execution, merge, dependency scanning, and monitoring tracks.</li><li>Automated DataOps/MLOps workflows using GitHub Actions and GitLab Pipelines, orchestrating deployments across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) for client and internal platform delivery.</li><li>Used MCP workflows to co-author infrastructure decisions and automation with LLMs, keeping humans accountable for customer-facing outcomes.</li></ul>",
+      "summary": "<p>Directing applied AI engineering and solution delivery across client and internal initiatives, translating operational needs into production-ready AI systems, platform capabilities, and delivery practices.</p><ul><li>Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems, integrating agents into the SDLC through custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling.</li><li>Led engineering of production RAG and generative UI pipelines on Cloudflare Serverless using the Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize, and AI Search.</li><li>Guided implementation of a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.</li><li>Designed in-process LangGraph orchestration for internal operational workflows covering triage, execution, merge, dependency scanning, and monitoring.</li><li>Directed automation of DataOps/MLOps workflows with GitHub Actions and GitLab Pipelines across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) to support client and internal platform delivery.</li><li>Established MCP-assisted practices for infrastructure decisions and automation while keeping people accountable for customer-facing outcomes.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -330,6 +330,20 @@
       "location": "Quito, Ecuador",
       "date": "Jan 2014 – Feb 2020",
       "summary": "<p>Architected and led enterprise platforms for US and LATAM clients, pioneering Knowledge Graph and entity optimization strategies alongside agentic editorial workflows.</p><ul><li>Engineered Agentic RAG Interfaces for content-discovery workflows, integrating AI-assisted editorial pipelines that reduced content production time by 25%.</li><li>Implemented Schema.org optimization initiatives across 15+ client properties, establishing entity authority frameworks that improved generative engine citation rates.</li><li>usfq.edu.ec – Orchestrated Digital Marketing web development team; redesigned institutional platform in Drupal with high-availability infrastructure and Schema.org entity graphs for institutional authority.</li><li>help.blackboard.com – Architected scalable Drupal migration with a semi-autonomous multilingual translation workflow, optimizing structured content for AI-engine indexability across 10+ languages.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Devsu",
+      "position": "Drupal Lead Developer",
+      "date": "Feb 2011 – Dec 2013",
+      "summary": "<p>Led Drupal development and supported the growth of the development team through hands-on technical leadership and training.</p><ul><li>Trained developers in Git and PHP.</li><li>Built and maintained Drupal sites including cotopaxi.k12.ec and quicentro.com.ec.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Oshyn Inc.",
+      "position": "Java/PHP Developer",
+      "date": "May 2008 – Jul 2010",
+      "summary": "<p>Contributed Java and PHP development to client web projects.</p><ul><li>Contributed to the development of eamobile.com and icon4x4.com.</li></ul>",
       "url": ""
     }
   ],

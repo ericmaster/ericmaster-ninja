@@ -195,6 +195,11 @@ npx wrangler dev --ip 0.0.0.0 --env development
 
 ### Production Deploy
 
+After completing and validating a repository change, deploy it to production as
+the final step unless the user asks to hold deployment. Run the build and
+applicable checks first, then load credentials and deploy. Report any blocker
+that prevents deployment.
+
 ```bash
 npm run build                        # Build static site to ./dist
 npx wrangler deploy                  # Deploy to Cloudflare Workers

@@ -46,14 +46,14 @@ Senior Solutions & Implementation Engineer with 15+ years of full-stack and plat
 
 ## 💼 Experience
 
-### **DataOps & MLOps Engineer | Lead AI Architect – Nimblersoft**
+### **Director of Applied AI – Nimblersoft**
 _Feb 2025 – Present_
-Leading solution design and implementation of DataOps/MLOps pipelines, serverless platforms, and agentic systems that support client and internal delivery.
-- Integrated agents into the SDLC and built custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling.
-- Engineered production RAG and generative UI pipelines using the Vercel AI SDK, Cloudflare AI Gateway, OpenRouter, Workers AI, Vectorize, and AI Search.
-- Implemented a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.
-- Built in-process LangGraph orchestration for internal operational workflows.
-- Automated DataOps/MLOps workflows with GitHub Actions and GitLab Pipelines across AWS.
+Directing applied AI engineering and solution delivery across client and internal initiatives, translating operational needs into production-ready AI systems, platform capabilities, and delivery practices.
+- Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems; integrated agents into the SDLC through custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling.
+- Led engineering of production RAG and generative UI pipelines using the Vercel AI SDK, Cloudflare AI Gateway, OpenRouter, Workers AI, Vectorize, and AI Search.
+- Guided implementation of a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.
+- Designed LangGraph orchestration for internal operational workflows, including triage, execution, merge, dependency scanning, and monitoring.
+- Directed DataOps/MLOps workflow automation with GitHub Actions and GitLab Pipelines across AWS to support client and internal platform delivery.
 
 ### **Independent Developer / Contractor**
 _Feb 2025 – Present_
@@ -88,14 +88,14 @@ Led Drupal architecture, team training, and deployment for US and LATAM clients.
 
 ### **Drupal Lead Developer – Devsu**  
 _Feb 2011 – Dec 2013_  
-- Oversaw Drupal development and trained developers in Git and PHP.  
-- Built and maintained [cotopaxi.k12.ec](http://www.cotopaxi.k12.ec), [quicentro.com](http://www.quicentro.com.ec), and others.
+- Led Drupal development and trained developers in Git and PHP.
+- Built and maintained Drupal sites including [cotopaxi.k12.ec](http://www.cotopaxi.k12.ec) and [quicentro.com](http://www.quicentro.com.ec).
 
 ---
 
 ### **Java/PHP Developer – Oshyn Inc.**  
 _May 2008 – Jul 2010_  
-- Contributed to the development of [eamobile.com](http://www.eamobile.com) and [icon4x4.com](http://www.icon4x4.com).
+- Contributed Java and PHP development to client web projects, including [eamobile.com](http://www.eamobile.com) and [icon4x4.com](http://www.icon4x4.com).
 
 ---
 

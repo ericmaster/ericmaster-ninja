@@ -294,10 +294,10 @@
   "experience": [
     {
       "company": "Nimblersoft",
-      "position": "Ingeniero DataOps & MLOps | Arquitecto Principal de IA",
+      "position": "Director de IA Aplicada",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Dirección del diseño e implementación de pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos que respaldan la entrega a clientes y equipos internos.</p><ul><li>Integración de agentes en el SDLC y construcción de arneses personalizados y flujos supervisor-trabajador usando MCP, APIs de proveedores y herramientas internas para apoyar el trabajo de implementación de los equipos de entrega.</li><li>Ingeniería de pipelines RAG e IU generativa de producción en Cloudflare Serverless usando Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize y AI Search.</li><li>Implementación de un Durable Object con Cloudflare Agents SDK para captación de leads y flujos human-in-the-loop, conservando una ruta de rollback al servicio Hono existente.</li><li>Construcción de orquestación LangGraph en proceso para flujos operativos internos de triage, ejecución, merge, escaneo de dependencias y monitoreo.</li><li>Automatización de flujos de trabajo DataOps/MLOps usando GitHub Actions y GitLab Pipelines, orquestando despliegues a través de AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para la entrega de plataforma a clientes e interna.</li><li>Uso de flujos de trabajo MCP para co-escribir decisiones de infraestructura y automatización con LLMs, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
+      "summary": "<p>Dirección de ingeniería de IA aplicada y entrega de soluciones en iniciativas para clientes y equipos internos, traduciendo necesidades operativas en sistemas de IA listos para producción, capacidades de plataforma y prácticas de entrega.</p><ul><li>Definición de la dirección técnica para pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos; integración de agentes en el SDLC mediante arneses personalizados y flujos supervisor-trabajador con MCP, APIs de proveedores y herramientas internas.</li><li>Liderazgo de la ingeniería de pipelines RAG e IU generativa de producción en Cloudflare Serverless con Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize y AI Search.</li><li>Orientación de la implementación de un Durable Object con Cloudflare Agents SDK para captación de leads y flujos human-in-the-loop, conservando una ruta de rollback al servicio Hono existente.</li><li>Diseño de orquestación LangGraph en proceso para flujos operativos internos de triage, ejecución, merge, escaneo de dependencias y monitoreo.</li><li>Dirección de la automatización de flujos DataOps/MLOps con GitHub Actions y GitLab Pipelines en AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para respaldar la entrega de plataformas a clientes y equipos internos.</li><li>Establecimiento de prácticas asistidas por MCP para decisiones de infraestructura y automatización, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -330,6 +330,20 @@
       "location": "Quito, Ecuador",
       "date": "Ene 2014 – Feb 2020",
       "summary": "<p>Arquitectura y dirección de plataformas empresariales para clientes en EE. UU. y LATAM, siendo pionero en Grafo de Conocimiento y estrategias de optimización de entidades junto con flujos de trabajo editoriales agénticos.</p><ul><li>Ingeniería de Interfaces RAG Agénticas para flujos de descubrimiento de contenido, integrando procesos editoriales asistidos por IA que redujeron el tiempo de producción de contenido en un 25%.</li><li>Implementación de iniciativas de optimización Schema.org en más de 15 propiedades de clientes, estableciendo marcos de autoridad de entidades que mejoraron las tasas de citación en motores generativos.</li><li>usfq.edu.ec – Orquestación del equipo de desarrollo web de Marketing Digital; rediseño de plataforma institucional en Drupal con infraestructura de alta disponibilidad y grafos de entidades Schema.org para la autoridad institucional.</li><li>help.blackboard.com – Arquitectura de migración Drupal escalable con flujo de traducción multilingüe semiautónomo, optimizando el contenido estructurado para su indexación por IA en más de 10 idiomas.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Devsu",
+      "position": "Desarrollador Líder de Drupal",
+      "date": "Feb 2011 – Dic 2013",
+      "summary": "<p>Liderazgo del desarrollo Drupal y apoyo al crecimiento del equipo mediante liderazgo técnico práctico y capacitación.</p><ul><li>Capacitación de desarrolladores en Git y PHP.</li><li>Desarrollo y mantenimiento de sitios Drupal, incluidos cotopaxi.k12.ec y quicentro.com.ec.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Oshyn Inc.",
+      "position": "Desarrollador Java/PHP",
+      "date": "May 2008 – Jul 2010",
+      "summary": "<p>Contribución al desarrollo Java y PHP de proyectos web para clientes.</p><ul><li>Participación en el desarrollo de eamobile.com e icon4x4.com.</li></ul>",
       "url": ""
     }
   ],
