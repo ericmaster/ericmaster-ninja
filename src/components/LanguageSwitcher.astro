@@ -49,11 +49,11 @@ const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => ({
     x-cloak
     @click.away="close"
     role="menu"
-    class="absolute right-0 mt-2 min-w-[8rem] overflow-hidden rounded-md border border-slate-200/70 bg-white shadow-lg dark:border-slate-700/70 dark:bg-slate-900"
+    class="absolute right-0 mt-2 m-0 list-none min-w-[8rem] overflow-hidden rounded-md border border-slate-200/70 bg-white shadow-lg dark:border-slate-700/70 dark:bg-slate-900"
   >
     {
       localeOptions.map((opt) => (
-        <li role="none">
+        <li role="none" class="m-0 list-none">
           <a
             href={opt.url}
             role="menuitem"
