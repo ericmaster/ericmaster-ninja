@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="☕ Cómprame un café" description="Apoya los proyectos open source, talleres y posts de Eric Aguayo con un café vía DeUna (Ecuador).">
+  <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-4">
+    <p>Si alguno de mis proyectos, talleres o posts te sirvió, invítame un café con DeUna (Ecuador). ¡Gracias! 🙌</p>
+    <picture>
+      <source srcset="/assets/images/deuna-qr-300.webp" type="image/webp" />
+      <img
+        src="/assets/images/deuna-qr-600.png"
+        alt="Código QR de DeUna para apoyar a Eric Manuel Aguayo"
+        width="300"
+        height="300"
+        class="rounded-xl shadow-lg bg-white"
+        loading="lazy"
+      />
+    </picture>
+    <p class="text-sm text-gray-500 dark:text-gray-400">Escanéalo desde la app DeUna o desde la app de tu banco ecuatoriano compatible con DeUna e ingresa el monto que quieras.</p>
+  </div>
+</BaseLayout>
