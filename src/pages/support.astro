@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="☕ Buy me a coffee" description="Support Eric Aguayo's open-source projects, workshops and posts with a coffee via DeUna (Ecuador).">
+  <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-4">
+    <p>If my projects, workshops or posts helped you, you can buy me a coffee via DeUna (Ecuador). Thank you! 🙌</p>
+    <picture>
+      <source srcset="/assets/images/deuna-qr-300.webp" type="image/webp" />
+      <img
+        src="/assets/images/deuna-qr-600.png"
+        alt="DeUna QR code to support Eric Manuel Aguayo"
+        width="300"
+        height="300"
+        class="rounded-xl shadow-lg bg-white"
+        loading="lazy"
+      />
+    </picture>
+    <p class="text-sm text-gray-500 dark:text-gray-400">Scan it with the DeUna app or with a DeUna-enabled Ecuadorian banking app and enter the amount you want.</p>
+  </div>
+</BaseLayout>
