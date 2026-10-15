@@ -2,12 +2,12 @@
 title: "About Me"
 ---
 
-My name is Eric Aguayo, and I’m a passionate software developer, technical architect, and ultra trail runner based in Quito, Ecuador. With over 15 years of experience in software development, I specialize in building robust, scalable web applications—particularly using Drupal, PHP, Python, and JavaScript—and deploying them across modern cloud platforms like AWS, Acquia, and Platform.sh.
+I'm Eric Aguayo, a software engineer based in Quito, Ecuador. For 15+ years I've built and shipped web platforms, mostly Drupal, PHP and JavaScript, for media, education, government and non-profit clients across the Americas: from bleacherreport.com and nypost.com (with REDSpace) to usfq.edu.ec, help.blackboard.com, wsscwater.com and inee.org. I co-founded Nimblersoft in 2014 and I'm an Acquia Certified Drupal Developer.
 
-I’ve led and contributed to high-impact projects for organizations across the Americas, including media platforms (Bleacher Report, NY Post), educational institutions (USFQ, Blackboard), and public sector clients (Pega, INEE). I have deep expertise in content management systems (Drupal/WordPress), custom integrations, DevOps, container orchestration with Docker/Kubernetes, and CI/CD pipelines. My work often blends architecture, implementation, and performance optimization across full-stack environments, and I'm proud to be an Acquia Certified Drupal Developer.
+Since 2025 I've focused on applied AI as Director of Applied AI at Nimblersoft: RAG systems, AI agents and the guardrails that make them safe to use in a real business, mostly on Cloudflare (Workers, D1, R2, Vectorize, AI Gateway). In 2026 I completed a Master's in Artificial Intelligence at Universidad San Francisco de Quito.
 
-Outside of tech, I’m deeply passionate about the outdoors and spend much of my time in the mountains as an ultra marathon trail runner. This lifestyle of endurance and exploration shapes how I approach challenges—both physical and technical—with patience, grit, and curiosity.
+I like building in the open. Some of my recent open-source work: [artifacts-manager](https://github.com/ericmaster/artifacts-manager), [agent-fabric](https://github.com/ericmaster/agent-fabric), [skills-manager](https://github.com/ericmaster/skills-manager) and the [OpenClaw workshop](https://github.com/ericmaster/taller-openclaw) I gave at FLISOL 2026 in Quito.
 
-Currently, I'm building a platform to help others discover and train for ultra running while also working on a technical education initiative aimed at helping beginners learn how to code. I’m constantly exploring new technologies and approaches, and I thrive on continuous improvement—whether it’s refining software systems or personal performance.
+Outside of tech I'm an ultra trail runner. Long days in the mountains shape how I work: patience, preparation and finishing what I start.
 
-I value community, open source collaboration, and lifelong learning, and I’m always looking for meaningful ways to bridge technology and human impact.
+If any of my projects or posts helped you, you can [buy me a coffee](/support/) ☕.
