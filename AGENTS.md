@@ -273,3 +273,11 @@ The following MCP (Model Context Protocol) servers are configured for this works
 4. **Content separation** — page prose lives in `src/pages/content/pages/*.md`, not inline in `.astro` files.
 5. **Alpine.js for interactivity** — `x-data` on parent elements, event handlers via `@click`, `x-show`, etc.
 6. **Constellation background** — animated canvas (`public/assets/constellation.js`) loaded in `BaseLayout`.
+
+## Documentation lifecycle
+
+Keep specs and other non-ADR docs current-state only; do not use them as changelogs, timelines,
+release notes, or historical change logs. Before release, ADRs may be edited, merged, or
+squashed to retain the latest decision; after release, preserve published ADRs and record later
+decisions in a new superseding ADR. Apply the `context-hygiene` skill before documentation or
+spec writes; link each fact to its SSOT instead of duplicating it.
