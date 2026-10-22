@@ -1,11 +1,17 @@
-## Hey there — I'm Eric Aguayo!
+## Hey there, I'm Eric Aguayo!
 
 ### Welcome to my corner of the web!
 
-I'm a **software developer** by trade and a **trail runner** at heart. Whether I'm shipping code or climbing mountain trails, I'm all about pushing limits and exploring new frontiers.
+I'm a **senior AI and full-stack engineer** based in Quito, Ecuador, and a **trail runner** at heart. I'm Director of Applied AI at Nimblersoft, where most of my time goes into **agentic development**: designing and leading multi-agent workflows where planning comes first, plans go through adversarial review, tests and a clear Definition of Done do the verification, and every change stays traceable back to what was asked.
 
-Right now I'm focused on **AI engineering for real businesses** — building automated harnesses and turnkey AI chatbots that help SMEs through their agentic transformation. Alongside that, I'm building tools to help myself and others upskill, like [Quiz Generator](/resources/quiz-generator).
+I also build **AI products and developer tools** in the open:
 
-A couple of passion projects are simmering on the back burner: one to help endurance athletes reach their potential by collecting and analyzing their training data — seeded by my [Garmin Nutrition Logger App](https://apps.garmin.com/apps/26c3b37a-505b-4ad8-b759-7568e88f5c93), which I already use for my own analysis — and another to make learning Math, Coding and ML more approachable and fun. Other work has taken priority for now, but I fully intend to circle back to them.
+- **[Vespera](https://vespera.bio)**: an app to anticipate burnout and recover focus, with a suggested daily agenda and one short, evidence-based micro-action at a time.
+- **[Agent Fabric](/resources/agent-fabric)**: install and sync the same portable agents across OpenCode, Kilo, Codex, Claude Code and more, without overwriting your customizations.
+- **[Artifacts Manager](/resources/artifacts-manager)**: a multi-project hub to view and manage the HTML and Markdown artifacts your agents generate.
 
-This blog is where I share **my journey** — from tech experiments to trail adventures — and everything in between. If you're into innovation, endurance, or just curious about blending code with the great outdoors, you're in the right place.
+Lately I've been writing about what really costs in an agent workflow: [not the tokens, but the attention](/posts/lo-caro-de-un-agente-es-la-atencion/).
+
+I'm **available for part-time or per-project contract work**, and for **mentoring teams and engineers on AI agents**. If that sounds useful, [get in touch](/work).
+
+This blog is where I share **my journey**, from tech experiments to trail adventures and everything in between.

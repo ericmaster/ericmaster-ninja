@@ -1,11 +1,17 @@
-## ¡Hola — soy Eric Aguayo!
+## ¡Hola, soy Eric Aguayo!
 
 ### ¡Bienvenido a mi rincón en la web!
 
-Soy un **desarrollador de software** de profesión y un **corredor de trail** de corazón. Ya sea entregando código o escalando senderos de montaña, me apasiona superar los límites y explorar nuevas fronteras.
+Soy **ingeniero senior de IA y full-stack** en Quito, Ecuador, y **corredor de trail** de corazón. Soy Director of Applied AI en Nimblersoft, donde la mayor parte de mi tiempo se va en **desarrollo agéntico**: diseñar y liderar flujos multiagente donde primero se planifica, los planes pasan por revisión adversaria, los tests y una Definition of Done clara hacen la verificación, y cada cambio se puede rastrear hasta lo que se pidió.
 
-En este momento estoy enfocado en la **Ingeniería de IA para empresas reales** — construyendo sistemas automatizados y chatbots de IA listos para usar que ayudan a las PYMES en su transformación agéntica. Además de eso, estoy construyendo herramientas para ayudarme a mí mismo y a otros a mejorar sus habilidades, como el [Generador de Cuestionarios](/resources/quiz-generator).
+También construyo **productos de IA y herramientas para desarrolladores** en abierto:
 
-Tengo un par de proyectos personales cocinándose a fuego lento: uno para ayudar a los atletas de resistencia a alcanzar su potencial recopilando y analizando sus datos de entrenamiento — originado por mi [Garmin Nutrition Logger App](https://apps.garmin.com/apps/26c3b37a-505b-4ad8-b759-7568e88f5c93), la cual ya uso para mi propio análisis — y otro para hacer que el aprendizaje de Matemáticas, Programación y Machine Learning sea más accesible y divertido. Por ahora, otros trabajos han tenido prioridad, pero tengo toda la intención de retomarlos más adelante.
+- **[Vespera](https://vespera.bio)**: una app para anticipar el burnout y recuperar el foco, con una agenda diaria sugerida y una micro-acción corta, basada en evidencia, a la vez.
+- **[Agent Fabric](/resources/agent-fabric)**: instala y sincroniza los mismos agentes portables en OpenCode, Kilo, Codex, Claude Code y más, sin sobrescribir tus personalizaciones.
+- **[Artifacts Manager](/resources/artifacts-manager)**: un hub multiproyecto para ver y gestionar los artefactos HTML y Markdown que generan tus agentes.
 
-En este blog es donde comparto **mi viaje** — desde experimentos tecnológicos hasta aventuras en senderos — y todo lo demás. Si te interesa la innovación, la resistencia o simplemente sientes curiosidad por combinar el código con el aire libre, estás en el lugar correcto.
+Últimamente escribo sobre lo que realmente cuesta en un flujo con agentes: [no son los tokens, es la atención](/posts/lo-caro-de-un-agente-es-la-atencion/).
+
+Estoy **disponible para contratos de medio tiempo o por proyecto**, y para **mentoría a equipos e ingenieros en agentes de IA**. Si te sirve, [conversemos](/es/work).
+
+En este blog comparto **mi viaje**, desde experimentos tecnológicos hasta aventuras en senderos y todo lo demás.

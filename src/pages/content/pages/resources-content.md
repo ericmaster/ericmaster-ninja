@@ -10,6 +10,7 @@ Welcome to the resources section. Here you can find developer tools, agent frame
 - **[Agent Hub](/resources/agent-hub)**: Public catalog and distribution hub for community and custom portable agents extending Agent Fabric.
 - **[Artifacts Manager](/resources/artifacts-manager)**: Multi-project viewer and management hub for agent-generated interactive HTML and Markdown artifacts.
 - **[Quiz Generator](/resources/quiz-generator)**: AI-powered quiz generator — upload a document, get MCQs grounded in its content, powered by Cloudflare Workers + RAG.
+- **[Garmin Nutrition Logger](https://apps.garmin.com/apps/26c3b37a-505b-4ad8-b759-7568e88f5c93)**: Garmin Connect IQ app to log nutrition intake alongside your activity ([source](https://github.com/ericmaster/NutritionLogger)). I use it for my own training analysis and keep maintaining it.
 
 ### Cheatsheets & Reference Guides
 
