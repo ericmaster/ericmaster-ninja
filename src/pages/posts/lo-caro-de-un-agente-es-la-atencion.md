@@ -30,16 +30,16 @@ Por un lado queremos gobernanza. Queremos mantener el control, así que agregamo
 
 Al inicio ambas cosas parecen contradictorias. Pero no todo control cuesta lo mismo. Cuando cada control termina en una aprobación humana, aumentan las interrupciones. Los controles automáticos, como tests, criterios de aceptación o una Definition of Done (DoD) que otro agente verifica, pueden reducirlas, aunque también necesitan mantenimiento.
 
-Lo viví en mi primer intento de crear mi propio orquestador. Quería un flujo autónomo pero seguro, así que puse guardrails:
+Lo viví en mi primer intento de crear mi propio harness orquestador. Quería un flujo autónomo pero seguro, así que puse guardrails:
 
 - Bloquear cualquier tarea en la que el agente no estuviera seguro.
 - Bloquear tareas que necesitaran credenciales.
 - Pedir confirmación antes de desplegar a producción.
 - Clasificar mi petición para decidir si podía ejecutarse directamente o necesitaba un plan o diseño.
 
-Durante la implementación tuve que hacer steering: el agente amplió el alcance con cosas que yo no había considerado, sin validarlas conmigo. Y cuando empecé a usarlo aparecieron inconsistencias entre agentes. Un agente aprobaba una tarea para ejecución y el agente que implementaba decidía que no estaba lista, la bloqueaba y la mandaba a revisión. Pasaba más tiempo corrigiendo mi orquestador que entregando código.
+Durante la implementación tuve que hacer steering: el agente amplió el alcance con cosas que yo no había considerado, sin validarlas conmigo. Y cuando empecé a usarlo aparecieron inconsistencias entre agentes. Un agente aprobaba una tarea para ejecución y el agente que implementaba decidía que no estaba lista, la bloqueaba y la mandaba a revisión. Pasaba más tiempo corrigiendo mi harness orquestador que entregando código.
 
-Agregar otro revisor no resolvía esa discrepancia. El problema era que cada agente aplicaba su propio criterio. Lo que necesitaba era una regla compartida: los mismos criterios de aceptación deciden cuándo una tarea se ejecuta, cuándo se detiene y cuándo se escala. Si los agentes siguen sin ponerse de acuerdo, decido yo.
+Agregar otro revisor no resolvía esa discrepancia. El problema era que cada agente aplicaba su propio criterio. Lo que necesitaba era una regla compartida: los mismos criterios de aceptación deciden cuándo una tarea se ejecuta, cuándo se detiene y cuándo se escala. Si los agentes siguen sin ponerse de acuerdo, decido el mejor acercamiento de acuerdo a mi experiencia.
 
 ## Por qué el steering es caro
 
@@ -51,7 +51,7 @@ Y no termina ahí. Una vez implementado el plan, hay que asegurar que el resulta
 
 > ⚠️ **Gotcha**: un plan largo no elimina la atención, la mueve. Si no entiendo el plan, no puedo validar la implementación contra él.
 
-Un ejemplo concreto: necesitaba una interfaz simple para editar los archivos de contexto en markdown de un sistema. Lo que yo tenía en mente era una aplicación aparte para editar los archivos `.md`. Terminó en una migración del sistema para integrar un editor dentro de él. No había explicitado que la herramienta debía ser independiente, y el plan resolvió esa ambigüedad por su cuenta.
+Un ejemplo concreto: necesitaba una interfaz simple para editar los archivos de contexto en markdown de un sistema. Lo que yo tenía en mente era una aplicación aparte para editar los archivos `.md`. Terminó en una migración del sistema para integrar un editor dentro de él. No había sido explícito en que la herramienta debía ser independiente y tampoco había verificado con el agente si estábamos en la misma página. El plan resolvió esa ambigüedad por su cuenta.
 
 ## Cómo aseguro que el plan esté bien definido antes de ejecutarlo
 
