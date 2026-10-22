@@ -2,16 +2,16 @@
 
 ### ¡Bienvenido a mi rincón en la web!
 
-Soy **ingeniero senior de IA y full-stack** en Quito, Ecuador, y **corredor de trail** de corazón. Soy Director of Applied AI en Nimblersoft, donde la mayor parte de mi tiempo se va en **desarrollo agéntico**: diseñar y liderar flujos multiagente donde primero se planifica, los planes pasan por revisión adversaria, los tests y una Definition of Done clara hacen la verificación, y cada cambio se puede rastrear hasta lo que se pidió.
+Soy **ingeniero sénior de IA y full-stack** en Quito, Ecuador, y **corredor de trail** de corazón. Soy Director of Applied AI en Nimblersoft. Desarrollo productos de IA y ayudo a equipos de ingeniería a incorporar agentes de programación en sus flujos de desarrollo. Diseño y lidero flujos de **desarrollo agéntico** con revisión crítica de los planes, pruebas, criterios explícitos de finalización y trazabilidad entre requisitos y cambios.
 
-También construyo **productos de IA y herramientas para desarrolladores** en abierto:
+Estoy **disponible para contratos de medio tiempo o por proyecto**, y para **mentoría a equipos e ingenieros en agentes de IA**. [Conversemos sobre tu proyecto](/es/work).
 
-- **[Vespera](https://vespera.bio)**: una app para anticipar el burnout y recuperar el foco, con una agenda diaria sugerida y una micro-acción corta, basada en evidencia, a la vez.
-- **[Agent Fabric](/resources/agent-fabric)**: instala y sincroniza los mismos agentes portables en OpenCode, Kilo, Codex, Claude Code y más, sin sobrescribir tus personalizaciones.
-- **[Artifacts Manager](/resources/artifacts-manager)**: un hub multiproyecto para ver y gestionar los artefactos HTML y Markdown que generan tus agentes.
+**Proyectos destacados:**
+
+- **[Vespera](https://vespera.bio)**: una app para ayudarte a organizar tu día y cuidar el foco, con una agenda sugerida y microacciones informadas por investigación.
+- **[Agent Fabric](/resources/agent-fabric)**: herramienta de código abierto para instalar y sincronizar definiciones de agentes en OpenCode, Kilo, Codex, Claude Code y más, sin sobrescribir tus personalizaciones.
+- **[Artifacts Manager](/resources/artifacts-manager)**: ve y gestiona los artefactos HTML y Markdown que generan tus agentes, en varios proyectos.
 
 Últimamente escribo sobre lo que realmente cuesta en un flujo con agentes: [no son los tokens, es la atención](/posts/lo-caro-de-un-agente-es-la-atencion/).
-
-Estoy **disponible para contratos de medio tiempo o por proyecto**, y para **mentoría a equipos e ingenieros en agentes de IA**. Si te sirve, [conversemos](/es/work).
 
 En este blog comparto **mi viaje**, desde experimentos tecnológicos hasta aventuras en senderos y todo lo demás.
