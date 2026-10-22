@@ -1,11 +1,17 @@
-## ¡Hola — soy Eric Aguayo!
+## ¡Hola, soy Eric Aguayo!
 
 ### ¡Bienvenido a mi rincón en la web!
 
-Soy un **desarrollador de software** de profesión y un **corredor de trail** de corazón. Ya sea entregando código o escalando senderos de montaña, me apasiona superar los límites y explorar nuevas fronteras.
+Soy **ingeniero sénior de IA y full-stack** en Quito, Ecuador, y **corredor de trail** de corazón. Soy Director of Applied AI en Nimblersoft. Desarrollo productos de IA y ayudo a equipos de ingeniería a incorporar agentes de programación en sus flujos de desarrollo. Diseño y lidero flujos de **desarrollo agéntico** con revisión crítica de los planes, pruebas, criterios explícitos de finalización y trazabilidad entre requisitos y cambios.
 
-En este momento estoy enfocado en la **Ingeniería de IA para empresas reales** — construyendo sistemas automatizados y chatbots de IA listos para usar que ayudan a las PYMES en su transformación agéntica. Además de eso, estoy construyendo herramientas para ayudarme a mí mismo y a otros a mejorar sus habilidades, como el [Generador de Cuestionarios](/resources/quiz-generator).
+Estoy **disponible para contratos de medio tiempo o por proyecto**, y para **mentoría a equipos e ingenieros en agentes de IA**. [Conversemos sobre tu proyecto](/es/work).
 
-Tengo un par de proyectos personales cocinándose a fuego lento: uno para ayudar a los atletas de resistencia a alcanzar su potencial recopilando y analizando sus datos de entrenamiento — originado por mi [Garmin Nutrition Logger App](https://apps.garmin.com/apps/26c3b37a-505b-4ad8-b759-7568e88f5c93), la cual ya uso para mi propio análisis — y otro para hacer que el aprendizaje de Matemáticas, Programación y Machine Learning sea más accesible y divertido. Por ahora, otros trabajos han tenido prioridad, pero tengo toda la intención de retomarlos más adelante.
+**Proyectos destacados:**
 
-En este blog es donde comparto **mi viaje** — desde experimentos tecnológicos hasta aventuras en senderos — y todo lo demás. Si te interesa la innovación, la resistencia o simplemente sientes curiosidad por combinar el código con el aire libre, estás en el lugar correcto.
+- **[Vespera](https://vespera.bio)**: una app para ayudarte a organizar tu día y cuidar el foco, con una agenda sugerida y microacciones informadas por investigación.
+- **[Agent Fabric](/resources/agent-fabric)**: herramienta de código abierto para instalar y sincronizar definiciones de agentes en OpenCode, Kilo, Codex, Claude Code y más, sin sobrescribir tus personalizaciones.
+- **[Artifacts Manager](/resources/artifacts-manager)**: ve y gestiona los artefactos HTML y Markdown que generan tus agentes, en varios proyectos.
+
+Últimamente escribo sobre lo que realmente cuesta en un flujo con agentes: [no son los tokens, es la atención](/posts/lo-caro-de-un-agente-es-la-atencion/).
+
+En este blog comparto **mi viaje**, desde experimentos tecnológicos hasta aventuras en senderos y todo lo demás.

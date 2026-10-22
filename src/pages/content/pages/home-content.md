@@ -1,11 +1,17 @@
-## Hey there — I'm Eric Aguayo!
+## Hey there, I'm Eric Aguayo!
 
 ### Welcome to my corner of the web!
 
-I'm a **software developer** by trade and a **trail runner** at heart. Whether I'm shipping code or climbing mountain trails, I'm all about pushing limits and exploring new frontiers.
+I'm a **senior AI and full-stack engineer** based in Quito, Ecuador, and a **trail runner** at heart. I'm Director of Applied AI at Nimblersoft. I build AI products and help engineering teams bring coding agents into their development workflows. I design and lead **agentic development** workflows with critical plan review, tests, explicit completion criteria, and traceability between requirements and changes.
 
-Right now I'm focused on **AI engineering for real businesses** — building automated harnesses and turnkey AI chatbots that help SMEs through their agentic transformation. Alongside that, I'm building tools to help myself and others upskill, like [Quiz Generator](/resources/quiz-generator).
+I'm **available for part-time or per-project contract work**, and for **mentoring teams and engineers on AI agents**. [Let's talk about your project](/work).
 
-A couple of passion projects are simmering on the back burner: one to help endurance athletes reach their potential by collecting and analyzing their training data — seeded by my [Garmin Nutrition Logger App](https://apps.garmin.com/apps/26c3b37a-505b-4ad8-b759-7568e88f5c93), which I already use for my own analysis — and another to make learning Math, Coding and ML more approachable and fun. Other work has taken priority for now, but I fully intend to circle back to them.
+**Selected projects:**
 
-This blog is where I share **my journey** — from tech experiments to trail adventures — and everything in between. If you're into innovation, endurance, or just curious about blending code with the great outdoors, you're in the right place.
+- **[Vespera](https://vespera.bio)**: an app to help plan your day and protect your focus, with a suggested agenda and research-informed micro-actions.
+- **[Agent Fabric](/resources/agent-fabric)**: open-source tool to install and sync shared agent definitions across OpenCode, Kilo, Codex, Claude Code and more, without overwriting your customizations.
+- **[Artifacts Manager](/resources/artifacts-manager)**: view and manage agent-generated HTML and Markdown artifacts across projects.
+
+Lately I've been writing about what really costs in an agent workflow: [not the tokens, but the attention](/posts/lo-caro-de-un-agente-es-la-atencion/) (in Spanish).
+
+This blog is where I share **my journey**, from tech experiments to trail adventures and everything in between.
