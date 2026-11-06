@@ -141,7 +141,7 @@
         "Agents in SDLC",
         "Custom Tooling Harnesses",
         "Domain Specific Languages (DSL)",
-        "RAG Pipelines",
+        "Building & Tuning RAG Architectures",
         "Agentic Frameworks (Supervisor-Worker)",
         "Vercel AI SDK (AI SDK Core)",
         "Google Gen AI SDK",
@@ -157,16 +157,19 @@
         "Anthropic SDK",
         "AWS Bedrock",
         "OpenRouter",
-        "A2UI / Generative UI"
+        "Generative UI Protocols (A2UI)"
       ]
     },
     {
       "name": "AI-Native Development",
-      "description": "Copilots & Tooling",
+      "description": "Copilots & Agentic Tooling",
       "level": 5,
       "keywords": [
         "Cursor",
         "Claude Code",
+        "Antigravity",
+        "Codex",
+        "OpenCode",
         "ChatGPT",
         "Vibe Coding",
         "Automated IaC Generation",
@@ -206,9 +209,16 @@
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Senior Solutions & Implementation Engineer with 15+ years of full-stack and platform delivery, integrations, and cloud infrastructure for media, education, government, and enterprise clients. I combine technical depth in CMS platforms, serverless architectures, and cloud/AI automation with client discovery, cross-functional leadership, and business outcomes. Recent work includes production RAG pipelines, agentic SDLC tooling, and Zero Trust edge platforms; AI is a differentiator I apply when it improves delivery, not a prerequisite for the roles I seek."
+    "summary": "Senior Solutions & Implementation Engineer with 15+ years of full-stack and platform delivery, integrations, and cloud infrastructure for media, education, government, and enterprise clients. I combine technical depth in CMS platforms, serverless architectures, and cloud/AI automation with client discovery, cross-functional leadership, and business outcomes. Recent work includes building and tuning production RAG architectures, generative UI protocols, agentic SDLC tooling (Claude Code, Antigravity, Codex, OpenCode), and Zero Trust edge platforms; AI is a differentiator I apply when it improves delivery, not a prerequisite for the roles I seek."
   },
   "leadership": [
+    {
+      "name": "Hackathon MediaHack II",
+      "description": "Participant",
+      "date": "Aug 2026",
+      "location": "Quito, Ecuador",
+      "url": "https://drive.google.com/file/d/1jrJ5N8ygvMcc_Rfi4fnztj8e-ykya1fB/view"
+    },
     {
       "name": "FLISOL 2026",
       "description": "Speaker",
@@ -297,7 +307,7 @@
       "position": "Director of Applied AI",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Directing applied AI engineering and solution delivery across client and internal initiatives, translating operational needs into production-ready AI systems, platform capabilities, and delivery practices.</p><ul><li>Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems, integrating agents into the SDLC through custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling.</li><li>Led engineering of production RAG and generative UI pipelines on Cloudflare Serverless using the Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize, and AI Search.</li><li>Guided implementation of a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.</li><li>Designed in-process LangGraph orchestration for internal operational workflows covering triage, execution, merge, dependency scanning, and monitoring.</li><li>Directed automation of DataOps/MLOps workflows with GitHub Actions and GitLab Pipelines across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) to support client and internal platform delivery.</li><li>Established MCP-assisted practices for infrastructure decisions and automation while keeping people accountable for customer-facing outcomes.</li></ul>",
+      "summary": "<p>Directing applied AI engineering and solution delivery across client and internal initiatives, translating operational needs into production-ready AI systems, platform capabilities, and delivery practices.</p><ul><li>Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems, integrating agents into the SDLC through custom harnesses and supervisor-worker workflows using agentic tooling (Claude Code, Antigravity, Codex, OpenCode), MCP, provider APIs, and internal tooling.</li><li>Led engineering, architecture, and tuning of production RAG architectures and generative UI protocols on Cloudflare Serverless using the Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize, and AI Search, optimizing retrieval precision and real-time interaction.</li><li>Guided implementation of a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.</li><li>Designed in-process LangGraph orchestration for internal operational workflows covering triage, execution, merge, dependency scanning, and monitoring.</li><li>Directed automation of DataOps/MLOps workflows with GitHub Actions and GitLab Pipelines across AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) to support client and internal platform delivery.</li><li>Established MCP-assisted practices for infrastructure decisions and automation while keeping people accountable for customer-facing outcomes.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -305,7 +315,7 @@
       "position": "Senior AI Software Engineer & Agentic Systems Consultant",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Present",
-      "summary": "<p>Designing and implementing AI-native solutions and integrations for clients and startups, tying technical delivery to customer outcomes.</p><ul><li>Engineered RAG pipelines and Agentic RAG Interfaces for Paftesting/Velir CMS-migration consultancy, using ground-truth evaluation frameworks to assess LLM response accuracy and hallucination rates.</li><li>Built <strong>job-posts</strong>, a job-ingestion and fit-scoring application using the Google Gen AI SDK (<code>@google/genai</code>) to evaluate job listings against a structured profile with fail-closed authentication, host allowlisting, and disabled tools/function calling.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps relevant to answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties to support entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
+      "summary": "<p>Designing and implementing AI-native solutions and integrations for clients and startups, tying technical delivery to customer outcomes.</p><ul><li>Built and tuned enterprise RAG architectures and generative UI protocols for Paftesting/Velir CMS-migration consultancy, establishing ground-truth retrieval evaluation benchmarks, chunking optimization, and hallucination auditing to guarantee factual precision.</li><li>Built <strong>job-posts</strong>, a job-ingestion and fit-scoring application using the Google Gen AI SDK (<code>@google/genai</code>) to evaluate job listings against a structured profile with fail-closed authentication, host allowlisting, and disabled tools/function calling.</li><li>Conducted LLM Hallucination Audits for client AI integrations, establishing structured evaluation protocols and flagging schema gaps relevant to answer-engine trustworthiness.</li><li>Implemented Schema.org structured data and JSON-LD markup across multiple client properties to support entity authority and brand discoverability for Generative Engines (AEO/GEO).</li><li>Architected meli.run: Athlete Profile & Blog Platform using React/Next.js, Decap CMS, and GitHub Actions CI/CD with structured data for AI-engine indexability.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {

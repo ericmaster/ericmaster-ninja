@@ -141,7 +141,7 @@
         "Agentes en SDLC",
         "Arneses de Herramientas Personalizados",
         "Lenguajes de Dominio Específico (DSL)",
-        "Pipelines RAG",
+        "Construcción y Calibración de RAG",
         "Frameworks Agénticos (Supervisor-Trabajador)",
         "Vercel AI SDK (AI SDK Core)",
         "Google Gen AI SDK",
@@ -157,16 +157,19 @@
         "Anthropic SDK",
         "AWS Bedrock",
         "OpenRouter",
-        "A2UI / IU Generativa"
+        "Protocolos de IU Generativa (A2UI)"
       ]
     },
     {
       "name": "Desarrollo Nativo con IA",
-      "description": "Copilots y Herramientas",
+      "description": "Copilots y Herramientas Agénticas",
       "level": 5,
       "keywords": [
         "Cursor",
         "Claude Code",
+        "Antigravity",
+        "Codex",
+        "OpenCode",
         "ChatGPT",
         "Vibe Coding",
         "Generación Automatizada de IaC",
@@ -206,9 +209,16 @@
     "phone": "+593983337611",
     "location": "Quito, Pichincha - Ecuador",
     "website": "https://ericmaster.ninja",
-    "summary": "Ingeniero Senior de Soluciones e Implementación con más de 15 años de entrega full-stack y de plataforma, integraciones e infraestructura en la nube para clientes de medios, educación, gobierno y empresa. Combino profundidad técnica en plataformas CMS, arquitecturas serverless y automatización cloud/IA con descubrimiento de cliente, liderazgo interfuncional y resultados de negocio. El trabajo reciente incluye pipelines RAG de producción, herramientas agénticas en el SDLC y plataformas edge Zero Trust; la IA es un diferenciador que aplico cuando mejora la entrega, no un requisito de los roles que busco."
+    "summary": "Ingeniero Senior de Soluciones e Implementación con más de 15 años de entrega full-stack y de plataforma, integraciones e infraestructura en la nube para clientes de medios, educación, gobierno y empresa. Combino profundidad técnica en plataformas CMS, arquitecturas serverless y automatización cloud/IA con descubrimiento de cliente, liderazgo interfuncional y resultados de negocio. El trabajo reciente incluye la construcción y calibración de arquitecturas RAG en producción, protocolos de IU generativa, herramientas de SDLC agéntico (Claude Code, Antigravity, Codex, OpenCode) y plataformas edge Zero Trust; la IA es un diferenciador que aplico cuando mejora la entrega, no un requisito de los roles que busco."
   },
   "leadership": [
+    {
+      "name": "Hackathon MediaHack II",
+      "description": "Participante",
+      "date": "Ago 2026",
+      "location": "Quito, Ecuador",
+      "url": "https://drive.google.com/file/d/1jrJ5N8ygvMcc_Rfi4fnztj8e-ykya1fB/view"
+    },
     {
       "name": "FLISOL 2026",
       "description": "Ponente",
@@ -297,7 +307,7 @@
       "position": "Director de IA Aplicada",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Dirección de ingeniería de IA aplicada y entrega de soluciones en iniciativas para clientes y equipos internos, traduciendo necesidades operativas en sistemas de IA listos para producción, capacidades de plataforma y prácticas de entrega.</p><ul><li>Definición de la dirección técnica para pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos; integración de agentes en el SDLC mediante arneses personalizados y flujos supervisor-trabajador con MCP, APIs de proveedores y herramientas internas.</li><li>Liderazgo de la ingeniería de pipelines RAG e IU generativa de producción en Cloudflare Serverless con Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize y AI Search.</li><li>Orientación de la implementación de un Durable Object con Cloudflare Agents SDK para captación de leads y flujos human-in-the-loop, conservando una ruta de rollback al servicio Hono existente.</li><li>Diseño de orquestación LangGraph en proceso para flujos operativos internos de triage, ejecución, merge, escaneo de dependencias y monitoreo.</li><li>Dirección de la automatización de flujos DataOps/MLOps con GitHub Actions y GitLab Pipelines en AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para respaldar la entrega de plataformas a clientes y equipos internos.</li><li>Establecimiento de prácticas asistidas por MCP para decisiones de infraestructura y automatización, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
+      "summary": "<p>Dirección de ingeniería de IA aplicada y entrega de soluciones en iniciativas para clientes y equipos internos, traduciendo necesidades operativas en sistemas de IA listos para producción, capacidades de plataforma y prácticas de entrega.</p><ul><li>Definición de la dirección técnica para pipelines DataOps/MLOps, plataformas serverless y sistemas agénticos; integración de agentes en el SDLC mediante arneses personalizados y flujos supervisor-trabajador con herramientas agénticas (Claude Code, Antigravity, Codex, OpenCode), MCP, APIs de proveedores y herramientas internas.</li><li>Liderazgo en la ingeniería, arquitectura y calibración de arquitecturas RAG en producción y protocolos de IU generativa en Cloudflare Serverless con Vercel AI SDK (AI SDK Core), Cloudflare AI Gateway, OpenRouter, Workers AI, Workers, D1, R2, Vectorize y AI Search, optimizando la precisión de recuperación y la interacción en tiempo real.</li><li>Orientación de la implementación de un Durable Object con Cloudflare Agents SDK para captación de leads y flujos human-in-the-loop, conservando una ruta de rollback al servicio Hono existente.</li><li>Diseño de orquestación LangGraph en proceso para flujos operativos internos de triage, ejecución, merge, escaneo de dependencias y monitoreo.</li><li>Dirección de la automatización de flujos DataOps/MLOps con GitHub Actions y GitLab Pipelines en AWS (Bedrock, Lambda, EC2, RDS, DynamoDB, S3) para respaldar la entrega de plataformas a clientes y equipos internos.</li><li>Establecimiento de prácticas asistidas por MCP para decisiones de infraestructura y automatización, manteniendo a las personas responsables de los resultados de cara al cliente.</li></ul>",
       "url": "https://www.nimblersoft.com"
     },
     {
@@ -305,7 +315,7 @@
       "position": "Ingeniero Senior de Software de IA y Consultor de Sistemas Agénticos",
       "location": "Quito, Ecuador",
       "date": "Feb 2025 – Presente",
-      "summary": "<p>Diseño e implementación de soluciones nativas con IA e integraciones para clientes y startups, vinculando la entrega técnica con resultados de negocio.</p><ul><li>Ingeniería de pipelines RAG e Interfaces RAG Agénticas para la consultoría de migración de CMS de Paftesting/Velir, usando marcos de evaluación basados en datos reales para evaluar la precisión de respuesta del LLM y las tasas de alucinación.</li><li>Construcción de <strong>job-posts</strong>, una aplicación de ingesta y evaluación de ofertas laborales usando Google Gen AI SDK (<code>@google/genai</code>) para comparar ofertas contra un perfil estructurado, con autenticación fail-closed, allowlist de hosts y herramientas/function calling deshabilitados.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema relevantes para la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes para apoyar la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
+      "summary": "<p>Diseño e implementación de soluciones nativas con IA e integraciones para clientes y startups, vinculando la entrega técnica con resultados de negocio.</p><ul><li>Construcción y calibración de arquitecturas RAG empresariales y protocolos de IU generativa para la consultoría de migración de CMS de Paftesting/Velir, estableciendo puntos de referencia de evaluación de recuperación basados en datos reales, optimización de fragmentación (chunking) y auditorías de alucinaciones para garantizar la precisión de respuesta del LLM.</li><li>Construcción de <strong>job-posts</strong>, una aplicación de ingesta y evaluación de ofertas laborales usando Google Gen AI SDK (<code>@google/genai</code>) para comparar ofertas contra un perfil estructurado, con autenticación fail-closed, allowlist de hosts y herramientas/function calling deshabilitados.</li><li>Auditorías de alucinaciones de LLM para integraciones de IA en clientes, estableciendo protocolos de evaluación estructurados y señalando brechas en el esquema relevantes para la confiabilidad del motor de respuesta.</li><li>Implementación de datos estructurados de Schema.org y marcado JSON-LD en múltiples propiedades de clientes para apoyar la autoridad de la entidad y la capacidad de descubrimiento de la marca para Motores Generativos (AEO/GEO).</li><li>Arquitectura de meli.run: Plataforma de Perfil y Blog de Atletas usando React/Next.js, Decap CMS y CI/CD con GitHub Actions con datos estructurados para indexación de motores de IA.</li></ul>",
       "url": "https://ericmaster.ninja"
     },
     {

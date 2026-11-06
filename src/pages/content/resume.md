@@ -31,7 +31,7 @@ MySQL/MariaDB, PostgreSQL, DynamoDB, MongoDB, Redis, Memcache
 AWS (EC2, S3, RDS, CloudFront, API Gateway, Bedrock), Platform.sh, Acquia, Pantheon
 
 ### Data Engineering & AI  
-Kafka, Flink, Apache Airflow, Databricks, Keras, PyTorch, TensorFlow, Vercel AI SDK, Google Gen AI SDK, Cloudflare Agents SDK, LangGraph, MCP
+Kafka, Flink, Apache Airflow, Databricks, Keras, PyTorch, TensorFlow, Vercel AI SDK, Google Gen AI SDK, Cloudflare Agents SDK, LangGraph, MCP, RAG Architectures (Building & Tuning), Generative UI Protocols (A2UI), Claude Code, Antigravity, Codex, OpenCode
 
 ### Miscellaneous  
 HAProxy, Varnish, OAuth2, GraphQL, REST, Git, SSO (SimpleSAML)
@@ -49,8 +49,8 @@ Senior Solutions & Implementation Engineer with 15+ years of full-stack and plat
 ### **Director of Applied AI – Nimblersoft**
 _Feb 2025 – Present_
 Directing applied AI engineering and solution delivery across client and internal initiatives, translating operational needs into production-ready AI systems, platform capabilities, and delivery practices.
-- Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems; integrated agents into the SDLC through custom harnesses and supervisor-worker workflows using MCP, provider APIs, and internal tooling.
-- Led engineering of production RAG and generative UI pipelines using the Vercel AI SDK, Cloudflare AI Gateway, OpenRouter, Workers AI, Vectorize, and AI Search.
+- Set technical direction for DataOps/MLOps pipelines, serverless platforms, and agentic systems; integrated agents into the SDLC through custom harnesses and supervisor-worker workflows using agentic tooling (Claude Code, Antigravity, Codex, OpenCode), MCP, provider APIs, and internal tooling.
+- Led engineering, architecture, and tuning of production RAG architectures and generative UI protocols using the Vercel AI SDK, Cloudflare AI Gateway, OpenRouter, Workers AI, Vectorize, and AI Search.
 - Guided implementation of a Cloudflare Agents SDK Durable Object for lead collection and human-in-the-loop workflows, preserving a rollback path to the existing Hono service.
 - Designed LangGraph orchestration for internal operational workflows, including triage, execution, merge, dependency scanning, and monitoring.
 - Directed DataOps/MLOps workflow automation with GitHub Actions and GitLab Pipelines across AWS to support client and internal platform delivery.
@@ -59,7 +59,7 @@ Directing applied AI engineering and solution delivery across client and interna
 _Feb 2025 – Present_
 Designing and implementing AI-native solutions and integrations for clients and startups, tying technical delivery to customer outcomes.
 - Created and deployed [meli.run](https://meli.run) for running communities.
-- Engineered RAG pipelines and evaluation frameworks for Paftesting/Velir CMS-migration consultancy.
+- Built and tuned enterprise RAG architectures and generative UI protocols for Paftesting/Velir CMS-migration consultancy, establishing evaluation benchmarks and hallucination auditing.
 - Built `job-posts` using the Google Gen AI SDK (`@google/genai`) to score job listings against a structured profile with fail-closed authentication and host allowlisting.
 
 ---
@@ -115,6 +115,7 @@ _Universidad San Francisco de Quito_
 - Maintainer: [GitHub](https://github.com/ericmaster), [Drupal.org](https://www.drupal.org/u/ericmaster)  
 - StackExchange contributor: [Drupal StackExchange](https://drupal.stackexchange.com/users/76014/eric-aguayo)  
 - Speaker: FLISOL Quito 2025, DrupalCamps (Chile, Costa Rica, Ecuador)  
+- Participant: Hackathon MediaHack II (Aug 2026)
 - Mentor: DrupalCon Latin America 2015  
 - Organizer: Meetups & DrupalCamp Ecuador  
 
