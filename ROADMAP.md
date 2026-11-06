@@ -3,6 +3,10 @@
 Pending work, lowest-urgency last. Security context lives in [SECURITY_PLAN.md](./SECURITY_PLAN.md);
 terminology in [CONTEXT.md](./CONTEXT.md); decisions in [docs/adr/](./docs/adr/).
 
+## Nimblerbot — after MVP
+
+- [ ] [ENINJA-2 — deferred improvements](https://proj.nimblersoft.com/projects/ENINJA/issues/2/nimblerbot-web-mejoras-posteriores-al-mvp): release tooling, mock harness, retention automation (only while a verified operational procedure suffices), and expanded benchmarking. The ticket owns resumption triggers and acceptance; [the two-phase MVP plan](docs/plans/2026-09-28-nimblerbot-integration.md) retains essential safeguards.
+
 ## Verify (manual, quick)
 
 - [ ] **Decap CMS end-to-end login** — header-level CSP is verified live, but click through
@@ -29,4 +33,3 @@ Treat as a maintenance pass, not a deploy blocker.
 - [ ] Pin the npm registry explicitly: `npm config set registry https://registry.npmjs.org/`
 - [ ] Sanitize the `resume.json` `set:html` output (`ResumeSummary.astro`, `ResumeExperience.astro`)
       before introducing any user-supplied markdown anywhere — repo-controlled today, so LOW risk.
-
