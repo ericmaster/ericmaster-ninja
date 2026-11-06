@@ -1,0 +1,356 @@
+{
+  "skills": [
+    {
+      "name": "Full-Stack & Architecture",
+      "description": "Enterprise Architecture & Design Patterns",
+      "level": 5,
+      "keywords": [
+        "SOLID Principles",
+        "OOP & MVC Design Patterns",
+        "Enterprise SDLC",
+        "Microservices Architecture",
+        "Angular",
+        "TypeScript",
+        "API Design & Integration",
+        "Clean Architecture",
+        "HTML5 & CSS3"
+      ]
+    },
+    {
+      "name": "Database & Optimization",
+      "description": "Relational & Document Modeling",
+      "level": 5,
+      "keywords": [
+        "PostgreSQL",
+        "Schema Design",
+        "JSONB Modeling",
+        "Query Optimization & Indexing",
+        "AWS RDS",
+        "MySQL",
+        "Redis Caching"
+      ]
+    },
+    {
+      "name": "Cloud & AWS Infrastructure",
+      "description": "Serverless & Cloud-Native Platforms",
+      "level": 5,
+      "keywords": [
+        "AWS (Lambda, API Gateway, SNS, RDS, S3)",
+        "Serverless Architecture",
+        "Cloudflare Workers",
+        "Docker",
+        "Terraform (IaC)",
+        "Zero Trust"
+      ]
+    },
+    {
+      "name": "Testing & QA Automation",
+      "description": "Unit & End-to-End Verification",
+      "level": 5,
+      "keywords": [
+        "Playwright (E2E Testing)",
+        "Unit & Integration Testing",
+        "Jest",
+        "Automated PR Quality Gates",
+        "Test-Driven Development (TDD)",
+        "Regression Testing"
+      ]
+    },
+    {
+      "name": "AI-Native Engineering Tooling",
+      "description": "Agentic Tooling & Enterprise AI",
+      "level": 5,
+      "keywords": [
+        "Claude Code",
+        "Antigravity",
+        "Codex",
+        "OpenCode",
+        "GitHub Copilot",
+        "Building & Tuning RAG Architectures",
+        "Generative UI Protocols",
+        "MCP (Model Context Protocol)",
+        "AI-Assisted Code & Test Generation",
+        "Prompt Engineering"
+      ]
+    },
+    {
+      "name": "DevOps & CI/CD",
+      "description": "Continuous Integration & Delivery",
+      "level": 5,
+      "keywords": [
+        "CI/CD Pipelines",
+        "GitHub Actions",
+        "GitLab CI",
+        "Git & GitFlow",
+        "Docker",
+        "Automated Deployments"
+      ]
+    },
+    {
+      "name": "Consulting & Leadership",
+      "description": "Client Advisory & Agile Delivery",
+      "level": 5,
+      "keywords": [
+        "Client Technical Consulting",
+        "Agile (Scrum / Kanban)",
+        "Engineering Mentorship",
+        "Cross-Functional Collaboration",
+        "Stakeholder Communication",
+        "Solution Design"
+      ]
+    },
+    {
+      "name": "Security & Performance",
+      "description": "Secure & Optimized Delivery",
+      "level": 4,
+      "keywords": [
+        "OWASP Best Practices",
+        "Performance Optimization",
+        "Identity Resolution & SSO",
+        "Web Application Security",
+        "Code Audits"
+      ]
+    },
+    {
+      "name": "Mobile & Cross-Platform",
+      "description": "Mobile Frameworks",
+      "level": 4,
+      "keywords": [
+        "React Native",
+        "Flutter / Dart",
+        "Cross-Platform Apps"
+      ]
+    }
+  ],
+  "basics": {
+    "name": "Eric Aguayo",
+    "image": "/assets/images/branding/avatar_option_1_mountain_summit_centered.png",
+    "headline": "Senior Consultant, Software Engineer",
+    "email": "me@ericmaster.ninja",
+    "phone": "+593983337611",
+    "location": "Quito, Pichincha - Ecuador",
+    "website": "https://ericmaster.ninja",
+    "summary": "Senior Consultant and Full-Stack Software Engineer with 15+ years of experience architecting and delivering high-performance, enterprise-grade applications, scalable microservices, and modern web platforms. Deep foundational mastery of SOLID principles, OOP/MVC design patterns, and enterprise SDLC, enabling rapid cross-language adaptability and seamless ramp-up across modern frameworks. Extensive hands-on delivery with PostgreSQL (schema design, JSONB, query optimization), modern Angular / TypeScript interfaces, and resilient AWS cloud infrastructure (Lambda, API Gateway, SNS, RDS, S3). Experienced in building and tuning production RAG architectures, generative UI protocols, and AI-augmented engineering workflows using agentic tooling (Claude Code, Antigravity, Codex, OpenCode) and GitHub Copilot to accelerate development, enforce comprehensive testing (automated unit and Playwright E2E suites), and maintain strict security and performance standards. Bilingual (English/Spanish) consultant skilled at leading agile teams and translating complex client objectives into durable technical solutions."
+  },
+  "leadership": [
+    {
+      "name": "Hackathon MediaHack II",
+      "description": "Participant",
+      "date": "Aug 2026",
+      "location": "Quito, Ecuador",
+      "url": "https://drive.google.com/file/d/1jrJ5N8ygvMcc_Rfi4fnztj8e-ykya1fB/view"
+    },
+    {
+      "name": "FLISOL 2026",
+      "description": "Speaker",
+      "date": "Apr 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "SALA AI 2026",
+      "description": "Participant",
+      "date": "Mar 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "Hackathon Conecta Impacto",
+      "description": "Participant",
+      "date": "Feb 2026",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "FLISOL 2025",
+      "description": "Speaker",
+      "date": "2025",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp & PHP Day Quito",
+      "description": "Sponsor",
+      "date": "2017",
+      "location": "Quito, Ecuador",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp Costa Rica",
+      "description": "Speaker",
+      "date": "2016",
+      "location": "Costa Rica",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp Chile",
+      "description": "Speaker",
+      "date": "2015",
+      "location": "Santiago, Chile",
+      "url": ""
+    },
+    {
+      "name": "Drupalcon Latin America",
+      "description": "Mentor",
+      "date": "2015",
+      "location": "",
+      "url": ""
+    },
+    {
+      "name": "DrupalCamp 2014",
+      "description": "Co-Organizer",
+      "date": "2014",
+      "location": "Guayaquil, Ecuador",
+      "url": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "Universidad San Francisco de Quito",
+      "studyType": "Master",
+      "area": "Artificial Intelligence",
+      "score": "4.00/4.00 GPA",
+      "date": "2026",
+      "url": "https://www.usfq.edu.ec"
+    },
+    {
+      "institution": "Universidad San Francisco de Quito",
+      "studyType": "Engineering",
+      "area": "Systems Engineering and Mathematics",
+      "score": "3.91/4.00 GPA",
+      "date": "2008",
+      "url": "https://www.usfq.edu.ec"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Nimblersoft",
+      "position": "Director of Applied AI & Senior Technical Consultant",
+      "location": "Quito, Ecuador",
+      "date": "Feb 2025 – Present",
+      "summary": "<p>Directing technical consulting and solution delivery for enterprise clients, architecting scalable microservices, cloud infrastructure, and modern web applications while leading engineering practices.</p><ul><li>Architected and delivered full-stack solutions adhering to strict SOLID principles and MVC/clean architecture patterns, integrating resilient backend microservices with PostgreSQL datastores (JSONB schemas, query indexing) and high-throughput REST APIs.</li><li>Built administrative tooling and partner configuration interfaces using Angular and TypeScript with reactive state management and reusable component design systems.</li><li>Built and tuned production RAG architectures and generative UI protocols, standardizing AI-augmented engineering workflows across teams using agentic tooling (Claude Code, Antigravity, Codex, OpenCode) and GitHub Copilot for code generation, test scaffolding, and accelerated delivery cycles.</li><li>Enforced rigorous automated testing standards by establishing PR quality gates requiring unit tests and comprehensive Playwright E2E coverage.</li><li>Engineered event-driven serverless architectures on AWS (Lambda, API Gateway, SNS, RDS), ensuring high availability, fault tolerance, and sub-second response times.</li><li>Mentored developers through architectural reviews and pair programming, championing Agile (Scrum/Kanban) methodologies and proactive technical decision-making.</li></ul>",
+      "url": "https://www.nimblersoft.com"
+    },
+    {
+      "company": "Independent Developer / Contractor",
+      "position": "Senior Software Engineering & AI Consultant",
+      "location": "Quito, Ecuador",
+      "date": "Feb 2025 – Present",
+      "summary": "<p>Providing senior-level consulting and full-stack software development for enterprise clients, translating complex client business requirements into high-performing, resilient applications.</p><ul><li>Engineered robust RESTful APIs and microservices incorporating SOLID principles, MVC patterns, and secure authentication across distributed environments.</li><li>Delivered partner configuration UIs and admin tooling with Angular, TypeScript, and responsive CSS, streamlining operational workflows for non-technical stakeholders.</li><li>Designed PostgreSQL database models featuring JSONB columns for flexible configuration schemas alongside query execution tuning for optimal performance.</li><li>Engineered and tuned domain-specific RAG architectures and interactive generative UI protocols for client platforms; leveraged agentic tooling (Claude Code, Antigravity, Codex, OpenCode) and GitHub Copilot to accelerate full-stack delivery and maintain high engineering velocity.</li><li>Built automated CI/CD pipelines via GitHub Actions with integrated Playwright E2E regression suites, ensuring continuous delivery and high release confidence.</li><li>Consulted with client leadership in fluent English, providing transparent technical roadmaps, risk assessments, and architectural recommendations.</li></ul>",
+      "url": "https://ericmaster.ninja"
+    },
+    {
+      "company": "REDSpace",
+      "position": "Senior Full-Stack Developer & Consultant",
+      "location": "Halifax, Canada / Remote",
+      "date": "Feb 2021 – Feb 2025",
+      "summary": "<p>Delivered enterprise full-stack platforms and scalable cloud integrations for premier global media brands, bridging frontend performance with backend reliability.</p><ul><li><strong>Bleacher Report (50M+ MAU)</strong> – Engineered full-stack features and high-throughput analytics libraries; built Playwright E2E and unit test coverage to safeguard continuous deployments during peak traffic events.</li><li><strong>NY Post (AdTech & Real-Time Bidding)</strong> – Developed low-latency bid optimization services and identity-resolution integrations (LiveRamp), enforcing web security best practices, data privacy by design, and sub-50ms execution budgets.</li><li><strong>AWS Cloud & Serverless Integrations</strong> – Implemented AWS Lambda, API Gateway, and S3 architectures for enterprise clients including Nova Scotia Power (nspower.ca), supporting high-traffic utility self-service portals.</li><li><strong>Collaborative Agile Delivery</strong> – Collaborated daily in English with North American product owners, software architects, and QA engineers in Scrum ceremonies, driving sprint planning and architectural retrospectives.</li></ul>",
+      "url": "https://www.redspace.com/"
+    },
+    {
+      "company": "Taoti",
+      "position": "Senior Full-Stack Consultant & Developer",
+      "location": "Washington, D.C. / Remote",
+      "date": "Feb 2020 – Feb 2021",
+      "summary": "<p>Delivered high-impact full-stack web platforms for government, health, and enterprise NGO clients with strict accessibility, security, and performance requirements.</p><ul><li><strong>wsscwater.com</strong> – Architected and launched responsive municipal utility platform serving 1M+ customers, leading complex database migrations and relational query optimizations.</li><li><strong>lmi.org & hfsa.org</strong> – Refactored legacy monolithic modules into decoupled, maintainable service-oriented architectures with SOLID principles and structured REST APIs.</li><li>Collaborated with client executive teams in Agile sprints, translating complex non-functional requirements into clear technical specifications and delivery milestones.</li></ul>",
+      "url": "https://taoti.com/"
+    },
+    {
+      "company": "Nimblersoft",
+      "position": "Co-Founder & Principal Software Architect",
+      "location": "Quito, Ecuador",
+      "date": "Jan 2014 – Feb 2020",
+      "summary": "<p>Architected and led software engineering delivery for enterprise clients across North America and LATAM, managing cross-functional development teams from discovery to deployment.</p><ul><li>Designed distributed architectures and RESTful APIs utilizing clean architecture, MVC patterns, and relational databases (PostgreSQL, MySQL) for high-availability enterprise applications.</li><li>Established modern software engineering standards: version control workflows (GitFlow), CI/CD pipelines, automated testing, and comprehensive code review protocols.</li><li>Mentored engineering teams in clean code practices, SOLID design patterns, and Agile methodologies (Scrum/Kanban), fostering high developer velocity and low defect rates.</li><li>Directed client technical discovery sessions, translating business strategy into actionable architecture roadmaps and reliable estimates.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Devsu",
+      "position": "Lead Software Developer",
+      "location": "Quito, Ecuador",
+      "date": "Feb 2011 – Dec 2013",
+      "summary": "<p>Led development teams in delivering custom web applications and client platforms.</p><ul><li>Trained and mentored junior and mid-level software engineers in modern Git workflows, API development, and software design fundamentals.</li><li>Delivered web applications for commercial and educational institutions, optimizing relational databases and frontend responsiveness.</li></ul>",
+      "url": ""
+    },
+    {
+      "company": "Oshyn Inc.",
+      "position": "Software Engineer",
+      "location": "Quito, Ecuador",
+      "date": "May 2008 – Jul 2010",
+      "summary": "<p>Contributed to enterprise web application development for US clients.</p><ul><li>Developed backend services and integrations for high-profile client projects including eamobile.com and icon4x4.com.</li><li>Collaborated with US-based engineering teams in daily English-language coordination.</li></ul>",
+      "url": ""
+    }
+  ],
+  "profiles": [
+    {
+      "network": "GitHub",
+      "username": "ericmaster",
+      "url": "https://github.com/ericmaster",
+      "icon": "github"
+    },
+    {
+      "network": "LinkedIn",
+      "username": "eric-aguayo",
+      "url": "https://www.linkedin.com/in/eric-aguayo/",
+      "icon": "linkedin"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Certified Developer",
+      "issuer": "Acquia",
+      "date": "2015",
+      "url": ""
+    }
+  ],
+  "projects": [
+    {
+      "name": "Partner Configuration & Admin Tooling",
+      "description": "Admin portal for multi-tenant config management featuring Angular, TypeScript, and clean API design with PostgreSQL JSONB stores and Playwright E2E coverage; built with SOLID principles and modular architecture.",
+      "date": "2025 – 2026",
+      "keywords": [
+        "Angular",
+        "TypeScript",
+        "SOLID & MVC",
+        "PostgreSQL JSONB",
+        "Playwright"
+      ],
+      "url": "https://github.com/ericmaster"
+    },
+    {
+      "name": "Cloud Serverless & Event Orchestrator",
+      "description": "High-throughput serverless microservices on AWS (Lambda, API Gateway, SNS) with automated CI/CD and Claude Code/Copilot assisted testing harnesses.",
+      "date": "2024 – 2026",
+      "keywords": [
+        "AWS Lambda",
+        "API Gateway",
+        "SNS",
+        "GitHub Actions"
+      ],
+      "url": "https://github.com/ericmaster"
+    },
+    {
+      "name": "informa-t",
+      "description": "Functional prototype built at Hackathon MediaHack II to combat political disinformation through tuned RAG retrieval workflows, generative UI protocols, and structured fact-checking verification.",
+      "date": "Aug 2026",
+      "keywords": [
+        "RAG Architectures",
+        "Generative UI",
+        "Disinformation Defense",
+        "Fact-Checking"
+      ],
+      "url": "https://informa-t.nimblersoft.com/"
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "description": "Fluent / Full Professional (Daily client collaboration)",
+      "level": 5
+    },
+    {
+      "name": "Spanish",
+      "description": "Native",
+      "level": 5
+    }
+  ]
+}

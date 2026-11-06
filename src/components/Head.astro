@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   locale?: string;
+  robots?: string;
 }
 
 const lang = getLangFromUrl(Astro.url);
@@ -19,6 +20,7 @@ const {
   canonicalUrl = Astro.url.href,
   ogImage = `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   ogType = "website",
+  robots,
 } = Astro.props;
 
 const description = Astro.props.description || DEFAULT_META_DESCRIPTION[(locale as "en" | "es")] || DEFAULT_META_DESCRIPTION.en;
@@ -28,6 +30,7 @@ const fullTitle = `${siteName} | ${title}`;
 
 <!-- Primary Meta Tags -->
 <meta charset="utf-8" />
+{robots && <meta name="robots" content={robots} />}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />

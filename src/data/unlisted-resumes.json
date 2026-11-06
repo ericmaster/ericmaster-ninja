@@ -1,0 +1,27 @@
+[
+  {
+    "id": "senior-consultant-software-engineer",
+    "slug": "senior-consultant-software-engineer",
+    "targetRole": "Senior Consultant, Software Engineer",
+    "company": "Enterprise Consulting",
+    "location": "Quito, Pichincha - Ecuador",
+    "jobUrl": "https://careers.northhighland.com/jobs/senior-consultant-software-engineer-50345/",
+    "jobReference": "50345",
+    "dateCreated": "2026-10-01",
+    "route": "/unlisted/senior-consultant-software-engineer",
+    "pdfPath": "/pdfs/eric-aguayo-senior-consultant-software-engineer.pdf",
+    "downloadFilename": "Eric_Aguayo_Senior_Consultant_Software_Engineer.pdf",
+    "dataPath": "src/data/unlisted/senior-consultant-software-engineer.json",
+    "status": "Ready",
+    "keyAlignment": [
+      "Deep grounding in SOLID principles, OOP/MVC design patterns, and enterprise SDLC for rapid multi-framework adaptability",
+      "Angular / TypeScript / modern frontend tooling for admin portals and partner-config UI",
+      "Hands-on PostgreSQL expertise: schema design, JSONB indexing, and query execution optimization",
+      "AWS Cloud Infrastructure: Lambda, API Gateway, SNS, RDS, S3",
+      "Robust testing standards: automated unit testing and Playwright E2E coverage for PR gates",
+      "AI-native workflow integration using agentic tooling (Claude Code, Antigravity, Codex, OpenCode) and GitHub Copilot to accelerate development and testing, along with expertise in building and tuning RAG architectures and generative UI protocols",
+      "Technical consultancy, Agile leadership (Scrum/Kanban), and direct English client collaboration",
+      "Based in Quito, Ecuador (authorized to work locally without visa sponsorship)"
+    ]
+  }
+]

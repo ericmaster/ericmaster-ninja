@@ -116,15 +116,15 @@ function renderAtsResumeHtml(data, lang = 'en') {
 <style>
   @page {
     size: letter;
-    margin: 0.38in 0.45in 0.38in 0.45in;
+    margin: 0.32in 0.42in 0.32in 0.42in;
   }
   * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
     background: #fff;
-    font-size: 8.5pt;
-    line-height: 1.3;
+    font-size: 8.3pt;
+    line-height: 1.25;
     margin: 0;
     padding: 0;
   }
@@ -132,24 +132,24 @@ function renderAtsResumeHtml(data, lang = 'en') {
   .header {
     text-align: center;
     border-bottom: 1.5px solid #2563eb;
-    padding-bottom: 4pt;
-    margin-bottom: 6pt;
+    padding-bottom: 3pt;
+    margin-bottom: 5pt;
   }
   .name {
-    font-size: 17pt;
+    font-size: 16pt;
     font-weight: 800;
     color: #0f172a;
     margin: 0;
     line-height: 1.1;
   }
   .headline {
-    font-size: 10pt;
+    font-size: 9.8pt;
     font-weight: 600;
     color: #1d4ed8;
-    margin: 2pt 0 3pt 0;
+    margin: 1.5pt 0 2.5pt 0;
   }
   .contact-bar {
-    font-size: 7.8pt;
+    font-size: 7.6pt;
     color: #475569;
     display: flex;
     flex-wrap: wrap;
@@ -157,28 +157,28 @@ function renderAtsResumeHtml(data, lang = 'en') {
     gap: 2pt 8pt;
   }
   .section {
-    margin-bottom: 6pt;
+    margin-bottom: 5pt;
   }
   .section-title {
-    font-size: 9.2pt;
+    font-size: 9pt;
     font-weight: 700;
     color: #1e40af;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border-bottom: 1px solid #cbd5e1;
     padding-bottom: 1pt;
-    margin: 0 0 3pt 0;
+    margin: 0 0 2.5pt 0;
   }
   .summary-text {
-    font-size: 8.3pt;
+    font-size: 8.1pt;
     color: #334155;
-    line-height: 1.32;
+    line-height: 1.28;
     margin: 0;
   }
   .item {
     page-break-inside: avoid;
     break-inside: avoid;
-    margin-bottom: 5pt;
+    margin-bottom: 4pt;
   }
   .item-header {
     display: flex;
@@ -297,3 +297,18 @@ generatePdfFromHtml(enHtml, path.join(outputDir, 'resume.pdf'));
 const esResumeData = JSON.parse(fs.readFileSync(path.join(rootDir, 'src/data/resume.es.json'), 'utf8'));
 const esHtml = renderAtsResumeHtml(esResumeData, 'es');
 generatePdfFromHtml(esHtml, path.join(outputDir, 'resume-es.pdf'));
+
+// 3. Generate Unlisted Targeted Resumes PDFs
+const unlistedRegistryPath = path.join(rootDir, 'src/data/unlisted-resumes.json');
+if (fs.existsSync(unlistedRegistryPath)) {
+  const unlistedList = JSON.parse(fs.readFileSync(unlistedRegistryPath, 'utf8'));
+  for (const item of unlistedList) {
+    const itemDataPath = path.join(rootDir, item.dataPath);
+    if (fs.existsSync(itemDataPath)) {
+      const itemData = JSON.parse(fs.readFileSync(itemDataPath, 'utf8'));
+      const itemHtml = renderAtsResumeHtml(itemData, item.lang || 'en');
+      const pdfFileName = path.basename(item.pdfPath);
+      generatePdfFromHtml(itemHtml, path.join(outputDir, pdfFileName));
+    }
+  }
+}

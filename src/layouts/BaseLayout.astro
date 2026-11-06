@@ -11,6 +11,7 @@ interface Props {
   pageTitle?: string;
   description?: string;
   ogImage?: string;
+  robots?: string;
   /** Pass true from layouts that build their own <h1> */
   showPageTitle?: boolean;
   /** Visible <h1> text when it should differ from the SEO/tab title (e.g. a homepage slogan) */
@@ -24,6 +25,7 @@ const {
   pageTitle,
   description,
   ogImage,
+  robots,
   showPageTitle = true,
   heading,
   centerTitle = false,
@@ -40,7 +42,7 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
 
 <html lang={currentLocale}>
   <head>
-    <Head title={title} description={metaDescription} ogImage={ogImage} locale={currentLocale} />
+    <Head title={title} description={metaDescription} ogImage={ogImage} locale={currentLocale} robots={robots} />
     <link rel="alternate" hreflang="en" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />
     <link rel="alternate" hreflang="es" href={new URL(getLocalePath("es", basePath), Astro.site || Astro.url.origin)} />
     <link rel="alternate" hreflang="x-default" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />

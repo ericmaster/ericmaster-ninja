@@ -63,5 +63,10 @@ export default defineConfig({
     ],
   },
 
-  integrations: [icon(), sitemap()],
+  integrations: [
+    icon(),
+    sitemap({
+      filter: (page) => !page.includes('/unlisted'),
+    }),
+  ],
 });
