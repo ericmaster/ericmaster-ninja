@@ -97,6 +97,12 @@ string or literal summary positioning text; both render `basics.headline` and
 
 ## Traceability
 
+The résumé PDF tests require Poppler's `pdftotext` on `PATH` (Debian/Ubuntu:
+`sudo apt-get update && sudo apt-get install -y poppler-utils`).
+`.github/workflows/ci.yml` installs it explicitly before `npm test`; the workflow
+setup is covered by `tests/resume-data.test.mjs`. PDF content and chronology
+checks must run, not skip when the extractor is absent.
+
 - Tests: `tests/resume-data.test.mjs`
 - Verification: Site `npm test`, `npm run build`, and `npm run pdfs` when a
   public generated artifact remains; visual/print inspection of `/resume` and
