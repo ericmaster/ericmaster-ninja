@@ -49,9 +49,11 @@ per-request nonce); static **Site** assets cannot.
 _Avoid_: server, backend, API (there is no general API).
 
 **Chatbot**:
-The client-side widget (`AiChatbot.astro` + `ChatServiceMock.ts`). A *mock* — keyword/fuzzy
-matching, no LLM call, no network. Capped at 3 exchanges before deferring to WhatsApp.
-_Avoid_: AI assistant, agent (it does not call a model).
+The consent-first widget (`AiChatbot.astro` + `nimblerbotChat.ts`) embeds the external
+Nimblerbot Viewer only after an explicit start. Build-time public configuration is
+validated by `nimblerbotConfig.ts`; disabled builds and noncanonical hosts are
+contact-only. `ChatServiceMock.ts` and its tests are legacy, not runtime fallback.
+The EN/ES `/privacy` pages describe possible external storage without deletion guarantees.
 
 ### Security surface (resolved during the 2026-05-26 security review)
 

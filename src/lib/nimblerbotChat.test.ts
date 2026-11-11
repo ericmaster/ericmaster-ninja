@@ -1,0 +1,76 @@
+import { test, mock } from "node:test";
+import assert from "node:assert/strict";
+import { nimblerbotChat } from "./nimblerbotChat.ts";
+
+test("consent, close/reopen preservation, retry/end/pagehide destruction and cleanup", () => {
+  const frames: any[] = [];
+  const events = new Map<string, () => void>();
+  let focused = "";
+  const originalDocument = globalThis.document;
+  const originalWindow = globalThis.window;
+  globalThis.window = {
+    location: { hostname: "ericmaster.ninja" },
+    addEventListener: (name: string, fn: () => void) => events.set(name, fn),
+    removeEventListener: (name: string) => events.delete(name),
+  } as any;
+  globalThis.document = {
+    createElement: () => ({ setAttribute: mock.fn(), focus: () => { focused = "frame"; } }),
+  } as any;
+  const component = Object.assign(nimblerbotChat(), {
+    $el: { dataset: { enabled: "true", viewerUrl: "https://viewer.nimblerbot.com/ericmaster-ninja-web-canary", frameTitle: "Localized title" } },
+    $root: { dataset: { frameTitle: "Localized title" } },
+    $refs: {
+      viewer: { append: (frame: any) => frames.push(frame), replaceChildren: () => frames.splice(0) },
+      launcher: { focus: () => { focused = "launcher"; } },
+      close: { focus: () => { focused = "close"; } },
+      accept: { focus: () => { focused = "accept"; } },
+    },
+    $nextTick: (fn: () => void) => fn(),
+  });
+  try {
+    component.init();
+    component.toggle();
+    assert.equal(focused, "close");
+    assert.equal(frames.length, 0);
+    // Alpine's event scope exposes the clicked button as $el, not the data root.
+    component.$el = { dataset: {} } as any;
+    component.accept();
+    const frame = frames[0];
+    assert.equal(frame.src, component.url);
+    assert.equal(frame.title, "Localized title");
+    assert.equal(frame.referrerPolicy, "no-referrer");
+    assert.deepEqual(frame.setAttribute.mock.calls[0].arguments, ["sandbox", "allow-scripts allow-same-origin"]);
+    component.accept();
+    assert.equal(frames.length, 1);
+    component.close();
+    assert.equal(focused, "launcher");
+    component.toggle();
+    assert.equal(frames[0], frame);
+    component.restart();
+    assert.equal(frames.length, 0);
+    assert.equal(component.connected, false);
+    assert.equal(focused, "accept");
+    component.accept();
+    assert.notEqual(frames[0], frame);
+    component.finish();
+    assert.equal(frames.length, 0);
+    assert.equal(component.open, false);
+    component.accept();
+    events.get("pagehide")!();
+    assert.equal(frames.length, 0);
+    component.destroy();
+    assert.equal(events.size, 0);
+    component.$el = { dataset: { enabled: "true", viewerUrl: component.url } } as any;
+    component.init();
+    assert.equal(component.connected, false);
+    (window.location as any).hostname = "ericmaster.github.io";
+    component.init();
+    component.accept();
+    assert.equal(component.enabled, false);
+    assert.equal(frames.length, 0);
+    component.destroy();
+  } finally {
+    globalThis.document = originalDocument;
+    globalThis.window = originalWindow;
+  }
+});

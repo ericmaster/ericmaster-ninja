@@ -1,354 +1,59 @@
 ---
-// src/components/AiChatbot.astro
-import { Image } from "astro:assets";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, getLocalePath, useTranslations } from "../i18n/utils";
+import { nimblerbotConfig } from "../lib/nimblerbotConfig";
+import { WHATSAPP_NUMBER } from "../lib/siteConfig";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const config = nimblerbotConfig(import.meta.env);
+const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
 ---
 
-<div
-  id="ai-chatbot-container"
-  class="fixed bottom-6 right-6 z-50 font-sans no-print"
-  data-greeting={t("chatbot.greeting")}
-  data-error={t("chatbot.error")}
-  data-lang={lang}
->
-  <!-- Chat Bubble Button -->
-  <button
-    id="chatbot-toggle-btn"
-    class="relative w-14 h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105"
-    aria-label={t("chatbot.toggleAria")}
-  >
-    <svg
-      id="icon-closed"
-      class="w-7 h-7"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-      ></path>
+<div id="ai-chatbot-container" x-data="nimblerbotChat" @keydown.escape.window="close"
+  data-enabled={String(config.enabled)} data-viewer-url={config.url}
+  data-frame-title={t("chatbot.frameTitle")}
+  class="fixed bottom-4 right-4 z-50 font-sans no-print">
+  <button id="chatbot-toggle-btn" x-ref="launcher" @click="toggle"
+    :aria-expanded="ariaExpanded" aria-controls="chatbot-window"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-700 text-white shadow-2xl hover:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-500"
+    aria-label={t("chatbot.toggleAria")}>
+    <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
     </svg>
-    <svg
-      id="icon-open"
-      class="hidden w-7 h-7"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
-    <!-- Notification dot -->
-    <span
-      id="unread-dot"
-      class="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"
-    ></span>
   </button>
-
-  <!-- Chat Window -->
-  <div
-    id="chatbot-window"
-    class="hidden absolute bottom-20 right-0 w-[calc(100vw-3rem)] sm:w-96 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 flex flex-col h-[500px] max-h-[75vh] transition-all duration-300 origin-bottom-right"
-  >
-    <!-- Header -->
-    <div
-      class="bg-gradient-to-r from-indigo-700 to-indigo-800 p-4 text-white flex items-center justify-between"
-    >
-      <div class="flex items-center space-x-3">
-        <div
-          class="relative w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-indigo-400"
-        >
-          <Image
-            src="/assets/images/ai-avatar.jpg"
-            alt={t("chatbot.avatarAlt")}
-            width={40}
-            height={40}
-            class="w-full h-full object-cover"
-            onerror="this.src='https://ui-avatars.com/api/?name=Eric+A&background=random'"
-          />
+  <section id="chatbot-window" aria-labelledby="chatbot-heading" :class="panelClass"
+    class="hidden absolute bottom-20 right-0 flex h-[min(44rem,calc(100dvh-7rem))] w-[calc(100vw-2rem)] max-w-md flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 [@media(max-height:600px)]:fixed [@media(max-height:600px)]:inset-2 [@media(max-height:600px)]:h-auto [@media(max-height:600px)]:w-auto [@media(max-height:600px)]:max-w-none">
+    <header class="flex shrink-0 items-center justify-between gap-2 bg-indigo-800 px-2 py-1 text-white">
+      <h2 id="chatbot-heading" class="my-0 min-w-0 break-words text-base font-semibold [@media(max-width:320px)]:sr-only">{t("chatbot.title")}</h2>
+      <details :class="sessionClass" class="hidden ml-auto shrink-0">
+        <summary class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.options")}>⋯</summary>
+        <div class="absolute right-2 top-16 z-10 flex max-h-[50dvh] w-[min(16rem,calc(100vw-4rem))] flex-col overflow-y-auto rounded border border-slate-300 bg-white p-2 text-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+          <button id="chatbot-retry-btn" @click="restart" class="min-h-11 text-sm underline">{t("chatbot.retry")}</button>
+          <button id="chatbot-end-btn" @click="finish" class="min-h-11 text-sm underline">{t("chatbot.end")}</button>
         </div>
-        <div>
-          <h3 class="font-bold text-sm">{t("chatbot.title")}</h3>
-          <div class="flex items-center text-xs text-indigo-200">
-            <span class="w-2 h-2 bg-green-400 rounded-full mr-1.5 animate-pulse"
-            ></span>
-            {t("chatbot.status")}
-          </div>
-        </div>
-      </div>
-      <button
-        id="chatbot-close-btn"
-        class="text-indigo-200 hover:text-white transition-colors"
-        aria-label={t("chatbot.closeAria")}
-      >
-        <svg
-          class="w-5 h-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
+      </details>
+      <button id="chatbot-close-btn" x-ref="close" @click="close"
+        class="min-h-11 min-w-11 shrink-0 rounded px-2 hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.closeAria")}>×</button>
+    </header>
+    <div :class="consentClass" class="min-h-0 flex-1 overflow-y-auto p-4 space-y-4">
+      <p id="chatbot-notice" class="text-sm leading-relaxed break-words">{t("chatbot.notice")}</p>
+      <a href={getLocalePath(lang, "/privacy")} class="inline-block underline text-indigo-700 dark:text-indigo-300">{t("chatbot.privacy")}</a>
+      <p class="text-sm">{t("chatbot.restartWarning")}</p>
+      <button id="chatbot-accept-btn" x-ref="accept" @click="accept"
+        class="block min-h-11 rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2">{t("chatbot.accept")}</button>
+      {config.enabled && <a :href="url" target="_blank" rel="noopener noreferrer" class="inline-block underline text-indigo-700 dark:text-indigo-300">{t("chatbot.external")}</a>}
     </div>
-
-    <!-- Messages Area -->
-    <div
-      id="chatbot-messages"
-      class="flex-1 p-4 overflow-y-auto bg-slate-50 dark:bg-slate-900 scroll-smooth space-y-4"
-    >
-      <!-- Messages will be injected here -->
+    <div :class="contactOnlyClass" class="min-h-0 flex-1 overflow-y-auto p-4">
+      <p>{t("chatbot.contactOnly")}</p>
     </div>
-
-    <!-- Typing Indicator Area -->
-    <div
-      id="chatbot-typing"
-      class="hidden bg-slate-50 dark:bg-slate-900 px-4 pb-2"
-    >
-      <div class="flex justify-start">
-        <div
-          class="bg-white dark:bg-slate-800 px-4 py-3 rounded-2xl rounded-bl-none border border-slate-100 dark:border-slate-700 shadow-sm flex items-center space-x-1.5 min-w-[60px]"
-        >
-          <div
-            class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
-            style="animation-delay: 0ms"
-          >
-          </div>
-          <div
-            class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
-            style="animation-delay: 150ms"
-          >
-          </div>
-          <div
-            class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
-            style="animation-delay: 300ms"
-          >
-          </div>
-        </div>
-      </div>
+    <div :class="sessionClass" class="hidden min-h-0 flex-1 flex flex-col">
+      <div x-ref="viewer" id="chatbot-viewer" class="min-h-0 flex-1"></div>
     </div>
-
-    <!-- Input Area -->
-    <div
-      class="bg-white dark:bg-slate-900 p-3 border-t border-slate-100 dark:border-slate-800"
-    >
-      <form id="chatbot-form" class="flex items-center gap-2">
-        <input
-          id="chatbot-input"
-          type="text"
-          class="flex-1 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-sm rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-slate-200 dark:border-slate-700 transition"
-          placeholder={t("chatbot.placeholder")}
-          autocomplete="off"
-        />
-        <button
-          id="chatbot-submit"
-          type="submit"
-          class="w-10 h-10 bg-indigo-600 hover:bg-indigo-700 rounded-full flex items-center justify-center text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          disabled
-        >
-          <svg
-            class="w-5 h-5 ml-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-          </svg>
-        </button>
-      </form>
-    </div>
-  </div>
+    <footer class="shrink-0 border-t border-slate-300 p-2 dark:border-slate-700">
+      <p class="my-0 text-xs leading-snug [@media(max-width:320px)]:text-[0.6rem]">{t("chatbot.help")}</p>
+      <a id="chatbot-contact" href={contactUrl} target="_blank" rel="noopener noreferrer"
+        class="mt-1 inline-flex min-h-11 items-center text-sm font-semibold text-indigo-700 underline dark:text-indigo-300">{t("chatbot.contact")}</a>
+    </footer>
+  </section>
+  <noscript><a href={contactUrl} class="rounded bg-white p-2 text-indigo-800 underline">{t("chatbot.contact")}</a></noscript>
 </div>
-
-<script>
-  // @ts-nocheck
-  import { ChatServiceMock } from "../lib/ChatServiceMock";
-
-  class ChatbotUI {
-    constructor() {
-      // DOM Elements
-      this.container = document.getElementById("ai-chatbot-container");
-      this.toggleBtn = document.getElementById("chatbot-toggle-btn");
-      
-      const lang = this.container?.dataset.lang || 'en';
-      this.chatService = new ChatServiceMock(lang);
-      
-      this.isOpen = false;
-      this.unread = true;
-      this.isTyping = false;
-      this.messages = [
-        {
-          sender: "bot",
-          content: {
-            text:
-              document.getElementById("ai-chatbot-container")?.dataset
-                .greeting ?? "",
-          },
-        },
-      ];
-
-      this.closeBtn = document.getElementById("chatbot-close-btn");
-      this.windowEl = document.getElementById("chatbot-window");
-      this.iconClosed = document.getElementById("icon-closed");
-      this.iconOpen = document.getElementById("icon-open");
-      this.unreadDot = document.getElementById("unread-dot");
-      this.messagesContainer = document.getElementById("chatbot-messages");
-      this.typingIndicator = document.getElementById("chatbot-typing");
-      this.form = document.getElementById("chatbot-form");
-      this.input = document.getElementById("chatbot-input");
-      this.submitBtn = document.getElementById("chatbot-submit");
-
-      this.init();
-    }
-
-    init() {
-      if (!this.container) return;
-
-      this.toggleBtn.addEventListener("click", () => this.toggleChat());
-      this.closeBtn.addEventListener("click", () => this.closeChat());
-      this.form.addEventListener("submit", (e) => this.handleSubmit(e));
-      this.input.addEventListener("input", () => this.handleInput());
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && this.isOpen) this.closeChat();
-      });
-
-      this.renderMessages();
-    }
-
-    toggleChat() {
-      this.isOpen = !this.isOpen;
-      if (this.isOpen) {
-        this.windowEl.classList.remove("hidden");
-        this.iconClosed.classList.add("hidden");
-        this.iconOpen.classList.remove("hidden");
-        this.unreadDot.classList.add("hidden");
-        this.unread = false;
-
-        // Slight delay to allow transition, then focus
-        setTimeout(() => {
-          this.input.focus();
-          this.scrollToBottom();
-        }, 50);
-      } else {
-        this.closeChat();
-      }
-    }
-
-    closeChat() {
-      this.isOpen = false;
-      this.windowEl.classList.add("hidden");
-      this.iconClosed.classList.remove("hidden");
-      this.iconOpen.classList.add("hidden");
-    }
-
-    handleInput() {
-      if (this.input.value.trim().length > 0 && !this.isTyping) {
-        this.submitBtn.disabled = false;
-      } else {
-        this.submitBtn.disabled = true;
-      }
-    }
-
-    scrollToBottom() {
-      this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-    }
-
-    renderMessages() {
-      this.messagesContainer.innerHTML = "";
-      this.messages.forEach((msg) => {
-        const wrap = document.createElement("div");
-        wrap.className =
-          msg.sender === "user" ? "flex justify-end" : "flex justify-start";
-
-        const bubble = document.createElement("div");
-        if (msg.sender === "user") {
-          bubble.className =
-            "bg-indigo-600 text-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl px-4 py-2.5 max-w-[85%] text-sm shadow-sm";
-        } else {
-          bubble.className =
-            "bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-slate-100 dark:border-slate-700 px-4 py-2.5 max-w-[85%] text-sm shadow-sm";
-        }
-
-        // Use textContent for safety against XSS
-        const content = msg.content;
-        bubble.textContent = content.text;
-
-        // If there is a CTA (Call To Action), render it safely
-        if (content.cta) {
-          const ctaLink = document.createElement("a");
-          ctaLink.href = content.cta.url;
-          ctaLink.target = "_blank";
-          ctaLink.rel = "noopener noreferrer";
-          ctaLink.className = "block mt-2 text-indigo-600 dark:text-indigo-400 underline font-semibold";
-          ctaLink.textContent = content.cta.text;
-          bubble.appendChild(ctaLink);
-        }
-
-        wrap.appendChild(bubble);
-        this.messagesContainer.appendChild(wrap);
-      });
-      this.scrollToBottom();
-    }
-
-    async handleSubmit(e) {
-      e.preventDefault();
-      const text = this.input.value.trim();
-      if (!text || this.isTyping) return;
-
-      // Add user message
-      this.messages.push({ sender: "user", content: { text } });
-      this.input.value = "";
-      this.handleInput();
-      this.renderMessages();
-
-      // Show typing indicator
-      this.isTyping = true;
-      this.typingIndicator.classList.remove("hidden");
-      this.submitBtn.disabled = true;
-      this.scrollToBottom();
-
-      try {
-        const response = await this.chatService.sendMessage(text);
-        this.messages.push({ sender: "bot", content: response });
-      } catch (error) {
-        console.error(error);
-        this.messages.push({
-          sender: "bot",
-          content: {
-            text: this.container?.dataset.error ?? "",
-          },
-        });
-      } finally {
-        this.isTyping = false;
-        this.typingIndicator.classList.add("hidden");
-        this.renderMessages();
-        setTimeout(() => this.input.focus(), 50);
-      }
-    }
-  }
-
-  // Initialize on Astro page load
-  document.addEventListener("DOMContentLoaded", () => {
-    new ChatbotUI();
-  });
-</script>
