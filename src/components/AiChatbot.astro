@@ -25,6 +25,13 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
     class="hidden absolute bottom-20 right-0 flex h-[min(44rem,calc(100dvh-7rem))] w-[calc(100vw-2rem)] max-w-md flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 [@media(max-height:600px)]:fixed [@media(max-height:600px)]:inset-2 [@media(max-height:600px)]:h-auto [@media(max-height:600px)]:w-auto [@media(max-height:600px)]:max-w-none">
     <header class="flex shrink-0 items-center justify-between gap-2 bg-indigo-800 px-2 py-1 text-white">
       <h2 id="chatbot-heading" class="my-0 min-w-0 break-words text-base font-semibold [@media(max-width:320px)]:sr-only">{t("chatbot.title")}</h2>
+      <details :class="sessionClass" class="hidden ml-auto shrink-0">
+        <summary class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.options")}>⋯</summary>
+        <div class="absolute right-2 top-16 z-10 flex max-h-[50dvh] w-[min(16rem,calc(100vw-4rem))] flex-col overflow-y-auto rounded border border-slate-300 bg-white p-2 text-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
+          <button id="chatbot-retry-btn" @click="restart" class="min-h-11 text-sm underline">{t("chatbot.retry")}</button>
+          <button id="chatbot-end-btn" @click="finish" class="min-h-11 text-sm underline">{t("chatbot.end")}</button>
+        </div>
+      </details>
       <button id="chatbot-close-btn" x-ref="close" @click="close"
         class="min-h-11 min-w-11 shrink-0 rounded px-2 hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.closeAria")}>×</button>
     </header>
@@ -41,10 +48,6 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
     </div>
     <div :class="sessionClass" class="hidden min-h-0 flex-1 flex flex-col">
       <div x-ref="viewer" id="chatbot-viewer" class="min-h-0 flex-1"></div>
-      <div class="flex shrink-0 flex-wrap gap-2 border-t border-slate-300 px-3 dark:border-slate-700">
-        <button id="chatbot-retry-btn" @click="restart" class="min-h-11 min-w-0 flex-1 text-xs underline">{t("chatbot.retry")}</button>
-        <button id="chatbot-end-btn" @click="finish" class="min-h-11 min-w-0 flex-1 text-xs underline">{t("chatbot.end")}</button>
-      </div>
     </div>
     <footer class="shrink-0 border-t border-slate-300 p-2 dark:border-slate-700">
       <p class="my-0 text-xs leading-snug [@media(max-width:320px)]:text-[0.6rem]">{t("chatbot.help")}</p>
