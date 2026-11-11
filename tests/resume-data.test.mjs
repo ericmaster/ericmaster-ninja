@@ -5,6 +5,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { load } from "js-yaml";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const en = JSON.parse(readFileSync(join(root, "src/data/resume.json"), "utf8"));
@@ -90,6 +91,16 @@ function pdfText(file) {
 }
 
 describe("bilingual resume positioning contract", () => {
+  it("installs the PDF extractor in CI before running résumé tests", () => {
+    const workflow = load(readFileSync(join(root, ".github/workflows/ci.yml"), "utf8"));
+    const commands = workflow.jobs.test.steps.map((step) => step.run ?? "");
+    const install = commands.findIndex((command) =>
+      /sudo apt-get install -y poppler-utils/.test(command));
+    const tests = commands.indexOf("npm test");
+    assert.ok(install >= 0 && install < tests, "CI must install poppler-utils before npm test");
+    assert.match(commands[install], /sudo apt-get update/);
+  });
+
   it("uses the v1 English and Spanish headlines", () => {
     assert.equal(en.basics.headline, EN_HEADLINE);
     assert.equal(es.basics.headline, ES_HEADLINE);
