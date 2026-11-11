@@ -62,6 +62,9 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
     <script>
       // @ts-ignore — @alpinejs/csp ships no type declarations
       import Alpine from "@alpinejs/csp";
+      import { nimblerbotChat } from "../lib/nimblerbotChat";
+
+      Alpine.data("nimblerbotChat", nimblerbotChat);
 
       /** Mobile nav toggle — used by Header.astro */
       Alpine.data("mobileNav", () => ({
