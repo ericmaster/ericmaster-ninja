@@ -20,6 +20,8 @@ jobs:
       # Spec: docs/specs/resume-positioning.md
       - name: Install PDF test dependency
         run: |
+          # Avoid the default Ubuntu mirrors' DNS failures; APT still verifies Ubuntu signatures.
+          printf '%s\n' 'https://mirrors.edge.kernel.org/ubuntu/' | sudo tee /etc/apt/apt-mirrors.txt
           sudo apt-get update
           sudo apt-get install -y poppler-utils
 
