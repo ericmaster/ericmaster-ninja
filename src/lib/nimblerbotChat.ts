@@ -1,6 +1,6 @@
 import { chatAllowedOnHost } from "./nimblerbotConfig.ts";
 
-/** Registered once before Alpine.start; all consent/session state is page-local. */
+/** Registered once before Alpine.start; connect only when opened, with page-local state. */
 export function nimblerbotChat() {
   return {
     open: false,
@@ -15,13 +15,13 @@ export function nimblerbotChat() {
       window.addEventListener("pagehide", this.onPageHide);
     },
     get panelClass() { return { hidden: !this.open }; },
-    get consentClass() { return { hidden: this.connected || !this.enabled }; },
     get contactOnlyClass() { return { hidden: this.enabled }; },
     get sessionClass() { return { hidden: !this.connected }; },
     get ariaExpanded() { return String(this.open); },
     toggle(this: any) {
       if (this.open) return this.close();
       this.open = true;
+      this.connect();
       this.$nextTick(() => this.$refs.close.focus());
     },
     close(this: any) {
@@ -29,8 +29,8 @@ export function nimblerbotChat() {
       this.open = false;
       this.$refs.launcher.focus();
     },
-    accept(this: any) {
-      if (!this.enabled || this.connected || !this.url) return;
+    connect(this: any) {
+      if (!this.open || !this.enabled || this.connected || !this.url) return;
       const frame = document.createElement("iframe");
       frame.title = this.$root.dataset.frameTitle ?? "AI assistant";
       frame.setAttribute("sandbox", "allow-scripts allow-same-origin");
@@ -39,7 +39,6 @@ export function nimblerbotChat() {
       frame.src = this.url;
       this.$refs.viewer.append(frame);
       this.connected = true;
-      this.$nextTick(() => frame.focus());
       // No load/timeout event can establish the health of a cross-origin LLM.
     },
     end(this: any) {
@@ -48,7 +47,7 @@ export function nimblerbotChat() {
     },
     restart(this: any) {
       this.end();
-      this.$nextTick(() => this.$refs.accept.focus());
+      this.connect();
     },
     finish() {
       this.end();

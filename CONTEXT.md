@@ -49,8 +49,9 @@ per-request nonce); static **Site** assets cannot.
 _Avoid_: server, backend, API (there is no general API).
 
 **Chatbot**:
-The consent-first widget (`AiChatbot.astro` + `nimblerbotChat.ts`) embeds the external
-Nimblerbot Viewer only after an explicit start. Build-time public configuration is
+The avatar-led widget (`AiChatbot.astro` + `nimblerbotChat.ts`) embeds the external
+Nimblerbot Viewer when the visitor opens chat, without a separate consent screen.
+A small EN/ES notice inside the panel links to the AI/data disclosure. Build-time public configuration is
 validated by `nimblerbotConfig.ts`; disabled builds and noncanonical hosts are
 contact-only. `ChatServiceMock.ts` and its tests are legacy, not runtime fallback.
 The EN/ES `/privacy` pages describe possible external storage without deletion guarantees.

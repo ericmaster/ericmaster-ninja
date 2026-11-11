@@ -2,7 +2,6 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { ui } from "../i18n/ui.ts";
 import { nimblerbotConfig, chatAllowedOnHost } from "./nimblerbotConfig.ts";
 
 const valid = {
@@ -31,13 +30,12 @@ test("mirrors, localhost and lookalike hosts are contact-only (no implicit previ
   for (const host of ["ericmaster.github.io", "localhost", "127.0.0.1", "preview.example", "ericmaster.ninja.evil.example"]) assert.equal(chatAllowedOnHost(host), false);
 });
 
-test("both notices preserve the independently supplied P1 wording and privacy fragments", () => {
-  for (const [lang, digest, file] of [
-    ["en", "9dd0d228e5a28810625d0a8500cf4c5965d9bfcf94e25c89a436d688cb957e09", "privacy-content.md"],
-    ["es", "e8840e5456d9e9cb8f777469f92c7eae75a4d145435a89a6f95948e7c2bc6745", "privacy-content.es.md"],
+test("linked privacy pages preserve the full independently reviewed AI/data disclosure", () => {
+  for (const [digest, file] of [
+    ["9dd0d228e5a28810625d0a8500cf4c5965d9bfcf94e25c89a436d688cb957e09", "privacy-content.md"],
+    ["e8840e5456d9e9cb8f777469f92c7eae75a4d145435a89a6f95948e7c2bc6745", "privacy-content.es.md"],
   ] as const) {
-    const notice = ui[lang]["chatbot.notice"];
+    const notice = readFileSync(new URL(`../pages/content/pages/${file}`, import.meta.url), "utf8").split("\n\n")[1];
     assert.equal(createHash("sha256").update(notice).digest("hex"), digest);
-    assert.ok(readFileSync(new URL(`../pages/content/pages/${file}`, import.meta.url), "utf8").includes(notice));
   }
 });

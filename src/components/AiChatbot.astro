@@ -12,47 +12,49 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
 <div id="ai-chatbot-container" x-data="nimblerbotChat" @keydown.escape.window="close"
   data-enabled={String(config.enabled)} data-viewer-url={config.url}
   data-frame-title={t("chatbot.frameTitle")}
-  class="fixed bottom-4 right-4 z-50 font-sans no-print">
+  class="fixed bottom-6 right-6 z-50 font-sans no-print">
   <button id="chatbot-toggle-btn" x-ref="launcher" @click="toggle"
     :aria-expanded="ariaExpanded" aria-controls="chatbot-window"
-    class="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-700 text-white shadow-2xl hover:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-500"
+    class="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-white shadow-2xl transition-transform hover:scale-105 hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-500"
     aria-label={t("chatbot.toggleAria")}>
     <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
     </svg>
   </button>
   <section id="chatbot-window" aria-labelledby="chatbot-heading" :class="panelClass"
-    class="hidden absolute bottom-20 right-0 flex h-[min(44rem,calc(100dvh-7rem))] w-[calc(100vw-2rem)] max-w-md flex-col overflow-hidden rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-2xl dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 [@media(max-height:600px)]:fixed [@media(max-height:600px)]:inset-2 [@media(max-height:600px)]:h-auto [@media(max-height:600px)]:w-auto [@media(max-height:600px)]:max-w-none">
-    <header class="flex shrink-0 items-center justify-between gap-2 bg-indigo-800 px-2 py-1 text-white">
-      <h2 id="chatbot-heading" class="my-0 min-w-0 break-words text-base font-semibold [@media(max-width:320px)]:sr-only">{t("chatbot.title")}</h2>
+    class="hidden absolute bottom-20 right-0 flex h-[500px] max-h-[75dvh] w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl sm:w-96 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 [@media(max-height:600px)]:fixed [@media(max-height:600px)]:inset-2 [@media(max-height:600px)]:h-auto [@media(max-height:600px)]:max-h-none [@media(max-height:600px)]:w-auto">
+    <header class="flex shrink-0 items-center justify-between gap-1 bg-gradient-to-r from-indigo-700 to-indigo-800 px-3 py-2 text-white [@media(max-width:320px)]:p-1 [@media(max-height:400px)]:py-0">
+      <img src="/assets/images/ai-avatar.jpg" alt={t("chatbot.avatarAlt")} width="40" height="40"
+        class="mr-2 h-[40px] w-[40px] shrink-0 rounded-full border-2 border-indigo-400 bg-white object-cover [@media(max-width:320px)]:mr-0 [@media(max-width:320px)]:h-[32px] [@media(max-width:320px)]:w-[32px]" />
+      <div class="min-w-0 [@media(max-width:320px)]:sr-only">
+        <h2 id="chatbot-heading" class="my-0 break-words text-[14px] font-bold">{t("chatbot.title")}</h2>
+        <p class="my-0 text-[12px] text-indigo-200">{t("chatbot.subtitle")}</p>
+      </div>
       <details :class="sessionClass" class="hidden ml-auto shrink-0">
-        <summary class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.options")}>⋯</summary>
+        <summary class="flex min-h-[44px] min-w-[44px] cursor-pointer list-none items-center justify-center rounded hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.options")}>⋯</summary>
         <div class="absolute right-2 top-16 z-10 flex max-h-[50dvh] w-[min(16rem,calc(100vw-4rem))] flex-col overflow-y-auto rounded border border-slate-300 bg-white p-2 text-slate-900 shadow-lg dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
           <button id="chatbot-retry-btn" @click="restart" class="min-h-11 text-sm underline">{t("chatbot.retry")}</button>
           <button id="chatbot-end-btn" @click="finish" class="min-h-11 text-sm underline">{t("chatbot.end")}</button>
+          <p class="my-1 text-xs">{t("chatbot.restartWarning")}</p>
+          {config.enabled && <a :href="url" target="_blank" rel="noopener noreferrer" class="min-h-11 py-2 text-sm underline">{t("chatbot.external")}</a>}
         </div>
       </details>
       <button id="chatbot-close-btn" x-ref="close" @click="close"
-        class="min-h-11 min-w-11 shrink-0 rounded px-2 hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.closeAria")}>×</button>
+        class="min-h-[44px] min-w-[44px] shrink-0 rounded px-2 hover:bg-indigo-700 focus-visible:outline-2" aria-label={t("chatbot.closeAria")}>×</button>
     </header>
-    <div :class="consentClass" class="min-h-0 flex-1 overflow-y-auto p-4 space-y-4">
-      <p id="chatbot-notice" class="text-sm leading-relaxed break-words">{t("chatbot.notice")}</p>
-      <a href={getLocalePath(lang, "/privacy")} class="inline-block underline text-indigo-700 dark:text-indigo-300">{t("chatbot.privacy")}</a>
-      <p class="text-sm">{t("chatbot.restartWarning")}</p>
-      <button id="chatbot-accept-btn" x-ref="accept" @click="accept"
-        class="block min-h-11 rounded-lg bg-indigo-700 px-4 py-2 text-white hover:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2">{t("chatbot.accept")}</button>
-      {config.enabled && <a :href="url" target="_blank" rel="noopener noreferrer" class="inline-block underline text-indigo-700 dark:text-indigo-300">{t("chatbot.external")}</a>}
-    </div>
     <div :class="contactOnlyClass" class="min-h-0 flex-1 overflow-y-auto p-4">
       <p>{t("chatbot.contactOnly")}</p>
     </div>
     <div :class="sessionClass" class="hidden min-h-0 flex-1 flex flex-col">
       <div x-ref="viewer" id="chatbot-viewer" class="min-h-0 flex-1"></div>
     </div>
-    <footer class="shrink-0 border-t border-slate-300 p-2 dark:border-slate-700">
-      <p class="my-0 text-xs leading-snug [@media(max-width:320px)]:text-[0.6rem]">{t("chatbot.help")}</p>
+    <footer class="shrink-0 border-t border-slate-100 px-3 pt-2 dark:border-slate-800 [@media(max-width:320px)]:px-2 [@media(max-height:400px)]:pt-0">
+      {config.enabled && <p id="chatbot-notice" class="my-0 text-xs leading-snug text-slate-500 dark:text-slate-400 [@media(max-width:320px)]:text-[10px] [@media(max-width:320px)]:leading-[14px]">
+        {t("chatbot.notice")} <a href={getLocalePath(lang, "/privacy")} class="underline hover:text-indigo-600 dark:hover:text-indigo-300">{t("chatbot.privacy")}</a>.
+      </p>}
+      <p class="sr-only">{t("chatbot.help")}</p>
       <a id="chatbot-contact" href={contactUrl} target="_blank" rel="noopener noreferrer"
-        class="mt-1 inline-flex min-h-11 items-center text-sm font-semibold text-indigo-700 underline dark:text-indigo-300">{t("chatbot.contact")}</a>
+        class="mt-1 inline-flex min-h-[44px] items-center text-sm font-semibold text-indigo-700 underline dark:text-indigo-300 [@media(max-width:320px)]:text-[12px]">{t("chatbot.contact")}</a>
     </footer>
   </section>
   <noscript><a href={contactUrl} class="rounded bg-white p-2 text-indigo-800 underline">{t("chatbot.contact")}</a></noscript>
