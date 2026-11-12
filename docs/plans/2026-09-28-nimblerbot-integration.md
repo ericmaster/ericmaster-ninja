@@ -8,12 +8,13 @@ Sustituir el mock de ericmaster.ninja por un bot útil de CV/servicios públicos
 
 Eric autoriza restaurar la apariencia compacta anterior con `ai-avatar.jpg`, cabecera índigo degradada y panel redondeado, retirar la pantalla de consentimiento y desplegar la UI. La nota EN/ES enlaza a `/privacy` o `/es/privacy`: «By using this chat, you agree to the AI and data notice» / «Al usar este chat, aceptas el aviso sobre IA y datos». No hay conexión antes de abrir el panel. Cerrar/reabrir conserva el iframe; reiniciar crea otro inmediatamente; finalizar lo destruye y cierra el panel. Contacto, sandbox, CSP, host allowlist, modelo, prompt y límites permanecen sin cambios. Comprobar avatar, nota/enlace, apertura directa, ciclo de vida, teclado, desktop/móvil/zoom y fallo de red antes y después del deploy. El contrato de presentación sustituye únicamente los requisitos de aceptación/reconsentimiento de P1-04/P2-02/P2-05 del baseline v5; los recibos históricos conservan su resultado original y no prueban esta UI.
 
-## Revisión UX 2026-11-12 — pendiente de implementación
+## Revisión UX 2026-11-12 — desplegada y verificada
 
 **Autoridad:** Eric solicita documentar y proceder autónomamente con el objetivo de
 un chatbot amigable y buena UI/UX. Decisión:
 ADR-0003 (`ericmaster/ericmaster-ninja`, `docs/adr/0003-web-chat-context-and-language.md`).
-La decisión está aceptada; su implementación y validación aún no están realizadas.
+Implementación desplegada y verificada en producción: sitio, Flow y Viewer aislado.
+Evidencia UX-LANG-01–05: `~/.local/state/ericmaster-ninja/tasks/chat-language-20261112/release.json`.
 Esta revisión no reabre ni marca completadas las fases históricas P1/P2, no crea
 otro DAG y no convierte sus pruebas en evidencia de la nueva experiencia.
 
@@ -24,7 +25,7 @@ añadirá según necesidad real, no mediante reenvío indiscriminado de parámet
 No habrá selector web preventivo para un idioma ausente: sería un defecto de la
 integración, que debe garantizar `es` o `en`. WhatsApp/CRM permanecen fuera del web.
 
-**Alcance previsto:** S/src/components/AiChatbot.astro, S/src/lib/nimblerbotChat.ts y
+**Alcance implementado:** S/src/components/AiChatbot.astro, S/src/lib/nimblerbotChat.ts y
 sus pruebas; N/bots/ericmaster-ninja/flow.json, N/scripts/test_ericmaster_ninja.py y
 N/docs/runbooks/ericmaster-ninja-web.md. Ajustar i18n/configuración y las pruebas de
 navegador existentes sólo donde lo exija este contrato. Mantener el Viewer real,
@@ -39,25 +40,25 @@ envío compacto, conservando avatar e identidad del sitio.
 
 **Criterios de aceptación para la implementación:**
 
-- [ ] **UX-LANG-01:** abrir desde `/` y `/es/` envía el idioma correspondiente y muestra
+- [x] **UX-LANG-01:** abrir desde `/` y `/es/` envía el idioma correspondiente y muestra
   una sola versión del aviso y saludo, sin botones English/Español. Comprobar también
   navegación entre idiomas y apertura desde páginas internas localizadas.
-- [ ] **UX-LANG-02:** crear el contexto sólo a partir del idioma resuelto de la página.
+- [x] **UX-LANG-02:** crear el contexto sólo a partir del idioma resuelto de la página.
   Probar valores ausentes/inválidos y querystrings ajenas sin reenviarlas ni permitir
   que cambien sesión, permisos o configuración. El sitio siempre produce `es` o `en`;
   no hay conexión al Viewer antes de abrir el panel.
-- [ ] **UX-LANG-03:** cierre/reapertura conserva la conversación; New chat conserva
+- [x] **UX-LANG-03:** cierre/reapertura conserva la conversación; New chat conserva
   el idioma de la página y crea una conversación nueva; End chat destruye el iframe.
   `/human` y `/reset` responden en el idioma correcto, sin llamadas al modelo ni
   renovación de intentos. Contacto y aviso siguen accesibles en fallo de red.
-- [ ] **UX-LANG-04:** pasar `npm test` y build habilitado con comprobación CSP en S,
+- [x] **UX-LANG-04:** pasar `npm test` y build habilitado con comprobación CSP en S,
   y `python3 -B -m unittest scripts.test_bot scripts.test_ericmaster_ninja -v` en N.
   Verificar el Viewer real EN/ES en desktop/móvil, light/dark, teclado y zoom 200%,
   sin avisos duplicados ni controles cortados. Probar una respuesta sintética por
   idioma para confirmar el idioma del modelo; no repetir suites pagadas ajenas al cambio.
   Registrar candidato, resultados y revisión independiente antes de publicación;
   publicación productiva y smoke se realizan bajo confirmación explícita vigente.
-- [ ] **UX-LANG-05:** la flecha compacta conserva nombre accesible «Enviar»/«Send»
+- [x] **UX-LANG-05:** la flecha compacta conserva nombre accesible «Enviar»/«Send»
   según la etiqueta configurada; su SVG es decorativo. Conservar fallback «Send»
   para consumidores sin etiqueta, etiquetas explícitas y texto no compacto.
   Verificar regresión del componente real y build/versiones de embeds.
