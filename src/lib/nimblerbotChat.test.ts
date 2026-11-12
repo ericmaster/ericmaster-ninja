@@ -37,11 +37,11 @@ test(`${language}: opening starts chat once; close preserves it, retry replaces 
     assert.equal(focused, "close");
     assert.equal(frames.length, 1);
     const frame = frames[0];
-    assert.equal(component.quickActionsDisabled, true, "frame creation is not input readiness");
+    assert.equal(events.has("message"), false, "the website has no action bridge");
     assert.equal(frame.src, component.url);
     assert.equal(frame.title, "Localized title");
     assert.equal(frame.referrerPolicy, "no-referrer");
-    assert.deepEqual(frame.setAttribute.mock.calls[0].arguments, ["sandbox", "allow-scripts allow-same-origin"]);
+    assert.deepEqual(frame.setAttribute.mock.calls[0].arguments, ["sandbox", "allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"]);
     component.connect();
     assert.equal(frames.length, 1);
     component.close();
@@ -110,53 +110,17 @@ test("avatar and localized inline notice replace the consent screen", async () =
   assert.equal(ui.es["chatbot.notice"], "Al usar este chat, aceptas el");
 });
 
-for (const [language, flowLanguage] of [["en", "English"], ["es", "Spanish"]]) {
-test(`${language}: welcome actions retain page language, require current input and dismiss once`, () => {
-  const originalWindow = globalThis.window, originalDocument = globalThis.document;
-  const listeners = new Map<string, (event: any) => void>();
-  const frames: any[] = [], sent: any[] = [];
-  globalThis.window = {
-    location: { hostname: "ericmaster.ninja", search: "?Language=foreign" },
-    addEventListener: (name: string, fn: any) => listeners.set(name, fn),
-    removeEventListener: (name: string) => listeners.delete(name),
-  } as any;
-  globalThis.document = { createElement: () => ({ setAttribute() {}, focus() {}, contentWindow: { postMessage: (...args: any[]) => sent.push(args) } }) } as any;
-  const component = Object.assign(nimblerbotChat(), {
-    $el: { dataset: { enabled: "true", viewerUrl: "https://viewer.nimblerbot.com/ericmaster-ninja-web-canary", language } },
-    $root: { dataset: {} },
-    $refs: {
-      viewer: { append: (f: any) => frames.push(f), replaceChildren: () => frames.splice(0), get firstElementChild() { return frames[0]; } },
-      launcher: { focus() {} }, close: { focus() {} },
-    },
-    $nextTick: (fn: any) => fn(),
-  });
-  const token = "12345678-1234-1234-1234-123456789012";
-  const receive = (event: string, source = frames[0]?.contentWindow, origin = "https://viewer.nimblerbot.com", value = token) =>
-    listeners.get("message")!({ origin, source, data: { type: "nimblerbot-welcome", event, token: value } });
-  try {
-    component.init(); component.toggle();
-    component.$el = { dataset: {} } as any; // Alpine event scope is the button, not the root.
-    component.requestService(); assert.equal(sent.length, 0);
-    receive("ready", {}, "https://viewer.nimblerbot.com");
-    receive("ready", frames[0].contentWindow, "https://untrusted.invalid");
-    receive("ready", frames[0].contentWindow, "https://viewer.nimblerbot.com", "invalid");
-    assert.equal(component.quickActionsDisabled, true);
-    receive("ready"); assert.equal(component.quickActionsDisabled, false);
-    component.requestService(); component.learnAboutEric();
-    assert.deepEqual(sent, [[{ type: "nimblerbot-welcome", event: "submit", token, action: "service", language: flowLanguage }, "https://viewer.nimblerbot.com"]]);
-    assert.equal(component.quickActionsClass.hidden, true);
-    component.close(); component.toggle(); receive("ready");
-    assert.equal(component.quickActionsClass.hidden, true);
-    const oldFrame = frames[0]; component.restart();
-    assert.equal(component.quickActionsClass.hidden, false);
-    receive("ready", oldFrame.contentWindow); assert.equal(component.quickActionsDisabled, true);
-    receive("ready"); receive("submitted");
-    assert.equal(component.quickActionsClass.hidden, true, "manual submit dismisses actions");
-    component.restart(); receive("ready"); component.learnAboutEric();
-    assert.equal(sent[1][0].action, "about");
-    assert.equal(sent[1][0].language, flowLanguage);
-    component.finish(); assert.equal(frames.length, 0);
-    component.destroy(); assert.equal(listeners.size, 0);
-  } finally { globalThis.window = originalWindow; globalThis.document = originalDocument; }
+test("welcome actions belong to the bot, not website controls or messaging", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const component = await readFile(new URL("../components/AiChatbot.astro", import.meta.url), "utf8");
+  const controller = await readFile(new URL("./nimblerbotChat.ts", import.meta.url), "utf8");
+  const { ui } = await import("../i18n/ui.ts");
+  assert.doesNotMatch(component, /chatbot-quick-actions|chatbot-service|chatbot-about|chatbot-quick-contact/);
+  assert.doesNotMatch(controller, /postMessage|nimblerbot-welcome|onWelcomeMessage|sendWelcomeAction/);
+  assert.match(component, /id="chatbot-contact"/, "total Viewer outage retains direct contact");
+  for (const locale of [ui.en, ui.es]) {
+    assert.equal("chatbot.quickService" in locale, false);
+    assert.equal("chatbot.quickAbout" in locale, false);
+    assert.equal("chatbot.quickContact" in locale, false);
+  }
 });
-}

@@ -14,11 +14,14 @@ Contrato operativo: `N/docs/runbooks/ericmaster-ninja-web.md`, sección
 
 La bienvenida es «Hola, ¿en qué te puedo ayudar?» o «Hi, how can I help you?» según
 la página, sin el bloque largo dentro del chat. La web conserva el aviso de IA y
-el enlace de privacidad. Las tres acciones iniciales permiten solicitar un servicio,
+el enlace de privacidad. El Flow define y el bot renderiza dentro de la conversación
+las tres acciones iniciales para solicitar un servicio,
 conocer más sobre Eric o abrir el contacto directo; no bloquean la escritura libre.
 Las dos primeras pasan por el mismo modelo, validación y límite de intentos. La
 tercera abre el enlace fijo de WhatsApp sin enviar la conversación. Se ocultan al
-primer envío y vuelven con Nuevo chat. Decisión: [ADR-0004](../adr/0004-web-chat-welcome-actions.md).
+primer envío y vuelven con Nuevo chat. No hay botones ni puente de acciones en la web.
+El sandbox permite abrir el contacto en una ventana separada, nunca navegar el padre.
+Decisión: [ADR-0005](../adr/0005-bot-native-welcome-actions.md).
 
 ## Objective/ROI
 

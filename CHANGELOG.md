@@ -11,5 +11,6 @@ Earlier unrecorded history remains in Git; do not invent releases or dates.
 
 ### Changed
 
+- Move localized welcome actions into the bot conversation, retaining free typing and direct contact without the website action bridge.
 - Restore the compact avatar-led chat appearance and open the Viewer directly from the launcher, replacing the consent screen with a small linked EN/ES AI/data notice.
 - Allow `CHANGELOG.md` to retain release history while keeping specs and other non-ADR docs current-state only.
