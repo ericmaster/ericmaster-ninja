@@ -9,8 +9,16 @@ export function nimblerbotChat() {
     url: "",
     onPageHide: null as (() => void) | null,
     init(this: any) {
-      this.enabled = this.$el.dataset.enabled === "true" && chatAllowedOnHost(window.location.hostname);
-      this.url = this.enabled ? this.$el.dataset.viewerUrl ?? "" : "";
+      const language = this.$el.dataset.language;
+      this.enabled = this.$el.dataset.enabled === "true" && chatAllowedOnHost(window.location.hostname)
+        && (language === "en" || language === "es");
+      this.url = "";
+      if (this.enabled) {
+        // Only page-owned context, never the visitor's URL or conversation identifiers.
+        const url = new URL(this.$el.dataset.viewerUrl);
+        url.search = new URLSearchParams({ Language: language === "es" ? "Spanish" : "English" }).toString();
+        this.url = url.href;
+      }
       this.onPageHide = () => this.end();
       window.addEventListener("pagehide", this.onPageHide);
     },

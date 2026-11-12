@@ -10,7 +10,7 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
 ---
 
 <div id="ai-chatbot-container" x-data="nimblerbotChat" @keydown.escape.window="close"
-  data-enabled={String(config.enabled)} data-viewer-url={config.url}
+  data-enabled={String(config.enabled)} data-viewer-url={config.url} data-language={lang}
   data-frame-title={t("chatbot.frameTitle")}
   class="fixed bottom-6 right-6 z-50 font-sans no-print">
   <button id="chatbot-toggle-btn" x-ref="launcher" @click="toggle"
