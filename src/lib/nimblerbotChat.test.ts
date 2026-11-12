@@ -37,6 +37,7 @@ test(`${language}: opening starts chat once; close preserves it, retry replaces 
     assert.equal(focused, "close");
     assert.equal(frames.length, 1);
     const frame = frames[0];
+    assert.equal(component.quickActionsDisabled, true, "frame creation is not input readiness");
     assert.equal(frame.src, component.url);
     assert.equal(frame.title, "Localized title");
     assert.equal(frame.referrerPolicy, "no-referrer");
@@ -107,4 +108,51 @@ test("avatar and localized inline notice replace the consent screen", async () =
   assert.doesNotMatch(component, /chatbot-accept-btn|consentClass|@click="accept"|onerror=/);
   assert.equal(ui.en["chatbot.notice"], "By using this chat, you agree to the");
   assert.equal(ui.es["chatbot.notice"], "Al usar este chat, aceptas el");
+});
+
+test("welcome actions require the current mounted input; one send, manual dismissal and restart", () => {
+  const originalWindow = globalThis.window, originalDocument = globalThis.document;
+  const listeners = new Map<string, (event: any) => void>();
+  const frames: any[] = [], sent: any[] = [];
+  globalThis.window = {
+    location: { hostname: "ericmaster.ninja" },
+    addEventListener: (name: string, fn: any) => listeners.set(name, fn),
+    removeEventListener: (name: string) => listeners.delete(name),
+  } as any;
+  globalThis.document = { createElement: () => ({ setAttribute() {}, focus() {}, contentWindow: { postMessage: (...args: any[]) => sent.push(args) } }) } as any;
+  const component = Object.assign(nimblerbotChat(), {
+    $el: { dataset: { enabled: "true", viewerUrl: "https://viewer.nimblerbot.com/ericmaster-ninja-web-canary", language: "es" } },
+    $root: { dataset: {} },
+    $refs: {
+      viewer: { append: (f: any) => frames.push(f), replaceChildren: () => frames.splice(0), get firstElementChild() { return frames[0]; } },
+      launcher: { focus() {} }, close: { focus() {} },
+    },
+    $nextTick: (fn: any) => fn(),
+  });
+  const token = "12345678-1234-1234-1234-123456789012";
+  const receive = (event: string, source = frames[0]?.contentWindow, origin = "https://viewer.nimblerbot.com", value = token) =>
+    listeners.get("message")!({ origin, source, data: { type: "nimblerbot-welcome", event, token: value } });
+  try {
+    component.init(); component.toggle();
+    component.requestService(); assert.equal(sent.length, 0);
+    receive("ready", {}, "https://viewer.nimblerbot.com");
+    receive("ready", frames[0].contentWindow, "https://untrusted.invalid");
+    receive("ready", frames[0].contentWindow, "https://viewer.nimblerbot.com", "invalid");
+    assert.equal(component.quickActionsDisabled, true);
+    receive("ready"); assert.equal(component.quickActionsDisabled, false);
+    component.requestService(); component.learnAboutEric();
+    assert.deepEqual(sent, [[{ type: "nimblerbot-welcome", event: "submit", token, action: "service" }, "https://viewer.nimblerbot.com"]]);
+    assert.equal(component.quickActionsClass.hidden, true);
+    component.close(); component.toggle(); receive("ready");
+    assert.equal(component.quickActionsClass.hidden, true);
+    const oldFrame = frames[0]; component.restart();
+    assert.equal(component.quickActionsClass.hidden, false);
+    receive("ready", oldFrame.contentWindow); assert.equal(component.quickActionsDisabled, true);
+    receive("ready"); receive("submitted");
+    assert.equal(component.quickActionsClass.hidden, true, "manual submit dismisses actions");
+    component.restart(); receive("ready"); component.learnAboutEric();
+    assert.equal(sent[1][0].action, "about");
+    component.finish(); assert.equal(frames.length, 0);
+    component.destroy(); assert.equal(listeners.size, 0);
+  } finally { globalThis.window = originalWindow; globalThis.document = originalDocument; }
 });

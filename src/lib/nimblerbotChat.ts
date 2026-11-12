@@ -7,6 +7,9 @@ export function nimblerbotChat() {
     connected: false,
     enabled: false,
     url: "",
+    welcomeToken: "",
+    welcomeDismissed: false,
+    onWelcomeMessage: null as ((event: MessageEvent) => void) | null,
     onPageHide: null as (() => void) | null,
     init(this: any) {
       const language = this.$el.dataset.language;
@@ -21,11 +24,40 @@ export function nimblerbotChat() {
       }
       this.onPageHide = () => this.end();
       window.addEventListener("pagehide", this.onPageHide);
+      this.onWelcomeMessage = (event: MessageEvent) => {
+        const frame = this.$refs.viewer.firstElementChild;
+        if (!this.connected || !this.url || event.origin !== new URL(this.url).origin
+          || event.source !== frame?.contentWindow) return;
+        const data = event.data;
+        if (!data || data.type !== "nimblerbot-welcome" || typeof data.token !== "string"
+          || !/^[0-9a-f-]{36}$/.test(data.token)) return;
+        if (data.event === "ready" && !this.welcomeDismissed) this.welcomeToken = data.token;
+        if (data.event === "submitted" && data.token === this.welcomeToken) {
+          this.welcomeDismissed = true;
+          this.welcomeToken = "";
+        }
+      };
+      window.addEventListener("message", this.onWelcomeMessage);
     },
     get panelClass() { return { hidden: !this.open }; },
     get contactOnlyClass() { return { hidden: this.enabled }; },
     get sessionClass() { return { hidden: !this.connected }; },
     get ariaExpanded() { return String(this.open); },
+    get quickActionsClass() { return { hidden: !this.connected || this.welcomeDismissed }; },
+    get quickActionsDisabled() { return !this.welcomeToken || this.welcomeDismissed; },
+    requestService() { this.sendWelcomeAction("service"); },
+    learnAboutEric() { this.sendWelcomeAction("about"); },
+    sendWelcomeAction(this: any, action: string) {
+      if (this.quickActionsDisabled || !this.connected || !this.open
+        || (action !== "service" && action !== "about")) return;
+      const frame = this.$refs.viewer.firstElementChild;
+      if (!frame?.contentWindow) return;
+      const token = this.welcomeToken;
+      this.welcomeDismissed = true;
+      this.welcomeToken = "";
+      frame.contentWindow.postMessage({ type: "nimblerbot-welcome", event: "submit", token, action }, new URL(this.url).origin);
+      frame.focus();
+    },
     toggle(this: any) {
       if (this.open) return this.close();
       this.open = true;
@@ -52,6 +84,8 @@ export function nimblerbotChat() {
     end(this: any) {
       this.$refs.viewer.replaceChildren();
       this.connected = false;
+      this.welcomeToken = "";
+      this.welcomeDismissed = false;
     },
     restart(this: any) {
       this.end();
@@ -64,6 +98,7 @@ export function nimblerbotChat() {
     destroy() {
       this.end();
       if (this.onPageHide) window.removeEventListener("pagehide", this.onPageHide);
+      if (this.onWelcomeMessage) window.removeEventListener("message", this.onWelcomeMessage);
     },
   };
 }

@@ -1,5 +1,25 @@
 # Integrar el asistente web de Eric con Nimblerbot — MVP
 
+## Branding del chat — ajuste autorizado 2026-11-12
+
+El bot permanece en su workspace dedicado, con plan `UNLIMITED` y branding
+desactivado mediante la opción nativa. No se trasladan credenciales ni conversaciones.
+Los bots FREE conservan la marca, ahora «Made with Nimblerbot» con enlace a
+`https://nimblerbot.com/`. Este ajuste amplía únicamente la exclusión de branding
+de la revisión de idioma; modelo, prompt, límites y canales permanecen iguales.
+Contrato operativo: `N/docs/runbooks/ericmaster-ninja-web.md`, sección
+«Branding and workspace» (`N = /home/ericmaster/products/nimblerbot`).
+
+## Bienvenida y respuestas rápidas
+
+La bienvenida es «Hola, ¿en qué te puedo ayudar?» o «Hi, how can I help you?» según
+la página, sin el bloque largo dentro del chat. La web conserva el aviso de IA y
+el enlace de privacidad. Las tres acciones iniciales permiten solicitar un servicio,
+conocer más sobre Eric o abrir el contacto directo; no bloquean la escritura libre.
+Las dos primeras pasan por el mismo modelo, validación y límite de intentos. La
+tercera abre el enlace fijo de WhatsApp sin enviar la conversación. Se ocultan al
+primer envío y vuelven con Nuevo chat. Decisión: [ADR-0004](../adr/0004-web-chat-welcome-actions.md).
+
 ## Objective/ROI
 
 Sustituir el mock de ericmaster.ninja por un bot útil de CV/servicios públicos en EN/ES, con contacto WhatsApp voluntario. Reutilizar el Viewer publicado en el lanzador con avatar: sin renderer propio, proxy LLM ni RAG. Abrir el chat conecta directamente; una nota mínima dentro del panel enlaza al aviso sobre IA y datos.
