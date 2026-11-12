@@ -55,7 +55,10 @@ export function nimblerbotChat() {
       const token = this.welcomeToken;
       this.welcomeDismissed = true;
       this.welcomeToken = "";
-      frame.contentWindow.postMessage({ type: "nimblerbot-welcome", event: "submit", token, action }, new URL(this.url).origin);
+        // Viewer clears its query on init; retain the same page-owned language used to start it.
+        const url = new URL(this.url);
+        const language = url.searchParams.get("Language");
+        frame.contentWindow.postMessage({ type: "nimblerbot-welcome", event: "submit", token, action, language }, url.origin);
       frame.focus();
     },
     toggle(this: any) {
