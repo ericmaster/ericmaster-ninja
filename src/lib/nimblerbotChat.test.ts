@@ -117,10 +117,40 @@ test("welcome actions belong to the bot, not website controls or messaging", asy
   const { ui } = await import("../i18n/ui.ts");
   assert.doesNotMatch(component, /chatbot-quick-actions|chatbot-service|chatbot-about|chatbot-quick-contact/);
   assert.doesNotMatch(controller, /postMessage|nimblerbot-welcome|onWelcomeMessage|sendWelcomeAction/);
-  assert.match(component, /id="chatbot-contact"/, "total Viewer outage retains direct contact");
+  assert.match(component, /id="chatbot-contact"/, "disabled-chat fallback retains direct contact");
+  assert.doesNotMatch(component.split("<footer")[1].split("</footer>")[0], /chatbot-contact/);
   for (const locale of [ui.en, ui.es]) {
     assert.equal("chatbot.quickService" in locale, false);
     assert.equal("chatbot.quickAbout" in locale, false);
     assert.equal("chatbot.quickContact" in locale, false);
   }
+});
+
+test("notice dismissal persists across mounts and language changes without storing chat data", () => {
+  const originalWindow = globalThis.window;
+  const values = new Map<string, string>();
+  globalThis.window = {
+    location: { hostname: "ericmaster.ninja" },
+    addEventListener() {}, removeEventListener() {},
+    localStorage: { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => values.set(key, value) },
+  } as any;
+  const make = (language = "en") => Object.assign(nimblerbotChat(), {
+    $el: { dataset: { enabled: "true", viewerUrl: "https://viewer.nimblerbot.com/ericmaster-ninja-web-canary", language } },
+    $refs: { close: { focus() {} } },
+  });
+  try {
+    const first = make(); first.init();
+    assert.equal(first.noticeClass.hidden, false);
+    first.dismissNotice();
+    assert.equal(first.noticeClass.hidden, true);
+    assert.deepEqual([...values.values()], ["dismissed"]);
+    const reopened = make("es"); reopened.init();
+    assert.equal(reopened.noticeClass.hidden, true);
+    assert.equal(reopened.connected, false);
+    Object.defineProperty(window, "localStorage", { get() { throw new Error("Storage denied"); } });
+    const unavailable = make(); unavailable.init();
+    assert.equal(unavailable.noticeClass.hidden, false);
+    unavailable.dismissNotice();
+    assert.equal(unavailable.noticeClass.hidden, true);
+  } finally { globalThis.window = originalWindow; }
 });

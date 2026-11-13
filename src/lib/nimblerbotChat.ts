@@ -1,14 +1,20 @@
 import { chatAllowedOnHost } from "./nimblerbotConfig.ts";
 
+const noticePreferenceKey = "ericmaster-chat-notice-v1";
+
 /** Registered once before Alpine.start; connect only when opened, with page-local state. */
 export function nimblerbotChat() {
   return {
     open: false,
     connected: false,
     enabled: false,
+    noticeDismissed: false,
     url: "",
     onPageHide: null as (() => void) | null,
     init(this: any) {
+      try {
+        this.noticeDismissed = window.localStorage.getItem(noticePreferenceKey) === "dismissed";
+      } catch { /* Storage may be disabled; dismissal still works for this page. */ }
       const language = this.$el.dataset.language;
       this.enabled = this.$el.dataset.enabled === "true" && chatAllowedOnHost(window.location.hostname)
         && (language === "en" || language === "es");
@@ -25,7 +31,14 @@ export function nimblerbotChat() {
     get panelClass() { return { hidden: !this.open }; },
     get contactOnlyClass() { return { hidden: this.enabled }; },
     get sessionClass() { return { hidden: !this.connected }; },
+    get noticeClass() { return { hidden: !this.enabled || this.noticeDismissed }; },
     get ariaExpanded() { return String(this.open); },
+    dismissNotice(this: any) {
+      this.noticeDismissed = true;
+      try { window.localStorage.setItem(noticePreferenceKey, "dismissed"); }
+      catch { /* A UI preference must never prevent use of the chat. */ }
+      this.$refs.close.focus();
+    },
     toggle(this: any) {
       if (this.open) return this.close();
       this.open = true;

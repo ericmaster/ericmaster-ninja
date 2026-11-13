@@ -37,6 +37,7 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
           <button id="chatbot-end-btn" @click="finish" class="min-h-11 text-sm underline">{t("chatbot.end")}</button>
           <p class="my-1 text-xs">{t("chatbot.restartWarning")}</p>
           {config.enabled && <a :href="url" target="_blank" rel="noopener noreferrer" class="min-h-11 py-2 text-sm underline">{t("chatbot.external")}</a>}
+          <a href={getLocalePath(lang, "/privacy")} class="min-h-11 py-2 text-sm underline">{t("chatbot.privacy")}</a>
         </div>
       </details>
       <button id="chatbot-close-btn" x-ref="close" @click="close"
@@ -44,18 +45,19 @@ const contactUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
     </header>
     <div :class="contactOnlyClass" class="min-h-0 flex-1 overflow-y-auto p-4">
       <p>{t("chatbot.contactOnly")}</p>
+      <a id="chatbot-contact" href={contactUrl} target="_blank" rel="noopener noreferrer"
+        class="inline-flex min-h-[44px] items-center text-sm font-semibold text-indigo-700 underline dark:text-indigo-300">{t("chatbot.contact")}</a>
     </div>
     <div :class="sessionClass" class="hidden min-h-0 flex-1 flex flex-col">
         <div x-ref="viewer" id="chatbot-viewer" class="min-h-0 flex-1"></div>
     </div>
-    <footer class="shrink-0 border-t border-slate-100 px-3 pt-2 dark:border-slate-800 [@media(max-width:320px)]:px-2 [@media(max-height:400px)]:pt-0">
-      {config.enabled && <p id="chatbot-notice" class="my-0 text-xs leading-snug text-slate-500 dark:text-slate-400 [@media(max-width:320px)]:text-[10px] [@media(max-width:320px)]:leading-[14px]">
+    <footer :class="noticeClass" class="flex shrink-0 items-center gap-1 border-t border-slate-100 px-3 py-1 dark:border-slate-800 [@media(max-width:320px)]:px-2">
+      {config.enabled && <><p id="chatbot-notice" class="my-0 min-w-0 flex-1 text-xs leading-snug text-slate-500 dark:text-slate-400 [@media(max-width:320px)]:text-[10px] [@media(max-width:320px)]:leading-[14px]">
         {t("chatbot.notice")} <a href={getLocalePath(lang, "/privacy")} class="underline hover:text-indigo-600 dark:hover:text-indigo-300">{t("chatbot.privacy")}</a>.
-      </p>}
-      <p class="sr-only">{t("chatbot.help")}</p>
-      <a id="chatbot-contact" href={contactUrl} target="_blank" rel="noopener noreferrer"
-        class="mt-1 inline-flex min-h-[44px] items-center text-sm font-semibold text-indigo-700 underline dark:text-indigo-300 [@media(max-width:320px)]:text-[12px]">{t("chatbot.contact")}</a>
+      </p><button id="chatbot-notice-close" @click="dismissNotice" aria-label={t("chatbot.dismissNotice")}
+        class="min-h-11 min-w-11 shrink-0 rounded text-lg text-slate-500 hover:bg-slate-100 focus-visible:outline-2 dark:text-slate-400 dark:hover:bg-slate-800">×</button></>}
     </footer>
+    <p class="sr-only">{t("chatbot.help")}</p>
   </section>
   <noscript><a href={contactUrl} class="rounded bg-white p-2 text-indigo-800 underline">{t("chatbot.contact")}</a></noscript>
 </div>
