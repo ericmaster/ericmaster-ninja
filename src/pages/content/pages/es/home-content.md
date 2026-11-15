@@ -1,7 +1,5 @@
 ## ¡Hola, soy Eric Aguayo!
 
-### ¡Bienvenido a mi rincón en la web!
-
 Soy **ingeniero sénior de IA y full-stack** en Quito, Ecuador, y **corredor de trail** de corazón. Soy Director of Applied AI en Nimblersoft. Desarrollo productos de IA y ayudo a equipos de ingeniería a incorporar agentes de programación en sus flujos de desarrollo. Diseño y lidero flujos de **desarrollo agéntico** con revisión crítica de los planes, pruebas, criterios explícitos de finalización y trazabilidad entre requisitos y cambios.
 
 Estoy **disponible para contratos de medio tiempo o por proyecto**, y para **mentoría a equipos e ingenieros en agentes de IA**. [Conversemos sobre tu proyecto](/es/work).

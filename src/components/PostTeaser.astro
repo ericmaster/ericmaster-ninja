@@ -22,9 +22,9 @@ const monthYear = iso
 
 <li class="post-card group relative list-none border-b border-slate-200 dark:border-slate-700 last:border-b-0">
   <div
-    class="flex flex-col md:flex-row items-center md:items-start gap-6 p-6 rounded-lg transition-colors group-hover:bg-slate-100 dark:group-hover:bg-slate-800/50"
+    class="flex flex-col md:flex-row items-stretch md:items-start gap-5 px-0 py-6 sm:px-4 rounded-lg transition-colors group-hover:bg-slate-100 dark:group-hover:bg-slate-800/50"
   >
-    <div class="w-full lg:min-w-[300px] lg:max-w-[300px] min-w-[200px] flex flex-col gap-4">
+    <div class="w-full min-w-0 md:w-48 md:flex-none lg:w-60 flex flex-col gap-4">
       {iso && (
         <time datetime={iso} class="flex flex-col leading-none">
           <span class="text-3xl font-semibold">{day}</span>
@@ -55,7 +55,7 @@ const monthYear = iso
       )}
     </div>
 
-    <div class="flex flex-col">
+    <div class="flex min-w-0 flex-col break-words">
       <h3>
         <a
           href={getLocalePath(lang, "/posts/" + post.data.slug)}

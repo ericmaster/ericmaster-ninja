@@ -1,21 +1,28 @@
 # Blog language and approved mobile refresh
 
-## Approved outcome
+## Approved outcome and minimal phases
 
-Apply the reviewed mobile-first homepage design and show only the selected language in blog listings (Eric, 2026-11-15).
+Eric approved applying the reviewed mobile-first homepage and fixing mixed-language listings on 2026-11-15.
 
-## Minimal release plan
+1. Reconcile published content and reconstruct approved design without losing articles.
+2. Test selected-language listings and publication fidelity; obtain independent and AGY review.
+3. Verify mobile UI, deploy with project credentials, and check production. No production deployment has happened.
 
-1. Recover the approved source and reconcile the deployed content before publishing.
-2. Make locale selection explicit and fail closed rather than falling back to another language. Add unit and built-page checks.
-3. Obtain independent and AGY review, check mobile EN/ES navigation, build/CSP, then deploy and verify production.
+## Current implementation
 
-## Current gate
+The four English translations missing from GitHub were reconstructed from their public pages. Bodies are HTML embedded in Markdown to avoid a lossy reverse-Markdown conversion. Titles, descriptions, images, tags and original publication timestamps are preserved. The attention article's diagram source was captured from the public page; the rendered SVG is not pasted into source. Fixtures under `tests/fixtures/recovered-blog` record URLs and captured content. These are reconstructed publication sources, NOT the lost original Markdown.
 
-The approved private preview is recoverable as compiled HTML/assets, not the original Astro source. Production contains four English translations absent from every fetched remote branch: `what-no-one-understands-no-one-maintains-part-1`, `if-you-dont-practice-them-they-fade`, `a-mistake-in-your-prompt-can-lead-to-unwanted-results`, and `the-expensive-part-of-an-agent-is-attention`. Do not deploy this checkout over production until their source and the approved design source are recovered/reconciled. AGY and project credential loading are unavailable in this workspace. No production change has been made.
+The bilingual homepage, navigation and cards were reconstructed from the approved private preview's saved compiled HTML/CSS, NOT recovered original Astro. Header and intro normalized HTML match the preview; hero text, links, classes and image attributes match. Existing inline-script bytes/CSP, authentication and non-home content remain intact.
 
-The isolated locale patch below is hardening for integration into the recovered source, not a claim that the observed production bug has been fixed. Main already filters English by default; production differs.
+English blog explicitly requests English. Empty locales remain empty rather than silently falling back to English. Main previously already filtered English by default; the divergent deployed source was the observed mixed-listing version.
 
-## Verification of isolated patch
+## Verification
 
-Independent reviewer found no critical issues. All 59 tests pass, build generates 147 pages, and CSP hash checks pass. Generated home and blog cards were checked against content frontmatter in both languages. This does not validate current production, mobile interaction, or recover the absent source. Production release remains blocked; keep the approved preview and published articles unchanged.
+- 68 tests pass, including locale selection, recovered content and mobile-layout contracts.
+- Combined build: 158 pages; CSP checks pass.
+- `node scripts/verify-recovered-blog.mjs` passes for all four articles: complete body text, element structure, links, heading IDs, diagram source, title/description, image/tags, visible dates and original card timestamps.
+- Independent review completed. Its timestamp-preservation finding was corrected and covered by assertions. No active scripts, inline event handlers or dangerous URL schemes were found in recovered article bodies.
+
+## Release gates
+
+AGY review, browser QA of the reconstructed mobile EN/ES flows, project credentials and production verification remain outstanding. The code is for review only; do not represent the live bug as resolved. Preserve the existing production and approved private preview until these gates pass.

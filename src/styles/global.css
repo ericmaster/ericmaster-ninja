@@ -124,10 +124,10 @@
 /* Navigation styles */
 @layer components {
   .hamburger .line {
-    @apply block w-10 h-1.5 mb-2.5 bg-black;
+    @apply block w-6 h-0.5 bg-black;
   }
   .nav-links {
-    @apply w-full top-20 left-12 hidden m-0;
+    @apply m-0;
   }
   .nav-links a {
     @apply block text-center py-2.5 no-underline font-medium uppercase tracking-wide text-sm text-slate-700 hover:text-indigo-600 focus:text-indigo-600 transition-colors;
@@ -135,16 +135,25 @@
   .expanded {
     @apply block;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav-links {
       @apply block static w-auto bg-transparent;
     }
     .nav-links a {
-      @apply inline-block py-3.5 px-5;
+      @apply inline-block py-3.5 px-3;
     }
     .hamburger {
       @apply hidden;
     }
+  }
+  .home-intro h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  .home-intro p, .home-intro li {
+    @apply leading-relaxed;
+  }
+  .home-intro ul {
+    @apply space-y-4;
   }
   .tags {
     @apply flex flex-wrap gap-1.5;

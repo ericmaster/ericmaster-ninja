@@ -11,6 +11,9 @@ Earlier unrecorded history remains in Git; do not invent releases or dates.
 
 ### Changed
 
+- Reconstruct the approved mobile homepage/navigation/card refresh from its saved preview.
+- Preserve four publicly deployed English articles missing from main through provenance-backed reconstruction and output-fidelity checks.
+
 - Make the English blog locale explicit and prevent cross-language fallback in post listings.
 
 - Remove the duplicate chat-footer WhatsApp link, remember notice dismissal in this browser, and keep Eric's native prompt at the bottom while messages scroll above it.

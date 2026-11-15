@@ -1,29 +1,28 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LatestPosts from "../../components/LatestPosts.astro";
-import WorkTeaser from "../../components/WorkTeaser.astro";
 import { Content } from "../content/pages/es/home-content.md";
-import { Image } from "astro:assets";
-const pageTitle = "El Rincón Digital de Eric";
+const pageTitle = "Ingeniería de IA y artículos";
 ---
 
-<BaseLayout pageTitle={pageTitle} heading="Código con Intención. Construido para Perdurar." centerTitle description="El rincón digital de Eric Aguayo — explorando Ingeniería en IA, Desarrollo Web y optimizaciones con factor humano.">
-  <section class="w-full mb-8">
-    <div class="w-full">
-      <Image
-        src="/assets/eric-anime-run.jpg"
-        alt="Imagen de anime de Eric corriendo por senderos"
-        width={320}
-        height={320}
-        class="max-w-xs w-full h-auto rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm float-none sm:float-left mb-4 sm:mb-0 sm:mr-6"
-      />
-      <div>
-        <Content />
+<BaseLayout pageTitle={pageTitle} showPageTitle={false} skipLinkTarget="home-main" skipLinkLabel="Saltar al contenido" description="Productos de IA, desarrollo agéntico y mentoría de ingeniería. Eric Aguayo, Quito, Ecuador.">
+  <main id="home-main" tabindex="-1" class="pb-10">
+    <section aria-labelledby="home-heading" class="grid gap-7 border-b border-slate-200 py-8 sm:py-12 lg:grid-cols-[1fr_240px] lg:items-center dark:border-slate-800">
+      <div class="min-w-0">
+        <p class="mb-2 text-sm font-semibold tracking-wide text-indigo-700 dark:text-indigo-300">Ingeniero sénior de IA y full-stack</p>
+        <h1 id="home-heading" class="my-2 text-4xl font-semibold tracking-tight sm:text-5xl">Eric Aguayo<span class="mt-3 block text-2xl font-normal leading-snug text-slate-600 sm:text-3xl dark:text-slate-300">Código con intención. Construido para perdurar.</span>
+        </h1>
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href="/es/work" class="inline-flex min-h-11 items-center justify-center rounded-lg bg-indigo-700 px-5 py-3 text-base font-semibold !text-white hover:bg-indigo-800">Cómo trabajar conmigo</a>
+          <a href="/es/blog" class="inline-flex min-h-11 items-center justify-center rounded-lg border border-slate-300 px-5 py-3 text-base font-medium text-slate-800 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800">Leer mis artículos</a>
+        </div>
       </div>
-    </div>
-    <div class="clear-both"></div>
-  </section>
-
-  <WorkTeaser />
-  <LatestPosts class="w-full mt-8 max-w-3xl mx-auto" />
+      <figure class="m-0 flex items-center gap-4 lg:block">
+        <img src="/assets/eric-anime-run.jpg" alt="Ilustración de Eric corriendo por senderos" width="320" height="320" class="h-24 w-24 flex-none rounded-2xl object-cover sm:h-32 sm:w-32 lg:h-60 lg:w-60" />
+        <figcaption class="text-sm text-slate-600 lg:mt-3 dark:text-slate-400">Quito, Ecuador.<br />Ingeniero. Creador. Corredor de trail.</figcaption>
+      </figure>
+    </section>
+    <section class="home-intro max-w-3xl py-6 sm:py-8"><Content /></section>
+    <LatestPosts class="w-full max-w-4xl border-t border-slate-200 pt-6 dark:border-slate-800" />
+  </main>
 </BaseLayout>

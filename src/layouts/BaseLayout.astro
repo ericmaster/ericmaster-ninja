@@ -9,6 +9,8 @@ import "../styles/global.css";
 
 interface Props {
   pageTitle?: string;
+  skipLinkTarget?: string;
+  skipLinkLabel?: string;
   description?: string;
   ogImage?: string;
   robots?: string;
@@ -23,6 +25,8 @@ interface Props {
 
 const {
   pageTitle,
+  skipLinkTarget,
+  skipLinkLabel = "Skip to content",
   description,
   ogImage,
   robots,
@@ -51,6 +55,7 @@ const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
     <canvas
       id="constellation-bg"
       class="fixed top-0 left-0 w-screen h-screen -z-10"></canvas>
+    {skipLinkTarget && <a href={`#${skipLinkTarget}`} class="sr-only focus:not-sr-only focus:relative focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center">{skipLinkLabel}</a>}
     <Header />
     {showPageTitle && <h1 class:list={["page-title", { "text-center": centerTitle }]}>{pageHeading}</h1>}
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">

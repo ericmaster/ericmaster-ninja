@@ -1,7 +1,5 @@
 ## Hey there, I'm Eric Aguayo!
 
-### Welcome to my corner of the web!
-
 I'm a **senior AI and full-stack engineer** based in Quito, Ecuador, and a **trail runner** at heart. I'm Director of Applied AI at Nimblersoft. I build AI products and help engineering teams bring coding agents into their development workflows. I design and lead **agentic development** workflows with critical plan review, tests, explicit completion criteria, and traceability between requirements and changes.
 
 I'm **available for part-time or per-project contract work**, and for **mentoring teams and engineers on AI agents**. [Let's talk about your project](/work).

@@ -1,0 +1,46 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: 'If You Don''t Practice Them, They Fade: What Urku Trail Reminded Me About AI'
+slug: if-you-dont-practice-them-they-fade
+description: 'I ran the 10K at Urku Runas Trail in La Rinconada: 10 km, around 1,000 m of elevation gain, in about two hours, not in my best shape. The cobblestones remind you that the fundamentals (your ankles, and your judgment too) need ongoing training. The same happens when we offload too much cognitive work to AI.'
+pubDate: 2026-11-10T16:00:00.000Z
+lang: en
+published: true
+tags:
+  - Trail Running
+  - IA
+  - Criterio
+  - Práctica
+image:
+  url: /assets/images/si-no-las-practicas-se-pierden.png
+  alt: 'Comparative illustration: on the left, a trail runner climbs a steep moorland slope; on the right, an engineer carefully reviews an AI agent''s plan instead of accepting it at a glance'
+---
+
+<p>It makes little sense that I have never written about trail running before. It is a sport that is part of my life. I finished <a href="https://utmb.world/" target="_blank" rel="noopener noreferrer">UTMB</a> in 2024, I have stayed active, and yet it barely shows up on this blog.</p>
+<p>This Sunday I ran the <a href="https://urkurunastrail.com/detalle_carrera.php?evento=10k" target="_blank" rel="noopener noreferrer">10K Mulugacho</a> at the seventh edition of <a href="https://urkurunastrail.com/" target="_blank" rel="noopener noreferrer">Urku Runas Trail</a>, in La Rinconada, Angochagua. According to the official race sheet, it is 10 km, 1,037 m of positive elevation gain, and a high point at 3,663 m above sea level, starting November 8, 2026 at 08:00. I finished in about two hours. I do not have the exact time, and it is not a finishing time I am proud of; I am putting it here only as a reference.</p>
+<p>The organization at Urku Runas Trail was excellent. Thank you to everyone who makes that race possible in La Rinconada.</p>
+<p>My daughter, <a href="https://meliruns.com" target="_blank" rel="noopener noreferrer">Melissa Aguayo</a>, finished first in the Youth category and in the top five overall. On <a href="https://meliruns.com" target="_blank" rel="noopener noreferrer">meliruns.com</a> she writes about her path in trail running, from the Ecuadorian Andes, with her sights set on the National Championship and the WMTRC 2027 World Championship.</p>
+<p>It is not a long race, nor one of the hardest I have done. Nor am I in the shape I was in when I finished UTMB. Even so, the course is demanding: over 100 meters of climbing per kilometer, above 3,600 m, rated <em>Fuerte</em> (Hard) by the organizers, with a 4-hour cutoff. A route like that, every once in a while, reminds you of something simple: if you do not put the skills you spent years building into practice, you can lose them.</p>
+<p>The same happens if we delegate too much of our cognitive load to AI.</p>
+<h2 id="what-rusts-is-not-the-idea-of-running">What rusts is not the idea of running</h2>
+<p>I did not forget what trail running is, or how a mountain race is run. What shows up when you are not in top shape is something else: your pace on the climb, your breathing at that altitude, when to hike and when to push, how to descend without fighting the terrain. You do not keep that sharp by reading elevation profiles or reminiscing about UTMB. You keep it by using it.</p>
+<p>Uneven ground and cobblestone stretches remind you of something even more basic: your foundations need to stay strong and trained too. On the trail, those foundations are your ankles. Several runners finished with sprained ankles.</p>
+<p>That is why you do not need an ultra distance to find out. A 10K with 1,000 m of gain, on a day when you are not arriving with plenty in the tank, is enough. It sends back a clear signal: those skills are still there, just duller, slower, and costlier to recover on the move. Same goes for the foundations: if you stop training them, the cobblestones collect the bill.</p>
+<h2 id="the-parallel-with-ai-without-the-drama">The parallel with AI, without the drama</h2>
+<p>In my day-to-day work I design and steer agentic systems. I use them all the time. They save me hours of execution. Using them is not the risk. The risk is that I stop doing the parts that keep my judgment sharp: defining the outcome I want, reading a plan skeptically, tracing a failure back to its cause, deciding what not to build.</p>
+<p>That is not just a loose metaphor. In a <a href="https://doi.org/10.1145/3706598.3713778" target="_blank" rel="noopener noreferrer">CHI 2025 survey</a>, Hao-Ping Lee and colleagues at Carnegie Mellon and Microsoft Research asked 319 knowledge workers, across 936 real examples of generative AI use, how they perceived critical thinking when working with these systems. Higher confidence in the model was associated with less critical thinking; higher confidence in one’s own ability, with more. Effort shifts: from gathering information to verifying it, from solving the problem to integrating the model’s response, from executing the task to supervising it. The authors warn that this can reduce critical engagement and, over the long run, the ability to solve problems on your own.</p>
+<p>It is a self-reported survey, not a longitudinal study measuring atrophy. I am not claiming it proves more than it does. Still, it describes fairly well what I feel when I let the agent carry the judgment and I just nod along.</p>
+<p>On the trail I do not leave my watch at home. It helps me. But if the watch runs out of battery, I still have to know how to get down the mountain. With AI it is the same for me: I want it to carry execution, not the judgment I stop training. That judgment has fundamentals too. If you stop practicing them (reading a plan with skepticism, tracing a failure, deciding what not to build), they weaken just like an ankle that is no longer used to cobblestones.</p>
+<h2 id="how-i-am-practicing-it">How I am practicing it</h2>
+<p>I do not have a recipe, and I am not going to stop using agents. These are the reps I am holding myself to so I do not get rusty:</p>
+<ol>
+<li><strong>I write the outcome in one sentence before asking an agent for a plan.</strong> If I cannot, I am not ready to delegate yet. The sentence is mine; the plan comes after.</li>
+<li><strong>I review the plan the way I would review a colleague’s.</strong> What does it assume, what is missing, what did I not ask for? Accepting the first version is the equivalent of thinking you are in shape because you once finished a long race.</li>
+<li><strong>Every now and then I trace a failure without pasting the error into the chat.</strong> Not out of romanticism, and not on every ticket. I do it often enough not to lose the habit of reading a stack trace, a log, or a diff and forming a hypothesis.</li>
+<li><strong>I keep the scope decisions.</strong> What we are not going to build, where the boundary sits, what the verifiable result is. That is the part closest to deciding when to hike on a steep climb: if you always leave it to someone else, one day you no longer know how.</li>
+</ol>
+<p>None of this requires abandoning the tool. It asks us not to confuse execution speed with fitness.</p>
+<h2 id="keep-using-it">Keep using it</h2>
+<p>I do not need to go back to UTMB this season to remember how to run in the mountains. Every now and then, I need a route that demands what I already know and what rusts if I leave it untouched. The 10K in La Rinconada was not the hardest race on my calendar. For that exact reason, it was a good reminder.</p>
+<p>With AI it feels the same to me. The model can carry plenty of the execution, while the judgment stays mine. And judgment takes training too.</p>
+<p>The question I am left with, and leave with you: where do you notice the rust first, in the mountains or in front of the screen?</p>
