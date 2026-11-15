@@ -5,7 +5,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 /**
  * Fetch and process blog posts from the content collection.
  * @param limit Optional. If provided, limits the number of posts returned (sorted by date, newest first).
- * @param lang Optional. Locale string (e.g. 'en', 'es'). Defaults to returning 'en' if no matching posts are found.
+ * @param lang Optional. Locale string (e.g. 'en', 'es'). Defaults to 'en'. No cross-language fallback.
  * @returns Array of CollectionEntry<"blog"> objects.
  */
 export async function getPosts(
@@ -15,16 +15,8 @@ export async function getPosts(
   const allPosts = await getCollection("blog");
   let posts = allPosts.filter((post) => post.data.published !== false);
 
-  if (lang) {
-    const langPosts = posts.filter((post) => (post.data.lang || "en") === lang);
-    if (langPosts.length > 0) {
-      posts = langPosts;
-    } else {
-      posts = posts.filter((post) => (post.data.lang || "en") === "en");
-    }
-  } else {
-    posts = posts.filter((post) => (post.data.lang || "en") === "en");
-  }
+  // An empty locale stays empty: never show another language's posts.
+  posts = posts.filter((post) => (post.data.lang || "en") === (lang || "en"));
 
   posts = posts
     .map((post) => {
