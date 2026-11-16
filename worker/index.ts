@@ -14,7 +14,7 @@ const REDIRECT_URI = `${CANONICAL_ORIGIN}/api/auth`;
  * context: alphanumeric, underscores, hyphens, and dots (GitHub token format).
  * This is NOT a token-validity check — it is an XSS character guard.
  */
-function isScriptSafe(token: string): boolean {
+export function isScriptSafe(token: string): boolean {
   return /^[a-zA-Z0-9_\-\.]+$/.test(token);
 }
 
