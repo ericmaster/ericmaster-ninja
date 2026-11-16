@@ -100,7 +100,7 @@ export default {
     const url = new URL(request.url);
     switch (url.pathname) {
       case "/ai-cheatsheets":
-        return fetch('https://ericmaster.github.io' + url.pathname);
+        return fetch('https://ericmaster.github.io/ai-cheatsheets');
       case "/api/auth":
         return handleAuth(url, env);
       default:
