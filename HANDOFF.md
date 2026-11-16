@@ -25,3 +25,21 @@ Apply the approved mobile-first personal-brand refresh and correct mixed English
 ## Release status and boundaries
 
 No main merge or production deployment is recorded for this delivery. The live language bug must not be reported fixed yet. Do not overwrite production from stale main, which lacked four published English articles. Preserve authentication, private/unlisted content, CSP and existing production until release checks pass. This project is independent of Trail Intent admin/beta work.
+
+## Pending follow-up: AI auditing service claim (2026-11-16)
+
+This is a scoped observation, not authorization to change service positioning or expand the approved mobile refresh.
+
+- Local recovery source inspected at `5eddb55`, `src/i18n/ui.ts:59`: “Human-in-the-loop certification for technical, medical, and legal AI outputs to ensure absolute reliability.”
+- Spanish at `src/i18n/ui.ts:138`: “Certificación con supervisión humana para resultados de IA técnicos, médicos y legales, garantizando una fiabilidad absoluta.”
+- `ExpertAiSolutions.astro` consumes `expertAi.service1.description` and outputs it in a service-card paragraph; `src/pages/work.astro` and `src/pages/es/work.astro` render that component.
+- Each exact claim appears once in the corresponding existing local compiled `dist/work/index.html` or `dist/es/work/index.html`; neither appears in the homepage output. This verifies generated markup only, not fresh visual acceptance or current production. No fresh build was run for this documentation-only review.
+- The absolute guarantee and certification are not substantiated by this investigation. No copy was changed.
+
+Suggested moderated ES: “Revisión humana de resultados de IA para ayudar a detectar errores, contrastar afirmaciones y documentar limitaciones”.
+
+Suggested moderated EN: “Human review of AI outputs to help identify errors, check claims, and document limitations.”
+
+An independent wording review supports this alternative. It removes unverified certification/guarantees and does not imply medical/legal credentials. Because removing explicit sectors changes service positioning, confirm the intended scope with Eric before adopting it. If sectors are retained, a narrower alternative is “Human review of technical, medical, and legal AI outputs to identify potential errors and document limitations.” / “Revisión humana de resultados de IA técnicos, médicos y legales para identificar posibles errores y documentar limitaciones”.
+
+AGY review remains pending: no matching connector or executable was available in the review environment. Do not report AGY approval. Keep this follow-up separate from the mobile refresh; if a copy revision is approved, limit the edit to both localized descriptions, obtain AGY review, and verify work-page markup and visual output before publication.
