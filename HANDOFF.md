@@ -44,3 +44,11 @@ Eric requested an independent review with the currently available coding tool ra
 - A fresh Chromium attempt, including supported execution escalation with its own sandbox retained, still failed before page load. No browser acceptance result is available. Wrangler still reports unauthenticated, and only the cloud environment is selectable.
 - Proposed QA alternative, not yet created: a separate owner-private static preview of an explicit allowlist of public build routes/assets, excluding admin, unlisted, content fragments, résumés/PDFs, source and credentials. Preserve the existing approved preview. Any preview is not production and cannot validate Worker APIs or authentication.
 - No implementation changes, integration or production deployment in this checkpoint. Next: complete browser acceptance through a supported preview and resolve secure deployment access.
+
+## Private browser-QA preview, 2026-11-16
+
+- Separate private preview published: https://ericmaster-blog-qa-20261116.ericmaster581967.chatgpt.site . Version 1, source snapshot `b7d73a642cf87fd6ab3cb71433ba0d4e24c684ff`; original site and previously approved preview untouched.
+- Access verified as custom/private: existing owner plus viewer `eric@nimblersoft.com`, no groups or other viewers.
+- Allowlisted static subset: home/blog in EN/ES, tag pages, eight paired public articles including their generated fallback routes, and transitively referenced assets. 250 file hashes match the build; global security headers retained. No admin/unlisted/content-fragment/resume/PDF/source-map routes or source credentials included.
+- This hosted preview is for browser QA, not completion of QA. Navigation to excluded destinations intentionally fails. Worker APIs/authentication are absent; Sites hosting behavior can differ from final production. Do not submit forms or activate external destinations during inspection.
+- Browser acceptance and secure production deployment access remain pending.
