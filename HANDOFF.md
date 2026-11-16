@@ -34,3 +34,13 @@ No main merge or production deployment is recorded for this delivery. The live l
 - Local HTTP serving works in a same-process check (200). Separate shell and managed-browser attempts could not connect to that server; a fresh Chromium launch failed before page load with `socket() failed: Operation not permitted`. No sandbox bypass was attempted. Browser layout and interaction QA remain unperformed, not passed.
 - The repository's credential loader is unavailable in this environment; the only workflow performs tests/build, not deployment. AGY restoration is coordinated separately. No credentials were inspected, no main merge or production deployment occurred.
 - Next: finish AGY review, use an environment with working browser-to-preview connectivity for the acceptance matrix above, and obtain supported deployment access. Preserve production until those gates pass.
+
+## Independent Codex review checkpoint, 2026-11-16
+
+Eric requested an independent review with the currently available coding tool rather than waiting for AGY quota. A separate Codex reviewer inspected the reconstructed diff and found no new release blockers. All 68 tests and four-article fidelity checks passed; home/blog card destinations exist in both locales. This is a Codex review, not an AGY review and not browser acceptance.
+
+- AGY was restored and authenticated, but Sonnet 5.5 returned quota exhaustion without a review. Do not list that gate as completed by AGY.
+- Pre-existing follow-up: the article language selector changes the locale prefix but does not map translated slugs. Fallback routes may retain English article content under `/es/`. Treat article translation navigation separately from the fixed selected-language listings; cover it explicitly in browser acceptance.
+- A fresh Chromium attempt, including supported execution escalation with its own sandbox retained, still failed before page load. No browser acceptance result is available. Wrangler still reports unauthenticated, and only the cloud environment is selectable.
+- Proposed QA alternative, not yet created: a separate owner-private static preview of an explicit allowlist of public build routes/assets, excluding admin, unlisted, content fragments, résumés/PDFs, source and credentials. Preserve the existing approved preview. Any preview is not production and cannot validate Worker APIs or authentication.
+- No implementation changes, integration or production deployment in this checkpoint. Next: complete browser acceptance through a supported preview and resolve secure deployment access.
