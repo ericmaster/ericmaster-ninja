@@ -54,6 +54,11 @@ try {
    await page.evaluate(()=>document.fonts.ready);
    assert.ok(await page.locator('main').count(),path+' main');
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1);
+   if(overflow){
+    await page.screenshot({path:resolve(out,'overflow-'+width+'.png'),fullPage:false});
+    const offenders=await page.evaluate(()=>[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,id:e.id,cls:e.className?.baseVal??e.className,rect:e.getBoundingClientRect().toJSON()})).filter(e=>e.rect.right>innerWidth+1||e.rect.left< -1));
+    await writeFile(resolve(out,'overflow-'+width+'.json'),JSON.stringify({path,width,offenders},null,2));
+   }
    assert.equal(overflow,false,path+' horizontal overflow '+width);
    const title=await page.locator('h1').first().textContent();
    const name=(path==='/'?'home':path.replaceAll('/','_'))+'-'+width;
