@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { dirname, join } from "node:path";
+import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { load } from "js-yaml";
 
@@ -223,7 +223,7 @@ describe("bilingual resume positioning contract", () => {
       false,
       "retired public/Eric Aguayo Resume.pdf must be absent",
     );
-    const resumePdfs = publicPdfPaths().filter((file) => /resume/i.test(file));
+    const resumePdfs = publicPdfPaths().filter((file) => /resume/i.test(relative(publicDir, file)));
     const generatedPublicResumeEs = join(publicDir, "pdfs/resume-es.pdf");
     assert.deepEqual(resumePdfs.sort(), [generatedPublicResumeEs, generatedPublicResume].sort());
     assert.equal(

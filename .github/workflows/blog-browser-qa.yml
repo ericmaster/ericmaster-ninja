@@ -1,0 +1,35 @@
+name: Blog public browser QA
+on:
+  push:
+    branches: [chiku/blog-browser-qa]
+permissions:
+  contents: read
+jobs:
+  browser:
+    if: github.repository == 'ericmaster/ericmaster-ninja' && github.ref == 'refs/heads/chiku/blog-browser-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: npm test
+      - run: npm run build && node scripts/verify-recovered-blog.mjs
+      - run: npm install --prefix /tmp/blog-browser-tools --ignore-scripts --no-package-lock playwright@1.56.1
+      - run: /tmp/blog-browser-tools/node_modules/.bin/playwright install --with-deps chromium
+      - run: node qa/blog-browser.mjs
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: blog-public-browser-qa
+          path: qa-results/
+          retention-days: 3
+          if-no-files-found: warn
