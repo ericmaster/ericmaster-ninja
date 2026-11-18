@@ -7,7 +7,7 @@ permissions:
 jobs:
   browser:
     if: github.repository == 'ericmaster/ericmaster-ninja' && github.ref == 'refs/heads/chiku/blog-browser-qa'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
       ASTRO_TELEMETRY_DISABLED: '1'
