@@ -1,0 +1,58 @@
+[
+  {
+    "en": "/",
+    "es": "/es/"
+  },
+  {
+    "en": "/about/",
+    "es": "/es/about/"
+  },
+  {
+    "en": "/blog/",
+    "es": "/es/blog/"
+  },
+  {
+    "en": "/privacy/",
+    "es": "/es/privacy/"
+  },
+  {
+    "en": "/resources/",
+    "es": "/es/resources/"
+  },
+  {
+    "en": "/resume/",
+    "es": "/es/resume/"
+  },
+  {
+    "en": "/support/",
+    "es": "/es/support/"
+  },
+  {
+    "en": "/work/",
+    "es": "/es/work/"
+  },
+  {
+    "en": "/posts/a-mistake-in-your-prompt-can-lead-to-unwanted-results/",
+    "es": "/posts/un-error-en-tu-prompt-puede-terminar-en-resultados-indeseados/"
+  },
+  {
+    "en": "/posts/if-you-dont-practice-them-they-fade/",
+    "es": "/posts/si-no-las-practicas-se-pierden/"
+  },
+  {
+    "en": "/posts/the-expensive-part-of-an-agent-is-attention/",
+    "es": "/posts/lo-caro-de-un-agente-es-la-atencion/"
+  },
+  {
+    "en": "/posts/what-no-one-understands-no-one-maintains-part-1/",
+    "es": "/posts/lo-que-nadie-entiende-nadie-lo-mantiene-parte-1/"
+  },
+  {
+    "en": "/posts/mediahack-2026-informa-t-hackathon-lessons-ai-journalism/",
+    "es": "/posts/mediahack-2026-informa-t-lecciones-hackathon-ia-periodismo/"
+  },
+  {
+    "en": "/posts/stop-reading-llm-text-why-i-built-artifacts-manager/",
+    "es": "/posts/deja-de-leer-muros-de-texto-llm-por-que-cree-artifacts-manager/"
+  }
+]

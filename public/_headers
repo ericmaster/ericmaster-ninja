@@ -1,8 +1,4 @@
 # Cloudflare static-asset response headers.
-# NOTE: matching rules are CUMULATIVE — a request matching both /* and /admin/*
-# inherits headers from BOTH, and a header set twice is joined (two CSPs =
-# enforced as their intersection). So /admin/* must DETACH the inherited /* CSP
-# with `! Content-Security-Policy` before setting its own permissive policy.
 # Hashes below are exact-byte sha256 of inline scripts — verified by
 # scripts/check-csp-hashes.mjs after every build. Do NOT trim before hashing.
 
@@ -12,11 +8,6 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-
-# Decap CMS — loads from unpkg, talks to the GitHub API, needs unsafe-inline/eval.
-/admin/*
-  ! Content-Security-Policy
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: blob: https:; font-src 'self' data: https://unpkg.com; connect-src 'self' https://api.github.com https://unpkg.com; frame-src 'self'; frame-ancestors 'none'; base-uri 'self';
 
 /agent-fabric/install
   Content-Type: text/plain; charset=utf-8

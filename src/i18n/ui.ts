@@ -56,7 +56,7 @@ export const ui = {
       "Hi Eric, I would like to book a professional AI consultation.",
     "expertAi.service1.title": "AI Hallucination & Fact-Checking Auditor",
     "expertAi.service1.description":
-      "Human-in-the-loop certification for technical, medical, and legal AI outputs to ensure absolute reliability.",
+      "Human review of AI-generated content to identify unsupported claims and factual inconsistencies.",
     "expertAi.service2.title": "Technical Interviewer",
     "expertAi.service2.subtitle": "Smoke Filter",
     "expertAi.service2.description":
@@ -135,7 +135,7 @@ export const ui = {
       "Hola Eric, me gustaría reservar una consultoría profesional de IA.",
     "expertAi.service1.title": "Auditor de Alucinaciones y Verificación de IA",
     "expertAi.service1.description":
-      "Certificación con supervisión humana para resultados de IA técnicos, médicos y legales, garantizando una fiabilidad absoluta.",
+      "Revisión humana de contenido generado por IA para identificar afirmaciones sin respaldo e inconsistencias factuales.",
     "expertAi.service2.title": "Entrevistador Técnico",
     "expertAi.service2.subtitle": "Filtro Anti-humo",
     "expertAi.service2.description":

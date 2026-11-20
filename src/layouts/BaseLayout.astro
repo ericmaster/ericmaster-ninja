@@ -3,7 +3,7 @@ import Head from "../components/Head.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AiChatbot from "../components/AiChatbot.astro";
-import { getLocalePath } from "../i18n/utils";
+import { getTranslationPair, type Locale } from "../i18n/routePairs";
 import "@fontsource/poppins/index.css";
 import "../styles/global.css";
 
@@ -14,6 +14,8 @@ interface Props {
   description?: string;
   ogImage?: string;
   robots?: string;
+  locale?: Locale;
+  ogType?: string;
   /** Pass true from layouts that build their own <h1> */
   showPageTitle?: boolean;
   /** Visible <h1> text when it should differ from the SEO/tab title (e.g. a homepage slogan) */
@@ -30,6 +32,8 @@ const {
   description,
   ogImage,
   robots,
+  locale,
+  ogType,
   showPageTitle = true,
   heading,
   centerTitle = false,
@@ -40,28 +44,30 @@ const title = pageTitle ?? frontmatter?.title ?? "Home";
 const pageHeading = heading ?? title;
 const metaDescription = description ?? frontmatter?.description;
 
-const currentLocale = Astro.currentLocale || "en";
-const basePath = Astro.url.pathname.replace(/^\/(en|es)/, "") || "/";
+const currentLocale: Locale = locale === "es" || locale === "en" ? locale : Astro.currentLocale === "es" ? "es" : "en";
+const translationPair = getTranslationPair(Astro.url.pathname);
 ---
 
 <html lang={currentLocale}>
   <head>
-    <Head title={title} description={metaDescription} ogImage={ogImage} locale={currentLocale} robots={robots} />
-    <link rel="alternate" hreflang="en" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />
-    <link rel="alternate" hreflang="es" href={new URL(getLocalePath("es", basePath), Astro.site || Astro.url.origin)} />
-    <link rel="alternate" hreflang="x-default" href={new URL(getLocalePath("en", basePath), Astro.site || Astro.url.origin)} />
+    <Head title={title} description={metaDescription} ogImage={ogImage} locale={currentLocale} robots={robots} ogType={ogType} />
+    {translationPair && <>
+      <link rel="alternate" hreflang="en" href={new URL(translationPair.en, Astro.site || Astro.url.origin)} />
+      <link rel="alternate" hreflang="es" href={new URL(translationPair.es, Astro.site || Astro.url.origin)} />
+      <link rel="alternate" hreflang="x-default" href={new URL(translationPair.en, Astro.site || Astro.url.origin)} />
+    </>}
   </head>
   <body>
     <canvas
       id="constellation-bg"
       class="fixed top-0 left-0 w-screen h-screen -z-10"></canvas>
     {skipLinkTarget && <a href={`#${skipLinkTarget}`} class="sr-only focus:not-sr-only focus:relative focus:z-50 focus:inline-flex focus:min-h-11 focus:items-center">{skipLinkLabel}</a>}
-    <Header />
+    <Header locale={currentLocale} />
     {showPageTitle && <h1 class:list={["page-title", { "text-center": centerTitle }]}>{pageHeading}</h1>}
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       <slot />
     </div>
-    <Footer />
+    <Footer locale={currentLocale} />
     <script src="/assets/constellation.js" is:inline></script>
     <!-- Alpine.js CSP build — self-hosted via npm, no unsafe-eval required (ADR-0001) -->
     <script>

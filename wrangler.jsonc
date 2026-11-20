@@ -5,6 +5,7 @@
   "compatibility_date": "2025-05-28",
   "compatibility_flags": [],
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
   }
 }

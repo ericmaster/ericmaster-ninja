@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { getPosts } from "../lib/blogUtils";
+const linkedTags = new Set((await getPosts(undefined, "en")).flatMap(post => post.data.tags || []));
 const { frontmatter } = Astro.props;
 ---
 
@@ -9,7 +11,7 @@ const { frontmatter } = Astro.props;
       <div class="tags mb-8">
         {frontmatter.tags.map((tag: string) => (
           <p class="tag">
-            <a href={`/tags/${tag}`}>{tag}</a>
+            {linkedTags.has(tag) ? <a href={`/tags/${encodeURIComponent(tag)}/`}>{tag}</a> : <span>{tag}</span>}
           </p>
         ))}
       </div>

@@ -5,35 +5,36 @@ import { getLangFromUrl, getLocalePath } from "../i18n/utils";
 import { Image } from "astro:assets";
 const { frontmatter } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url);
+const lang = frontmatter.lang === "es" || frontmatter.lang === "en" ? frontmatter.lang : getLangFromUrl(Astro.url);
+const rawImage = typeof frontmatter.image?.url === "string" ? frontmatter.image.url.trim() : "";
+const imageSource = rawImage ? (/^https?:\/\//.test(rawImage) || rawImage.startsWith("/") ? rawImage : `/${rawImage}`) : undefined;
+const imageUrl = imageSource ? new URL(imageSource, Astro.site || Astro.url.origin).href : undefined;
 const dateLocale = lang === "es" ? "es-ES" : "en-US";
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout pageTitle={frontmatter.title} description={frontmatter.description} ogImage={imageUrl} locale={lang} ogType="article">
   <div class="max-w-4xl mx-auto">
     <p class="text-right">{formatLocalizedDate(frontmatter.pubDate, dateLocale)}</p>
     <p class="text-xl mb-8"><em>{frontmatter.description}</em></p>
   </div>
 
-  <div class="w-full aspect-[16/9] mb-8 lg:-mx-0">
+  {imageUrl && <div class="w-full aspect-[16/9] mb-8 lg:-mx-0">
     <Image
-      src={frontmatter.image.url.startsWith("/")
-        ? frontmatter.image.url
-        : `/${frontmatter.image.url}`}
-      alt={frontmatter.image.alt}
+      src={imageSource}
+      alt={frontmatter.image?.alt || frontmatter.title}
       width={1200}
       height={675}
       class="w-full h-full object-cover object-top rounded-xl shadow-2xl"
       loading="lazy"
     />
-  </div>
+  </div>}
 
   <div class="max-w-4xl mx-auto post-content">
     <div class="tags mb-8">
       {
         frontmatter.tags.map((tag: string) => (
           <p class="tag">
-            <a href={getLocalePath(lang, `/tags/${tag}`)}>{tag}</a>
+            <a href={getLocalePath(lang, `/tags/${encodeURIComponent(tag)}/`)}>{tag}</a>
           </p>
         ))
       }

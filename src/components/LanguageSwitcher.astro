@@ -1,23 +1,21 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
+import { getTranslationPair, localeHome } from "../i18n/routePairs";
 import { languages } from "../i18n/ui";
 
 type Lang = keyof typeof languages;
 
-const currentLocale = ((Astro.currentLocale as Lang) in languages
-  ? (Astro.currentLocale as Lang)
-  : "en") as Lang;
-
-// Strip any leading locale prefix so we can rebuild the same path per language.
-const basePath = Astro.url.pathname.replace(/^\/(en|es)(?=\/|$)/, "") || "/";
-
-const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => ({
-  lang,
-  label: languages[lang],
-  code: lang.toUpperCase(),
-  url: getRelativeLocaleUrl(lang, basePath),
-  isActive: lang === currentLocale,
-}));
+const currentLocale: Lang = Astro.props.locale === "es" || Astro.props.locale === "en"
+  ? Astro.props.locale : Astro.currentLocale === "es" ? "es" : "en";
+const pair = getTranslationPair(Astro.url.pathname);
+const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => {
+  const isActive = lang === currentLocale;
+  return {
+    lang, isActive,
+    label: !pair && !isActive ? `${languages[lang]} · ${lang === "es" ? "Inicio" : "Home"}` : languages[lang],
+    code: lang.toUpperCase(),
+    url: pair ? pair[lang] : isActive ? Astro.url.pathname : localeHome(lang),
+  };
+});
 ---
 
 <div class="relative" x-data="languageSwitcher">
@@ -26,7 +24,7 @@ const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => ({
     @click="toggle"
     :aria-expanded="ariaExpanded"
     aria-haspopup="true"
-    aria-label="Select language"
+    aria-label={currentLocale === "es" ? "Seleccionar idioma" : "Select language"}
     class="flex min-h-[44px] min-w-[44px] items-center justify-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-slate-600 hover:text-indigo-500 dark:text-slate-300 dark:hover:text-indigo-400 transition-colors"
   >
     <span>{currentLocale.toUpperCase()}</span>

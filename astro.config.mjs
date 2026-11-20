@@ -66,7 +66,12 @@ export default defineConfig({
   integrations: [
     icon(),
     sitemap({
-      filter: (page) => !page.includes('/unlisted'),
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        // Astro generates Spanish-prefixed fallbacks for the canonical /posts/
+        // routes. Keep those aliases reachable, but out of the index sitemap.
+        return !path.includes('/unlisted') && path !== '/es/posts' && !path.startsWith('/es/posts/');
+      },
     }),
   ],
 });

@@ -1,12 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations, getLocalePath } from "../i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = Astro.props.locale === "es" || Astro.props.locale === "en" ? Astro.props.locale : getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const { locale: _locale, ...attributes } = Astro.props;
 ---
 
 <nav
-  {...Astro.props}
+  {...attributes}
   class="nav-links absolute top-full left-0 z-50 hidden w-full border-b border-slate-200 bg-white shadow-md lg:static lg:block lg:w-auto lg:border-0 lg:!bg-transparent lg:shadow-none dark:border-slate-700 dark:bg-slate-900"
 >
   <a href={getLocalePath(lang, "/")}>{t("nav.home")}</a>

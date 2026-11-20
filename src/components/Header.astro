@@ -6,7 +6,7 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
 import Logo from "./Logo.astro";
 import { getLangFromUrl, useTranslations, getLocalePath } from "../i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = Astro.props.locale === "es" || Astro.props.locale === "en" ? Astro.props.locale : getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
@@ -28,12 +28,13 @@ const t = useTranslations(lang);
     :open="navOpen"
   />
   <Navigation
+    locale={lang}
     id="site-navigation"
     :class="navClass"
     :open="navOpen"
   />
   <div class="ml-auto flex items-center gap-2">
-    <LanguageSwitcher />
+    <LanguageSwitcher locale={lang} />
     <ThemeIcon />
   </div>
 </header>

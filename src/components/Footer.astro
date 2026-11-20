@@ -3,14 +3,14 @@ import Social from "./Social.astro";
 import { SOCIAL_LINKS } from "../lib/siteConfig";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = Astro.props.locale === "es" || Astro.props.locale === "en" ? Astro.props.locale : getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="flex flex-col items-center gap-4 mt-8">
-  <div class="flex gap-2 items-center">
+  <div class="flex w-full flex-wrap justify-center gap-2 items-center">
     {SOCIAL_LINKS.map((link) => (
       <Social platform={link.platform} username={link.username} />
     ))}

@@ -16,7 +16,7 @@ describe('approved mobile homepage reconstruction', () => {
   }
   it('places the keyboard skip link before the header', () => {
     const s=read('src/layouts/BaseLayout.astro');
-    assert.ok(s.indexOf('{skipLinkTarget &&')<s.indexOf('<Header />'));
+    assert.ok(s.indexOf('{skipLinkTarget &&')<s.indexOf('<Header '));
   });
   it('keeps mobile controls at 44px and navigation breakpoint aligned', () => {
     assert.match(read('src/components/Hamburger.astro'), /h-\[44px\] w-\[44px\]/);

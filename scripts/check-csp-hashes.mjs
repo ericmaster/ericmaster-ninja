@@ -56,12 +56,10 @@ function inlineScripts(html) {
 const headersText = readFileSync(HEADERS, "utf8");
 const files = htmlFiles(DIST);
 
-// Paths with their own permissive CSP block (e.g. 'unsafe-inline') — skip them.
-// These are covered by a dedicated block in _headers, not the catch-all /* block.
 // `docs-admin` is a local-only Decap surface (its inline scripts are dev-tool
-// glue) that is 404'd in production by _redirects, so it is never served under
+// glue) that redirects to /404 via _redirects, so it is never served under
 // the site CSP and its hashes must not pollute the global script-src.
-const PERMISSIVE_PREFIXES = [join(DIST, "admin"), join(DIST, "docs-admin")];
+const PERMISSIVE_PREFIXES = [join(DIST, "docs-admin")];
 
 // Collect unique inline-script hashes across the whole dist tree
 const missing = new Map(); // hash → first file path where seen
