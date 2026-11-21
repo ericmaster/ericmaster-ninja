@@ -20,3 +20,7 @@ Earlier unrecorded history remains in Git; do not invent releases or dates.
 - Move localized welcome actions into the bot conversation, retaining free typing and direct contact without the website action bridge.
 - Restore the compact avatar-led chat appearance and open the Viewer directly from the launcher, replacing the consent screen with a small linked EN/ES AI/data notice.
 - Allow `CHANGELOG.md` to retain release history while keeping specs and other non-ADR docs current-state only.
+- Point `robots.txt` to canonical `/sitemap-index.xml` and exclude `/es/posts/*` fallback aliases from the sitemap.
+- Retire public `/admin/*` and `/api/auth/*` endpoints with `410` responses, add `ASSETS` binding in `wrangler.jsonc`, and exclude local `/docs-admin/` via `.assetsignore`.
+- Align bilingual canonicals, `hreflang` links, navigation/footer locales, URL-encoded tag links in `PostTeaser`, keyboard navigation on `LanguageSwitcher`, and mobile wrapping/touch targets on `ResourcesNav`.
+- Preserve legacy English-only `/es/tags/*` routes via `301` redirect to `/tags/*` when the target tag page exists.

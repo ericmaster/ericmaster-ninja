@@ -21,3 +21,33 @@ test('CMS files/CSP absent, separate local docs retained, footer wraps and tags 
  assert.equal(existsSync(new URL('../public/admin',import.meta.url)),false);assert.doesNotMatch(source,/GH_CLIENT|access_token|postMessage/);assert.doesNotMatch(read('public/_headers'),/\/admin\/|unsafe-eval|unpkg.com/);assert.doesNotMatch(read('scripts/check-csp-hashes.mjs'),/join\(DIST, "admin"\)/);
  assert.equal(existsSync(new URL('../public/docs-admin/index.html',import.meta.url)),true);assert.match(read('src/components/Footer.astro'),/flex w-full flex-wrap justify-center gap-2 items-center/);assert.match(read('src/layouts/PageLayout.astro'),/linkedTags.has\(tag\)/);
 });
+test('legacy EN-only /es/tags/* redirects 301 to /tags/* when EN tag exists',async()=>{
+ const calls=[];
+ const existing=new Set(['/es/tags/IA/','/tags/Cloudflare/','/tags/AI%20Development/']);
+ const run=instance(()=>{throw Error('unexpected fetch')},{
+  ASSETS:{
+   fetch:(input,init)=>{
+    const u=new URL(typeof input==='string'?input:input.url);
+    const m=(init?.method||(typeof input==='string'?'GET':input.method)).toUpperCase();
+    calls.push([u.pathname,m]);
+    return new Response(u.pathname==='/es/tags/IA/'?'es-tag':null,{status:existing.has(u.pathname)?200:404});
+   }
+  }
+ });
+ for(const path of ['/es/tags/Cloudflare/','/es/tags/Cloudflare','/es/tags/AI%20Development/']){
+  const expected=path.startsWith('/es/tags/Cloudflare')?'/tags/Cloudflare/':'/tags/AI%20Development/';
+  for(const method of ['GET','HEAD']){
+   const r=await run(path,method);
+   assert.equal(r.status,301);
+   assert.equal(r.headers.get('location'),expected);
+   assert.equal(r.headers.get('cache-control'),'public, max-age=3600');
+  }
+ }
+ const ia=await run('/es/tags/IA/','GET');
+ assert.equal(ia.status,200);assert.equal(await ia.text(),'es-tag');
+ assert.equal((await run('/es/tags/nonexistent-tag/','GET')).status,404);
+ const beforeTraversal=calls.length;
+ assert.equal((await run('/es/tags/..%2Fposts/','GET')).status,404);
+ assert.equal(calls.length-beforeTraversal,1);
+ assert.equal((await run('/es/tags/Cloudflare/','POST')).status,404);
+});
