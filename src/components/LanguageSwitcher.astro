@@ -18,9 +18,10 @@ const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => {
 });
 ---
 
-<div class="relative" x-data="languageSwitcher">
+<div class="relative" x-data="languageSwitcher" @keydown="onKeydown">
   <button
     type="button"
+    x-ref="trigger"
     @click="toggle"
     :aria-expanded="ariaExpanded"
     aria-haspopup="true"
@@ -43,6 +44,7 @@ const localeOptions = (Object.keys(languages) as Lang[]).map((lang) => {
     </svg>
   </button>
   <ul
+    x-ref="menu"
     x-show="open"
     x-cloak
     @click.away="close"

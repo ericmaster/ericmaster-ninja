@@ -100,6 +100,52 @@ const translationPair = getTranslationPair(Astro.url.pathname);
         close() {
           this.open = false;
         },
+        menuItems(): HTMLElement[] {
+          const menu = (this as any).$refs?.menu as HTMLElement | undefined;
+          return menu ? Array.from(menu.querySelectorAll<HTMLElement>('[role="menuitem"]')) : [];
+        },
+        focusItem(index: number) {
+          const items = this.menuItems();
+          if (!items.length) return;
+          const target = items[(index + items.length) % items.length];
+          target?.focus();
+        },
+        onKeydown(event: KeyboardEvent) {
+          const trigger = (this as any).$refs?.trigger as HTMLElement | undefined;
+          if (event.key === "Escape" && this.open) {
+            event.preventDefault();
+            this.close();
+            trigger?.focus();
+            return;
+          }
+          if (event.key === "Tab" && this.open) {
+            this.close();
+            return;
+          }
+          if (document.activeElement === trigger && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+            event.preventDefault();
+            this.open = true;
+            (this as any).$nextTick(() => this.focusItem(event.key === "ArrowUp" ? -1 : 0));
+            return;
+          }
+          if (!this.open) return;
+          const items = this.menuItems();
+          const currentIndex = items.indexOf(document.activeElement as HTMLElement);
+          if (currentIndex === -1) return;
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            this.focusItem(currentIndex + 1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            this.focusItem(currentIndex - 1);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            this.focusItem(0);
+          } else if (event.key === "End") {
+            event.preventDefault();
+            this.focusItem(-1);
+          }
+        },
         get ariaExpanded() {
           return String(this.open);
         },

@@ -49,7 +49,7 @@ const monthYear = iso
       {post.data.tags && (
         <div class="tags relative z-10">
           {post.data.tags.map(tag => (
-            <a href={getLocalePath(lang, `/tags/${tag}`)} class="tag">{tag}</a>
+            <a href={getLocalePath(lang, `/tags/${encodeURIComponent(tag)}/`)} class="tag">{tag}</a>
           ))}
         </div>
       )}
